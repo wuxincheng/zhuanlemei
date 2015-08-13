@@ -1,0 +1,19 @@
+/*
+ * Base structure
+ */
+
+
+
+@media (min-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0px;
+    bottom: 0;
+    width: 190px;
+    z-index: 99;
+    padding: 0;
+    margin: 0;
+    background-color: #F3F3F3;
+    font-size: 12px;
+  }
+}

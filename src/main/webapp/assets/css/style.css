@@ -1,0 +1,263 @@
+/************************
+Designed by : http://responsivewebinc.com
+************************/
+/* Fonts */
+
+/* Basic CSS starts */
+body {
+  padding-top: 0px;
+  font-size: 12px;
+  font-family: Arial, 微软雅黑, Verdana, Geneva, Tahoma, 宋体, 'Open Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: #fff;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: Arial, 微软雅黑, Verdana, Geneva, Tahoma, 宋体, 'Open Sans', sans-serif;
+  font-weight: 400;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/***********************************/
+/** fund panel */
+.fund-panel {
+  text-align: left;
+  padding: 20px 0px 0px 50px;
+  line-height: 1.42857143;
+  background-color: #FFFFFF;
+  border: 0px solid #eee;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  line-height: 22px !important;
+}
+
+.fund-info {
+  text-align: left;
+  padding-bottom: 20px;
+  line-height: 1.42857143;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #eee;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  line-height: 22px !important;
+}
+
+.fund-name {
+  text-align: left;
+  font-size: 18px;
+  font-weight: bold;
+  color: #2a5894;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.fund-base {
+  text-align: left;
+  font-size: 14px;
+  width: 100%;
+}
+
+.fund-nv-up {
+  color: #C00;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.fund-nv-down {
+  color: #080;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 5px;
+}
+/** fund */
+/*********************************/
+
+
+.bar-title {
+  color: #C00;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/********************************/
+
+.zm-votebar-button {
+  display: block;
+  color: #698ebf;
+  height: 24px;
+  line-height: 24px;
+  width: 38px;
+  border-radius: 3px;
+  border: 0;
+  cursor: pointer;
+  background: #eff6fa;
+  font-weight: 700;
+  font-weight: 500
+}
+
+.zm-votebar.goog-scrollfloater-floating {
+  margin-top: 10px;
+  margin-left: 0
+}
+
+.zm-votebar .up {
+  display: block;
+  color: #698ebf;
+  height: 20px;
+  line-height: 24px;
+  width: 38px;
+  border-radius: 3px;
+  border: 0;
+  cursor: pointer;
+  background: #eff6fa;
+  font-weight: 700;
+  font-weight: 500;
+  position: relative
+}
+
+.zm-votebar .down {
+  display: block;
+  color: #698ebf;
+  height: 80px;
+  line-height: 24px;
+  width: 38px;
+  border-radius: 3px;
+  border: 0;
+  cursor: pointer;
+  background: #eff6fa;
+  font-weight: 700;
+  font-weight: 500;
+  position: relative
+}
+
+.zm-votebar .up {
+  height: 44px
+}
+
+.zm-votebar .down {
+  margin: 5px 0 0
+}
+
+.zm-votebar .count {
+  position: absolute;
+  top: 18px;
+  left: 0;
+  width: 100%
+}
+
+.zm-votebar .down-count {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  width: 100%
+}
+
+.zm-votebar .label {
+  display: block;
+  text-indent: -9999px
+}
+
+.zm-votebar .vote-arrow {
+  *margin-top: 9px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  font-size: 0;
+  _border-style: dashed;
+  background-image: none
+}
+
+.zm-votebar .up .vote-arrow {
+  border-top-width: 0;
+  border-bottom-color: #698ebf;
+  border-top-style: solid
+}
+
+.zm-votebar .down .vote-arrow {
+  border-bottom-width: 0;
+  border-top-color: #698ebf
+}
+
+html.no-touch .zm-votebar .up:hover .vote-arrow,.zm-votebar .up.pressed .vote-arrow {
+  border-bottom-color: #fff
+}
+
+html.no-touch .zm-votebar .down:hover .vote-arrow,.zm-votebar .down.pressed .vote-arrow {
+  border-top-color: #fff
+}
+
+html.no-touch .zm-votebar .up:hover,html.no-touch .zm-votebar .down:hover,.zm-votebar .up.pressed,.zm-votebar .down.pressed
+  {
+  background: #698ebf;
+  color: #fff
+}
+
+.zm-votebar .up .vote-arrow {
+  background-position: 0 -229px
+}
+
+.zm-votebar .down .vote-arrow {
+  background-position: -21px -229px
+}
+
+html.no-touch .zm-votebar .up:hover .vote-arrow,.zm-votebar .up.pressed .vote-arrow {
+  background-position: -42px -229px
+}
+
+html.no-touch .zm-votebar .down:hover .vote-arrow,.zm-votebar .down.pressed .vote-arrow {
+  background-position: -63px -229px
+}
+
+.zm-item-vote-count {
+  display: block;
+  color: #698ebf;
+  height: 24px;
+  line-height: 24px;
+  width: 38px;
+  border-radius: 3px;
+  border: 0;
+  cursor: pointer;
+  background: #eff6fa;
+  font-weight: 700;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  overflow: hidden;
+  -webkit-text-size-adjust: none
+}
+
+.zm-item-vote-count:hover {
+  text-decoration: none
+}
+
+html.no-touch .zm-item-vote-count:hover {
+  background: #698ebf;
+  color: #fff
+}
+
+.zm-item-vote {
+  display: none;
+  position: absolute;
+  left: -48px
+}
+
+.zm-votebar {
+  float: left;
+  margin-left: -48px
+}
+
+.no-votebar .zm-item-vote {
+  display: block !important
+}
+
+.no-votebar .zm-votebar {
+  display: none !important
+}
+
+/********************************/

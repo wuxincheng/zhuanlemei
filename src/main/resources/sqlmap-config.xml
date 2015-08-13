@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" 
+	"http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+  
+<sqlMapConfig>
+  <settings useStatementNamespaces="true" />
+
+  <!-- 实体表 -->
+  <sqlMap resource="com/wuxincheng/zhuanlemei/model/product.xml" />
+  <sqlMap resource="com/wuxincheng/zhuanlemei/model/user.xml" />
+  <sqlMap resource="com/wuxincheng/zhuanlemei/model/comment.xml" />
+  <sqlMap resource="com/wuxincheng/zhuanlemei/model/collect.xml" />
+  
+  <!-- 关联表 -->
+  <sqlMap resource="com/wuxincheng/zhuanlemei/model/prodlike.xml" />
+  <sqlMap resource="com/wuxincheng/zhuanlemei/model/collectuser.xml" />
+
+</sqlMapConfig>
