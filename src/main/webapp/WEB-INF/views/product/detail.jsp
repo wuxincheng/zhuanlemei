@@ -17,9 +17,8 @@
 
 </head>
 <body id="home" class="notes-index">
+  <jsp:include page="../HEADER.jsp" />
   <div class="container">
-
-    <jsp:include page="../HEADER.jsp" />
 
     <div class="content row ">
       <section class="product cf">

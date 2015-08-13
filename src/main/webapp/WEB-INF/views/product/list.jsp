@@ -41,7 +41,7 @@
               </button>
             </div>
             <div class="fund-info">
-              <div class="fund-name">富国中证军工指数分级</div>
+              <div class="fund-name"><a href="${root}/product/detail?prodid=${obj.prodid}" target="_blank">富国中证军工指数分级</a></div>
               <div class="fund-base">单位净值&nbsp;[08-12] <span class="fund-nv-up">2.2320</span><span class="fund-nv-down">（-2.235%）</span></div>
               <div class="fund-base">最新规模：2.44亿&nbsp;&nbsp;成立日期：2014-03-14&nbsp;&nbsp;基金经理：单纯</div>
               <div class="fund-base">（5,7043人评价）</div>
@@ -57,12 +57,15 @@
       </div>
       
       <div class="col-md-4">
+        <p>&nbsp;</p>
         <span class="fund-nv-up">红榜</span>
         <div class="fund-sort">1、富国中证军工指数分级</div>
         <div class="fund-sort">2、富国中证军工指数分级</div>
         <div class="fund-sort">3、富国中证军工指数分级</div>
         <div class="fund-sort">4、富国中证军工指数分级</div>
         <div class="fund-sort">5、富国中证军工指数分级</div>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
         <span class="fund-nv-down">绿榜</span>
         <div class="fund-sort">1、富国中证军工指数分级</div>
         <div class="fund-sort">2、富国中证军工指数分级</div>

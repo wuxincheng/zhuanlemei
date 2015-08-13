@@ -17,8 +17,8 @@
 
 </head>
 <body id="home" class="notes-index">
-  <div class="container">
-    <jsp:include page="../HEADER.jsp" />
+  <jsp:include page="../HEADER.jsp" />
+  <div>
 
     <section class="list-header">
       <div class="list-header-cover" style="background-image: url(${root}/collect/coverbg/${collect.coverImgPath});">

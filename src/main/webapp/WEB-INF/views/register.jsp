@@ -57,7 +57,7 @@
         </form>
       </div>
       
-      <aside class="aside" style="width: 380px; padding-left: 40px;">
+      <aside class="aside" style="width: 500px; padding-left: 150px;">
         <iframe id="main" name="main" src="${wechatOAuthJSURI}" style="width:350px; height: 400px;
           frameborder="0" scrolling="no" marginheight="0" allowTransparency="true" >
         </iframe>

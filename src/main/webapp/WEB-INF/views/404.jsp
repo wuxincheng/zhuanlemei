@@ -16,17 +16,13 @@
 <body>
   <div class="wrapper">
 
+    <jsp:include page="HEADER.jsp" />
     <div class="container">
-      <jsp:include page="HEADER.jsp" />
       
       <div class="content login-row cf">
         <div>
           <div class="row">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-3" style="text-align: center;">
-              <p>&nbsp;</p>
-            </div>
-            <div class="col-sm-7">
+            <div class="col-sm-12 fund-base">
               <p>&nbsp;</p>
               <p>
               <h1>404 啊噢，很抱歉，您访问的页面不存在耶！</h1>

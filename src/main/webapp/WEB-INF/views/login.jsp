@@ -16,8 +16,8 @@
 <meta name="renderer" content="webkit">
 </head>
 <body id="home" class="notes-index">
+  <jsp:include page="HEADER.jsp" />
   <div class="container">
-    <jsp:include page="HEADER.jsp" />
     <div class="content row cf"> <!-- login-row -->
       <div class="forms " style="padding-top: 10px;"> <!-- login-box -->
         <div style="padding-bottom: 30px; font-size: 20px; text-align: center;">账号登录</div>
@@ -50,7 +50,7 @@
         </form>
       </div>
 
-      <aside class="aside" style="width: 380px; padding-left: 40px;">
+      <aside class="aside" style="width: 500px; padding-left: 150px;">
         <iframe id="main" name="main" src="${wechatOAuthJSURI}" style="width:350px; height: 400px;
           frameborder="0" scrolling="no" marginheight="0" allowTransparency="true" >
         </iframe>

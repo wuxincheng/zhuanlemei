@@ -24,6 +24,7 @@ h1,h2,h3,h4,h5,h6 {
 .fund-panel {
   text-align: left;
   padding: 20px 0px 0px 50px;
+  margin-bottom: 20px;
   line-height: 1.42857143;
   background-color: #FFFFFF;
   border: 0px solid #eee;
@@ -36,7 +37,7 @@ h1,h2,h3,h4,h5,h6 {
 
 .fund-info {
   text-align: left;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   line-height: 1.42857143;
   background-color: #FFFFFF;
   border-bottom: 1px solid #eee;
@@ -59,6 +60,7 @@ h1,h2,h3,h4,h5,h6 {
 .fund-base {
   text-align: left;
   font-size: 14px;
+  margin: 5px 0;
   width: 100%;
 }
 
@@ -78,15 +80,13 @@ h1,h2,h3,h4,h5,h6 {
 
 .fund-sort {
   text-align: left;
-  padding-bottom: 20px;
-  line-height: 1.42857143;
-  background-color: #FFFFFF;
+  color: #2a5894;
+  margin-top: 10px;
+  margin-left: 5px;
+  padding: 5px 0;
+  font-size: 16px;
   border-bottom: 1px solid #eee;
-  transition: all 0.2s ease-in-out;
-  display: inline-block;
   width: 100%;
-  height: auto;
-  line-height: 22px !important;
 }
 
 /** fund */

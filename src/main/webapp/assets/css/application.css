@@ -257,12 +257,12 @@ img::-moz-selection {
 
 a {
 	text-decoration: none;
-	color: #FF5722
+	color: #2a5894
 }
 
 a:hover {
 	text-decoration: none;
-	color: #FF5722
+	color: #2a5894
 }
 
 a:focus {
@@ -509,7 +509,7 @@ opacity
 
 .topbar {
 	height: 50px;
-	background: #FF5722;
+	background: #2a5894;
 	position: relative;
 	box-shadow: 0 1px 3px rgba(0,0,0,.1);
 }
@@ -645,7 +645,7 @@ opacity
 }
 
 .new-post {
-	color: #FF5722 !important;
+	color: #2a5894 !important;
 	height: 16px;
 	width: 16px;
 	display: inline-block;
@@ -658,7 +658,7 @@ opacity
 }
 
 .new-post:hover {
-	color: #FF5722 !important
+	color: #2a5894 !important
 }
 
 .notification-menu {
@@ -790,7 +790,7 @@ opacity
 }
 
 .notification-dropdown a {
-	color: #FF5722
+	color: #2a5894
 }
 
 .notification-dropdown p {
@@ -935,15 +935,15 @@ input:focus,textarea:focus,select:focus {
 }
 
 .submit-btn {
-	border: 1px solid #FF5722;
-	width: 120px;
-	height: 40px;
+	border: 1px solid #2a5894;
+	width: 100px;
+	height: 35px;
 	text-align: center;
 	font-weight: 600
 }
 
 .submit-btn:hover {
-	background: #FF5722;
+	background: #2a5894;
 	color: #fff
 }
 
@@ -1088,7 +1088,7 @@ input:focus,textarea:focus,select:focus {
 	padding: 5px;
 	width: 48px;
 	height: 48px;
-	background: #FF5722;
+	background: #2a5894;
 	color: #fff;
 	text-align: center
 }
@@ -1125,7 +1125,7 @@ input:focus,textarea:focus,select:focus {
 }
 
 .post-url:hover {
-	color: #DD4A1C
+	color: #1C3B64
 }
 
 .upvote {
@@ -1148,7 +1148,7 @@ input:focus,textarea:focus,select:focus {
 }
 
 .upvote-link:hover {
-	border: 1px solid #FF5722
+	border: 1px solid #2a5894
 }
 
 .upvote-link:hover .upvote-arrow {
@@ -1156,7 +1156,7 @@ input:focus,textarea:focus,select:focus {
 }
 
 .upvote-link.voted {
-	border: 1px solid #FF5722
+	border: 1px solid #2a5894
 }
 
 .upvote-arrow {
@@ -1169,7 +1169,7 @@ input:focus,textarea:focus,select:focus {
 }
 
 .voted .upvote-link {
-	border: 1px solid #FF5722
+	border: 1px solid #2a5894
 }
 
 .voted .upvote-arrow {
@@ -1177,7 +1177,7 @@ input:focus,textarea:focus,select:focus {
 }
 
 .voted .vote-count {
-	color: #FF5722
+	color: #2a5894
 }
 
 .vote-count {
@@ -1298,13 +1298,13 @@ input:focus,textarea:focus,select:focus {
 	padding-right: 25px;
 	padding-left: 25px;
 	height: 30px;
-	border: 1px solid #FF5722;
+	border: 1px solid #2a5894;
 	border-radius: 25px;
 	line-height: 30px
 }
 
 .pagination a:hover {
-	background: #FF5722;
+	background: #2a5894;
 	color: #fff
 }
 
@@ -1770,7 +1770,7 @@ input:focus,textarea:focus,select:focus {
 
 #mention_user_selector {
 	margin-bottom: 5px;
-	color: #FF5722;
+	color: #2a5894;
 	width: 100%
 }
 
@@ -1798,12 +1798,12 @@ input:focus,textarea:focus,select:focus {
 }
 
 .autocomplete-suggestion:hover {
-	background: #FF5722;
+	background: #2a5894;
 	color: #fff
 }
 
 .autocomplete-selected {
-	background: #FF5722;
+	background: #2a5894;
 	color: #fff
 }
 
@@ -1841,13 +1841,13 @@ input:focus,textarea:focus,select:focus {
 	display: inline-block;
 	padding: 7px 14px;
 	color: #fff;
-	background-color: #FF5722;
+	background-color: #2a5894;
 	border-radius: 3px
 }
 
 .submit:hover {
 	color: #fff;
-	background-color: #DD4A1C
+	background-color: #1C3B64
 }
 
 .media-body {
@@ -2243,7 +2243,7 @@ body {
 
 .subscribe-email .input-subscribe {
 	padding: 10px 20px;
-	background: #FF5722;
+	background: #2a5894;
 	color: #fff
 }
 
@@ -2320,7 +2320,7 @@ body {
 }
 
 .no-touch .back-top:hover {
-	background-color: #FF5722;
+	background-color: #2a5894;
 	opacity: 1
 }
 
@@ -2530,19 +2530,19 @@ body {
 }
 
 .list-fav-btn a {
-	border: 1px solid #FF5722;
-	color: #FF5722;
+	border: 1px solid #2a5894;
+	color: #2a5894;
 	width: 90px
 }
 
 .list-fav-btn a:hover {
 	color: #fff;
-	background: #FF5722
+	background: #2a5894
 }
 
 .list-fav-btn.faved a {
 	color: #fff;
-	background: #FF5722
+	background: #2a5894
 }
 
 .fav-number {
@@ -2586,17 +2586,17 @@ body {
 .list-all,.list-all.active {
 	border-top-left-radius: 3px;
 	border-bottom-left-radius: 3px;
-	border: 1px solid #FF5722
+	border: 1px solid #2a5894
 }
 
 .list-faved,.list-faved.active {
 	border-top-right-radius: 3px;
 	border-bottom-right-radius: 3px;
-	border: 1px solid #FF5722
+	border: 1px solid #2a5894
 }
 
 .list-all.active,.list-faved.active {
-	background: #FF5722;
+	background: #2a5894;
 	color: #fff
 }
 

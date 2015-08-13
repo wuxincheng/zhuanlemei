@@ -5212,9 +5212,9 @@ a.badge:focus,a.badge:hover {
 }
 
 .jumbotron {
-  padding-top: 30px;
-  padding-bottom: 30px;
-  margin-bottom: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
   color: inherit;
   background-color: #eee
 }
@@ -5243,15 +5243,15 @@ a.badge:focus,a.badge:hover {
 
 @media screen and (min-width:668px) {
   .jumbotron {
-    padding-top: 48px;
-    padding-bottom: 48px
+    padding-top: 40px;
+    padding-bottom: 20px
   }
   .container .jumbotron,.container-fluid .jumbotron {
-    padding-right: 60px;
-    padding-left: 60px
+    padding-right: 50px;
+    padding-left: 50px
   }
   .jumbotron .h1,.jumbotron h1 {
-    font-size: 63px
+    font-size: 50px
   }
 }
 

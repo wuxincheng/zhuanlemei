@@ -28,14 +28,16 @@
     
     <div class="row">
         <div class="col-md-2">
-          <p><a class="btn btn-default" href="#" role="button">赚了没</a></p>
+          <p><a class="btn btn-default" href="${root}" role="button">赚了没</a></p>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8" style="text-align: center;">
           <form class="form-inline">
-            <div class="form-group" style="width: 70%;">
-              <input type="email" class="form-control" placeholder="产品名称、代码或评论" style="width: 100%;">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="基金名称、代码或评论" maxlength="50" />
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">查找</button>
+              </span>
             </div>
-            <button type="submit" class="btn btn-default">查找</button>
           </form>
        </div>
         <div class="col-md-1"><p><a href="${root}/collect/list"><span class="bar-title">榜单</span></a></p></div>

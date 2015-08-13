@@ -7,8 +7,6 @@
 </head>
 <body>
 
-  <hr>
-
   <footer class="footer">
     <div class="text-center">
       <div class="copyright">
