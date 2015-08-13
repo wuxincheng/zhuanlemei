@@ -36,16 +36,15 @@
               <span class="count">13K</span>
               </button>
               <button class="down" aria-pressed="false" title="反对，不会显示你的姓名">
-              <span class="down-count">10K</span>
               <i class="icon vote-arrow"></i>
               <span class="label">反对，不会显示你的姓名</span>
               </button>
             </div>
             <div class="fund-info">
               <div class="fund-name">富国中证军工指数分级</div>
-              <div class="fund-base">单位净值[08-12] <span class="fund-nv-up">2.2320</span><span class="fund-nv-down">（-2.235%）</span></div>
+              <div class="fund-base">单位净值&nbsp;[08-12] <span class="fund-nv-up">2.2320</span><span class="fund-nv-down">（-2.235%）</span></div>
               <div class="fund-base">最新规模：2.44亿&nbsp;&nbsp;成立日期：2014-03-14&nbsp;&nbsp;基金经理：单纯</div>
-              <div class="fund-base">（5,9043人评价）</div>
+              <div class="fund-base">（5,7043人评价）</div>
             </div>
           </div>
         </c:forEach>
@@ -58,12 +57,18 @@
       </div>
       
       <div class="col-md-4">
-        <form class="form-inline">
-          <div class="form-group" style="width: 80%;">
-            <input type="email" class="form-control" placeholder="产品名称、代码或评论" style="width: 100%;">
-          </div>
-          <button type="submit" class="btn btn-default">查找</button>
-        </form>
+        <span class="fund-nv-up">红榜</span>
+        <div class="fund-sort">1、富国中证军工指数分级</div>
+        <div class="fund-sort">2、富国中证军工指数分级</div>
+        <div class="fund-sort">3、富国中证军工指数分级</div>
+        <div class="fund-sort">4、富国中证军工指数分级</div>
+        <div class="fund-sort">5、富国中证军工指数分级</div>
+        <span class="fund-nv-down">绿榜</span>
+        <div class="fund-sort">1、富国中证军工指数分级</div>
+        <div class="fund-sort">2、富国中证军工指数分级</div>
+        <div class="fund-sort">3、富国中证军工指数分级</div>
+        <div class="fund-sort">4、富国中证军工指数分级</div>
+        <div class="fund-sort">5、富国中证军工指数分级</div>
      </div>
     </div>
     

@@ -75,6 +75,20 @@ h1,h2,h3,h4,h5,h6 {
   font-weight: bold;
   margin-left: 5px;
 }
+
+.fund-sort {
+  text-align: left;
+  padding-bottom: 20px;
+  line-height: 1.42857143;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #eee;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  line-height: 22px !important;
+}
+
 /** fund */
 /*********************************/
 
@@ -124,7 +138,7 @@ h1,h2,h3,h4,h5,h6 {
 .zm-votebar .down {
   display: block;
   color: #698ebf;
-  height: 80px;
+  height: 24px;
   line-height: 24px;
   width: 38px;
   border-radius: 3px;
