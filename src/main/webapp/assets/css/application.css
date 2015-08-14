@@ -931,7 +931,7 @@ input:focus,textarea:focus,select:focus {
 	margin-bottom: 60px;
 	line-height: 40px;
 	padding-left: 10px;
-	padding-right: 10px
+	padding-right: 30px
 }
 
 .submit-btn {
@@ -2344,7 +2344,7 @@ body {
 
 @media screen and (min-width: 48.0625em) {
 	.list {
-		width: 760px;
+		width: 980px;
 		position: relative;
 		left: -5px
 	}
