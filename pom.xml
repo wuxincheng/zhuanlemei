@@ -288,6 +288,19 @@
           <version>2.4</version>
         </dependency>
         
+        <!-- 爬虫框架htmlunit -->
+        <dependency>
+          <groupId>htmlunit</groupId>
+          <artifactId>htmlunit</artifactId>
+          <version>1.14</version>
+        </dependency>
+    
+        <dependency>
+          <groupId>net.sourceforge.htmlunit</groupId>
+          <artifactId>htmlunit-core-js</artifactId>
+          <version>2.16</version>
+        </dependency>
+        
 	</dependencies>
 	
 	<build>
