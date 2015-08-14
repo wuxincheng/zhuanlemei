@@ -44,6 +44,9 @@ public class FundInfo {
 	/** 费率 */
 	private BigDecimal manageRate;
 
+	/** 最新规模 */
+	private BigDecimal newScale;
+
 	/** 基金状态 */
 	private String fundState;
 
@@ -163,6 +166,14 @@ public class FundInfo {
 
 	public void setUpdateTime(String updateTime) {
 		this.updateTime = updateTime;
+	}
+
+	public BigDecimal getNewScale() {
+		return newScale;
+	}
+
+	public void setNewScale(BigDecimal newScale) {
+		this.newScale = newScale;
 	}
 
 }
