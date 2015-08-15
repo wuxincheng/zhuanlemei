@@ -28,9 +28,9 @@
     
     <div class="row">
         <div class="col-md-2">
-          <p><a class="btn btn-default" href="${root}" role="button">赚了没</a></p>
+          <img alt="赚了没" src="${root}/assets/img/logo/logo.png" />
         </div>
-        <div class="col-md-8" style="text-align: center;">
+        <div class="col-md-8" style="text-align: center; padding-top: 20px;">
           <form class="form-inline">
             <div class="input-group">
               <input type="text" class="form-control" placeholder="基金名称、代码或评论" maxlength="50" />
@@ -40,8 +40,8 @@
             </div>
           </form>
        </div>
-        <div class="col-md-1"><p><a href="${root}/collect/list"><span class="bar-title">榜单</span></a></p></div>
-        <div class="col-md-1 bar-title"><p><a href="${root}/login/"><span class="bar-title">登录</span></a></p></div>
+        <div class="col-md-1" style="padding-top: 20px;"><p><a href="${root}/collect/list"><span class="bar-title">榜单</span></a></p></div>
+        <div class="col-md-1 bar-title" style="padding-top: 20px;"><p><a href="${root}/login/"><span class="bar-title">登录</span></a></p></div>
       </div>
     </div>
   </div>

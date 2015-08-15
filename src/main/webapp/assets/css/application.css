@@ -292,7 +292,7 @@ input[type="text"] {
 }
 
 img,video,object,embed,iframe {
-	max-width: 100% !important
+	/**max-width: 100% !important */
 }
 
 video,object,embed,iframe {

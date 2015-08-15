@@ -5244,7 +5244,7 @@ a.badge:focus,a.badge:hover {
 @media screen and (min-width:668px) {
   .jumbotron {
     padding-top: 40px;
-    padding-bottom: 20px
+    padding-bottom: 30px
   }
   .container .jumbotron,.container-fluid .jumbotron {
     padding-right: 50px;
