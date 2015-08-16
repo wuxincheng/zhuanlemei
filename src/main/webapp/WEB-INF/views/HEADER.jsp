@@ -23,28 +23,47 @@
 </head>
 <body>
 
-  <div class="jumbotron">
+  <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
-    
-    <div class="row">
-        <div class="col-md-2">
-          <img alt="赚了没" src="${root}/assets/img/logo/logo.png" />
-        </div>
-        <div class="col-md-8" style="text-align: center; padding-top: 20px;">
-          <form class="form-inline">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="基金名称、代码或评论" maxlength="50" />
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button">查找</button>
-              </span>
-            </div>
-          </form>
-       </div>
-        <div class="col-md-1" style="padding-top: 20px;"><p><a href="${root}/collect/list"><span class="bar-title">榜单</span></a></p></div>
-        <div class="col-md-1 bar-title" style="padding-top: 20px;"><p><a href="${root}/login/"><span class="bar-title">登录</span></a></p></div>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+          <img alt="赚了没" src="${root}/assets/img/logo/logo-top.png" 
+            style="margin-top: -15px;" />
+        </a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active">
+            <div style="margin-left: 150px; margin-top: 8px;">
+              <form class="form-inline">
+                <div class="input-group">
+                  <input type="text" class="form-control" style="width: 400px;" placeholder="基金名称、代码或评论" maxlength="50" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">查找</button>
+                  </span>
+                </div>
+              </form>
+           </div>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-left">
+          <li><a href="./">榜单</a></li>
+        </ul>
+        
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="../navbar/">登录</a></li>
+        </ul>
       </div>
     </div>
   </div>
   
+  <div style="margin: 60px;"></div>
+
 </body>
 </html>

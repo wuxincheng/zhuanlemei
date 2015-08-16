@@ -221,18 +221,14 @@ public class HowBuyHelper {
 		fundInfoMap.put("fundCode", fundCode);
 		
 		// 基金成立日期
+		logger.debug("开始处理基金成立日期标签");
 		String foundedDate = fetchData.substring(fetchData.indexOf("<li>成立时间<span>") + 14,
 				fetchData.indexOf("<li>成立时间<span>") + 24);
 		logger.debug("基金成立日期 foundedDate={}", foundedDate);
 		fundInfoMap.put("foundedDate", foundedDate);
 
-		// 基金风险级别
-		String fundRiskLevel = fetchData.substring(fetchData.indexOf("<p class=\"risk\"><span>") + 22,
-				fetchData.indexOf("<p class=\"risk\"><span>") + 30);
-		logger.debug("基金风险级别 fundRiskLevel={}", fundRiskLevel);
-		fundInfoMap.put("fundRiskLevel", HowBuyHtmlUtil.getFundRiskLevel(fundRiskLevel));
-
 		// 基金经理
+		logger.debug("开始处理基金经理标签");
 		String fundManager = fetchData.substring(
 				fetchData.indexOf("class=\"on\"><a href=\"javascript:void(0)\"\ntarget=\"_self\">") + 55,
 				fetchData.indexOf("class=\"on\"><a href=\"javascript:void(0)\"\ntarget=\"_self\">") + 60);
@@ -240,24 +236,48 @@ public class HowBuyHelper {
 		fundInfoMap.put("fundManager", HowBuyHtmlUtil.formatFundManager(fundManager));
 
 		// 基金最新规模
+		logger.debug("开始处理基金最新规模标签");
 		String newScale = fetchData.substring(fetchData.indexOf("<li>最新规模<span>") + 14,
 				fetchData.indexOf("<li>最新规模<span>") + 50);
 		logger.debug("基金最新规模 newScale={}", newScale);
 		fundInfoMap.put("newScale", HowBuyHtmlUtil.formatNewScale(newScale));
-
-		// 基金涨跌幅
-		String rateChange = fetchData.substring(fetchData.indexOf("<div class=\"b-0 b-1\">涨跌幅</div>") - 35,
-				fetchData.indexOf("<div class=\"b-0 b-1\">涨跌幅</div>") - 15);
-		logger.debug("基金涨跌幅 rateChange={}", rateChange);
-		fundInfoMap.put("rateChange", HowBuyHtmlUtil.formatRateChange(rateChange));
 		
-		// 基金近3月排名
+		// 公司简称
+		logger.debug("开始处理公司简称标签");
+		String fundCompany = fetchData.substring(fetchData.indexOf("<li>公司简称：<a") + 64,
+				fetchData.indexOf("<li>公司简称：<a") + 90);
+		logger.debug("基金最新规模 fundCompany={}", fundCompany);
+		fundInfoMap.put("fundCompany", HowBuyHtmlUtil.formatFundCompany(fundCompany));
+		
+		// 基金近3月排名/7日年化排名
+		logger.debug("开始处理基金近3月排名标签");
 		String fundSortThreeMonth = fetchData.substring(fetchData.indexOf("</em><em class=\"b-rate b-2\">") - 30,
 				fetchData.indexOf("</em><em class=\"b-rate b-2\">") + 50);
 		logger.debug("基金涨跌幅 fundSortThreeMonth={}", fundSortThreeMonth);
 		String[] fundSorts = HowBuyHtmlUtil.formatFundSortThreeMonth(fundSortThreeMonth);
 		fundInfoMap.put("fundSortThreeMonth", fundSorts[0]);
 		fundInfoMap.put("fundTotalThreeMonth", fundSorts[1]);
+		
+		logger.info("处理后的基金信息111 fundInfoMap={}", fundInfoMap);
+		
+		/* 以下有几种处理情况 */
+		
+		// 基金风险级别
+		logger.debug("开始处理基金风险级别标签");
+		String fundRiskLevel = fetchData.substring(fetchData.indexOf("<p class=\"risk\"><span>") + 22,
+				fetchData.indexOf("<p class=\"risk\"><span>") + 30);
+		logger.debug("基金风险级别 fundRiskLevel={}", fundRiskLevel);
+		fundRiskLevel = HowBuyHtmlUtil.getFundRiskLevel(fundRiskLevel);
+		fundInfoMap.put("fundRiskLevel", fundRiskLevel);
+		
+		// 基金涨跌幅/7日年化
+		logger.debug("开始处理基金涨跌幅标签");
+		String rateChange = fetchData.substring(fetchData.indexOf("<div class=\"b-0 b-1\">涨跌幅</div>") - 35,
+				fetchData.indexOf("<div class=\"b-0 b-1\">涨跌幅</div>") - 15);
+		logger.debug("基金涨跌幅 rateChange={}", rateChange);
+		fundInfoMap.put("rateChange", HowBuyHtmlUtil.formatRateChange(rateChange));
+		
+		// 基金净值/年化收益
 
 		logger.info("处理后的基金信息 fundInfoMap={}", fundInfoMap);
 
@@ -266,7 +286,7 @@ public class HowBuyHelper {
 
 	public static void main(String[] args) {
 		HowBuyHelper hb = new HowBuyHelper();
-		hb.fectFundInfo("513600");
+		hb.fectFundInfo("070008");
 	}
 
 }

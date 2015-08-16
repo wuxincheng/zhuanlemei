@@ -8,6 +8,17 @@ package com.wuxincheng.zhuanlemei.fetch.util;
  * 
  */
 public class HowBuyHtmlUtil {
+	
+	/**
+	 * 处理基金公司标签数据
+	 * 
+	 * @param fundCompany
+	 * @return
+	 */
+	public static String formatFundCompany(String fundCompany) {
+		fundCompany = fundCompany.substring(0, fundCompany.indexOf("</a>"));
+		return fundCompany;
+	}
 
 	/**
 	 * 处理基金近3月排名标签数据
@@ -51,6 +62,10 @@ public class HowBuyHtmlUtil {
 		return newScale;
 	}
 
+	public static void main(String[] args) {
+		System.out.println(formatNewScale("415.35亿</span></li>"));
+	}
+	
 	/**
 	 * 处理基金经理字符串
 	 * 

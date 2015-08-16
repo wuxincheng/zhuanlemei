@@ -1,7 +1,5 @@
 package com.wuxincheng.zhuanlemei.model;
 
-import java.math.BigDecimal;
-
 /**
  * 基金信息表
  * 
@@ -39,13 +37,13 @@ public class FundInfo {
 	private String fundRiskLevel;
 
 	/** 最小购买金额 */
-	private BigDecimal minSubscribe;
+	private String minSubscribe;
 
 	/** 费率 */
-	private BigDecimal manageRate;
+	private String manageRate;
 
 	/** 最新规模 */
-	private BigDecimal newScale;
+	private String newScale;
 
 	/** 基金状态 */
 	private String fundState;
@@ -128,19 +126,19 @@ public class FundInfo {
 		this.fundRiskLevel = fundRiskLevel;
 	}
 
-	public BigDecimal getMinSubscribe() {
+	public String getMinSubscribe() {
 		return minSubscribe;
 	}
 
-	public void setMinSubscribe(BigDecimal minSubscribe) {
+	public void setMinSubscribe(String minSubscribe) {
 		this.minSubscribe = minSubscribe;
 	}
 
-	public BigDecimal getManageRate() {
+	public String getManageRate() {
 		return manageRate;
 	}
 
-	public void setManageRate(BigDecimal manageRate) {
+	public void setManageRate(String manageRate) {
 		this.manageRate = manageRate;
 	}
 
@@ -168,11 +166,11 @@ public class FundInfo {
 		this.updateTime = updateTime;
 	}
 
-	public BigDecimal getNewScale() {
+	public String getNewScale() {
 		return newScale;
 	}
 
-	public void setNewScale(BigDecimal newScale) {
+	public void setNewScale(String newScale) {
 		this.newScale = newScale;
 	}
 

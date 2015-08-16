@@ -1,6 +1,7 @@
 package com.wuxincheng.zhuanlemei.fetch.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +11,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.wuxincheng.zhuanlemei.dao.FundMarketDao;
 import com.wuxincheng.zhuanlemei.fetch.helper.HowBuyHelper;
+import com.wuxincheng.zhuanlemei.model.FundMarket;
+import com.wuxincheng.zhuanlemei.util.Constants;
+import com.wuxincheng.zhuanlemei.util.DateUtil;
 
 /**
  * 好买网信息抓取服务
@@ -26,17 +31,71 @@ public class HowBuyFetchService {
 	@Resource
 	private HowBuyHelper howBuyHelper;
 
+	@Resource
+	private FundMarketDao fundMarketDao;
+
 	/**
-	 * TODO 处理基金行情数据
+	 * 任务1：抓取基金行情列表数据（只抓取当天的数据）
 	 */
 	public void fundMarketInfoTask() {
-		getFundMarket();
+		logger.info("开始抓取基金行情信息");
+		
+		List<Map<String, String>> fundMarkets = getFundMarket();
+		logger.debug("已经抓取到基金行情信息列表，准备入库");
+
+		// 当天日期
+		String currentDate = DateUtil.getCurrentDate(new Date(), "yyyy-MM-dd");
+		logger.debug("当天日期 currentDate={}", currentDate);
+		
+		// 循环把抓取数据保存到数据库中
+		for (Map<String, String> fundMarketMap : fundMarkets) {
+			FundMarket fundMarketFlag = fundMarketDao.query(fundMarketMap.get("fundCode"),
+					fundMarketMap.get("fundNavDate"), currentDate);
+			if (fundMarketFlag != null) {
+				logger.debug("添加失败：行情信息已经存在 fundCode={}, fundNavDate={}", fundMarketMap.get("fundCode"),
+						fundMarketMap.get("fundNavDate"));
+				continue;
+			}
+
+			logger.debug("封装基金行情信息");
+			
+			FundMarket fundMarket = new FundMarket();
+
+			fundMarket.setMarketDate(currentDate);
+			fundMarket.setFundName(fundMarketMap.get("fundName"));
+			fundMarket.setFundCode(fundMarketMap.get("fundCode"));
+			fundMarket.setFundType(fundMarketMap.get("fundType"));
+			fundMarket.setFundRiskLevel(fundMarketMap.get("fundType"));
+			fundMarket.setCurrentNav(fundMarketMap.get("fundNav"));
+			fundMarket.setCurrentState(Constants.DEFAULT_STATE);
+			fundMarket.setNavDate(fundMarketMap.get("fundNavDate"));
+			fundMarket.setFundRiseWeek(fundMarketMap.get("fundRiseWeek"));
+			fundMarket.setFundRiseMonth(fundMarketMap.get("fundRiseMonth"));
+			fundMarket.setFundRiseThreeMonth(fundMarketMap.get("fundRiseThreeMonth"));
+			fundMarket.setFundRiseHalfYear(fundMarketMap.get("fundRiseHalfYear"));
+			fundMarket.setFundRiseYear(fundMarketMap.get("fundRiseYear"));
+			fundMarket.setFundRiseThisYear(fundMarketMap.get("fundRiseThisYear"));
+
+			fundMarketDao.insert(fundMarket);
+			
+			logger.debug("插入一条基金行情成功");
+		}
+		
+		logger.info("基金行情信息抓取完成");
 	}
 
 	/**
-	 * TODO 处理基金详细信息
+	 * TODO 任务2：补充基金行情详细信息（只补充当天抓取的数据）
 	 */
 	public void fundDetailInfoTask() {
+		// 查询当天所有的基金行情信息
+		
+	}
+	
+	/**
+	 * TODO 任务3：从基金行情信息表中提取信息到基金信息表（只提取当天的数据）
+	 */
+	public void fundInfoTask() {
 
 	}
 
@@ -47,7 +106,7 @@ public class HowBuyFetchService {
 	 */
 	private List<Map<String, String>> getFundMarket() {
 		List<Map<String, String>> allFundMarketInfo = new ArrayList<Map<String, String>>();
-		
+
 		// logger.info("获取全部基金信息");
 		// String fetchURL0 = "http://www.howbuy.com/fund/fundranking/";
 		// howBuyHelper.fectFundInfos(fetchURL0, null);
@@ -91,7 +150,7 @@ public class HowBuyFetchService {
 		String fetchURL8 = "http://www.howbuy.com/fund/fundranking/qdii.htm";
 		List<Map<String, String>> qdii = howBuyHelper.fectFundInfos(fetchURL8, "8");
 		allFundMarketInfo.addAll(qdii);
-		
+
 		return allFundMarketInfo;
 	}
 
