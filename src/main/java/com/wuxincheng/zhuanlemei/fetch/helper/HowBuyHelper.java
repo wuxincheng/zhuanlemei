@@ -258,8 +258,6 @@ public class HowBuyHelper {
 		fundInfoMap.put("fundSortThreeMonth", fundSorts[0]);
 		fundInfoMap.put("fundTotalThreeMonth", fundSorts[1]);
 		
-		logger.info("处理后的基金信息111 fundInfoMap={}", fundInfoMap);
-		
 		/* 以下有几种处理情况 */
 		
 		// 基金风险级别

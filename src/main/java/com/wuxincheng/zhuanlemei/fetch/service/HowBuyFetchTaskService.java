@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.wuxincheng.zhuanlemei.dao.FundMarketDao;
 import com.wuxincheng.zhuanlemei.dao.TaskDao;
+import com.wuxincheng.zhuanlemei.fetch.helper.FetchConstants;
 import com.wuxincheng.zhuanlemei.fetch.helper.HowBuyHelper;
 import com.wuxincheng.zhuanlemei.model.FundMarket;
 import com.wuxincheng.zhuanlemei.model.Task;
@@ -46,25 +47,30 @@ public class HowBuyFetchTaskService {
 		// 当天日期
 		String currentDate = DateUtil.getCurrentDate(new Date(), "yyyy-MM-dd");
 		logger.debug("当天日期 currentDate={}", currentDate);
-		
-		Task fundMarketInfoTask = taskDao.query("fundMarketInfo", currentDate);
+
+		Task fundMarketInfoTask = taskDao.query(FetchConstants.TASK_FUND_MARKET_INFO, currentDate);
 		if (fundMarketInfoTask == null) {
 			logger.debug("执行失败: 没有查询到抓取基金行情列表数据任务");
 			return;
 		}
-		
+
 		if (!"0".equals(fundMarketInfoTask.getTaskFlag())) {
 			logger.debug("执行失败: 抓取基金行情列表数据任务已经执行");
 			return;
 		}
-		
+
 		logger.info("开始抓取基金行情信息");
 
-		List<Map<String, String>> fundMarkets = getFundMarket();
-		logger.debug("已经抓取到基金行情信息列表，准备入库");
-		
+		List<Map<String, String>> fundMarkets = null;
+		try {
+			fundMarkets = getFetchFundMarkets();
+			logger.debug("已经抓取到基金行情信息列表，准备入库");
+		} catch (Exception e) {
+			logger.error("抓取基金行情信息出现异常", e);
+		}
+
 		String currentDateTime = DateUtil.getCurrentDate(new Date(), "yyyy-MM-dd HH:mm:ss");
-		
+
 		// 循环存储抓取到的数据到TFundMarketCurrent表中
 		for (Map<String, String> fundMarketMap : fundMarkets) {
 
@@ -73,22 +79,22 @@ public class HowBuyFetchTaskService {
 				FundMarket fundMarketFlag = fundMarketDao.query(fundMarketMap.get("fundCode"),
 						fundMarketMap.get("fundNavDate"));
 				if (fundMarketFlag != null) { // 如果存在, 更新相关信息
-					logger.debug("更新行情信息 fundCode={}, fundNavDate={}", fundMarketMap.get("fundCode"),
-							fundMarketMap.get("fundNavDate"));
+					logger.debug("更新行情信息 fundCode={}, fundNavDate={}",
+							fundMarketMap.get("fundCode"), fundMarketMap.get("fundNavDate"));
 
 					logger.debug("封装更新基金行情信息");
 
 					fundMarketFlag.setMarketDate(currentDate);
-					
+
 					// 基本信息不用更新
 					// fundMarketFlag.setFundName(fundMarketMap.get("fundName"));
 					// fundMarketFlag.setFundType(fundMarketMap.get("fundType"));
 					// fundMarketFlag.setFundRiskLevel(fundMarketMap.get("fundRiskLevel"));
 					// fundMarketFlag.setCurrentState(Constants.DEFAULT_STATE);
-					
+
 					// 更新依据
 					fundMarketFlag.setFundCode(fundMarketMap.get("fundCode"));
-					
+
 					// 更新以下每天实时的基金行情数据
 					fundMarketFlag.setCurrentNav(fundMarketMap.get("fundNav"));
 					fundMarketFlag.setNavDate(fundMarketMap.get("fundNavDate"));
@@ -104,8 +110,8 @@ public class HowBuyFetchTaskService {
 
 					logger.debug("成功更新一条基金行情信息");
 				} else { // 如果不存在, 则添加这条行情信息
-					logger.debug("新增行情信息 fundCode={}, fundNavDate={}", fundMarketMap.get("fundCode"),
-							fundMarketMap.get("fundNavDate"));
+					logger.debug("新增行情信息 fundCode={}, fundNavDate={}",
+							fundMarketMap.get("fundCode"), fundMarketMap.get("fundNavDate"));
 
 					FundMarket fundMarket = new FundMarket();
 
@@ -137,27 +143,75 @@ public class HowBuyFetchTaskService {
 						fundMarketMap.get("fundNavDate"));
 				logger.error("基金行情处理异常", e);
 			}
-			
+
 		}
 
 		logger.info("基金行情信息抓取完成");
-		
+
 		// 更新任务进度
-		Task task = new Task();
-		task.setTaskName("fundMarketInfo");
-		task.setTaskFlag("1"); // 1-已经执行
-		task.setTaskDate(currentDate);
-		task.setUpdateTime(currentDateTime);
-		taskDao.update(task);
-		logger.info("任务进度已经更新");
+		updateFetchTaskFlag("fundMarketInfo", currentDateTime);
 	}
 
 	/**
-	 * TODO 任务2：补充基金行情详细信息（只补充当天抓取的数据）
+	 * 任务2：补充基金行情详细信息（只补充当天抓取的数据）
 	 */
 	public void fundDetailInfoTask() {
-		// 查询当天所有的基金行情信息
+		// 当天日期
+		String currentDate = DateUtil.getCurrentDate(new Date(), "yyyy-MM-dd");
+		logger.debug("当天日期 currentDate={}", currentDate);
 
+		Task fundMarketInfoTask = taskDao.query(FetchConstants.TASK_FUND_MARKET_DETAIL, currentDate);
+		if (fundMarketInfoTask == null) {
+			logger.debug("执行失败: 没有查询到补充基金行情详细信息任务");
+			return;
+		}
+
+		if (!"0".equals(fundMarketInfoTask.getTaskFlag())) {
+			logger.debug("执行失败: 补充基金行情详细信息任务已经执行");
+			return;
+		}
+
+		String currentDateTime = DateUtil.getCurrentDate(new Date(), "yyyy-MM-dd HH:mm:ss");
+
+		// 查询所有基金行情数据
+		List<FundMarket> fundMarkets = fundMarketDao.queryAll();
+		logger.info("已经查询当天所有基金行情信息 size={}", fundMarkets.size());
+		for (FundMarket fundMarket : fundMarkets) {
+			Map<String, String> fundMarketMap = null;
+
+			try {
+				logger.debug("抓取基金行情详细信息 fundCode={}", fundMarket.getFundCode());
+				fundMarketMap = howBuyHelper.fectFundInfo(fundMarket.getFundCode());
+				logger.debug("抓取一条基金行情详细信息成功");
+			} catch (Exception e) {
+				logger.error("抓取基金行情详细信息异常", e);
+				continue;
+			}
+
+			try {
+				logger.debug("更新基金行情详细信息 fundCode={}", fundMarket.getFundCode());
+
+				fundMarket.setFoundedDate(fundMarketMap.get("foundedDate"));
+				fundMarket.setFundManager(fundMarketMap.get("fundManager"));
+				fundMarket.setNewScale(fundMarketMap.get("newScale"));
+				fundMarket.setFundCompany(fundMarketMap.get("fundCompany"));
+				fundMarket.setFundSortThreeMonth(fundMarketMap.get("fundSortThreeMonth"));
+				fundMarket.setFundTotalThreeMonth(fundMarketMap.get("fundTotalThreeMonth"));
+				fundMarket.setFundRiskLevel(fundMarketMap.get("fundRiskLevel"));
+				fundMarket.setRateChange(fundMarketMap.get("rateChange"));
+				fundMarket.setUpdateTime(currentDateTime);
+
+				logger.debug("更新基金行情信息");
+				fundMarketDao.update(fundMarket);
+				logger.info("基金行情信息更新成功");
+			} catch (Exception e) {
+				logger.error("更新基金行情信息出现异常");
+			}
+
+		}
+
+		// 更新任务进度
+		updateFetchTaskFlag("fundDetailInfo", currentDateTime);
 	}
 
 	/**
@@ -166,7 +220,7 @@ public class HowBuyFetchTaskService {
 	public void fundInfoTask() {
 
 	}
-	
+
 	/**
 	 * TODO 任务4：把当天的行情信息转移到历史表中
 	 */
@@ -175,11 +229,28 @@ public class HowBuyFetchTaskService {
 	}
 
 	/**
+	 * 更新任务表状
+	 * 
+	 * @param taskName
+	 * @param currentDateTime
+	 */
+	private void updateFetchTaskFlag(String taskName, String currentDateTime) {
+		Task task = new Task();
+		task.setTaskName(taskName);
+		task.setTaskFlag(FetchConstants.TASK_PROCESS_SUCCESS);
+		task.setTaskDate(currentDateTime.substring(0, 10));
+		task.setUpdateTime(currentDateTime);
+		taskDao.update(task);
+
+		logger.info("任务{}进度已经更新", taskName);
+	}
+
+	/**
 	 * 获取当天所有基金行情信息
 	 * 
 	 * @return
 	 */
-	private List<Map<String, String>> getFundMarket() {
+	private List<Map<String, String>> getFetchFundMarkets() throws Exception {
 		List<Map<String, String>> allFundMarketInfo = new ArrayList<Map<String, String>>();
 
 		// logger.info("获取全部基金信息");
@@ -206,10 +277,12 @@ public class HowBuyFetchTaskService {
 		List<Map<String, String>> licai = howBuyHelper.fectFundInfos(fetchURL4, "4");
 		allFundMarketInfo.addAll(licai);
 
-		logger.info("获取货币型基金信息");
-		String fetchURL5 = "http://www.howbuy.com/fund/fundranking/huobi.htm";
-		List<Map<String, String>> huobi = howBuyHelper.fectFundInfos(fetchURL5, "5");
-		allFundMarketInfo.addAll(huobi);
+		// logger.info("获取货币型基金信息");
+		// String fetchURL5 =
+		// "http://www.howbuy.com/fund/fundranking/huobi.htm";
+		// List<Map<String, String>> huobi =
+		// howBuyHelper.fectFundInfos(fetchURL5, "5");
+		// allFundMarketInfo.addAll(huobi);
 
 		logger.info("获取指数型基金信息");
 		String fetchURL6 = "http://www.howbuy.com/fund/fundranking/zhishu.htm";

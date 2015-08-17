@@ -126,7 +126,7 @@
   </select>
   
   <select id="queryAll" resultMap="FundMarketMapping">
-    SELECT * FROM TFundMarket
+    SELECT * FROM TFundMarket WHERE fundtype != '5'
   </select>
 
 </sqlMap>
