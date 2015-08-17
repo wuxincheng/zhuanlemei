@@ -51,16 +51,24 @@
   <!-- Spring定时器注解开关-->
   <task:annotation-driven />
   
-  <!-- 每天凌晨一点半执行 -->
+  <!-- 每天凌晨一点执行 -->
+  <!-- 生成任务 -->
   <task:scheduled-tasks scheduler="taskServiceScheduler">
-    <task:scheduled ref="taskService" method="createFetchTask" cron="0 30 1 * * ?" />
+    <task:scheduled ref="taskService" method="createFetchTask" cron="0 00 21 * * ?" />
   </task:scheduled-tasks>
   <task:scheduler id="taskServiceScheduler" pool-size="10"/>
   
   <!-- 每天凌晨两点执行 -->
+  <!-- 抓取基金行情信息列表任务 -->
   <task:scheduled-tasks scheduler="howBuyFetchTaskServiceScheduler">
     <task:scheduled ref="howBuyFetchTaskService" method="fundMarketInfoTask" cron="0 25 11 * * ?" />
   </task:scheduled-tasks>
   <task:scheduler id="howBuyFetchTaskServiceScheduler" pool-size="10"/>
+  
+  <!-- 每天凌晨两点执行 -->
+  <!-- 抓取基金行情详细信息任务 -->
+  <task:scheduled-tasks scheduler="howBuyFetchTaskServiceScheduler">
+    <task:scheduled ref="howBuyFetchTaskService" method="fundDetailInfoTask" cron="0 11 21 * * ?" />
+  </task:scheduled-tasks>
 
 </beans>
