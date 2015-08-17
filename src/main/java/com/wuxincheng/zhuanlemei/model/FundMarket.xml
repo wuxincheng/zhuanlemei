@@ -121,8 +121,8 @@
     WHERE fundcode=#fundCode#
   </update>
   
-  <select id="query" resultMap="FundMarketMapping" parameterClass="java.util.Map">
-    SELECT * FROM TFundMarket WHERE fundcode=#fundCode# AND navdate=#navDate#
+  <select id="queryDetail" resultMap="FundMarketMapping" parameterClass="java.lang.String">
+    SELECT * FROM TFundMarket WHERE fundcode=#fundCode#
   </select>
   
   <select id="queryAll" resultMap="FundMarketMapping">
