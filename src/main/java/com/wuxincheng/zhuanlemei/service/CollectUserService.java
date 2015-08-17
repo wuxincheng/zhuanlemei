@@ -7,9 +7,9 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.wuxincheng.zhuanlemei.dao.CollectDao;
-import com.wuxincheng.zhuanlemei.dao.CollectUserDao;
-import com.wuxincheng.zhuanlemei.model.CollectUser;
+import com.wuxincheng.zhuanlemei.dao.FundCollectDao;
+import com.wuxincheng.zhuanlemei.dao.FundCollectUserDao;
+import com.wuxincheng.zhuanlemei.model.FundCollectUser;
 import com.wuxincheng.zhuanlemei.util.Constants;
 import com.wuxincheng.zhuanlemei.util.DateUtil;
 
@@ -17,21 +17,21 @@ import com.wuxincheng.zhuanlemei.util.DateUtil;
 public class CollectUserService {
 
 	@Resource
-	private CollectUserDao collectUserDao;
+	private FundCollectUserDao collectUserDao;
 	
 	@Resource
-	private CollectDao collectDao;
+	private FundCollectDao collectDao;
 
-	public void insert(CollectUser collectUser) {
+	public void insert(FundCollectUser collectUser) {
 		collectUserDao.insert(collectUser);
 	}
 
-	public void delete(CollectUser collectUser) {
+	public void delete(FundCollectUser collectUser) {
 		collectUserDao.delete(collectUser);
 	}
 	
-	public CollectUser query(String collectid, String userid) {
-		CollectUser collectUser = new CollectUser();
+	public FundCollectUser query(String collectid, String userid) {
+		FundCollectUser collectUser = new FundCollectUser();
 		collectUser.setCollectid(collectid);
 		collectUser.setUserid(userid);
 		return collectUser = collectUserDao.query(collectUser);
@@ -44,13 +44,13 @@ public class CollectUserService {
 	 * @param userid
 	 */
 	public void collect(String collectid, String userid) {
-		CollectUser deleteOrQueryCollectUser = new CollectUser();
+		FundCollectUser deleteOrQueryCollectUser = new FundCollectUser();
 		deleteOrQueryCollectUser.setCollectid(collectid);
 		deleteOrQueryCollectUser.setUserid(userid);
 		
-		CollectUser querycu = collectUserDao.query(deleteOrQueryCollectUser);
+		FundCollectUser querycu = collectUserDao.query(deleteOrQueryCollectUser);
 		if (null == querycu) { // 收藏
-			CollectUser collectUser = new CollectUser();
+			FundCollectUser collectUser = new FundCollectUser();
 			collectUser.setCollectid(collectid);
 			collectUser.setUserid(userid);
 			collectUser.setCreateTime(DateUtil.getCurrentDate(new Date(), "yyyyMMdd HH:mm:ss"));
@@ -74,7 +74,7 @@ public class CollectUserService {
 	 * @param userid
 	 * @return
 	 */
-	public List<CollectUser> queryCollects(String userid) {
+	public List<FundCollectUser> queryCollects(String userid) {
 		if (null == userid) {
 			return null;
 		}

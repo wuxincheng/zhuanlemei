@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="FundMarket">
+  <typeAlias alias="FundMarket" type="com.wuxincheng.zhuanlemei.model.FundMarket" />
+
+  <resultMap class="FundMarket" id="FundMarketMapping">
+    <result property="marketDate" column="marketdate" />
+    <result property="fundName" column="fundname" />
+    <result property="fundCode" column="fundcode" />
+    <result property="fundTACode" column="fundtacode" />
+    <result property="fundCompany" column="fundcompany" />
+    <result property="fundType" column="fundtype" />
+    <result property="foundedDate" column="foundeddate" />
+    <result property="fundRiskLevel" column="fundrisklevel" />
+    <result property="fundManager" column="fundmanager" />
+    <result property="currentNav" column="currentnav" />
+    <result property="currentState" column="currentstate" />
+    <result property="fundIncome" column="fundincome" />
+    <result property="fundIncomeRate" column="fundincomerate" />
+    <result property="navDate" column="navdate" />
+    <result property="totalNav" column="totalnav" />
+    <result property="fundRiseWeek" column="fundriseweek" />
+    <result property="fundRiseMonth" column="fundrisemonth" />
+    <result property="fundRiseThreeMonth" column="fundrisethreemonth" />
+    <result property="fundRiseHalfYear" column="fundrisehalfyear" />
+    <result property="fundRiseYear" column="fundriseyear" />
+    <result property="fundRiseThisYear" column="fundrisethisyear" />
+    <result property="newScale" column="newscale" />
+    <result property="rateChange" column="ratechange" />
+    <result property="fundSortThreeMonth" column="fundsortthreemonth" />
+    <result property="fundTotalThreeMonth" column="fundtotalthreemonth" />
+    <result property="createTime" column="createtime" />
+    <result property="updateTime" column="updatetime" />
+  </resultMap>
+  
+  <insert id="insert" parameterClass="FundMarket">
+    INSERT INTO TFundMarket (
+      marketdate, 
+      fundname, 
+      fundcode, 
+      fundtacode, 
+      fundcompany, 
+      fundtype, 
+      foundeddate, 
+      fundrisklevel, 
+      fundmanager, 
+      currentnav, 
+      currentstate, 
+      fundincome, 
+      fundincomerate, 
+      navdate, 
+      totalnav, 
+      fundriseweek, 
+      fundrisemonth, 
+      fundrisethreemonth, 
+      fundrisehalfyear, 
+      fundriseyear, 
+      fundrisethisyear, 
+      newscale, 
+      ratechange, 
+      fundsortthreemonth, 
+      fundtotalthreemonth, 
+      createtime, 
+      updatetime)
+    VALUES (
+      #marketDate#, 
+      #fundName#, 
+      #fundCode#, 
+      #fundTACode#, 
+      #fundCompany#, 
+      #fundType#, 
+      #foundedDate#, 
+      #fundRiskLevel#, 
+      #fundManager#, 
+      #currentNav#, 
+      #currentState#, 
+      #fundIncome#, 
+      #fundIncomeRate#, 
+      #navDate#, 
+      #totalNav#, 
+      #fundRiseWeek#, 
+      #fundRiseMonth#, 
+      #fundRiseThreeMonth#, 
+      #fundRiseHalfYear#, 
+      #fundRiseYear#, 
+      #fundRiseThisYear#, 
+      #newScale#, 
+      #rateChange#, 
+      #fundSortThreeMonth#, 
+      #fundTotalThreeMonth#, 
+      #createTime#, 
+      #updateTime#
+    )
+  </insert>
+  
+  <update id="update" parameterClass="FundMarket">
+    UPDATE TFundMarket SET 
+      marketdate=#marketDate#, 
+      fundname=#fundName#, 
+      fundtacode=#fundTACode#, 
+      fundcompany=#fundCompany#, 
+      fundtype=#fundType#, 
+      foundeddate=#foundedDate#, 
+      fundrisklevel=#fundRiskLevel#, 
+      fundmanager=#fundManager#, 
+      currentnav=#currentNav#, 
+      fundincome=#fundIncome#, 
+      fundincomerate=#fundIncomeRate#, 
+      navdate=#navDate#, 
+      totalnav=#totalNav#, 
+      fundriseweek=#fundRiseWeek#, 
+      fundrisemonth=#fundRiseMonth#, 
+      fundrisethreemonth=#fundRiseThreeMonth#, 
+      fundrisehalfyear=#fundRiseHalfYear#, 
+      fundriseyear=#fundRiseYear#, 
+      fundrisethisyear=#fundRiseThisYear#, 
+      newscale=#newScale#, ratechange=#rateChange#, 
+      fundsortthreemonth=#fundSortThreeMonth#, 
+      fundtotalthreemonth=#fundTotalThreeMonth#, 
+      updatetime=#updateTime#
+    WHERE fundcode=#fundCode#
+  </update>
+  
+  <select id="query" resultMap="FundMarketMapping" parameterClass="java.util.Map">
+    SELECT * FROM TFundMarket WHERE fundcode=#fundCode# AND navdate=#navDate#
+  </select>
+  
+  <select id="queryAll" resultMap="FundMarketMapping">
+    SELECT * FROM TFundMarket
+  </select>
+
+</sqlMap>

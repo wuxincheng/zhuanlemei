@@ -3,7 +3,7 @@ package com.wuxincheng.zhuanlemei;
 import java.util.List;
 import java.util.Map;
 
-import com.wuxincheng.zhuanlemei.model.Product;
+import com.wuxincheng.zhuanlemei.model.FundMarket;
 
 /**
  * 分页
@@ -20,7 +20,7 @@ public class Pager {
 
 	private Integer lastPager;
 
-	private List<Map<String, List<Product>>> productMapList;
+	private List<Map<String, List<FundMarket>>> productMapList;
 
 	public Integer getPagerSize() {
 		return pagerSize;
@@ -46,11 +46,11 @@ public class Pager {
 		this.lastPager = lastPager;
 	}
 
-	public List<Map<String, List<Product>>> getProductMapList() {
+	public List<Map<String, List<FundMarket>>> getProductMapList() {
 		return productMapList;
 	}
 
-	public void setProductMapList(List<Map<String, List<Product>>> productMapList) {
+	public void setProductMapList(List<Map<String, List<FundMarket>>> productMapList) {
 		this.productMapList = productMapList;
 	}
 

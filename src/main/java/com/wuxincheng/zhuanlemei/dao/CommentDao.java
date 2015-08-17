@@ -4,17 +4,17 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.wuxincheng.zhuanlemei.model.Comment;
+import com.wuxincheng.zhuanlemei.model.FundComment;
 
 @Component("commentDao")
 public class CommentDao extends BaseDao {
 
-	public Integer post(Comment commment) {
+	public Integer post(FundComment commment) {
 		return (Integer)this.getSqlMapClientTemplate().update("Comment.post", commment);
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Comment> queryByProductid(String productid) {
+	public List<FundComment> queryByProductid(String productid) {
 		return this.getSqlMapClientTemplate().queryForList("Comment.queryByProductid", productid);
 	}
 	

@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @date 2015年7月23日 下午5:31:03
  * 
  */
-public class ProdLike implements Serializable {
+public class FundLike implements Serializable {
 
 	private static final long serialVersionUID = 5101762374272334624L;
 

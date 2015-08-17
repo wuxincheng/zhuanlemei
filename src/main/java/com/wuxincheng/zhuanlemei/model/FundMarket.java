@@ -36,14 +36,8 @@ public class FundMarket {
 	/** 基金经理 */
 	private String fundManager;
 
-	/** 基金昨日单位净值 */
-	private String lastNav;
-
 	/** 基金净值(如果是货币基金, 则为7日年化收益率) */
 	private String currentNav;
-
-	/** 基金昨日总份额 */
-	private String lastTotalShare;
 
 	/** 基金当日状态 */
 	private String currentState;
@@ -60,22 +54,22 @@ public class FundMarket {
 	/** 累计单位净值 */
 	private String totalNav;
 
-	/** 近一周 */
+	/** 近一周涨幅 */
 	private String fundRiseWeek;
 
-	/** 近一个月 */
+	/** 近一个月涨幅 */
 	private String fundRiseMonth;
 
-	/** 近三个月 */
+	/** 近三个月涨幅 */
 	private String fundRiseThreeMonth;
 
-	/** 近半年 */
+	/** 近半年涨幅 */
 	private String fundRiseHalfYear;
 
-	/** 近一年 */
+	/** 近一年涨幅 */
 	private String fundRiseYear;
 
-	/** 今年 */
+	/** 今年涨幅 */
 	private String fundRiseThisYear;
 
 	/** 基金最新规模 */
@@ -158,28 +152,12 @@ public class FundMarket {
 		this.fundManager = fundManager;
 	}
 
-	public String getLastNav() {
-		return lastNav;
-	}
-
-	public void setLastNav(String lastNav) {
-		this.lastNav = lastNav;
-	}
-
 	public String getCurrentNav() {
 		return currentNav;
 	}
 
 	public void setCurrentNav(String currentNav) {
 		this.currentNav = currentNav;
-	}
-
-	public String getLastTotalShare() {
-		return lastTotalShare;
-	}
-
-	public void setLastTotalShare(String lastTotalShare) {
-		this.lastTotalShare = lastTotalShare;
 	}
 
 	public String getCurrentState() {

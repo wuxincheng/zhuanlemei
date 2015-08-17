@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @date 2015年6月28日 下午11:34:42
  * 
  */
-public class Comment implements Serializable {
+public class FundComment implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @date 2015年7月3日 下午2:47:08
  * 
  */
-public class Collect implements Serializable {
+public class FundCollect implements Serializable {
 
 	private static final long serialVersionUID = -2048622308852729384L;
 
@@ -56,7 +56,7 @@ public class Collect implements Serializable {
 
 	private String recommend;
 
-	public Collect() {
+	public FundCollect() {
 	}
 
 	public String getCoverImgPath() {

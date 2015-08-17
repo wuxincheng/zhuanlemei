@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @date 2015年7月24日 下午2:06:08
  * 
  */
-public class CollectUser implements Serializable {
+public class FundCollectUser implements Serializable {
 
 	private static final long serialVersionUID = -361294005914978730L;
 
