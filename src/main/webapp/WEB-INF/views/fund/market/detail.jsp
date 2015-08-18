@@ -139,7 +139,7 @@
               <div class="form-group hidden comment_content">
               <input class="hidden form-control input-big" id="comment_content" name="content" type="hidden" />
               </div>
-              <div contenteditable="true" class="input-big mention editable-comment form-control" disabled="disabled"
+              <div contenteditable="true" class="input-big mention editable-comment form-control" 
                 data-for="content" required="required" mentionable="true">
               </div>
               <input class="btn submit" name="commit" type="submit" value="发表评论" />

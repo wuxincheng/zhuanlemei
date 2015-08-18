@@ -508,10 +508,11 @@ opacity
 }
 
 .topbar {
-	height: 50px;
-	background: #2a5894;
+	height: 80px;
+	background: #f8f8f8;
 	position: relative;
 	box-shadow: 0 1px 3px rgba(0,0,0,.1);
+	margin-bottom: 20px;
 }
 
 .search {
@@ -563,13 +564,13 @@ opacity
 
 .brand {
 	width: 54px;
-	height: 20px;
 	margin: auto;
 	position: absolute;
 	top: 0;
 	left: 0;
 	bottom: 0;
-	right: 0
+	right: 0;
+	margin-top: 17px;
 }
 
 .logo {
@@ -628,10 +629,11 @@ opacity
 	color: #fff;
 	text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
 	display: block;
-	height: 50px;
+	height: 80px;
 	line-height: 54px;
 	padding-left: 20px;
-	padding-right: 20px
+	padding-right: 20px;
+	padding-top: 15px;
 }
 
 .main-nav:hover {
@@ -640,7 +642,7 @@ opacity
 }
 
 .account-menu {
-	padding-top: 10px;
+	padding-top: 25px;
 	padding-bottom: 10px
 }
 

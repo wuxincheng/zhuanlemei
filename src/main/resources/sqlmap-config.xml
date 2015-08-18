@@ -6,20 +6,15 @@
   <settings useStatementNamespaces="true" />
 
   <!-- 实体表 -->
-  <!-- 
-  <sqlMap resource="com/wuxincheng/zhuanlemei/model/product.xml" />
-  <sqlMap resource="com/wuxincheng/zhuanlemei/model/comment.xml" />
-  <sqlMap resource="com/wuxincheng/zhuanlemei/model/collect.xml" />
-   -->
-  
+  <sqlMap resource="com/wuxincheng/zhuanlemei/model/Product.xml" />
+  <sqlMap resource="com/wuxincheng/zhuanlemei/model/Comment.xml" />
+  <sqlMap resource="com/wuxincheng/zhuanlemei/model/Collect.xml" />
   <sqlMap resource="com/wuxincheng/zhuanlemei/model/User.xml" />
   <sqlMap resource="com/wuxincheng/zhuanlemei/model/Task.xml" />
   <sqlMap resource="com/wuxincheng/zhuanlemei/model/FundMarket.xml" />
   
   <!-- 关联表 -->
-  <!-- 
-  <sqlMap resource="com/wuxincheng/zhuanlemei/model/prodlike.xml" />
-  <sqlMap resource="com/wuxincheng/zhuanlemei/model/collectuser.xml" />
-   -->
+  <sqlMap resource="com/wuxincheng/zhuanlemei/model/ProdLike.xml" />
+  <sqlMap resource="com/wuxincheng/zhuanlemei/model/CollectUser.xml" />
 
 </sqlMapConfig>

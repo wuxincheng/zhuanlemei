@@ -13,10 +13,8 @@
 
 </head>
 <body id="home" class="notes-index">
+  <jsp:include page="../HEADER.jsp" />
   <div class="container">
-
-    <jsp:include page="../HEADER.jsp" />
-
     <div class="content row row cf">
       <div class="forms">
         <form accept-charset="UTF-8" action="${root}/product/doPost" class="simple_form new_note" id="new_note"
