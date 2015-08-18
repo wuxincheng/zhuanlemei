@@ -1,6 +1,5 @@
 package com.wuxincheng.zhuanlemei.dao;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,23 +16,6 @@ import com.wuxincheng.zhuanlemei.model.FundMarket;
  */
 @Component("fundMarketDao")
 public class FundMarketDao extends BaseDao {
-
-	/**
-	 * 根据基金代码和基金净值日期查询基金行情信息
-	 * 
-	 * @param fundCode
-	 *            基金代码
-	 * @param navDate
-	 *            基金净值日期(MM-dd)
-	 * @return
-	 */
-	public FundMarket query(String fundCode, String navDate) {
-		Map<String, String> queryMap = new HashMap<String, String>();
-		queryMap.put("fundCode", fundCode);
-		queryMap.put("navDate", navDate);
-		return (FundMarket) this.getSqlMapClientTemplate().queryForObject("FundMarket.query",
-				queryMap);
-	}
 
 	/**
 	 * 插入一条基金行情记录
@@ -63,6 +45,20 @@ public class FundMarketDao extends BaseDao {
 	@SuppressWarnings("unchecked")
 	public List<FundMarket> queryAll() {
 		return this.getSqlMapClientTemplate().queryForList("FundMarket.queryAll");
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<FundMarket> queryAllNull() {
+		return this.getSqlMapClientTemplate().queryForList("FundMarket.queryAllNull");
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<FundMarket> queryPager(Map<String, Object> queryParam) {
+		return this.getSqlMapClientTemplate().queryForList("FundMarket.queryPager", queryParam);
+	}
+	
+	public int queryCount(Map<String, Object> queryParam) {
+		return (Integer)this.getSqlMapClientTemplate().queryForObject("FundMarket.queryCount", queryParam);
 	}
 
 	public FundMarket queryDetail(String fundCode) {

@@ -46,16 +46,16 @@ public class HowBuyFetchTaskService {
 	public void fundMarketInfoTask() {
 		// 当天日期
 		String currentDate = DateUtil.getCurrentDate(new Date(), "yyyy-MM-dd");
-		logger.debug("当天日期 currentDate={}", currentDate);
+		logger.info("当天日期 currentDate={}", currentDate);
 
 		Task fundMarketInfoTask = taskDao.query(FetchConstants.TASK_FUND_MARKET_INFO, currentDate);
 		if (fundMarketInfoTask == null) {
-			logger.debug("执行失败: 没有查询到抓取基金行情列表数据任务");
+			logger.info("执行失败: 没有查询到抓取基金行情列表数据任务");
 			return;
 		}
 
 		if (!"0".equals(fundMarketInfoTask.getTaskFlag())) {
-			logger.debug("执行失败: 抓取基金行情列表数据任务已经执行");
+			logger.info("执行失败: 抓取基金行情列表数据任务已经执行");
 			return;
 		}
 
@@ -64,7 +64,7 @@ public class HowBuyFetchTaskService {
 		List<Map<String, String>> fundMarkets = null;
 		try {
 			fundMarkets = getFetchFundMarkets();
-			logger.debug("已经抓取到基金行情信息列表，准备入库");
+			logger.info("已经抓取到基金行情信息列表，准备入库");
 		} catch (Exception e) {
 			logger.error("抓取基金行情信息出现异常", e);
 		}
@@ -75,9 +75,8 @@ public class HowBuyFetchTaskService {
 		for (Map<String, String> fundMarketMap : fundMarkets) {
 
 			try {
-				// 根据基金净值日期和基金代码查询当天净值数据是否存在
-				FundMarket fundMarketFlag = fundMarketDao.query(fundMarketMap.get("fundCode"),
-						fundMarketMap.get("fundNavDate"));
+				// 根据基金代码查询当天净值数据是否存在
+				FundMarket fundMarketFlag = fundMarketDao.queryDetail(fundMarketMap.get("fundCode"));
 				if (fundMarketFlag != null) { // 如果存在, 更新相关信息
 					logger.debug("更新行情信息 fundCode={}, fundNavDate={}",
 							fundMarketMap.get("fundCode"), fundMarketMap.get("fundNavDate"));
@@ -108,7 +107,7 @@ public class HowBuyFetchTaskService {
 
 					fundMarketDao.update(fundMarketFlag);
 
-					logger.debug("成功更新一条基金行情信息");
+					logger.info("成功更新一条基金行情信息");
 				} else { // 如果不存在, 则添加这条行情信息
 					logger.debug("新增行情信息 fundCode={}, fundNavDate={}",
 							fundMarketMap.get("fundCode"), fundMarketMap.get("fundNavDate"));
@@ -136,7 +135,7 @@ public class HowBuyFetchTaskService {
 
 					fundMarketDao.insert(fundMarket);
 
-					logger.debug("成功插入一条基金行情信息");
+					logger.info("成功插入一条基金行情信息");
 				}
 			} catch (Exception e) {
 				logger.info("基金行情异常数据 fundCode={}, fundNavDate={}", fundMarketMap.get("fundCode"),
@@ -158,16 +157,16 @@ public class HowBuyFetchTaskService {
 	public void fundDetailInfoTask() {
 		// 当天日期
 		String currentDate = DateUtil.getCurrentDate(new Date(), "yyyy-MM-dd");
-		logger.debug("当天日期 currentDate={}", currentDate);
+		logger.info("当天日期 currentDate={}", currentDate);
 
 		Task fundMarketInfoTask = taskDao.query(FetchConstants.TASK_FUND_MARKET_DETAIL, currentDate);
 		if (fundMarketInfoTask == null) {
-			logger.debug("执行失败: 没有查询到补充基金行情详细信息任务");
+			logger.info("执行失败: 没有查询到补充基金行情详细信息任务");
 			return;
 		}
 
 		if (!"0".equals(fundMarketInfoTask.getTaskFlag())) {
-			logger.debug("执行失败: 补充基金行情详细信息任务已经执行");
+			logger.info("执行失败: 补充基金行情详细信息任务已经执行");
 			return;
 		}
 
@@ -175,6 +174,8 @@ public class HowBuyFetchTaskService {
 
 		// 查询所有基金行情数据
 		List<FundMarket> fundMarkets = fundMarketDao.queryAll();
+		// List<FundMarket> fundMarketsNull = fundMarketDao.queryAllNull();
+		
 		logger.info("已经查询当天所有基金行情信息 size={}", fundMarkets.size());
 		for (FundMarket fundMarket : fundMarkets) {
 			Map<String, String> fundMarketMap = null;
@@ -211,7 +212,7 @@ public class HowBuyFetchTaskService {
 		}
 
 		// 更新任务进度
-		updateFetchTaskFlag("fundDetailInfo", currentDateTime);
+		updateFetchTaskFlag(FetchConstants.TASK_FUND_MARKET_DETAIL, currentDateTime);
 	}
 
 	/**

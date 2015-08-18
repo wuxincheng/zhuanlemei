@@ -47,7 +47,7 @@ public class LoginSessionInterceptor implements HandlerInterceptor {
 				// encode一下，否则页面接收不到值
 				msg = java.net.URLEncoder.encode(msg.toString(), "utf-8"); 
 				
-				response.sendRedirect("/zhuanlemei/login/?info="+msg);  // 重定向
+				response.sendRedirect("/login/?info="+msg);  // 重定向
 				
 				return false;
 			}

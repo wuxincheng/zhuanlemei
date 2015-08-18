@@ -1,19 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="hfn" uri="/WEB-INF/hfn.tld"%>
+<%@ taglib prefix="fund" uri="/WEB-INF/fund.tld"%>
 <c:set var="root" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
 <html>
 <head>
-<title>${product.prodName} | TOP</title>
+<title>${fundMarket.fundName}【${fundMarket.fundCode}】 | TOP</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="icon" />
 <link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="shortcut icon" />
 
-<meta name="description" content="${product.prodName}，赚了没-TOP|找到你喜欢的理财产品，榜单|赚了没-TOP">
-<meta name="keywords" content="${product.prodName}，赚了没-TOP|找到你喜欢的理财产品，榜单|赚了没-TOP">
+<meta name="description" content="${fundMarket.fundName}，赚了没-TOP|找到你喜欢的理财产品，榜单|赚了没-TOP">
+<meta name="keywords" content="${fundMarket.fundName}，赚了没-TOP|找到你喜欢的理财产品，榜单|赚了没-TOP">
 
 </head>
 <body id="home" class="notes-index">
@@ -25,17 +26,43 @@
         <div class="content row">
           <section class="product cf">
             <div class="fund-detail-panel">
-              <div class="fund-name">富国中证军工指数分级<span class="fund-type">股票型</span></div>
+              <div class="fund-name">
+                <span>${fundMarket.fundName} （${fundMarket.fundCode}）</span>
+                <span class="fund-type">${fund:type(fundMarket.fundType)}</span>
+                <span class="fund-type">${fund:riskLevel(fundMarket.fundRiskLevel)}</span>
+              </div>
               <div class="fund-market">
                 <div class="fund-nav-panel">
                   <div class="row">
-                    <div class="col-md-3"><div class="fund-nav"><span class="fund-nv-up">2.2320</span><br>单位净值 [08-11]</div></div>
-                    <div class="col-md-3"><div class="fund-nav-updown"><span class="fund-nv-down">（-2.235%）</span><br>涨跌幅</div></div>
-                    <div class="col-md-6"><div class="fund-nav-sort"><span class="fund-nv-down"><span class="fund-nv-up">4</span>/356</span><br>近3月排名</div></div>
+                    <div class="col-md-3">
+                      <div class="fund-nav">
+                        <span class="fund-nv-up">${fundMarket.currentNav}</span>
+                        <br><span>单位净值 [${fundMarket.navDate}]</span>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="fund-nav-updown">
+                        <span class="fund-nv-down">（${fundMarket.rateChange}）</span>
+                        <br><span>涨跌幅</span>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="fund-nav-sort">
+                        <span class="fund-nv-down">
+                          <span class="fund-nv-up">${fundMarket.fundSortThreeMonth}</span>
+                          <span>/&nbsp;${fundMarket.fundTotalThreeMonth}</span>
+                        </span><br><span>近3月排名</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="fund-nav-info">
-                  <div class="fund-base">近3月：1.00%&nbsp;&nbsp;近1年：118.03%&nbsp;&nbsp;最新规模：2.44亿&nbsp;&nbsp;成立日期：2014-03-14</div>
+                  <div class="fund-base">
+                    <span> 近3月：${fundMarket.fundRiseThreeMonth}&nbsp;&nbsp;</span>
+                    <span>近1年：${fundMarket.fundRiseYear}&nbsp;&nbsp;</span>
+                    <span>最新规模：${fundMarket.newScale}亿&nbsp;&nbsp;</span>
+                    <span>成立日期：${fundMarket.foundedDate}</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -78,7 +105,7 @@
             <div class="share">
               <h3>分享到</h3>
               <div class="share-weibo">
-                <a href="http://service.weibo.com/share/share.php?searchPic=false&amp;title=${product.prodName} - ${product.memo}&amp;url=http://www.zhuanlemei.com/top/product/detail?prodid=${product.prodid}" target="_blank" title="点击分享到微博">
+                <a href="http://service.weibo.com/share/share.php?searchPic=false&amp;title=${fundMarket.fundName}[${fundMarket.fundCode}]&amp;url=http://www.zhuanlemei.com/fund/market/detail?fundCode=${fundMarket.fundCode}" target="_blank" title="点击分享到微博">
                   <i class="svg-weibo"></i> <span>微博</span>
                 </a>
               </div>
@@ -87,7 +114,8 @@
                   <i class="svg-wechat"></i> <span>微信</span>
                 </a>
                 <div class="dropdown share-dropdown">
-                  <img height="156" src="http://s.jiathis.com/qrcode.php?url=http://www.zhuanlemei.com/top/product/detail?prodid=${product.prodid}" width="156" />
+                  <img height="156" src="http://s.jiathis.com/qrcode.php?url=http://www.zhuanlemei.com/fund/market/detail?fundCode=${fundMarket.fundCode}"
+                     width="156" />
                   <span>微信扫一扫：分享</span>
                 </div>
               </div>

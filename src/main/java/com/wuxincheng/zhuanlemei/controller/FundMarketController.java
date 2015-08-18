@@ -1,6 +1,7 @@
 package com.wuxincheng.zhuanlemei.controller;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -31,14 +32,64 @@ public class FundMarketController extends BaseController {
 	@Autowired
 	private FundMarketService fundMarketService;
 	
+	/** 每页显示条数 */
+	private final Integer pageSize = 10;
+	
+	/** 当前页面 */
+	private String currentPage;
+	
 	@RequestMapping(value = "/list")
 	public String list(Model model, HttpServletRequest request, String currentPage) {
 		logger.info("显示基金行情列表");
 		requestMessageProcess(request);
 		
-		List<FundMarket> fundMarkets = fundMarketService.queryAll();
+		if (Validation.isBlank(currentPage) || !Validation.isInt(currentPage, "0+")) {
+			currentPage = "1";
+		}
 		
-		model.addAttribute("fundMarkets", fundMarkets);
+		this.currentPage = currentPage;
+		
+		Integer current = Integer.parseInt(currentPage);
+		Integer start = null;
+		Integer end = null;
+		if (current > 1) {
+			start = (current - 1) * pageSize;
+			end = pageSize;
+		} else {
+			start = 0;
+			end = pageSize;
+		}
+		
+		// 封装查询条件
+		Map<String, Object> queryParam = new HashMap<String, Object>();
+		queryParam.put("start", start);
+		queryParam.put("end", end);
+		
+		Map<String, Object> pager = fundMarketService.queryPager(queryParam);
+		
+		try {
+			if (pager != null && pager.size() > 0) {
+				Integer totalCount = (Integer)pager.get("totalCount");
+				Integer lastPage = (totalCount/pageSize);
+				Integer flag = (totalCount%pageSize)>0?1:0;
+				pager.put("lastPage", lastPage + flag);
+				
+				// 如果当前页数大于总页数, 减1处理
+				if (current > (lastPage + flag)) {
+					current--;
+					this.currentPage = current+"";
+				}
+				
+				logger.info(this.currentPage);
+				
+				pager.put("currentPage", current);
+				pager.put("pageSize", pageSize);
+				
+				model.addAttribute("pager", pager);
+			}
+		} catch (Exception e) {
+			logger.error("分页查询出现异常", e);
+		}
 		
 		return "fund/market/list";
 	}

@@ -32,7 +32,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="${root}">
           <img alt="赚了没" src="${root}/assets/img/logo/logo-top.png" 
             style="margin-top: -15px;" />
         </a>
@@ -57,7 +57,7 @@
         </ul>
         
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="../navbar/">登录</a></li>
+          <li><a href="${root}/login/">登录</a></li>
         </ul>
       </div>
     </div>

@@ -1,6 +1,8 @@
 package com.wuxincheng.zhuanlemei.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -15,8 +17,17 @@ public class FundMarketService {
 	@Resource
 	private FundMarketDao fundMarketDao;
 	
-	public List<FundMarket> queryAll() {
-		return fundMarketDao.queryAll();
+	public Map<String, Object> queryPager(Map<String, Object> queryParam) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		
+		List<FundMarket> fundMarkets = fundMarketDao.queryPager(queryParam);
+		
+		int totalCount = fundMarketDao.queryCount(queryParam); // 总记录数
+		
+		result.put("fundMarkets", fundMarkets);
+		result.put("totalCount", totalCount);
+		
+		return result;
 	}
 
 	public FundMarket queryDetailByFundCode(String fundCode) {
