@@ -123,19 +123,15 @@
           </section>
           
           <section class="comments row" id="comments">
-            <h4>评论 (${product.commentSum})</h4>
+            <h4>评论 (${fundMarket.commentSum})</h4>
             <c:if test="${empty user}">
             <form accept-charset="UTF-8" action="" class="simple_form comment" method="post">
               <a href="${root}/login/">登录后发表评论</a></form>
             </c:if>
             <c:if test="${not empty user}">
             <form accept-charset="UTF-8" action="${root}/comment/post" class="simple_form comment" method="post">
-              <input id="productid" name="productid" type="hidden" value="${product.prodid}" />
-              <div style="display:none">
-                <input name="utf8" type="hidden" value="&#x2713;" />
-                <input name="authenticity_token" type="hidden" value="ANEyEpJJ68CL9sOaM+TBgWkLVrJ+y6mWIHYHa5OiijI=" />
-              </div>
-              <input id="ok_url" name="ok_url" type="hidden" value="/posts/14905#comments" />
+              <input id="fundCode" name="fundCode" type="hidden" value="${fundMarket.fundCode}" />
+              <input id="commentType" name="commentType" type="hidden" value="fundMarket" />
               <div class="form-group hidden comment_content">
               <input class="hidden form-control input-big" id="comment_content" name="content" type="hidden" />
               </div>

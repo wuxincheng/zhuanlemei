@@ -43,8 +43,8 @@
   
   <select id="queryByProductid" resultMap="CommentDetailMapping" parameterClass="java.lang.String">
     SELECT 
-      t.commentid, t.commentrefid, t.productid, t.userid,
-      t.content, t.commentstate, t.likesum, t.replysum,
+      t.commentid, t.commentrefid, t.productid, t.userid, t.content, 
+      t.commentstate, t.likesum, t.replysum, t.fundcode, t.commenttype, 
       DATE_FORMAT(t.createtime,'%Y-%m-%d %H:%i:%S') AS createtime,
       u.nickname, u.loginemail, u.picpath, u.socialpicpath, 
       u.memo AS usermemo, u.usergroup, u.position
@@ -56,8 +56,8 @@
 
   <select id="queryByFundCode" resultMap="CommentDetailMapping" parameterClass="java.lang.String">
     SELECT 
-      t.commentid, t.commentrefid, t.productid, t.userid,
-      t.content, t.commentstate, t.likesum, t.replysum,
+      t.commentid, t.commentrefid, t.productid, t.userid, t.content, 
+      t.commentstate, t.likesum, t.replysum, t.fundcode, t.commenttype, 
       DATE_FORMAT(t.createtime,'%Y-%m-%d %H:%i:%S') AS createtime,
       u.nickname, u.loginemail, u.picpath, u.socialpicpath, 
       u.memo AS usermemo, u.usergroup, u.position

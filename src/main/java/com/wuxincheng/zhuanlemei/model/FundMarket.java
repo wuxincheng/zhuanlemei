@@ -1,5 +1,7 @@
 package com.wuxincheng.zhuanlemei.model;
 
+import java.io.Serializable;
+
 /**
  * 基金行情
  * 
@@ -7,7 +9,9 @@ package com.wuxincheng.zhuanlemei.model;
  * @date 2015年8月13日 上午10:40:40
  * 
  */
-public class FundMarket {
+public class FundMarket implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	/** 行情日期 */
 	private String marketDate;
@@ -87,6 +91,21 @@ public class FundMarket {
 
 	/** 更新时间 */
 	private String updateTime;
+	
+	/** 产品赞数 */
+	private Integer likeSum;
+	
+	/** 产品赞度 */
+	private Integer likeScore;
+	
+	/** 产品反对数 */
+	private Integer unLikeSum;
+	
+	/** 产品反对度 */
+	private Integer unLikeScore;
+
+	/** 产品评论数 */
+	private Integer commentSum;
 
 	public String getMarketDate() {
 		return marketDate;
@@ -302,6 +321,46 @@ public class FundMarket {
 
 	public void setFundCompany(String fundCompany) {
 		this.fundCompany = fundCompany;
+	}
+
+	public Integer getLikeSum() {
+		return likeSum;
+	}
+
+	public void setLikeSum(Integer likeSum) {
+		this.likeSum = likeSum;
+	}
+
+	public Integer getLikeScore() {
+		return likeScore;
+	}
+
+	public void setLikeScore(Integer likeScore) {
+		this.likeScore = likeScore;
+	}
+
+	public Integer getUnLikeSum() {
+		return unLikeSum;
+	}
+
+	public void setUnLikeSum(Integer unLikeSum) {
+		this.unLikeSum = unLikeSum;
+	}
+
+	public Integer getUnLikeScore() {
+		return unLikeScore;
+	}
+
+	public void setUnLikeScore(Integer unLikeScore) {
+		this.unLikeScore = unLikeScore;
+	}
+
+	public Integer getCommentSum() {
+		return commentSum;
+	}
+
+	public void setCommentSum(Integer commentSum) {
+		this.commentSum = commentSum;
 	}
 
 }

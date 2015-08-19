@@ -511,8 +511,10 @@ opacity
 	height: 80px;
 	background: #f8f8f8;
 	position: relative;
+	/**
 	box-shadow: 0 1px 3px rgba(0,0,0,.1);
-	margin-bottom: 20px;
+	margin-bottom: 0px;
+	 */
 }
 
 .search {
@@ -626,7 +628,7 @@ opacity
 }
 
 .main-nav {
-	color: #fff;
+	color: #323030;
 	text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
 	display: block;
 	height: 80px;
@@ -637,7 +639,7 @@ opacity
 }
 
 .main-nav:hover {
-	color: #f2f2f2;
+	color: #4E63B6;
 	background: rgba(0, 0, 0, 0.1)
 }
 

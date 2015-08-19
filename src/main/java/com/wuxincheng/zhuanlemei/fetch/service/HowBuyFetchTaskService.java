@@ -132,6 +132,11 @@ public class HowBuyFetchTaskService {
 					fundMarket.setFundRiseThisYear(fundMarketMap.get("fundRiseThisYear"));
 					fundMarket.setCreateTime(currentDateTime);
 					fundMarket.setUpdateTime(currentDateTime);
+					fundMarket.setLikeSum(0);
+					fundMarket.setLikeScore(0);
+					fundMarket.setUnLikeScore(0);
+					fundMarket.setUnLikeSum(0);
+					fundMarket.setCommentSum(0);
 
 					fundMarketDao.insert(fundMarket);
 

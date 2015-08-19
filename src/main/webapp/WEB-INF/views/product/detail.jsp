@@ -129,6 +129,7 @@
         <c:if test="${not empty user}">
         <form accept-charset="UTF-8" action="${root}/comment/post" class="simple_form comment" method="post">
           <input id="productid" name="productid" type="hidden" value="${product.prodid}" />
+          <input id="commentType" name="commentType" type="hidden" value="product" />
           <div style="display:none">
             <input name="utf8" type="hidden" value="&#x2713;" />
             <input name="authenticity_token" type="hidden" value="ANEyEpJJ68CL9sOaM+TBgWkLVrJ+y6mWIHYHa5OiijI=" />

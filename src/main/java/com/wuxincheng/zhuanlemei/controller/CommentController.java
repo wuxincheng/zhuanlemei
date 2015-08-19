@@ -11,67 +11,68 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.wuxincheng.zhuanlemei.model.Comment;
-import com.wuxincheng.zhuanlemei.model.Product;
 import com.wuxincheng.zhuanlemei.service.CommentService;
 import com.wuxincheng.zhuanlemei.service.ProductService;
 import com.wuxincheng.zhuanlemei.util.Constants;
-import com.wuxincheng.zhuanlemei.util.StringUtil;
 import com.wuxincheng.zhuanlemei.util.Validation;
 
 /**
  * 评论管理
  * 
- * @author wuxincheng(wxcking) 
- * @date 2015年6月29日 下午3:04:31 
- *
+ * @author wuxincheng(wxcking)
+ * @date 2015年6月29日 下午3:04:31
+ * 
  */
 @Controller
 @RequestMapping("/comment")
 public class CommentController extends BaseController {
 	private static final Logger logger = LoggerFactory.getLogger(CommentController.class);
 
-	@Resource 
+	@Resource
 	private CommentService commentService;
-	
+
 	@Resource
 	private ProductService productService;
-	
+
+	/**
+	 * 保存评论信息(产品评论和基金行情评论)
+	 * 
+	 * @param model
+	 * @param request
+	 * @param commment
+	 * @return
+	 */
 	@RequestMapping(value = "/post")
-	public String post(Model model, HttpServletRequest request, Comment commment) {
-		logger.info("保存评论数据 commment={}", StringUtil.toStringMultiLine(commment));
+	public String post(Model model, HttpServletRequest request, Comment comment) {
+		logger.info("保存评论数据");
+
+		// 基金代码, 用于判断是产品评论还是行情评论的标识
+		String fundCodeFlag = comment.getFundCode();
 		
-		// 判断是否有用户登录
-		String userid = getCurrentUserid(request);
-		Product product = productService.queryDetailByProdid(commment.getProductid(), userid);
+		model.addAttribute("prodid", comment.getProductid());
+		model.addAttribute("fundCode", comment.getFundCode());
 		
-		if (null == product) {
-			model.addAttribute(Constants.MSG_WARN, "评论失败：产品信息不存在！");
-			return "redirect:/product/list";
-		}
-		
-		model.addAttribute("prodid", product.getProdid());
-		
-		if (StringUtils.isEmpty(commment.getContent().trim())) {
-			model.addAttribute(Constants.MSG_WARN, "评论失败：评论内容不能为空");
-			return "redirect:/product/detail";
+		// 保存处理
+		String responseMessage = commentService.post(comment, getCurrentUserid(request));
+		if (StringUtils.isNotEmpty(responseMessage)) { // 返回异常信息处理
+			model.addAttribute(Constants.MSG_WARN, "" + responseMessage);
+			return fundCodeFlag==null?"redirect:/product/detail":"redirect:/fund/market/detail";
 		}
 
-		commentService.post(commment, getCurrentUserid(request));
-		
-		return "redirect:/product/detail";
+		return fundCodeFlag==null?"redirect:/product/detail":"redirect:/fund/market/detail";
 	}
-	
+
 	@RequestMapping(value = "/list")
 	public String list(String productid) {
 		logger.info("查询所有评论 productid={}", productid);
-		
+
 		if (StringUtils.isEmpty(productid) || !Validation.isIntPositive(productid)) {
 			return "redirect:product/detail";
 		}
-		
+
 		commentService.queryByProductid(productid);
-		
+
 		return "redirect:product/detail";
 	}
-	
+
 }

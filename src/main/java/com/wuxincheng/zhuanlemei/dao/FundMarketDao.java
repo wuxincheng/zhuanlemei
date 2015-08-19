@@ -46,40 +46,70 @@ public class FundMarketDao extends BaseDao {
 	public List<FundMarket> queryAll() {
 		return this.getSqlMapClientTemplate().queryForList("FundMarket.queryAll");
 	}
-	
+
+	/**
+	 * 查询所有基金经理为空的行情列表
+	 * 
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public List<FundMarket> queryAllNull() {
 		return this.getSqlMapClientTemplate().queryForList("FundMarket.queryAllNull");
 	}
-	
+
+	/**
+	 * 分页查询基金行情列表
+	 * 
+	 * @param queryParam
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public List<FundMarket> queryPager(Map<String, Object> queryParam) {
 		return this.getSqlMapClientTemplate().queryForList("FundMarket.queryPager", queryParam);
 	}
-	
-	public int queryCount(Map<String, Object> queryParam) {
-		return (Integer)this.getSqlMapClientTemplate().queryForObject("FundMarket.queryCount", queryParam);
-	}
 
-	public FundMarket queryDetail(String fundCode) {
-		return (FundMarket) this.getSqlMapClientTemplate().queryForObject("FundMarket.queryDetail", fundCode);
+	/**
+	 * 统计所有基金行情记录数
+	 * 
+	 * @param queryParam
+	 * @return
+	 */
+	public int queryCount(Map<String, Object> queryParam) {
+		return (Integer) this.getSqlMapClientTemplate().queryForObject("FundMarket.queryCount",
+				queryParam);
 	}
 
 	/**
-	 * 更新产品的评论数
+	 * 根据基金代码查询基金行情详细信息
+	 * 
+	 * @param fundCode
+	 * @return
+	 */
+	public FundMarket queryDetail(String fundCode) {
+		return (FundMarket) this.getSqlMapClientTemplate().queryForObject("FundMarket.queryDetail",
+				fundCode);
+	}
+
+	/**
+	 * 更新基金行情的评论数
 	 */
 	public void plusCommentSum(String fundCode) {
 		this.getSqlMapClientTemplate().update("FundMarket.plusCommentSum", fundCode);
 	}
 
-	public void score(Map<String, Object> like) {
-		this.getSqlMapClientTemplate().update("FundMarket.score", like);
+	/**
+	 * 更新基金行情关注度
+	 * 
+	 * @param scoreMap
+	 */
+	public void likeScore(Map<String, Object> scoreMap) {
+		this.getSqlMapClientTemplate().update("FundMarket.likeScore", scoreMap);
 	}
-	
+
 	public void postLikeScore(Map<String, Object> likeScore) {
 		this.getSqlMapClientTemplate().update("FundMarket.postLikeScore", likeScore);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<FundMarket> queryLikeByUserid(String userid) {
 		return this.getSqlMapClientTemplate().queryForList("FundMarket.queryLikeByUserid", userid);

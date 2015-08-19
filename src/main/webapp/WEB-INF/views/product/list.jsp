@@ -17,10 +17,8 @@
 
 </head>
 <body id="home" class="notes-index">
+  <jsp:include page="../HEADER.jsp" />
   <div class="container">
-
-    <jsp:include page="../HEADER.jsp" />
-
     <div class="content row ">
       <section class="main-header cf">
         <a class="btn submit-btn right" href="${root}/product/postUI">分享新产品</a>
