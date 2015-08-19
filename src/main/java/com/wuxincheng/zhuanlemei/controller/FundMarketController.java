@@ -1,6 +1,7 @@
 package com.wuxincheng.zhuanlemei.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,8 +14,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.wuxincheng.zhuanlemei.model.Comment;
 import com.wuxincheng.zhuanlemei.model.FundMarket;
+import com.wuxincheng.zhuanlemei.model.ProdLike;
+import com.wuxincheng.zhuanlemei.service.CommentService;
 import com.wuxincheng.zhuanlemei.service.FundMarketService;
+import com.wuxincheng.zhuanlemei.service.ProdLikeService;
 import com.wuxincheng.zhuanlemei.util.Validation;
 
 /**
@@ -31,6 +36,12 @@ public class FundMarketController extends BaseController {
 
 	@Autowired
 	private FundMarketService fundMarketService;
+	
+	@Autowired
+	private CommentService commentService;
+	
+	@Autowired
+	private ProdLikeService prodLikeService;
 	
 	/** 每页显示条数 */
 	private final Integer pageSize = 10;
@@ -105,6 +116,17 @@ public class FundMarketController extends BaseController {
 		// 基金行情详细
 		FundMarket fundMarket = fundMarketService.queryDetailByFundCode(fundCode);
 		model.addAttribute("fundMarket", fundMarket);
+		
+		// 评论列表
+		List<Comment> comments = commentService.queryByFundCode(fundCode);
+		model.addAttribute("comments", comments);
+		
+		// 查询当前用户是赞这个行情还是骂
+		String userid = getCurrentUserid(request);
+		if (StringUtils.isNotEmpty(userid)) {
+			ProdLike prodLike = prodLikeService.queryByFundCode(fundCode, userid);
+			model.addAttribute("prodLike", prodLike);
+		}
 		
 		return "fund/market/detail";
 	}

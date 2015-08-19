@@ -3,7 +3,7 @@ package com.wuxincheng.zhuanlemei.model;
 import java.io.Serializable;
 
 /**
- * 用户产品点赞
+ * 用户点赞, 包括对产品/基金行情点赞
  * 
  * @author wuxincheng(wxcking)
  * @date 2015年7月23日 下午5:31:03
@@ -15,12 +15,19 @@ public class ProdLike implements Serializable {
 
 	private String userid;
 
+	/** 产品主键 */
 	private String prodid;
+
+	/** 基金代码 */
+	private String fundCode;
 
 	private String likeTime;
 
-	/** 点赞是否有效: 0-有效, 1-无效 */
+	/** 点赞是否有效: 0-赞同, 1-反对 */
 	private String likeState;
+
+	/** 赞类型: fundMarket/product */
+	private String likeType;
 
 	// ======= 用户信息
 	private String nickName;
@@ -117,6 +124,22 @@ public class ProdLike implements Serializable {
 
 	public void setPicPath(String picPath) {
 		this.picPath = picPath;
+	}
+
+	public String getFundCode() {
+		return fundCode;
+	}
+
+	public void setFundCode(String fundCode) {
+		this.fundCode = fundCode;
+	}
+
+	public String getLikeType() {
+		return likeType;
+	}
+
+	public void setLikeType(String likeType) {
+		this.likeType = likeType;
 	}
 
 }

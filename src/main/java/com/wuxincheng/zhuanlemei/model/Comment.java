@@ -3,7 +3,7 @@ package com.wuxincheng.zhuanlemei.model;
 import java.io.Serializable;
 
 /**
- * 评论
+ * 评论, 包括对产品和基金行情评论
  * 
  * @author wuxincheng(wxcking)
  * @date 2015年6月28日 下午11:34:42
@@ -17,8 +17,12 @@ public class Comment implements Serializable {
 
 	private String commentRefid;
 
+	/** 产品主键 */
 	private String productid;
 
+	/** 基金代码 */
+	private String fundCode;
+	
 	private String userid;
 
 	private String content;
@@ -30,6 +34,9 @@ public class Comment implements Serializable {
 	private Integer likeSum;
 
 	private Integer replySum;
+	
+	/** 评论类型: fundMarket/product */
+	private String commentType;
 	
 	// ===== 用户信息 =====
 	private String nickName;
@@ -172,6 +179,22 @@ public class Comment implements Serializable {
 
 	public void setPosition(String position) {
 		this.position = position;
+	}
+
+	public String getFundCode() {
+		return fundCode;
+	}
+
+	public void setFundCode(String fundCode) {
+		this.fundCode = fundCode;
+	}
+
+	public String getCommentType() {
+		return commentType;
+	}
+
+	public void setCommentType(String commentType) {
+		this.commentType = commentType;
 	}
 
 }

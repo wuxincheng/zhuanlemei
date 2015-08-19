@@ -6,15 +6,19 @@
   <resultMap class="ProdLike" id="ProdLikeMapping">
     <result property="userid" column="userid" />
     <result property="prodid" column="prodid" />
+    <result property="fundCode" column="fundcode" />
     <result property="likeTime" column="liketime" />
     <result property="likeState" column="likestate" />
+    <result property="likeType" column="liketype" />
   </resultMap>
   
   <resultMap class="ProdLike" id="ProdLikeUserDetailMapping">
     <result property="userid" column="userid" />
     <result property="prodid" column="prodid" />
+    <result property="fundCode" column="fundcode" />
     <result property="likeTime" column="liketime" />
     <result property="likeState" column="likestate" />
+    <result property="likeType" column="liketype" />
     
     <!-- 用户信息 -->
     <result property="nickName" column="nickname" />
@@ -28,8 +32,8 @@
 
   <insert id="insert" parameterClass="ProdLike">
     INSERT INTO 
-      t_next_prodlike(userid, prodid, liketime, likestate)
-    VALUES (#userid#, #prodid#, #likeTime#, #likeState#)
+      t_next_prodlike(userid, prodid, fundcode, liketime, likestate, liketype)
+    VALUES (#userid#, #prodid#, #fundCode#, #likeTime#, #likeState#, #likeType#)
   </insert>
   
   <delete id="delete" parameterClass="ProdLike">
@@ -42,6 +46,10 @@
   
   <select id="queryByUserid" parameterClass="java.lang.String" resultMap="ProdLikeMapping">
     SELECT * FROM t_next_prodlike WHERE userid = #userid#
+  </select>
+  
+  <select id="queryDetailByFundCode" parameterClass="java.util.Map" resultMap="ProdLikeMapping">
+    SELECT * FROM t_next_prodlike WHERE userid = #userid# AND fundcode = #fundCode#
   </select>
   
   <select id="queryLikeUserDetail" parameterClass="java.lang.String" resultMap="ProdLikeUserDetailMapping">
