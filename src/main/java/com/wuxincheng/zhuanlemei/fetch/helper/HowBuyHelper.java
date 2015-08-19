@@ -84,22 +84,24 @@ public class HowBuyHelper {
 				continue;
 			}
 
-			logger.info("数组temps长度 length={}", temps.length);
+			logger.debug("数组temps长度 length={}", temps.length);
 
 			// 基金信息
 			Map<String, String> fundInfoMap = new HashMap<String, String>();
 
 			// 基金代码
-			fundInfoMap.put("fundCode", temps[3].substring(45, temps[3].length() - 10));
-			logger.debug("fundCode={}", temps[3]);
+			String fundCode = temps[3].substring(45, temps[3].length() - 10);
+			fundInfoMap.put("fundCode", fundCode);
+			logger.debug("fundCode={}", fundCode);
 
 			// 基金名称
 			fundInfoMap.put("fundName", temps[4].substring(58, temps[4].length() - 12));
 			logger.debug("fundName={}", temps[4]);
 
 			// 基金净值日期
-			fundInfoMap.put("fundNavDate", temps[5].substring(5, temps[5].length() - 6));
-			logger.debug("fundNavDate={}", temps[5]);
+			String fundNavDate = temps[5].substring(5, temps[5].length() - 6);
+			fundInfoMap.put("fundNavDate", fundNavDate);
+			logger.debug("fundNavDate={}", fundNavDate);
 
 			// 基金净值
 			fundInfoMap.put("fundNav", temps[6].substring(17, temps[6].length() - 8));
@@ -178,7 +180,7 @@ public class HowBuyHelper {
 			// 基金类型
 			fundInfoMap.put("fundType", fundType);
 
-			logger.info("fundInfoMap={}", fundInfoMap);
+			logger.info("成功抓取一条行情记录 fundCode={}, fundNavDate={}", fundCode, fundNavDate);
 
 			fundInfos.add(fundInfoMap);
 		}
@@ -203,7 +205,7 @@ public class HowBuyHelper {
 		}
 
 		String fetchURL = "http://www.howbuy.com/fund/" + fundCode + "/";
-		logger.info("抓取基金详细信息 fetchURL={}", fetchURL);
+		logger.debug("抓取基金详细信息 fetchURL={}", fetchURL);
 
 		HttpClientHelper hp = new HttpClientHelper();
 
@@ -313,7 +315,7 @@ public class HowBuyHelper {
 		
 		// 基金净值/年化收益
 
-		logger.info("处理后的基金信息 fundInfoMap={}", fundInfoMap);
+		logger.debug("处理后的基金信息 fundInfoMap={}", fundInfoMap);
 
 		return fundInfoMap;
 	}

@@ -107,7 +107,7 @@ public class HowBuyFetchTaskService {
 
 					fundMarketDao.update(fundMarketFlag);
 
-					logger.info("成功更新一条基金行情信息");
+					logger.info("成功更新一条基金行情信息 fundCode={}", fundMarketMap.get("fundCode"));
 				} else { // 如果不存在, 则添加这条行情信息
 					logger.debug("新增行情信息 fundCode={}, fundNavDate={}",
 							fundMarketMap.get("fundCode"), fundMarketMap.get("fundNavDate"));
@@ -135,7 +135,7 @@ public class HowBuyFetchTaskService {
 
 					fundMarketDao.insert(fundMarket);
 
-					logger.info("成功插入一条基金行情信息");
+					logger.info("成功插入一条基金行情信息 fundCode={}", fundMarketMap.get("fundCode"));
 				}
 			} catch (Exception e) {
 				logger.info("基金行情异常数据 fundCode={}, fundNavDate={}", fundMarketMap.get("fundCode"),
@@ -202,11 +202,11 @@ public class HowBuyFetchTaskService {
 				fundMarket.setRateChange(fundMarketMap.get("rateChange"));
 				fundMarket.setUpdateTime(currentDateTime);
 
-				logger.debug("更新基金行情信息");
+				logger.debug("更新基金行情详细信息");
 				fundMarketDao.update(fundMarket);
-				logger.info("基金行情信息更新成功");
+				logger.info("基金行情详细信息更新成功");
 			} catch (Exception e) {
-				logger.error("更新基金行情信息出现异常");
+				logger.error("更新基金行情详细信息出现异常");
 			}
 
 		}
