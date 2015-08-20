@@ -163,5 +163,19 @@
   <update id="likeScore" parameterClass="java.util.Map">
     UPDATE TFundMarket SET likescore=(likescore+#likeScore#) WHERE fundcode = #fundCode#
   </update>
+  
+  <update id="updateLikeInfo" parameterClass="java.util.Map">
+    UPDATE TFundMarket 
+       SET likescore=(likescore+#likeScore#), 
+           likesum=(likesum+#likeSum#) 
+     WHERE fundcode = #fundCode#
+  </update>
+
+  <update id="updateUnLikeInfo" parameterClass="java.util.Map">
+    UPDATE TFundMarket 
+       SET unlikescore=(unlikescore+#unLikeScore#), 
+           unlikesum=(unlikesum+#unLikeSum#) 
+     WHERE fundcode = #fundCode#
+  </update>
 
 </sqlMap>

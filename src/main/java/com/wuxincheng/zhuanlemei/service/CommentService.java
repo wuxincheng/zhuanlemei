@@ -80,7 +80,7 @@ public class CommentService {
 			Map<String, Object> updateMap = new HashMap<String, Object>();
 			updateMap.put("fundCode", comment.getFundCode());
 			updateMap.put("likeScore", 5); // 一次评论增加5分
-			fundMarketDao.likeScore(updateMap);
+			fundMarketDao.plusLikeScore(updateMap);
 		}
 		
 		if (StringUtils.isNotEmpty(comment.getProductid())) {

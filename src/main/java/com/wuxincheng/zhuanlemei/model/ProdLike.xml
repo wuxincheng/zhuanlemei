@@ -37,25 +37,29 @@
   </insert>
   
   <delete id="delete" parameterClass="ProdLike">
-    DELETE FROM t_next_prodlike WHERE userid = #userid# AND prodid = #prodid#
+    DELETE FROM t_next_prodlike WHERE userid=#userid# AND prodid=#prodid#
   </delete>
   
   <select id="query" parameterClass="ProdLike" resultMap="ProdLikeMapping">
-    SELECT * FROM t_next_prodlike WHERE userid = #userid# AND prodid = #prodid#
+    SELECT * FROM t_next_prodlike WHERE userid=#userid# AND prodid=#prodid#
   </select>
   
   <select id="queryByUserid" parameterClass="java.lang.String" resultMap="ProdLikeMapping">
-    SELECT * FROM t_next_prodlike WHERE userid = #userid#
+    SELECT * FROM t_next_prodlike WHERE userid=#userid#
   </select>
   
   <select id="queryDetailByFundCode" parameterClass="java.util.Map" resultMap="ProdLikeMapping">
-    SELECT * FROM t_next_prodlike WHERE userid = #userid# AND fundcode = #fundCode#
+    SELECT * FROM t_next_prodlike WHERE userid=#userid# AND fundcode=#fundCode#
   </select>
   
   <select id="queryLikeUserDetail" parameterClass="java.lang.String" resultMap="ProdLikeUserDetailMapping">
     SELECT t.*, u.nickname, u.socialpicpath, u.memo, u.usergroup, u.position, u.sex, u.picpath 
-      FROM t_next_prodlike t LEFT JOIN t_next_user u ON t.userid = u.userid 
-     WHERE prodid = #prodid#
+      FROM t_next_prodlike t LEFT JOIN t_next_user u ON t.userid=u.userid 
+     WHERE prodid=#prodid#
   </select>
+  
+  <update id="updateFundMarketLike" parameterClass="java.util.Map">
+    UPDATE t_next_prodlike SET likestate=#likeState# WHERE userid=#userid# AND fundcode=#fundCode#
+  </update>
   
 </sqlMap>

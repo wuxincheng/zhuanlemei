@@ -67,6 +67,7 @@ public class ProdLikeService {
 			// 点赞
 			queryProdLike.setLikeState(Constants.DEFAULT_STATE);
 			queryProdLike.setLikeTime(DateUtil.getCurrentDate(new Date(), "yyyyMMdd HH:mm:Ss"));
+			queryProdLike.setLikeType("product");
 			prodLikeDao.insert(queryProdLike);
 
 			result.put("flag", "1"); // 点赞(1)或取消点赞(0)
@@ -101,7 +102,11 @@ public class ProdLikeService {
 	 * 根据基金代码和用户主键查询赞信息
 	 * 
 	 * @param fundCode
+	 *            基金代码
 	 * @param userid
+	 *            用户主键
+	 * @param likeType
+	 *            赞类型: fundMarket/product
 	 * @return
 	 */
 	public ProdLike queryByFundCode(String fundCode, String userid) {

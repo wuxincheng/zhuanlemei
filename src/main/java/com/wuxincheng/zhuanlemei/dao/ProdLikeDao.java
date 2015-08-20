@@ -37,4 +37,8 @@ public class ProdLikeDao extends BaseDao {
 				"ProdLike.queryDetailByFundCode", queryMap);
 	}
 
+	public void updateFundMarketLike(Map<String, Object> updateMarketLikeMap) {
+		this.getSqlMapClientTemplate().update("ProdLike.updateFundMarketLike", updateMarketLikeMap);
+	}
+
 }

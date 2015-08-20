@@ -102,22 +102,35 @@ public class FundMarketDao extends BaseDao {
 	 * 
 	 * @param scoreMap
 	 */
-	public void likeScore(Map<String, Object> scoreMap) {
+	public void plusLikeScore(Map<String, Object> scoreMap) {
 		this.getSqlMapClientTemplate().update("FundMarket.likeScore", scoreMap);
 	}
 
+	/**
+	 * 增加关注度
+	 * 
+	 * @param likeScore
+	 */
 	public void postLikeScore(Map<String, Object> likeScore) {
 		this.getSqlMapClientTemplate().update("FundMarket.postLikeScore", likeScore);
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<FundMarket> queryLikeByUserid(String userid) {
-		return this.getSqlMapClientTemplate().queryForList("FundMarket.queryLikeByUserid", userid);
+	/**
+	 * 根据fundCode更新likeSum和likeScore
+	 * 
+	 * @param updateMap
+	 */
+	public void updateLikeInfo(Map<String, Object> updateMap) {
+		this.getSqlMapClientTemplate().update("FundMarket.updateLikeInfo", updateMap);
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<FundMarket> queryUserMain(Map<String, String> queryMap) {
-		return this.getSqlMapClientTemplate().queryForList("FundMarket.queryUserMain", queryMap);
+	/**
+	 * 根据fundCode更新unLikeSum和unLikeScore
+	 * 
+	 * @param updateMap
+	 */
+	public void updateUnLikeInfo(Map<String, Object> updateMap) {
+		this.getSqlMapClientTemplate().update("FundMarket.updateUnLikeInfo", updateMap);
 	}
 
 }
