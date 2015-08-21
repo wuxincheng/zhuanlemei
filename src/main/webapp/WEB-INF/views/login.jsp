@@ -61,7 +61,7 @@
             </li>
             <li class="product-avatar">
               <div class="user-image">
-                <a class="user-image-link" href="${root}/oauth/qq/login">
+                <a class="user-image-link" href="${root}/top/oauth/qq/login">
                   <img  src="${root}/assets/img/oauth/Connect_logo_1.png" style="height: 16px; width: 16px; margin-top: 0px; margin-bottom: 0px;" />
                 </a>
               </div>

@@ -13,7 +13,9 @@
 </div>
 
 <c:forEach items="${topRedMarkets}" var="topRedMarket" varStatus="s">
-  <div class="fund-sort">${s.index+1}、${topRedMarket.fundName}</div>
+  <div class="fund-sort">
+    <a href="${root}/fund/market/detail?fundCode=${topRedMarket.fundCode}" target="_blank">${s.index+1}、${topRedMarket.fundName}</a>
+  </div>
 </c:forEach>
 
 <p>&nbsp;</p>
@@ -24,7 +26,9 @@
 </div>
 
 <c:forEach items="${topGreenMarkets}" var="topGreenMarket" varStatus="s">
-  <div class="fund-sort">${s.index+1}、${topGreenMarket.fundName}</div>
+  <div class="fund-sort">
+    <a href="${root}/fund/market/detail?fundCode=${topGreenMarket.fundCode}" target="_blank">${s.index+1}、${topGreenMarket.fundName}</a>
+  </div>
 </c:forEach>
 
 </html>

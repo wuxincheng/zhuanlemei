@@ -114,7 +114,7 @@ public class WechatLoginController {
 		
 		model.addAttribute(Constants.MSG_SUCCESS, "微信授权登录成功");
 		
-		return "redirect:/product/list";
+		return "redirect:/fund/market/list";
 	}
 	
 	/**
