@@ -133,4 +133,24 @@ public class FundMarketDao extends BaseDao {
 		this.getSqlMapClientTemplate().update("FundMarket.updateUnLikeInfo", updateMap);
 	}
 
+	/**
+	 * 查询红榜
+	 * 
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<FundMarket> queryTopRedMarkets() {
+		return this.getSqlMapClientTemplate().queryForList("FundMarket.queryTopRedMarkets");
+	}
+
+	/**
+	 * 查询绿榜
+	 * 
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<FundMarket> queryTopGreenMarkets() {
+		return this.getSqlMapClientTemplate().queryForList("FundMarket.queryTopGreenMarkets");
+	}
+
 }

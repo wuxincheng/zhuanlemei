@@ -210,21 +210,7 @@
       </div>
     </div>
     <aside class="aside">
-      <p>&nbsp;</p>
-      <div class="fund-sort"><span class="fund-nv-up">红榜</span></div>
-      <div class="fund-sort">1、富国中证军工指数分级</div>
-      <div class="fund-sort">2、富国中证军工指数分级</div>
-      <div class="fund-sort">3、富国中证军工指数分级</div>
-      <div class="fund-sort">4、富国中证军工指数分级</div>
-      <div class="fund-sort">5、富国中证军工指数分级</div>
-      <p>&nbsp;</p>
-      <p>&nbsp;</p>
-      <div class="fund-sort"><span class="fund-nv-down">绿榜</span></div>
-      <div class="fund-sort">1、富国中证军工指数分级</div>
-      <div class="fund-sort">2、富国中证军工指数分级</div>
-      <div class="fund-sort">3、富国中证军工指数分级</div>
-      <div class="fund-sort">4、富国中证军工指数分级</div>
-      <div class="fund-sort">5、富国中证军工指数分级</div>
+      <jsp:include page="sort.jsp" />
     </aside>
   </div>
 

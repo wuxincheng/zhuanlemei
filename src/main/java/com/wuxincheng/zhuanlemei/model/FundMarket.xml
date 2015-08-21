@@ -141,11 +141,25 @@
   </select>
   
   <select id="queryPager" resultMap="FundMarketMapping" parameterClass="java.util.Map">
-    SELECT * FROM TFundMarket WHERE fundtype != '5' LIMIT #start#, #end#
+    SELECT * FROM TFundMarket WHERE fundtype != '5' 
+    ORDER BY likescore DESC, unlikescore DESC, likeSum DESC, unlikesum DESC 
+    LIMIT #start#, #end#
   </select>
   
   <select id="queryAll" resultMap="FundMarketMapping">
     SELECT * FROM TFundMarket WHERE fundtype != '5'
+  </select>
+
+  <select id="queryTopRedMarkets" resultMap="FundMarketMapping">
+    SELECT * FROM TFundMarket WHERE fundtype != '5' 
+    ORDER BY likescore DESC, likeSum DESC
+    LIMIT 0, 5
+  </select>
+
+  <select id="queryTopGreenMarkets" resultMap="FundMarketMapping">
+    SELECT * FROM TFundMarket WHERE fundtype != '5' 
+    ORDER BY unlikescore DESC, unlikesum DESC 
+    LIMIT 0, 5
   </select>
   
   <select id="queryAllNull" resultMap="FundMarketMapping">

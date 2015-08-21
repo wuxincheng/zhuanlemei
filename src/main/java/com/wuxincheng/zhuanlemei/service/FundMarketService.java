@@ -241,4 +241,12 @@ public class FundMarketService {
 		return null;
 	}
 
+	public List<FundMarket> queryTopRedMarkets() {
+		return fundMarketDao.queryTopRedMarkets();
+	}
+
+	public List<FundMarket> queryTopGreenMarkets() {
+		return fundMarketDao.queryTopGreenMarkets();
+	}
+
 }

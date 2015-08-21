@@ -103,6 +103,8 @@ public class FundMarketController extends BaseController {
 			logger.error("分页查询出现异常", e);
 		}
 		
+		getTopRedSortList(model); // 查询红绿榜
+		
 		return "fund/market/list";
 	}
 	
@@ -128,6 +130,8 @@ public class FundMarketController extends BaseController {
 			ProdLike prodLike = prodLikeService.queryByFundCode(fundCode, userid);
 			model.addAttribute("prodLike", prodLike);
 		}
+
+		getTopRedSortList(model); // 查询红绿榜
 		
 		return "fund/market/detail";
 	}
@@ -161,6 +165,19 @@ public class FundMarketController extends BaseController {
 		} 
 		
 		return result;
+	}
+	
+	/**
+	 * 查询红榜和绿榜
+	 */
+	public void getTopRedSortList(Model model) {
+		logger.info("查询红榜");
+		List<FundMarket> topRedMarkets = fundMarketService.queryTopRedMarkets();
+		model.addAttribute("topRedMarkets", topRedMarkets);
+		
+		logger.info("查询绿榜");
+		List<FundMarket> topGreenMarkets = fundMarketService.queryTopGreenMarkets();
+		model.addAttribute("topGreenMarkets", topGreenMarkets);
 	}
 	
 }
