@@ -16,6 +16,43 @@
       </div>
     </div>
   </footer>
+  <script type="text/javascript">
+    function likeMarket(fundCode, likeState) {
+    	var url = "${root}/fund/market/like";
+      	$.ajax({
+          url : url, // 跳转到 action    
+          data : {fundCode:fundCode,likeState:likeState},
+          type : 'post',
+          beforeSend:function(){
+          },
+          cache : false,
+          dataType : 'json',
+          success : function(data) {
+              var result = data;
+              if (!result.flag) {
+            	  if (result.message != null) {
+	            	  alert(result.message);
+            	  }
+            	  return;
+              }
     
+              var likePage = $("#likePage").val();
+              if ("list" == likePage) {
+            	  $("#"+result.fundCode+"count").html(result.likeScore);
+            	  $("#"+result.fundCode+"countdown").html(result.unLikeScore);
+              }
+              
+			  if ("detail" == likePage) {
+            	  $("#likeScore").html(result.likeScore);
+            	  $("#unLikeScore").html(result.unLikeScore);
+              }
+          $(scorespan).text(result.score); // 产品关注度
+          },
+          error : function() {
+            alert("友情提示：系统异常，请重试!");
+          }
+        });
+    }
+  </script>
 </body>
 </html>

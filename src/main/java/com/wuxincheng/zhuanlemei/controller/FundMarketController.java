@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wuxincheng.zhuanlemei.model.Comment;
 import com.wuxincheng.zhuanlemei.model.FundMarket;
@@ -129,6 +130,37 @@ public class FundMarketController extends BaseController {
 		}
 		
 		return "fund/market/detail";
+	}
+	
+	@RequestMapping(value = "/like")
+	@ResponseBody
+	public Map<String, Object> like(Model model, HttpServletRequest request, String fundCode, String likeState) {
+		logger.info("用户点赞同和反对操作 fundCode={}, likeState={}", fundCode, likeState);
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("flag", false);
+		result.put("fundCode", fundCode);
+		
+		// 用户是否登录
+		String userid = getCurrentUserid(request);
+		
+		if (StringUtils.isEmpty(userid)) {
+			result.put("message", "您还没有登录");
+			logger.info("用户还没有登录 result={}", result);
+			return result;
+		}
+		
+		logger.info("调用点赞服务");
+		Integer[] scores = fundMarketService.likeHandle(fundCode, likeState, userid);
+		if (scores != null && scores.length == 2) {
+			result.put("flag", true);
+			result.put("likeScore", scores[0]);
+			result.put("unLikeScore", scores[1]);
+
+			logger.info("用户点赞成功 result={}", result);
+		} 
+		
+		return result;
 	}
 	
 }

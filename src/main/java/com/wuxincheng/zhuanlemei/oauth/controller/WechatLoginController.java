@@ -27,7 +27,7 @@ import com.wuxincheng.zhuanlemei.util.Constants;
  *
  */
 @Controller
-@RequestMapping("/oauth/wechat")
+@RequestMapping("/top/oauth/wechat")
 public class WechatLoginController {
 	private static final Logger logger = LoggerFactory.getLogger(WechatLoginController.class);
 	

@@ -30,7 +30,7 @@ import com.wuxincheng.zhuanlemei.util.Constants;
  * 
  */
 @Controller
-@RequestMapping("/oauth/qq")
+@RequestMapping("/top/oauth/qq")
 public class TencentLoginController {
 	private static final Logger logger = LoggerFactory.getLogger(TencentLoginController.class);
 

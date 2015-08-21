@@ -127,7 +127,7 @@ public class FundMarketService {
 				Map<String, Object> updateMap = new HashMap<String, Object>();
 				updateMap.put("fundCode", fundCode);
 				updateMap.put("likeSum", 1);
-				updateMap.put("likeScore", 3); // 一次评论增加5分
+				updateMap.put("likeScore", 1);
 				fundMarketDao.updateLikeInfo(updateMap);
 				logger.debug("更新赞同的人数和分数成功");
 
@@ -146,7 +146,7 @@ public class FundMarketService {
 				Map<String, Object> updateMap = new HashMap<String, Object>();
 				updateMap.put("fundCode", fundCode);
 				updateMap.put("unLikeSum", 1);
-				updateMap.put("unLikeScore", 3); // 一次评论增加5分
+				updateMap.put("unLikeScore", 1);
 				fundMarketDao.updateUnLikeInfo(updateMap);
 				logger.debug("更新反对的人数和分数成功");
 
@@ -161,6 +161,10 @@ public class FundMarketService {
 			logger.info("更新like记录");
 			// 如果是赞同
 			if ("0".equals(prodLike.getLikeState())) {
+				if (likeState.equals(prodLike.getLikeState())) {
+					logger.info("用户重复操作");
+					return null;
+				}
 				// 更新赞同类型为反对
 				logger.info("更新赞同类型为反对");
 				Map<String, Object> updateMarketLikeMap = new HashMap<String, Object>();
@@ -174,16 +178,16 @@ public class FundMarketService {
 				Map<String, Object> reduceFundInfoMap = new HashMap<String, Object>();
 				reduceFundInfoMap.put("fundCode", fundCode);
 				reduceFundInfoMap.put("likeSum", -1);
-				reduceFundInfoMap.put("likeScore", -3); // 一次评论增加5分
+				reduceFundInfoMap.put("likeScore", -1);
 				fundMarketDao.updateLikeInfo(reduceFundInfoMap);
 
 				// 增加反对人数及赞同分数
 				logger.info("增加反对人数及赞同分数");
 				Map<String, Object> plusFundInfoMap = new HashMap<String, Object>();
 				plusFundInfoMap.put("fundCode", fundCode);
-				plusFundInfoMap.put("likeSum", 1);
-				plusFundInfoMap.put("likeScore", 3); // 一次评论增加5分
-				fundMarketDao.updateLikeInfo(plusFundInfoMap);
+				plusFundInfoMap.put("unLikeSum", 1);
+				plusFundInfoMap.put("unLikeScore", 1);
+				fundMarketDao.updateUnLikeInfo(plusFundInfoMap);
 
 				// 重新查询行情反对的分数
 				logger.info("重新查询行情反对的分数");
@@ -196,6 +200,10 @@ public class FundMarketService {
 
 			// 如果是反对
 			if ("1".equals(prodLike.getLikeState())) {
+				if (likeState.equals(prodLike.getLikeState())) {
+					logger.info("用户重复操作");
+					return null;
+				}
 				// 更新反对类型为赞同
 				logger.info("更新反对类型为赞同");
 				Map<String, Object> updateMarketLikeMap = new HashMap<String, Object>();
@@ -208,16 +216,16 @@ public class FundMarketService {
 				logger.info("减少反对人数及赞同分数");
 				Map<String, Object> plusFundInfoMap = new HashMap<String, Object>();
 				plusFundInfoMap.put("fundCode", fundCode);
-				plusFundInfoMap.put("likeSum", -1);
-				plusFundInfoMap.put("likeScore", -3); // 一次评论增加5分
-				fundMarketDao.updateLikeInfo(plusFundInfoMap);
+				plusFundInfoMap.put("unLikeSum", -1);
+				plusFundInfoMap.put("unLikeScore", -1);
+				fundMarketDao.updateUnLikeInfo(plusFundInfoMap);
 
 				// 增加赞同人数及赞同分数
 				logger.info("增加赞同人数及赞同分数");
 				Map<String, Object> reduceFundInfoMap = new HashMap<String, Object>();
 				reduceFundInfoMap.put("fundCode", fundCode);
 				reduceFundInfoMap.put("likeSum", 1);
-				reduceFundInfoMap.put("likeScore", 3); // 一次评论增加5分
+				reduceFundInfoMap.put("likeScore", 1);
 				fundMarketDao.updateLikeInfo(reduceFundInfoMap);
 
 				// 重新查询行情反对的分数

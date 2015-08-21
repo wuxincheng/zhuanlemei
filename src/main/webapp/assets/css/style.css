@@ -139,7 +139,7 @@ h1,h2,h3,h4,h5,h6 {
 
 .fund-nav {
   border-right: 1px dashed #B8B0B0;
-  margin-left: -25px;
+  margin-left: 0px;
 }
 
 .fund-nav-updown {
@@ -186,12 +186,12 @@ h1,h2,h3,h4,h5,h6 {
   display: block;
   color: #698ebf;
   height: 20px;
-  line-height: 24px;
+  line-height: 0px;
   width: 38px;
   border-radius: 3px;
   border: 0;
   cursor: pointer;
-  background: #eff6fa;
+  background: #CC0000;
   font-weight: 700;
   font-weight: 500;
   position: relative
@@ -200,16 +200,17 @@ h1,h2,h3,h4,h5,h6 {
 .zm-votebar .down {
   display: block;
   color: #698ebf;
-  height: 24px;
-  line-height: 24px;
+  height: 44px;
+  line-height: 0px;
   width: 38px;
   border-radius: 3px;
   border: 0;
   cursor: pointer;
-  background: #eff6fa;
+  background: #008800;
   font-weight: 700;
   font-weight: 500;
-  position: relative
+  position: relative;
+  padding-bottom: 10px;
 }
 
 .zm-votebar .up {
@@ -221,8 +222,15 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .zm-votebar .count {
-  position: absolute;
+  /** position: absolute; */
   top: 18px;
+  left: 0;
+  width: 100%
+}
+
+.zm-votebar .countdown {
+  /** position: absolute; */
+  top: 0px;
   left: 0;
   width: 100%
 }
@@ -240,7 +248,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .zm-votebar .vote-arrow {
-  *margin-top: 9px;
+  margin-top: 9px;
   width: 0;
   height: 0;
   border: 6px solid transparent;
@@ -249,15 +257,26 @@ h1,h2,h3,h4,h5,h6 {
   background-image: none
 }
 
-.zm-votebar .up .vote-arrow {
-  border-top-width: 0;
-  border-bottom-color: #698ebf;
-  border-top-style: solid
+.zm-votebar .vote-arrowdown {
+  margin-top: 9px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  font-size: 0;
+  _border-style: dashed;
+  background-image: none;
 }
 
-.zm-votebar .down .vote-arrow {
+.zm-votebar .up .vote-arrow {
+  border-top-width: 0;
+  border-bottom-color: #fff;
+  border-top-style: solid;
+}
+
+.zm-votebar .down .vote-arrowdown {
   border-bottom-width: 0;
-  border-top-color: #698ebf
+  border-top-color: #fff;
+  border-top-style: solid;
 }
 
 html.no-touch .zm-votebar .up:hover .vote-arrow,.zm-votebar .up.pressed .vote-arrow {
@@ -278,7 +297,7 @@ html.no-touch .zm-votebar .up:hover,html.no-touch .zm-votebar .down:hover,.zm-vo
   background-position: 0 -229px
 }
 
-.zm-votebar .down .vote-arrow {
+.zm-votebar .down .vote-arrowdown {
   background-position: -21px -229px
 }
 
@@ -286,7 +305,7 @@ html.no-touch .zm-votebar .up:hover .vote-arrow,.zm-votebar .up.pressed .vote-ar
   background-position: -42px -229px
 }
 
-html.no-touch .zm-votebar .down:hover .vote-arrow,.zm-votebar .down.pressed .vote-arrow {
+html.no-touch .zm-votebar .down:hover .vote-arrowdown,.zm-votebar .down.pressed .vote-arrowdown {
   background-position: -63px -229px
 }
 
@@ -337,3 +356,198 @@ html.no-touch .zm-item-vote-count:hover {
 }
 
 /********************************/
+
+.zmd-votebar-button {
+  display: block;
+  color: #698ebf;
+  height: 24px;
+  line-height: 24px;
+  width: 38px;
+  border-radius: 3px;
+  border: 0;
+  cursor: pointer;
+  background: #eff6fa;
+  font-weight: 700;
+  font-weight: 500
+}
+
+.zmd-votebar.goog-scrollfloater-floating {
+  margin-top: 10px;
+  margin-left: 0
+}
+
+.zmd-votebar .up {
+  color: #698ebf;
+  height: 20px;
+  line-height: 0px;
+  width: 38px;
+  border-radius: 3px;
+  border: 0;
+  cursor: pointer;
+  background: #CC0000;
+  font-weight: 700;
+  font-weight: 500;
+}
+
+.zmd-votebar .down {
+  color: #698ebf;
+  height: 44px;
+  line-height: 0px;
+  width: 38px;
+  border-radius: 3px;
+  border: 0;
+  cursor: pointer;
+  background: #008800;
+  font-weight: 700;
+  font-weight: 500;
+  padding-bottom: 10px;
+}
+
+.zmd-votebar .up {
+  height: 44px
+}
+
+.zmd-votebar .down {
+  margin: 5px 0 0
+}
+
+.zmd-votebar .count {
+  /** position: absolute; */
+  top: 18px;
+  left: 0;
+  width: 100%
+}
+
+.zmd-votebar .countdown {
+  /** position: absolute; */
+  top: 0px;
+  left: 0;
+  width: 100%
+}
+
+.zmd-votebar .down-count {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  width: 100%
+}
+
+.zmd-votebar .label {
+  display: block;
+  text-indent: -9999px
+}
+
+.zmd-votebar .vote-arrow {
+  margin-top: 9px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  font-size: 0;
+  _border-style: dashed;
+  background-image: none
+}
+
+.zmd-votebar .vote-arrowdown {
+  margin-top: 9px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  font-size: 0;
+  _border-style: dashed;
+  background-image: none;
+}
+
+.zmd-votebar .up .vote-arrow {
+  border-top-width: 0;
+  border-bottom-color: #fff;
+  border-top-style: solid;
+}
+
+.zmd-votebar .down .vote-arrowdown {
+  border-bottom-width: 0;
+  border-top-color: #fff;
+  border-top-style: solid;
+}
+
+.zmd-votebar .up .vote-arrow {
+  background-position: 0 -229px
+}
+
+.zmd-votebar .down .vote-arrowdown {
+  background-position: -21px -229px
+}
+
+.zmd-item-vote-count {
+  display: block;
+  color: #698ebf;
+  height: 24px;
+  line-height: 24px;
+  width: 38px;
+  border-radius: 3px;
+  border: 0;
+  cursor: pointer;
+  background: #eff6fa;
+  font-weight: 700;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  overflow: hidden;
+  -webkit-text-size-adjust: none
+}
+
+.zmd-item-vote-count:hover {
+  text-decoration: none
+}
+
+.zmd-item-vote {
+  display: none;
+  position: absolute;
+  left: -48px
+}
+
+.zmd-votebar {
+  margin: 10px 0px 30px 0px;
+  width: 100%;
+  text-align: left;
+}
+
+.no-votebar .zmd-item-vote {
+  display: block !important
+}
+
+.no-votebar .zmd-votebar {
+  display: none !important
+}
+
+.zm-votebar .up:hover {
+  background: #8B0F0F;
+}
+
+.zmd-votebar .up:hover {
+  background: #8B0F0F;
+}
+
+.zm-votebar .down:hover {
+  background: #0B4C0B;
+}
+
+.zmd-votebar .down:hover {
+  background: #0B4C0B;
+}
+
+/* --- */
+.zm-votebar .uplike {
+  background: #8B0F0F;
+}
+
+.zmd-votebar .uplike {
+  background: #8B0F0F;
+}
+
+.zm-votebar .downlike {
+  background: #0B4C0B;
+}
+
+.zmd-votebar .downlike {
+  background: #0B4C0B;
+}
