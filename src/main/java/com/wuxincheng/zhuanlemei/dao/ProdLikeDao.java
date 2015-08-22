@@ -41,4 +41,13 @@ public class ProdLikeDao extends BaseDao {
 		this.getSqlMapClientTemplate().update("ProdLike.updateFundMarketLike", updateMarketLikeMap);
 	}
 
+	/**
+	 * 删除基金行情赞同反对记录
+	 * 
+	 * @param prodLike fundCode/userid
+	 */
+	public void deleteFundLike(ProdLike prodLike) {
+		this.getSqlMapClientTemplate().delete("ProdLike.deleteFundLike", prodLike);
+	}
+
 }

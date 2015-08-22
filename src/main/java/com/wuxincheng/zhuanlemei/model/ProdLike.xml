@@ -40,6 +40,10 @@
     DELETE FROM t_next_prodlike WHERE userid=#userid# AND prodid=#prodid#
   </delete>
   
+  <delete id="deleteFundLike" parameterClass="ProdLike">
+    DELETE FROM t_next_prodlike WHERE userid=#userid# AND fundcode=#fundCode#
+  </delete>
+  
   <select id="query" parameterClass="ProdLike" resultMap="ProdLikeMapping">
     SELECT * FROM t_next_prodlike WHERE userid=#userid# AND prodid=#prodid#
   </select>
