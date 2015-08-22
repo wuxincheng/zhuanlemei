@@ -10,8 +10,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 
-<link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="icon" />
-<link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="shortcut icon" />
+<link href="${root}/assets/img/logo/logoEN.png" type="image/x-icon" rel="icon" />
+<link href="${root}/assets/img/logo/logoEN.png" type="image/x-icon" rel="shortcut icon" />
 
 </head>
 <body id="home" class="notes-index">

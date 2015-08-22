@@ -12,8 +12,8 @@
 <meta name="description" content="赚了没-TOP|找到你喜欢的理财产品，榜单|赚了没-TOP">
 <meta name="keywords" content="赚了没-TOP|找到你喜欢的理财产品，榜单|赚了没-TOP">
 
-<link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="icon" />
-<link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="shortcut icon" />
+<link href="${root}/assets/img/logo/logoEN.png" type="image/x-icon" rel="icon" />
+<link href="${root}/assets/img/logo/logoEN.png" type="image/x-icon" rel="shortcut icon" />
 
 </head>
 <body id="home" class="notes-index">

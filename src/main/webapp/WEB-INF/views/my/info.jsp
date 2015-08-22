@@ -9,9 +9,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>资料设置 - TOP</title>
 
-<link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon"
+<link href="${root}/assets/img/logo/logoEN.png" type="image/x-icon"
   rel="icon" />
-<link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon"
+<link href="${root}/assets/img/logo/logoEN.png" type="image/x-icon"
   rel="shortcut icon" />
 
 <!-- meta -->

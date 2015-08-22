@@ -33,7 +33,7 @@ public class Logout {
 		
 		model.addAttribute(Constants.MSG_SUCCESS, "退出成功");
 		
-		return "redirect:/product/list";
+		return "redirect:/fund/market/list";
 	}
 	
 }

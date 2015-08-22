@@ -9,8 +9,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 
-<link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="icon" />
-<link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="shortcut icon" />
+<link href="${root}/assets/img/logo/logoEN.png" type="image/x-icon" rel="icon" />
+<link href="${root}/assets/img/logo/logoEN.png" type="image/x-icon" rel="shortcut icon" />
 
 <meta name="description" content="赚了没-TOP|找到你喜欢的理财产品，榜单|赚了没-TOP">
 <meta name="keywords" content="赚了没-TOP|找到你喜欢的理财产品，榜单|赚了没-TOP">

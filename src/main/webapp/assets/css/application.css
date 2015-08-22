@@ -508,9 +508,11 @@ opacity
 }
 
 .topbar {
-	height: 80px;
+	height: 58px;
 	background: #f8f8f8;
 	position: relative;
+	border-top: 2px solid #E62B1E;
+	border-bottom: 2px solid #f2f2f2;
 	/**
 	box-shadow: 0 1px 3px rgba(0,0,0,.1);
 	margin-bottom: 0px;
@@ -520,7 +522,10 @@ opacity
 .search {
 	height: 50px;
 	position: absolute;
-	top: 0
+	top: 0;
+	margin-top: 2px;
+	float: right;
+	margin-right: 200px;
 }
 
 .search .icon {
@@ -569,10 +574,9 @@ opacity
 	margin: auto;
 	position: absolute;
 	top: 0;
-	left: 0;
 	bottom: 0;
-	right: 0;
-	margin-top: 17px;
+	margin-top: 10px;
+	margin-left: 2px;
 }
 
 .logo {
@@ -605,16 +609,31 @@ opacity
 	}
 }
 
-.navigation {
-	position: absolute;
-	right: 0;
+.nav-title {
+	position: static;
 	top: 0;
 	font-weight: 600;
-	line-height: 33px
+	line-height: 33px;
+	margin-right: 0px;
+	float: left;
+	margin-left: 50px;
+}
+
+.nav-title li {
+	float: left;
+}
+
+.navigation {
+	position: static;
+	top: 0;
+	font-weight: 600;
+	line-height: 33px;
+	margin-right: 0px;
+	float: right;
 }
 
 .navigation li {
-	float: left
+	float: left;
 }
 
 .navigation .current {
@@ -631,11 +650,12 @@ opacity
 	color: #323030;
 	text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
 	display: block;
-	height: 80px;
+	height: 56px;
 	line-height: 54px;
 	padding-left: 20px;
 	padding-right: 20px;
-	padding-top: 15px;
+	padding-top: 3px;
+	font-size: 16px;
 }
 
 .main-nav:hover {
@@ -644,7 +664,7 @@ opacity
 }
 
 .account-menu {
-	padding-top: 25px;
+	padding-top: 13px;
 	padding-bottom: 10px
 }
 

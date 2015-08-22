@@ -8,8 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>个人主页 - TOP</title>
 
-<link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="icon" />
-<link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="shortcut icon" />
+<link href="${root}/assets/img/logo/logoEN.png" type="image/x-icon" rel="icon" />
+<link href="${root}/assets/img/logo/logoEN.png" type="image/x-icon" rel="shortcut icon" />
 
 <!-- meta -->
 <meta charset="utf-8">

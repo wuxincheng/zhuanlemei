@@ -17,8 +17,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="renderer" content="webkit">
 
-<link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="icon" />
-<link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="shortcut icon" />
+<link href="${root}/assets/img/logo/logoEN.png" type="image/x-icon" rel="icon" />
+<link href="${root}/assets/img/logo/logoEN.png" type="image/x-icon" rel="shortcut icon" />
 
 <!-- info -->
 <meta name="description" content="赚了没-TOP|找到你喜欢的理财产品，榜单|赚了没-TOP">
@@ -48,24 +48,33 @@
 <![endif]-->
 
   <header class="topbar cf">
-    <div class="brand" style="">
+    <div class="row">
+  
+    <div class="brand">
       <a href="${root}">
-      <img src="${root}/assets/img/logo/logo-top.png" />
+      <img src="${root}/assets/img/logo/logoCN.png" height="35px" width="35px" />
       </a>
     </div>
     
-    <div class="search" style="margin-top: 15px;">
+    <nav class="nav-title">
+      <ul>
+        <li><a class="main-nav " href="${root}">首页</a></li>
+        <li><a class="main-nav " href="${root}/collect/list">榜单</a></li>
+      </ul>
+    </nav>
+    
+    <!-- 
+    <div class="search">
       <form accept-charset="UTF-8" action="/posts/search" id="search_notes" method="get">
         <div style="display:none"><input name="utf8" type="hidden" value="&#x2713;" /></div>
         <span class="icon">🔎</span>
         <input autocapitalize="off" autocomplete="off" id="query" name="query" spellcheck="false" type="text" />
       </form>  
     </div>
+     -->
     
     <nav class="navigation text-center">
       <ul>
-        <li><a class="main-nav " href="${root}/collect/list">榜单</a></li>
-        
         <c:choose>
         <c:when test="${not empty user}">
         <li class="account login-menu">
@@ -100,9 +109,11 @@
         </c:choose>
       </ul>
     </nav>
+    
+    </div>
   </header>
   
-  <div>
+  <div class="row">
     <c:if test="${not empty success}">
     <div id="msg-alert" class="alert alert-success fade in row" style="margin-top: 30px;">
       <h4>${success}</h4>
