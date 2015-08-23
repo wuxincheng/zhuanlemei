@@ -29,20 +29,21 @@
               value="direct" />
           </div>
           <div class="form-group string required note_title">
-            <label class="string required" for="note_title">产品名称</label><input aria-required="true"
-              autofocus="autofocus" class="string required form-control input-small" id="prodName"
-              name="prodName" placeholder="如：Startup Base" required="required" type="text" />
+            <label class="string required" for="note_title">产品名称</label>
+            <input aria-required="true" autofocus="autofocus" class="string required form-control input-small" id="keyword"
+              name="keyword" placeholder="输入基金代码或名称" required="required" type="text" />
           </div>
+          <!-- 
           <div class="form-group url required note_url">
             <label class="url required" for="note_url">产品官网</label><input aria-required="true"
               class="string url required form-control input-small" id="prodUrl" name="prodUrl"
               placeholder="以 http:// 开头的有效网址" required="required" type="url" />
           </div>
+           -->
           <div class="form-group text required note_summary">
             <label class="text required" for="note_summary">一句话描述这个产品</label>
             <textarea aria-required="true" class="text required form-control input-big"
-              id="memo" name="memo" required="required">
-</textarea>
+              id="memo" name="memo" required="required"></textarea>
             <p class="help-block">请精简描述, 36字以内</p>
           </div>
           <input type="hidden" name="collectid" id="collectid" value="${collectid}" />
@@ -57,6 +58,31 @@
 
     </div>
   </div>
+
+  <script type="text/javascript">
+    $('#keyword').bind('input propertychange', function() {
+      var keyword = $("#keyword").val();
+      if (keyword != null && keyword.length >= 2) {
+    	  var url = "${root}/fund/info/query";
+          $.ajax({
+            url : url, // 跳转到 action
+            data : {keyword:keyword},
+            type : 'post',
+            beforeSend:function(){
+            },
+            cache : false,
+            dataType : 'json',
+            success : function(data) {
+                var result = data;
+				                
+            },
+            error : function() {
+              alert("友情提示：系统异常，请重试!");
+            }
+          });
+      }
+    });
+  </script>
 
   <jsp:include page="../FOOTER.jsp" />
 

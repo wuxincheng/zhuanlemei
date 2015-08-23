@@ -38,8 +38,8 @@
           </div>
           <div class="form-group string required note_title">
             <label class="string required" for="note_title">榜单背景图片（建议：1600*600）</label>
-            <input aria-required="true" autofocus="autofocus" class="form-control input-small" 
-              id="coverImgFile" name="coverImgFile" required="required" type="file" />
+            <input autofocus="autofocus" class="form-control input-small" 
+              id="coverImgFile" name="coverImgFile" type="file" />
           </div>
           <div class="form-group text required note_summary">
             <label class="text required" for="note_summary">一句话介绍</label>

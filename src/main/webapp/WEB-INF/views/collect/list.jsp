@@ -53,9 +53,6 @@
           </c:forEach>
           </c:if>
           <c:if test="${empty collects}">
-            <div class="alert text-info fade in row">
-              <h4>没有查到榜单信息</h4>
-            </div>
           </c:if>
         </ul>
       </section>

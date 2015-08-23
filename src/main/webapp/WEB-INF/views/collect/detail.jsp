@@ -21,7 +21,9 @@
   <div>
 
     <section class="list-header">
-      <div class="list-header-cover" style="background-image: url(${root}/collect/coverbg/${collect.coverImgPath});">
+      <div class="list-header-cover" style="
+        <c:if test="${empty collect.bgColor}">background-image: url(${root}/collect/coverbg/${collect.coverImgPath});</c:if>
+        <c:if test="${not empty collect.bgColor}">background-color: #${collect.bgColor};</c:if>">
       </div>
       <div class="list-header-info row">
         <h2>${collect.collectName}</h2>

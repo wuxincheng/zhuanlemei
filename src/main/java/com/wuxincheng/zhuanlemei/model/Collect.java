@@ -29,6 +29,9 @@ public class Collect implements Serializable {
 
 	/** 封面图片文件 */
 	private MultipartFile coverImgFile;
+	
+	/** 背景颜色 */
+	private String bgColor;
 
 	/** 用户创建ID */
 	private String userid;
@@ -169,6 +172,14 @@ public class Collect implements Serializable {
 
 	public void setCoverImgPathHidden(String coverImgPathHidden) {
 		this.coverImgPathHidden = coverImgPathHidden;
+	}
+
+	public String getBgColor() {
+		return bgColor;
+	}
+
+	public void setBgColor(String bgColor) {
+		this.bgColor = bgColor;
 	}
 
 }

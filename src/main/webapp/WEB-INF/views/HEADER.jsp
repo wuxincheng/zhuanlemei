@@ -60,19 +60,21 @@
         <ul>
           <li><a class="main-nav " href="${root}">首页</a></li>
           <li><a class="main-nav " href="${root}/collect/list">榜单</a></li>
-          <li>
-            <div class="search">
-              <form accept-charset="UTF-8" action="/posts/search" id="search_notes" method="get">
-                <span class="icon">🔎</span>
-                <input id="query" name="query" type="text" />
-              </form>  
-            </div>
-          </li>
         </ul>
       </nav>
       
       <nav class="navigation text-center">
         <ul>
+          <!-- 
+          <li>
+            <div class="hunt">
+              <form action="/posts/search" method="post">
+                <input id="keyword" name="keyword" class="main-hunt_input" type="text" placeholder="查找基金产品、基金代码" />
+                <input class="main-hunt_button g-search" type="submit">
+              </form>  
+            </div>
+          </li>
+           -->
           <c:choose>
           <c:when test="${not empty user}">
           <li class="account login-menu">

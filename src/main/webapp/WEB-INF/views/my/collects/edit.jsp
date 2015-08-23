@@ -28,14 +28,14 @@
               autofocus="autofocus" class="string required form-control input-small" id="collectName"
               name="collectName" value="${collect.collectName}" placeholder="榜单名称" required="required" type="text" />
           </div>
-          <div class="form-group string required note_title">
+          <div class="form-group string">
             <input type="hidden" id="collectid" name="collectid" value="${collect.collectid}" />
             <input type="hidden" id="coverImgPathHidden" name="coverImgPathHidden" value="${collect.coverImgPath}" />
-            <label class="string required" for="note_title">榜单背景图片（建议：1600*600）</label>
-            <input aria-required="true" autofocus="autofocus" class="form-control input-small" 
-              id="coverImgFile" name="coverImgFile" required="required" type="file" onclick="changeCoverImg(this)" />
+            <label class="string" for="note_title">榜单背景图片（建议：1600*600）</label>
+            <input autofocus="autofocus" class="form-control input-small" 
+              id="coverImgFile" name="coverImgFile" type="file" onclick="changeCoverImg(this)" />
           </div>
-          <div class="form-group string required note_title">
+          <div class="form-group string">
             <input type="hidden" id="coverImgPath" name="coverImgPath" value="${collect.coverImgPath}" />
             <img src="${root}/collect/coverbg/${collect.coverImgPath}" style="width: 300px; height: 112.5px;" />
           </div>

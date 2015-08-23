@@ -26,9 +26,9 @@ import com.wuxincheng.zhuanlemei.util.Validation;
 /**
  * 基金行情管理
  * 
- * @author wuxincheng(wxcking) 
- * @date 2015年8月14日 上午8:56:20 
- *
+ * @author wuxincheng(wxcking)
+ * @date 2015年8月14日 上午8:56:20
+ * 
  */
 @Controller
 @RequestMapping("/fund/market")
@@ -37,30 +37,30 @@ public class FundMarketController extends BaseController {
 
 	@Autowired
 	private FundMarketService fundMarketService;
-	
+
 	@Autowired
 	private CommentService commentService;
-	
+
 	@Autowired
 	private ProdLikeService prodLikeService;
-	
+
 	/** 每页显示条数 */
 	private final Integer pageSize = 10;
-	
+
 	/** 当前页面 */
 	private String currentPage;
-	
+
 	@RequestMapping(value = "/list")
 	public String list(Model model, HttpServletRequest request, String currentPage) {
-		logger.info("显示基金行情列表");
+		logger.info("显示基金行情列表，当前页面 page={}", this.currentPage);
 		requestMessageProcess(request);
-		
+
 		if (Validation.isBlank(currentPage) || !Validation.isInt(currentPage, "0+")) {
 			currentPage = "1";
 		}
-		
+
 		this.currentPage = currentPage;
-		
+
 		Integer current = Integer.parseInt(currentPage);
 		Integer start = null;
 		Integer end = null;
@@ -71,47 +71,45 @@ public class FundMarketController extends BaseController {
 			start = 0;
 			end = pageSize;
 		}
-		
+
 		// 封装查询条件
 		Map<String, Object> queryParam = new HashMap<String, Object>();
 		queryParam.put("start", start);
 		queryParam.put("end", end);
-		
+
 		Map<String, Object> pager = fundMarketService.queryPager(queryParam);
-		
+
 		try {
 			if (pager != null && pager.size() > 0) {
-				Integer totalCount = (Integer)pager.get("totalCount");
-				Integer lastPage = (totalCount/pageSize);
-				Integer flag = (totalCount%pageSize)>0?1:0;
+				Integer totalCount = (Integer) pager.get("totalCount");
+				Integer lastPage = (totalCount / pageSize);
+				Integer flag = (totalCount % pageSize) > 0 ? 1 : 0;
 				pager.put("lastPage", lastPage + flag);
-				
+
 				// 如果当前页数大于总页数, 减1处理
 				if (current > (lastPage + flag)) {
 					current--;
-					this.currentPage = current+"";
+					this.currentPage = current + "";
 				}
-				
-				logger.info(this.currentPage);
-				
+
 				pager.put("currentPage", current);
 				pager.put("pageSize", pageSize);
-				
+
 				model.addAttribute("pager", pager);
 			}
 		} catch (Exception e) {
 			logger.error("分页查询出现异常", e);
 		}
-		
+
 		getTopRedSortList(model); // 查询红绿榜
-		
+
 		return "fund/market/list";
 	}
-	
+
 	@RequestMapping(value = "/detail")
 	public String detail(Model model, HttpServletRequest request, String fundCode) {
 		logger.info("显示基金行情详细页面 fundCode={}", fundCode);
-		
+
 		if (StringUtils.isEmpty(fundCode) || !Validation.isIntPositive(fundCode)) {
 			return "404";
 		}
@@ -119,11 +117,11 @@ public class FundMarketController extends BaseController {
 		// 基金行情详细
 		FundMarket fundMarket = fundMarketService.queryDetailByFundCode(fundCode);
 		model.addAttribute("fundMarket", fundMarket);
-		
+
 		// 评论列表
 		List<Comment> comments = commentService.queryByFundCode(fundCode);
 		model.addAttribute("comments", comments);
-		
+
 		// 查询当前用户是赞这个行情还是骂
 		String userid = getCurrentUserid(request);
 		if (StringUtils.isNotEmpty(userid)) {
@@ -132,28 +130,29 @@ public class FundMarketController extends BaseController {
 		}
 
 		getTopRedSortList(model); // 查询红绿榜
-		
+
 		return "fund/market/detail";
 	}
-	
+
 	@RequestMapping(value = "/like")
 	@ResponseBody
-	public Map<String, Object> like(Model model, HttpServletRequest request, String fundCode, String likeState) {
+	public Map<String, Object> like(Model model, HttpServletRequest request, String fundCode,
+			String likeState) {
 		logger.info("用户点赞同和反对操作 fundCode={}, likeState={}", fundCode, likeState);
-		
+
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("flag", false);
 		result.put("fundCode", fundCode);
-		
+
 		// 用户是否登录
 		String userid = getCurrentUserid(request);
-		
+
 		if (StringUtils.isEmpty(userid)) {
 			result.put("message", "您还没有登录");
 			logger.info("用户还没有登录 result={}", result);
 			return result;
 		}
-		
+
 		logger.info("调用点赞服务");
 		Integer[] scores = fundMarketService.likeHandle(fundCode, likeState, userid);
 		if (scores != null && scores.length == 2) {
@@ -162,22 +161,22 @@ public class FundMarketController extends BaseController {
 			result.put("unLikeScore", scores[1]);
 
 			logger.info("用户点赞成功 result={}", result);
-		} 
-		
+		}
+
 		return result;
 	}
-	
+
 	/**
 	 * 查询红榜和绿榜
 	 */
 	public void getTopRedSortList(Model model) {
-		logger.info("查询红榜");
+		logger.info("查询红绿榜");
+
 		List<FundMarket> topRedMarkets = fundMarketService.queryTopRedMarkets();
 		model.addAttribute("topRedMarkets", topRedMarkets);
-		
-		logger.info("查询绿榜");
+
 		List<FundMarket> topGreenMarkets = fundMarketService.queryTopGreenMarkets();
 		model.addAttribute("topGreenMarkets", topGreenMarkets);
 	}
-	
+
 }

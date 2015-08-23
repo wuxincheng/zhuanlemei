@@ -153,7 +153,7 @@ public class ProductController extends BaseController {
 	 */
 	@RequestMapping(value = "/like")
 	@ResponseBody
-	public Map<String, String> like(Model model, HttpServletRequest request, String prodid) {
+	public Map<String, String> like(HttpServletRequest request, String prodid) {
 		logger.info("点赞异步操作 prodid={}", prodid);
 		
 		// 验证prodid和userid的合法性

@@ -1,5 +1,6 @@
 package com.wuxincheng.zhuanlemei.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -168,17 +169,17 @@ public class FundMarketService {
 				reduceFundInfoMap.put("likeSum", -1);
 				reduceFundInfoMap.put("likeScore", -1);
 				fundMarketDao.updateLikeInfo(reduceFundInfoMap);
-				
+
 				if (likeState.equals(prodLike.getLikeState())) {
 					logger.info("取消赞同操作");
-					
+
 					// 删除这条赞同记录
 					logger.info("删除这条赞同记录");
 					prodLikeDao.deleteFundLike(prodLike);
 					logger.debug("赞同记录删除成功");
 				} else {
 					// 更新赞同记录
-					
+
 					// 更新赞同类型为反对
 					logger.info("更新赞同类型为反对");
 					Map<String, Object> updateMarketLikeMap = new HashMap<String, Object>();
@@ -214,10 +215,10 @@ public class FundMarketService {
 				plusFundInfoMap.put("unLikeSum", -1);
 				plusFundInfoMap.put("unLikeScore", -1);
 				fundMarketDao.updateUnLikeInfo(plusFundInfoMap);
-				
+
 				if (likeState.equals(prodLike.getLikeState())) {
 					logger.info("取消反对操作");
-					
+
 					// 删除这条反对记录
 					logger.info("删除这条反对记录");
 					prodLikeDao.deleteFundLike(prodLike);
@@ -253,12 +254,65 @@ public class FundMarketService {
 		return null;
 	}
 
+	/**
+	 * 查询赞同排名
+	 * 
+	 * @return
+	 */
 	public List<FundMarket> queryTopRedMarkets() {
 		return fundMarketDao.queryTopRedMarkets();
 	}
 
+	/**
+	 * 查询反对排名
+	 * 
+	 * @return
+	 */
 	public List<FundMarket> queryTopGreenMarkets() {
 		return fundMarketDao.queryTopGreenMarkets();
+	}
+
+	/**
+	 * 根据关键字查询基金信息
+	 * 
+	 * @param keyword
+	 *            关键字fundCode或fundName
+	 * @return
+	 */
+	public List<Map<String, String>> queryFunds(String keyword) {
+		if (StringUtils.isNotEmpty(keyword)) {
+			return null;
+		}
+
+		// 存储查询基金信息
+		List<Map<String, String>> funds = new ArrayList<Map<String, String>>();
+
+		List<FundMarket> fundMarkets = fundMarketDao.queryAll();
+		for (FundMarket fundMarket : fundMarkets) {
+			// 只存储基金名称(fundName)和基金代码(fundCode)
+			Map<String, String> fund = new HashMap<String, String>();
+			// 过滤基金代码fundCode
+			if (StringUtils.isNotEmpty(fundMarket.getFundCode())) {
+				if (fundMarket.getFundCode().indexOf(keyword) >= 0) {
+					fund.put("fundCode", fundMarket.getFundCode());
+					fund.put("fundName", fundMarket.getFundName());
+					funds.add(fund);
+					continue;
+				}
+			}
+
+			// 过滤基金名称fundName
+			if (StringUtils.isNotEmpty(fundMarket.getFundName())) {
+				if (fundMarket.getFundName().indexOf(keyword) >= 0) {
+					fund.put("fundCode", fundMarket.getFundCode());
+					fund.put("fundName", fundMarket.getFundName());
+					funds.add(fund);
+					continue;
+				}
+			}
+		}
+
+		return funds;
 	}
 
 }

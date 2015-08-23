@@ -56,9 +56,6 @@
           </c:forEach>
           </c:when>
           <c:otherwise>
-            <div class="alert text-info fade in row">
-              <h4>你还没有发布过榜单信息</h4>
-            </div>
           </c:otherwise>
           </c:choose>
         </ul>

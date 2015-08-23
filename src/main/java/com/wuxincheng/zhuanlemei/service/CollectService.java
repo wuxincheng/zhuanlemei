@@ -17,6 +17,7 @@ import com.wuxincheng.zhuanlemei.dao.CollectDao;
 import com.wuxincheng.zhuanlemei.dao.ProductDao;
 import com.wuxincheng.zhuanlemei.model.Collect;
 import com.wuxincheng.zhuanlemei.model.Product;
+import com.wuxincheng.zhuanlemei.util.ColorUtil;
 import com.wuxincheng.zhuanlemei.util.Constants;
 import com.wuxincheng.zhuanlemei.util.DateUtil;
 import com.wuxincheng.zhuanlemei.util.ImageUtil;
@@ -97,7 +98,7 @@ public class CollectService {
 			queryCollect.setRecommend(collect.getRecommend());
 			queryCollect.setUpdateTime(currentDate);
 			
-			//collectDao.update(queryCollect);
+			collectDao.update(queryCollect);
 		} else { // 新增榜单信息
 			logger.info("新增榜单信息");
 			
@@ -118,7 +119,7 @@ public class CollectService {
 			collect.setUserid(userid);
 			
 			logger.debug("新增榜单");
-			//collectDao.create(collect);
+			collectDao.create(collect);
 			logger.info("新增榜单成功");
 		}
 		
@@ -213,9 +214,10 @@ public class CollectService {
 		logger.debug("开始验证榜单封面图片");
 		
 		// 验证是否上传了图片
-		if (null == collect.getCoverImgFile()) {
-			responseMessage = "榜单背景图片不能为空";
-			return responseMessage;
+		if (null == collect.getCoverImgFile() || collect.getCoverImgFile().getSize() < 1) {
+			// 如果没有上传图片, 则随机添加一个背景色
+			collect.setBgColor(ColorUtil.getBgColorRandom());
+			return null;
 		}
 		
 		// 控制图片大小不能大于3M

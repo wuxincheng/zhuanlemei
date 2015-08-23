@@ -7,6 +7,7 @@
     <result property="collectid" column="collectid" />
     <result property="collectName" column="collectname" />
     <result property="coverImgPath" column="coverimgpath" />
+    <result property="bgColor" column="bgcolor" />
     <result property="userid" column="userid" />
     <result property="productSum" column="productsum" />
     <result property="collectSum" column="collectsum" />
@@ -30,10 +31,10 @@
   
   <insert id="create" parameterClass="Collect">
     INSERT INTO 
-      t_next_collect( collectname, coverimgpath, userid, 
+      t_next_collect( collectname, coverimgpath, bgcolor, userid, 
         productsum, collectsum, memo, recommend, updatestate, 
         updatetime, createtime, collectstate)
-    VALUES ( #collectName#, #coverImgPath#, #userid#, 
+    VALUES ( #collectName#, #coverImgPath#, #bgColor#, #userid#, 
         #productSum#, #collectSum#, #memo#, 
         #recommend#, #updateState#, #updateTime#, 
         #createTime#, #collectState#)
@@ -41,7 +42,7 @@
   
   <update id="update" parameterClass="Collect">
     UPDATE t_next_collect 
-       SET collectname = #collectName#, coverimgpath = #coverImgPath#, 
+       SET collectname = #collectName#, coverimgpath = #coverImgPath#, bgcolor = #bgColor#,
            memo = #memo#, recommend = #recommend#, updatetime=#updateTime# 
      WHERE collectid = #collectid#
   </update>

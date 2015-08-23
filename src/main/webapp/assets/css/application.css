@@ -508,8 +508,8 @@ opacity
 }
 
 .topbar {
-	height: 58px;
-	background: #f8f8f8;
+	height: 60px;
+	background: #fff;
 	position: relative;
 	border-top: 2px solid #E62B1E;
 	border-bottom: 2px solid #f2f2f2;
@@ -517,6 +517,52 @@ opacity
 	box-shadow: 0 1px 3px rgba(0,0,0,.1);
 	margin-bottom: 0px;
 	 */
+}
+
+.main-hunt_input {
+  border-radius: 4px;
+  background: #FFF;
+  border: 1px solid #D4D4D4;
+  font-size: 16px;
+  padding: 7px 25px 7px 5px;
+  vertical-align: middle;
+  width: 100%;
+  -webkit-appearance: none;
+  margin-top: 12px;
+}
+
+.main-hunt_button {
+  border: none;
+  margin-top: -15px;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  margin-left: 90px;
+}
+
+.g-search {
+  background-position: -150px -182px;
+}
+
+.g-pip-share, .g-search {
+  height: 30px;
+  width: 30px;
+}
+
+.g, .g-button-modal-close, .g-button-modal-close_hover, .g-button-play, .g-button-play_hover, .g-collapse-up, .g-logo-medium, .g-logo-small, .g-logo-small-grey, .g-maxi-fullscreen, .g-maxi-pause, .g-maxi-play, .g-maxi-settings, .g-maxi-subtitles, .g-maxi-transcript, .g-maxi-volume, .g-menu, .g-mini-fullscreen, .g-mini-pause, .g-mini-play, .g-mini-settings, .g-mini-subtitles, .g-mini-transcript, .g-mini-volume, .g-pip-pause, .g-pip-play, .g-pip-share, .g-search {
+  background-color: transparent;
+  background-image: url(../images/use-z.png);
+  background-repeat: no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+  text-indent: -9999em;
+  zoom: 1;
+}
+
+.hunt {
+  width: 300px;
+  padding-right: 50px;
 }
 
 .search {
@@ -534,7 +580,7 @@ opacity
 	display: inline-block;
 	position: absolute;
 	top: 15px;
-	left: 15px;
+	right: 15px;
 	font: 0/0 a;
 	color: transparent;
 	text-shadow: none;
@@ -961,7 +1007,7 @@ input:focus,textarea:focus,select:focus {
 .submit-btn {
 	border: 1px solid #2a5894;
 	width: 100px;
-	height: 35px;
+	height: 40px;
 	text-align: center;
 	font-weight: 600
 }
