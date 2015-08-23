@@ -616,7 +616,7 @@ opacity
 	line-height: 33px;
 	margin-right: 0px;
 	float: left;
-	margin-left: 50px;
+	margin-left: 150px;
 }
 
 .nav-title li {
@@ -730,7 +730,7 @@ opacity
 }
 
 .login-menu {
-	border-left: 1px solid rgba(0, 0, 0, 0.1)
+	border-left: 0px solid rgba(0, 0, 0, 0.1)
 }
 
 .dropdown {

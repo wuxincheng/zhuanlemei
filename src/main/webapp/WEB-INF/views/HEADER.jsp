@@ -50,65 +50,63 @@
   <header class="topbar cf">
     <div class="row">
   
-    <div class="brand">
-      <a href="${root}">
-      <img src="${root}/assets/img/logo/logoCN.png" height="35px" width="35px" />
-      </a>
-    </div>
-    
-    <nav class="nav-title">
-      <ul>
-        <li><a class="main-nav " href="${root}">首页</a></li>
-        <li><a class="main-nav " href="${root}/collect/list">榜单</a></li>
-      </ul>
-    </nav>
-    
-    <!-- 
-    <div class="search">
-      <form accept-charset="UTF-8" action="/posts/search" id="search_notes" method="get">
-        <div style="display:none"><input name="utf8" type="hidden" value="&#x2713;" /></div>
-        <span class="icon">🔎</span>
-        <input autocapitalize="off" autocomplete="off" id="query" name="query" spellcheck="false" type="text" />
-      </form>  
-    </div>
-     -->
-    
-    <nav class="navigation text-center">
-      <ul>
-        <c:choose>
-        <c:when test="${not empty user}">
-        <li class="account login-menu">
-          <a class="account-menu main-nav" href="javascript:">
-            <img class="avatar" height="30" width="30"
-            <c:choose>
-            <c:when test="${not empty user.picPath}">
-            src="${root}/user/avatar/${user.picPath}"
-            </c:when>
-            <c:when test="${not empty user.socialPicPath}">
-            src="${user.socialPicPath}"
-            </c:when>
-            <c:otherwise>
-            src="${root}/assets/img/logo/toplogo.png"
-            </c:otherwise>
-            </c:choose>  />
-          </a>
-          <ul class="dropdown login-dropdown">
-            <li><a href="${root}/my/home/list">我的主页</a></li>
-            <li><a href="${root}/my/collect/list">我的收藏</a></li>
-            <li><a href="${root}/my/collects/list">我的榜单</a></li>
-            <li><a href="${root}/my/info/query">个人设置</a></li>
-            <li><a data-method="delete" href="${root}/logout/" rel="nofollow">退出登录</a></li>
-          </ul>
-        </li>        
-        </c:when>
-        <c:otherwise>
-        <li class="account login-wechat">
-          <a class="main-nav" href="${root}/login/">登录</a>
-        </li> 
-        </c:otherwise>
-        </c:choose>
-      </ul>
-    </nav>
+      <div class="brand">
+        <a href="${root}">
+        <img src="${root}/assets/img/logo/logo-top-bar.png" height="35px" width="113px" />
+        </a>
+      </div>
+      
+      <nav class="nav-title">
+        <ul>
+          <li><a class="main-nav " href="${root}">首页</a></li>
+          <li><a class="main-nav " href="${root}/collect/list">榜单</a></li>
+          <li>
+            <div class="search">
+              <form accept-charset="UTF-8" action="/posts/search" id="search_notes" method="get">
+                <span class="icon">🔎</span>
+                <input id="query" name="query" type="text" />
+              </form>  
+            </div>
+          </li>
+        </ul>
+      </nav>
+      
+      <nav class="navigation text-center">
+        <ul>
+          <c:choose>
+          <c:when test="${not empty user}">
+          <li class="account login-menu">
+            <a class="account-menu main-nav" href="javascript:">
+              <img class="avatar" height="30" width="30"
+              <c:choose>
+              <c:when test="${not empty user.picPath}">
+              src="${root}/user/avatar/${user.picPath}"
+              </c:when>
+              <c:when test="${not empty user.socialPicPath}">
+              src="${user.socialPicPath}"
+              </c:when>
+              <c:otherwise>
+              src="${root}/assets/img/logo/toplogo.png"
+              </c:otherwise>
+              </c:choose>  />
+            </a>
+            <ul class="dropdown login-dropdown">
+              <li><a href="${root}/my/home/list">我的主页</a></li>
+              <li><a href="${root}/my/collect/list">我的收藏</a></li>
+              <li><a href="${root}/my/collects/list">我的榜单</a></li>
+              <li><a href="${root}/my/info/query">个人设置</a></li>
+              <li><a data-method="delete" href="${root}/logout/" rel="nofollow">退出登录</a></li>
+            </ul>
+          </li>        
+          </c:when>
+          <c:otherwise>
+          <li class="account login-wechat">
+            <a class="main-nav" href="${root}/login/">登录</a>
+          </li> 
+          </c:otherwise>
+          </c:choose>
+        </ul>
+      </nav>
     
     </div>
   </header>
