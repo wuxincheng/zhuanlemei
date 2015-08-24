@@ -44,6 +44,9 @@ public class CollectService {
 	 * 根据产品集主键查询详细
 	 */
 	public Collect queryDetailByCollectid(String collectid) {
+		if (StringUtils.isEmpty(collectid)) {
+			return null;
+		}
 		return collectDao.queryDetailByCollectid(collectid);
 	}
 
@@ -51,7 +54,20 @@ public class CollectService {
 	 * 查询用户发布的榜单
 	 */
 	public List<Collect> queryByUserid(String userid) {
+		if (StringUtils.isEmpty(userid)) {
+			return null;
+		}
 		return collectDao.queryByUserid(userid);
+	}
+	
+	/**
+	 * 查询榜单排名前3名
+	 * 
+	 * @param i
+	 * @return
+	 */
+	public List<Collect> queryTopHot(Integer topLimit) {
+		return collectDao.queryTopHot(topLimit);
 	}
 
 	/**
@@ -270,5 +286,5 @@ public class CollectService {
 		
 		return responseMessage;
 	}
-	
+
 }

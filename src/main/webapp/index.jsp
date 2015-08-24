@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>赚了没-TOP|找到你喜欢的理财产品，榜单|赚了没-TOP</title>
-<meta http-equiv="refresh" content="0;url=<%=request.getContextPath()%>/fund/market/list" >
+<meta http-equiv="refresh" content="0;url=<%=request.getContextPath()%>/index" >
 <link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="icon" />
 <link href="${root}/assets/img/logo/toplogo.png" type="image/x-icon" rel="shortcut icon" />
 <meta name="description" content="新成视野：基于娱乐、搞笑的个人博客分享平台">

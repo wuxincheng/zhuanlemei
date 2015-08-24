@@ -78,8 +78,7 @@ public class FundMarketController extends BaseController {
 		queryParam.put("start", start);
 		queryParam.put("end", end);
 
-		Map<String, Object> pager = fundMarketService.queryPager(queryParam,
-				Constants.DATE_TYPE_CACHE);
+		Map<String, Object> pager = fundMarketService.queryPager(queryParam, Constants.DATE_TYPE_CACHE);
 
 		try {
 			if (pager != null && pager.size() > 0) {
@@ -138,8 +137,7 @@ public class FundMarketController extends BaseController {
 
 	@RequestMapping(value = "/like")
 	@ResponseBody
-	public Map<String, Object> like(Model model, HttpServletRequest request, String fundCode,
-			String likeState) {
+	public Map<String, Object> like(Model model, HttpServletRequest request, String fundCode, String likeState) {
 		logger.info("用户点赞同和反对操作 fundCode={}, likeState={}", fundCode, likeState);
 
 		Map<String, Object> result = new HashMap<String, Object>();
@@ -174,12 +172,10 @@ public class FundMarketController extends BaseController {
 	public void getTopRedSortList(Model model) {
 		logger.info("查询红绿榜");
 
-		List<FundMarket> topRedMarkets = fundMarketService
-				.queryTopRedMarkets(Constants.DATE_TYPE_CACHE);
+		List<FundMarket> topRedMarkets = fundMarketService.queryRedTopHot(Constants.DATE_TYPE_CACHE);
 		model.addAttribute("topRedMarkets", topRedMarkets);
 
-		List<FundMarket> topGreenMarkets = fundMarketService
-				.queryTopGreenMarkets(Constants.DATE_TYPE_CACHE);
+		List<FundMarket> topGreenMarkets = fundMarketService.queryGreenTopHot(Constants.DATE_TYPE_CACHE);
 		model.addAttribute("topGreenMarkets", topGreenMarkets);
 	}
 

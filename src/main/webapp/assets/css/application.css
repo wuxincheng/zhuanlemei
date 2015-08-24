@@ -523,8 +523,8 @@ opacity
   border-radius: 4px;
   background: #FFF;
   border: 1px solid #D4D4D4;
-  font-size: 16px;
-  padding: 7px 25px 7px 5px;
+  font-size: 14px;
+  padding: 7px 25px 10px 5px;
   vertical-align: middle;
   width: 100%;
   -webkit-appearance: none;
@@ -2251,6 +2251,20 @@ input[type="checkbox"] {
 }
 
 .aside img {
+	width: 160px;
+	height: 160px;
+	display: inline-block;
+	margin-top: 20px;
+	margin-bottom: 10px
+}
+
+.aside-zlm {
+	float: right;
+	width: 280px;
+	text-align: center;
+}
+
+.aside-zlm img {
 	width: 160px;
 	height: 160px;
 	display: inline-block;

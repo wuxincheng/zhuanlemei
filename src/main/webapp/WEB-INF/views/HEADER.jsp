@@ -65,16 +65,14 @@
       
       <nav class="navigation text-center">
         <ul>
-          <!-- 
           <li>
             <div class="hunt">
-              <form action="/posts/search" method="post">
+              <form action="${root}/fund/market/list" method="post">
                 <input id="keyword" name="keyword" class="main-hunt_input" type="text" placeholder="查找基金产品、基金代码" />
                 <input class="main-hunt_button g-search" type="submit">
               </form>  
             </div>
           </li>
-           -->
           <c:choose>
           <c:when test="${not empty user}">
           <li class="account login-menu">

@@ -6,6 +6,13 @@ import org.springframework.stereotype.Repository;
 
 import com.wuxincheng.zhuanlemei.model.Collect;
 
+/**
+ * 榜单Dao
+ * 
+ * @author wuxincheng(wxcking) 
+ * @date 2015年8月24日 下午10:13:02 
+ *
+ */
 @Repository("collectDao")
 public class CollectDao extends BaseDao {
 
@@ -45,6 +52,11 @@ public class CollectDao extends BaseDao {
 
 	public void update(Collect collect) {
 		this.getSqlMapClientTemplate().update("Collect.update", collect);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Collect> queryTopHot(Integer topLimit) {
+		return this.getSqlMapClientTemplate().queryForList("Collect.queryTopHot", topLimit);
 	}
 
 }

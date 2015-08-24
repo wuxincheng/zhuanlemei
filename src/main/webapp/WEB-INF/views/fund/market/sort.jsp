@@ -6,6 +6,17 @@
 <!DOCTYPE html>
 <html>
 
+<section class="featured cf">
+  <a class="featured-item" href="http://www.howbuy.com/mobile/zsjj/"
+    style="background-image: url(${root}/assets/images/ad/ad1.png)"
+    target="_blank">
+    <div class="featured-meta">
+      <h3>掌上基金</h3>
+      <p>人人都是基金经理</p>
+    </div>
+  </a>
+</section>
+
 <p>&nbsp;</p>
 
 <div class="fund-sort">

@@ -23,6 +23,10 @@
     SELECT * FROM t_next_collect ORDER BY updatetime DESC
   </select>
   
+  <select id="queryTopHot" resultMap="CollectMapping" parameterClass="java.lang.Integer">
+    SELECT * FROM t_next_collect ORDER BY (productsum+collectsum) DESC LIMIT 0, #topLimit#
+  </select>
+  
   <select id="queryByUserid" parameterClass="java.lang.String" resultMap="CollectMapping">
     SELECT t.* 
       FROM t_next_collect t 
