@@ -8,7 +8,42 @@ package com.wuxincheng.zhuanlemei.fetch.util;
  * 
  */
 public class HowBuyHtmlUtil {
-	
+
+	/**
+	 * "--"全部处理为null
+	 * 
+	 * @param format
+	 * @return
+	 */
+	public static String formatTag(String format) {
+		if (format.contains("--")) {
+			format = null;
+		}
+		if (format.contains("span")) {
+			format = null;
+		}
+		if (format.contains("</") && format.length() == 7) {
+			format = format.substring(0, 5);
+		}
+		return format;
+	}
+
+	/**
+	 * 处理基金成立日期标签数据
+	 * 
+	 * @param foundedDate
+	 * @return
+	 */
+	public static String formatFundDate(String foundedDate) {
+		if (foundedDate.contains("--")) {
+			foundedDate = null;
+		}
+		if (foundedDate.contains("PUBLIC")) {
+			foundedDate = null;
+		}
+		return foundedDate;
+	}
+
 	/**
 	 * 处理基金公司标签数据
 	 * 
@@ -27,13 +62,15 @@ public class HowBuyHtmlUtil {
 	 * @return
 	 */
 	public static String[] formatFundSortThreeMonth(String fundSortThreeMonth) {
-		String sortIndex = fundSortThreeMonth.substring(fundSortThreeMonth.indexOf("class=\"b-rate\">") + 15,
+		String sortIndex = fundSortThreeMonth.substring(
+				fundSortThreeMonth.indexOf("class=\"b-rate\">") + 15,
 				fundSortThreeMonth.indexOf("</em><em class=\"b-rate b-2\">"));
-		
-		String sortTotal = fundSortThreeMonth.substring(fundSortThreeMonth.indexOf("</em><em class=\"b-rate b-2\">") + 29,
-				fundSortThreeMonth.lastIndexOf("</em>")-1);
-		
-		return new String[]{sortIndex, sortTotal};
+
+		String sortTotal = fundSortThreeMonth.substring(
+				fundSortThreeMonth.indexOf("</em><em class=\"b-rate b-2\">") + 29,
+				fundSortThreeMonth.lastIndexOf("</em>") - 1);
+
+		return new String[] { sortIndex, sortTotal };
 	}
 
 	/**
@@ -44,7 +81,14 @@ public class HowBuyHtmlUtil {
 	 */
 	public static String formatRateChange(String rateChange) {
 		if (rateChange.contains("b-rate")) {
-			rateChange = rateChange.substring(rateChange.indexOf("b-rate") + 8, rateChange.length());
+			rateChange = rateChange
+					.substring(rateChange.indexOf("b-rate") + 8, rateChange.length());
+		}
+		if (rateChange.contains("--")) {
+			rateChange = null;
+		}
+		if (rateChange.contains("le=\"color:")) {
+			rateChange = null;
 		}
 		return rateChange;
 	}
@@ -59,13 +103,19 @@ public class HowBuyHtmlUtil {
 		if (newScale.contains("亿</span>")) {
 			newScale = newScale.substring(0, newScale.indexOf("亿</span>"));
 		}
+		if (newScale.contains("--")) {
+			newScale = null;
+		}
+		if (newScale.contains("PUBLIC")) {
+			newScale = null;
+		}
 		return newScale;
 	}
 
 	public static void main(String[] args) {
 		System.out.println(formatNewScale("415.35亿</span></li>"));
 	}
-	
+
 	/**
 	 * 处理基金经理字符串
 	 * 
@@ -75,6 +125,9 @@ public class HowBuyHtmlUtil {
 	public static String formatFundManager(String fundManager) {
 		if (fundManager.contains("<")) {
 			fundManager = fundManager.substring(0, fundManager.indexOf("<"));
+		}
+		if (fundManager.contains("nal//")) {
+			fundManager = null;
 		}
 		return fundManager;
 	}

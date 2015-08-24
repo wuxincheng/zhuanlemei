@@ -70,8 +70,12 @@ public class FundMarketService {
 		} else { // 从缓存中获取
 			fundMarkets = getCacheFundMarkets();
 			totalCount = fundMarkets.size(); // 总记录数据
-			fundMarkets = fundMarkets.subList((Integer) queryParam.get("start"),
-					(Integer) queryParam.get("end"));
+			if ((Integer) queryParam.get("end") < totalCount) {
+				fundMarkets = fundMarkets.subList((Integer) queryParam.get("start"),
+						(Integer) queryParam.get("end"));
+			} else {
+				fundMarkets = fundMarkets.subList((Integer) queryParam.get("start"), totalCount);
+			}
 		}
 
 		result.put("fundMarkets", fundMarkets);
