@@ -1,6 +1,8 @@
 package com.wuxincheng.zhuanlemei.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +22,7 @@ import com.wuxincheng.zhuanlemei.dao.FundMarketDao;
 import com.wuxincheng.zhuanlemei.dao.ProdLikeDao;
 import com.wuxincheng.zhuanlemei.model.FundMarket;
 import com.wuxincheng.zhuanlemei.model.ProdLike;
+import com.wuxincheng.zhuanlemei.util.Constants;
 import com.wuxincheng.zhuanlemei.util.DateUtil;
 
 /**
@@ -44,7 +47,7 @@ public class FundMarketService {
 	private ProdLikeDao prodLikeDao;
 
 	@Resource
-	CacheManager cacheManager;
+	private CacheManager cacheManager;
 
 	/**
 	 * 分页查询行情列表信息
@@ -269,8 +272,32 @@ public class FundMarketService {
 	 * 
 	 * @return
 	 */
-	public List<FundMarket> queryTopRedMarkets() {
-		return fundMarketDao.queryTopRedMarkets();
+	public List<FundMarket> queryTopRedMarkets(String dataType) {
+		// 直接查询数据库获取数据
+		if (Constants.DATE_TYPE_DB.equals(dataType)) {
+			return fundMarketDao.queryTopRedMarkets();
+		}
+
+		// 验证是否使用缓存数据
+		if (!Constants.DATE_TYPE_CACHE.equals(dataType)) {
+			return null;
+		}
+
+		// 获取缓存数据
+		List<FundMarket> fundMarkets = getCacheFundMarkets();
+		List<FundMarket> sortFundMarkets = new ArrayList<FundMarket>();
+		sortFundMarkets.addAll(fundMarkets);
+
+		// 排序
+		Collections.sort(sortFundMarkets, new Comparator<FundMarket>() {
+			@Override
+			public int compare(FundMarket fund1, FundMarket fund2) {
+				return fund2.getLikeScore() == fund1.getLikeScore() ? 0
+						: (fund2.getLikeScore() > fund1.getLikeScore() ? 1 : -1);
+			}
+		});
+
+		return sortFundMarkets.subList(0, 5);
 	}
 
 	/**
@@ -278,8 +305,32 @@ public class FundMarketService {
 	 * 
 	 * @return
 	 */
-	public List<FundMarket> queryTopGreenMarkets() {
-		return fundMarketDao.queryTopGreenMarkets();
+	public List<FundMarket> queryTopGreenMarkets(String dataType) {
+		// 直接查询数据库获取数据
+		if (Constants.DATE_TYPE_DB.equals(dataType)) {
+			return fundMarketDao.queryTopGreenMarkets();
+		}
+
+		// 验证是否使用缓存数据
+		if (!Constants.DATE_TYPE_CACHE.equals(dataType)) {
+			return null;
+		}
+
+		// 获取缓存数据
+		List<FundMarket> fundMarkets = getCacheFundMarkets();
+		List<FundMarket> sortFundMarkets = new ArrayList<FundMarket>();
+		sortFundMarkets.addAll(fundMarkets);
+
+		// 排序
+		Collections.sort(sortFundMarkets, new Comparator<FundMarket>() {
+			@Override
+			public int compare(FundMarket fund1, FundMarket fund2) {
+				return fund2.getUnLikeScore() == fund1.getUnLikeScore() ? 0
+						: (fund2.getUnLikeScore() > fund1.getUnLikeScore() ? 1 : -1);
+			}
+		});
+
+		return sortFundMarkets.subList(0, 5);
 	}
 
 	/**
@@ -298,8 +349,8 @@ public class FundMarketService {
 		List<Map<String, String>> funds = new ArrayList<Map<String, String>>();
 
 		// 从缓存中读取行情信息
-		List<FundMarket> fundMarkets = getCacheFunds();
-		
+		List<FundMarket> fundMarkets = getCacheFundMarkets();
+
 		for (FundMarket fundMarket : fundMarkets) {
 			// 只存储基金名称(fundName)和基金代码(fundCode)
 			Map<String, String> fund = new HashMap<String, String>();
@@ -333,7 +384,7 @@ public class FundMarketService {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public List<FundMarket> getCacheFunds() {
+	public List<FundMarket> getCacheFundMarkets() {
 		Cache cache = cacheManager.getCache(FUNDSFILTER_CACHE_NAME);
 		ValueWrapper valueWrapper = cache.get(FUNDSFILTER_CACHE_KEY);
 		if (valueWrapper != null) {
@@ -343,10 +394,11 @@ public class FundMarketService {
 		}
 
 		List<FundMarket> fundMarkets = fundMarketDao.queryAll();
-		
+
 		cache.put(FUNDSFILTER_CACHE_KEY, fundMarkets);
-		logger.info("读取基金行情并放入缓存 cacheName={} cacheKey={}", FUNDSFILTER_CACHE_NAME, FUNDSFILTER_CACHE_KEY);
-		
+		logger.info("读取基金行情并放入缓存 cacheName={} cacheKey={}", FUNDSFILTER_CACHE_NAME,
+				FUNDSFILTER_CACHE_KEY);
+
 		return fundMarkets;
 	}
 

@@ -21,6 +21,7 @@ import com.wuxincheng.zhuanlemei.model.ProdLike;
 import com.wuxincheng.zhuanlemei.service.CommentService;
 import com.wuxincheng.zhuanlemei.service.FundMarketService;
 import com.wuxincheng.zhuanlemei.service.ProdLikeService;
+import com.wuxincheng.zhuanlemei.util.Constants;
 import com.wuxincheng.zhuanlemei.util.Validation;
 
 /**
@@ -172,10 +173,10 @@ public class FundMarketController extends BaseController {
 	public void getTopRedSortList(Model model) {
 		logger.info("查询红绿榜");
 
-		List<FundMarket> topRedMarkets = fundMarketService.queryTopRedMarkets();
+		List<FundMarket> topRedMarkets = fundMarketService.queryTopRedMarkets(Constants.DATE_TYPE_CACHE);
 		model.addAttribute("topRedMarkets", topRedMarkets);
 
-		List<FundMarket> topGreenMarkets = fundMarketService.queryTopGreenMarkets();
+		List<FundMarket> topGreenMarkets = fundMarketService.queryTopGreenMarkets(Constants.DATE_TYPE_CACHE);
 		model.addAttribute("topGreenMarkets", topGreenMarkets);
 	}
 

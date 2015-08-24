@@ -59,7 +59,7 @@
   
   <!-- 每隔一小时定时从数据中读取行情数据存到缓存中 -->
   <task:scheduled-tasks scheduler="fundMarketServiceScheduler">
-    <task:scheduled ref="fundMarketService" method="getCacheFunds" fixed-delay="3600000" />
+    <task:scheduled ref="fundMarketService" method="getCacheFundMarkets" fixed-delay="3600000" />
   </task:scheduled-tasks>
   <task:scheduler id="fundMarketServiceScheduler" pool-size="10" />
 

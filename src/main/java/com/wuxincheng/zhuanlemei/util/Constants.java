@@ -46,5 +46,10 @@ public class Constants {
 	
 	/** 授权平台：新浪微博 */
 	public static final String OAUTH_WEIBO = "weibo";
+	
+	
+	public static final String DATE_TYPE_DB = "DB_SYS";
+	
+	public static final String DATE_TYPE_CACHE = "CACHE_SYS";
 
 }
