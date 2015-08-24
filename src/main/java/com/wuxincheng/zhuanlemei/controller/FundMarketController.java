@@ -67,7 +67,7 @@ public class FundMarketController extends BaseController {
 		Integer end = null;
 		if (current > 1) {
 			start = (current - 1) * pageSize;
-			end = pageSize;
+			end = pageSize * current;
 		} else {
 			start = 0;
 			end = pageSize;
@@ -78,7 +78,8 @@ public class FundMarketController extends BaseController {
 		queryParam.put("start", start);
 		queryParam.put("end", end);
 
-		Map<String, Object> pager = fundMarketService.queryPager(queryParam);
+		Map<String, Object> pager = fundMarketService.queryPager(queryParam,
+				Constants.DATE_TYPE_CACHE);
 
 		try {
 			if (pager != null && pager.size() > 0) {
@@ -173,10 +174,12 @@ public class FundMarketController extends BaseController {
 	public void getTopRedSortList(Model model) {
 		logger.info("查询红绿榜");
 
-		List<FundMarket> topRedMarkets = fundMarketService.queryTopRedMarkets(Constants.DATE_TYPE_CACHE);
+		List<FundMarket> topRedMarkets = fundMarketService
+				.queryTopRedMarkets(Constants.DATE_TYPE_CACHE);
 		model.addAttribute("topRedMarkets", topRedMarkets);
 
-		List<FundMarket> topGreenMarkets = fundMarketService.queryTopGreenMarkets(Constants.DATE_TYPE_CACHE);
+		List<FundMarket> topGreenMarkets = fundMarketService
+				.queryTopGreenMarkets(Constants.DATE_TYPE_CACHE);
 		model.addAttribute("topGreenMarkets", topGreenMarkets);
 	}
 

@@ -147,7 +147,8 @@
   </select>
   
   <select id="queryAll" resultMap="FundMarketMapping">
-    SELECT * FROM TFundMarket WHERE fundtype != '5'
+    SELECT * FROM TFundMarket WHERE fundtype != '5' 
+    ORDER BY likescore DESC, unlikescore DESC, likeSum DESC, unlikesum DESC 
   </select>
 
   <select id="queryTopRedMarkets" resultMap="FundMarketMapping">

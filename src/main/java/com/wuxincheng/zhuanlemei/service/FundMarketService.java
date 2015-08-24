@@ -53,14 +53,26 @@ public class FundMarketService {
 	 * 分页查询行情列表信息
 	 * 
 	 * @param queryParam
+	 *            分页参数
+	 * @param dataType
+	 *            获取类型
 	 * @return
 	 */
-	public Map<String, Object> queryPager(Map<String, Object> queryParam) {
+	public Map<String, Object> queryPager(Map<String, Object> queryParam, String dataType) {
 		Map<String, Object> result = new HashMap<String, Object>();
 
-		List<FundMarket> fundMarkets = fundMarketDao.queryPager(queryParam);
+		List<FundMarket> fundMarkets = null; // 查询的数据
+		int totalCount = 0; // 查询出总记录数
 
-		int totalCount = fundMarketDao.queryCount(queryParam); // 总记录数
+		if (Constants.DATE_TYPE_DB.equals(dataType)) { // 直接访问数据库
+			fundMarkets = fundMarketDao.queryPager(queryParam);
+			totalCount = fundMarketDao.queryCount(queryParam); // 总记录数
+		} else { // 从缓存中获取
+			fundMarkets = getCacheFundMarkets();
+			totalCount = fundMarkets.size(); // 总记录数据
+			fundMarkets = fundMarkets.subList((Integer) queryParam.get("start"),
+					(Integer) queryParam.get("end"));
+		}
 
 		result.put("fundMarkets", fundMarkets);
 		result.put("totalCount", totalCount);
@@ -325,8 +337,8 @@ public class FundMarketService {
 		Collections.sort(sortFundMarkets, new Comparator<FundMarket>() {
 			@Override
 			public int compare(FundMarket fund1, FundMarket fund2) {
-				return fund2.getUnLikeScore() == fund1.getUnLikeScore() ? 0
-						: (fund2.getUnLikeScore() > fund1.getUnLikeScore() ? 1 : -1);
+				return fund2.getUnLikeScore() == fund1.getUnLikeScore() ? 0 : (fund2
+						.getUnLikeScore() > fund1.getUnLikeScore() ? 1 : -1);
 			}
 		});
 
