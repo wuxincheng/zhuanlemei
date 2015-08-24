@@ -30,8 +30,12 @@
           </div>
           <div class="form-group string required note_title">
             <label class="string required" for="note_title">产品名称</label>
-            <input aria-required="true" autofocus="autofocus" class="string required form-control input-small" id="keyword"
-              name="keyword" placeholder="输入基金代码或名称" required="required" type="text" />
+            <input type="hidden" id="fundCode" name="fundCode" />
+            <input aria-required="true" autofocus="autofocus" class="string required form-control input-small" id="fundName"
+              name="fundName" placeholder="输入基金代码或名称" required="required" type="text" />
+            <div class="fundPanel">
+              <div class="items"></div>
+            </div>
           </div>
           <!-- 
           <div class="form-group url required note_url">
@@ -60,8 +64,102 @@
   </div>
 
   <script type="text/javascript">
-    $('#keyword').bind('input propertychange', function() {
-      var keyword = $("#keyword").val();
+    $('#fundName').bind('input propertychange', function() {
+      $(".fundPanel .items").css("left", "0px");
+      
+      $("#fundName").bind("focus", function() {
+        var time = setInterval(filter_staff_from_exist, 100);
+        $(this).bind("blur", function() {
+          clearInterval(time);
+        });
+      });
+
+      $(".fundPanel .items").on("click", "a", function() {
+        var fundCode = $(this).attr("fundCode");
+        var fundName = $(this).find(".fn").text();
+        $("[name=fundCode]").val(fundCode);
+        $("#fundName").val(fundName);
+        str = fundName;
+        $(".fundPanel .items").hide();
+        $("#fundClear").show();
+      });
+
+      $(".fundPanel .items").on("mouseover", "a", function() {
+        var link = $(this);
+        $(".fundPanel .items a").each(function(i, o) {
+          if ($(o).is(link)) {
+            fundIndex = i;
+            return;
+          }
+        });
+
+        $(".fundPanel .items a").removeClass("hover");
+        $(this).addClass("hover").focus();
+      });
+
+      var funcKey = function(i) {
+        var fundCount = $(".fundPanel .items a").length;
+        if (fundIndex < 0) {
+          fundIndex = 0;
+        } else {
+          fundIndex += i;
+          if (fundIndex < 0) {
+            fundIndex = 0;
+          }
+          if (fundIndex >= fundCount) {
+            fundIndex = 0;
+          }
+        }
+
+        $(".fundPanel .items a").removeClass("hover");
+        $(".fundPanel .items a").eq(fundIndex).addClass("hover").focus();
+      };
+
+      /*var funcPage = function(i) {
+        var position = $(".fundPanel .items a.hover").position();
+        if (position.top < 0) {          
+        }
+      };*/
+
+      $("#fundClear").click(function() {
+        $("#fundName").val("");
+        $("[name=fundCode]").val("");
+        $(".fundPanel .items").hide().empty();
+        str = "";
+        $("#fundClear").hide();
+      });
+      
+      $("#fundName").keydown(function(e) {
+        switch (e.which) {
+        case 40://下
+          funcKey(2);
+          return false;
+        }
+      });
+
+      $(".fundPanel .items").keydown(function(e) {
+        switch (e.which) {
+        case 37://左
+          funcKey(-1);
+          return false;
+        case 38://上
+          funcKey(-1);
+          return false;
+        case 39://右
+          funcKey(1);
+          return false;
+        case 40://下
+          funcKey(1);
+          return false;
+          /*case 33://PageUp
+            funcPage(-1);
+          case 34://PageDown
+            funcPage(1);*/
+        }
+
+      });
+      
+      var keyword = $("#fundName").val();
       if (keyword != null && keyword.length >= 2) {
     	  var url = "${root}/fund/info/query";
           $.ajax({
@@ -73,8 +171,22 @@
             cache : false,
             dataType : 'json',
             success : function(data) {
-                var result = data;
-				                
+                if (data.length > 0) {
+                	$(".fundPanel .items").hide().empty();
+                	
+                	$(".fundPanel .items").append("<ul></ul>");
+                	$.each(data, function(i, n) {
+                        var fundName = n.fundName.replace(keyword, "<span class='selected'>" + keyword
+                          + "</span>");
+                        var fundCode = n.fundCode.replace(keyword, "<span class='selected'>" + keyword
+                          + "</span>");
+                        $(".fundPanel .items ul").append(
+                          "<li><a href='javascript:void(0)' fundCode='" + n.fundCode
+                            + "' hidefocus='true'><span class='fn'>" + fundName
+                            + "</span><span class='fc'>" + fundCode + "</span></a></li>");
+                      });
+                    $(".fundPanel .items").show();
+                }
             },
             error : function() {
               alert("友情提示：系统异常，请重试!");

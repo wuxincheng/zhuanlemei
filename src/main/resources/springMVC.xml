@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
-  xmlns:mvc="http://www.springframework.org/schema/mvc"
+  xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:task="http://www.springframework.org/schema/task"
   xsi:schemaLocation="
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-3.2.xsd
         http://www.springframework.org/schema/mvc
-    	http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+    	http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/task
+        http://www.springframework.org/schema/task/spring-task-3.2.xsd">
 
   <context:component-scan base-package="com.wuxincheng" use-default-filters="false">
     <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
@@ -21,7 +23,7 @@
   <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
 
   <mvc:default-servlet-handler />
-  
+
   <mvc:interceptors>
     <mvc:interceptor>
       <!-- product -->
@@ -46,8 +48,39 @@
     <property name="prefix" value="/WEB-INF/views/" />
     <property name="suffix" value=".jsp" />
   </bean>
-  
+
   <!-- 图片上传下载 -->
-  <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" p:defaultEncoding="utf-8" />
+  <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+    p:defaultEncoding="utf-8" />
+
+  <!-- 定时任务 -->
+  <!-- Spring定时器注解开关 -->
+  <task:annotation-driven />
+  
+  <!-- 每隔一小时定时从数据中读取行情数据存到缓存中 -->
+  <task:scheduled-tasks scheduler="fundMarketServiceScheduler">
+    <task:scheduled ref="fundMarketService" method="getCacheFunds" fixed-delay="3600000" />
+  </task:scheduled-tasks>
+  <task:scheduler id="fundMarketServiceScheduler" pool-size="10" />
+
+  <!-- 每天凌晨一点执行 -->
+  <!-- 生成任务 -->
+  <task:scheduled-tasks scheduler="taskServiceScheduler">
+    <task:scheduled ref="taskService" method="createFetchTask" cron="0 30 01 * * ?" />
+  </task:scheduled-tasks>
+  <task:scheduler id="taskServiceScheduler" pool-size="10" />
+
+  <!-- 每天凌晨两点执行 -->
+  <!-- 抓取基金行情信息列表任务 -->
+  <task:scheduled-tasks scheduler="howBuyFetchTaskServiceScheduler">
+    <task:scheduled ref="howBuyFetchTaskService" method="fundMarketInfoTask" cron="0 30 03 * * ?" />
+  </task:scheduled-tasks>
+  <task:scheduler id="howBuyFetchTaskServiceScheduler" pool-size="10" />
+
+  <!-- 每天凌晨两点执行 -->
+  <!-- 抓取基金行情详细信息任务 -->
+  <task:scheduled-tasks scheduler="howBuyFetchTaskServiceScheduler">
+    <task:scheduled ref="howBuyFetchTaskService" method="fundDetailInfoTask" cron="0 30 04 * * ?" />
+  </task:scheduled-tasks>
 
 </beans>

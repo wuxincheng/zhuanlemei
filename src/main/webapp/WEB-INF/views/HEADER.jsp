@@ -51,14 +51,14 @@
     <div class="row">
   
       <div class="brand">
-        <a href="${root}">
+        <a href="${root}/fund/market/list">
         <img src="${root}/assets/img/logo/logo-top-bar.png" height="35px" width="113px" />
         </a>
       </div>
       
       <nav class="nav-title">
         <ul>
-          <li><a class="main-nav " href="${root}">首页</a></li>
+          <li><a class="main-nav " href="${root}/fund/market/list">首页</a></li>
           <li><a class="main-nav " href="${root}/collect/list">榜单</a></li>
         </ul>
       </nav>

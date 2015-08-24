@@ -22,7 +22,6 @@ import com.wuxincheng.zhuanlemei.service.CommentService;
 import com.wuxincheng.zhuanlemei.service.ProdLikeService;
 import com.wuxincheng.zhuanlemei.service.ProductService;
 import com.wuxincheng.zhuanlemei.util.Constants;
-import com.wuxincheng.zhuanlemei.util.StringUtil;
 import com.wuxincheng.zhuanlemei.util.Validation;
 
 /**
@@ -89,16 +88,16 @@ public class ProductController extends BaseController {
 
 	@RequestMapping(value = "/doPost")
 	public String doPost(Model model, HttpServletRequest request, Product product) {
-		logger.info("处理发布分享新产品数据 product={}", StringUtil.toStringMultiLine(product));
+		logger.info("处理发布分享新产品数据");
 
 		// 验证主要参数
-		if (StringUtils.isEmpty(product.getProdName())) {
+		if (StringUtils.isEmpty(product.getFundName())) {
 			model.addAttribute(Constants.MSG_WARN, "产品名称不能为空");
 			return "product/postUI";
 		}
 		
-		if (StringUtils.isEmpty(product.getProdUrl())) {
-			model.addAttribute(Constants.MSG_WARN, "产品官网地址不能为空");
+		if (StringUtils.isEmpty(product.getFundCode())) {
+			model.addAttribute(Constants.MSG_WARN, "产品代码不能为空");
 			return "product/postUI";
 		}
 		

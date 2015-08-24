@@ -21,6 +21,11 @@ public class Product implements Serializable {
 
 	/** 产品管网 */
 	private String prodUrl;
+	
+	/** 基金名称 */
+	private String fundName;
+	/** 基金代码 */
+	private String fundCode;
 
 	/** 产品说明 */
 	private String memo;
@@ -234,6 +239,22 @@ public class Product implements Serializable {
 
 	public void setLikeState(String likeState) {
 		this.likeState = likeState;
+	}
+
+	public String getFundName() {
+		return fundName;
+	}
+
+	public void setFundName(String fundName) {
+		this.fundName = fundName;
+	}
+
+	public String getFundCode() {
+		return fundCode;
+	}
+
+	public void setFundCode(String fundCode) {
+		this.fundCode = fundCode;
 	}
 
 }

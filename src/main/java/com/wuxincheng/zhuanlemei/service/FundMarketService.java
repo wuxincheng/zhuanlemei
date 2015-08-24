@@ -11,6 +11,9 @@ import javax.annotation.Resource;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.Cache;
+import org.springframework.cache.Cache.ValueWrapper;
+import org.springframework.cache.CacheManager;
 import org.springframework.stereotype.Service;
 
 import com.wuxincheng.zhuanlemei.dao.FundMarketDao;
@@ -30,11 +33,18 @@ import com.wuxincheng.zhuanlemei.util.DateUtil;
 public class FundMarketService {
 	private static final Logger logger = LoggerFactory.getLogger(FundMarketService.class);
 
+	private static final String FUNDSFILTER_CACHE_NAME = "lterm";
+
+	private static final String FUNDSFILTER_CACHE_KEY = "FUNDSFILTER";
+
 	@Resource
 	private FundMarketDao fundMarketDao;
 
 	@Resource
 	private ProdLikeDao prodLikeDao;
+
+	@Resource
+	CacheManager cacheManager;
 
 	/**
 	 * 分页查询行情列表信息
@@ -280,14 +290,16 @@ public class FundMarketService {
 	 * @return
 	 */
 	public List<Map<String, String>> queryFunds(String keyword) {
-		if (StringUtils.isNotEmpty(keyword)) {
+		if (StringUtils.isEmpty(keyword)) {
 			return null;
 		}
 
 		// 存储查询基金信息
 		List<Map<String, String>> funds = new ArrayList<Map<String, String>>();
 
-		List<FundMarket> fundMarkets = fundMarketDao.queryAll();
+		// 从缓存中读取行情信息
+		List<FundMarket> fundMarkets = getCacheFunds();
+		
 		for (FundMarket fundMarket : fundMarkets) {
 			// 只存储基金名称(fundName)和基金代码(fundCode)
 			Map<String, String> fund = new HashMap<String, String>();
@@ -313,6 +325,29 @@ public class FundMarketService {
 		}
 
 		return funds;
+	}
+
+	/**
+	 * 从缓存中获取基金行情信息
+	 * 
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<FundMarket> getCacheFunds() {
+		Cache cache = cacheManager.getCache(FUNDSFILTER_CACHE_NAME);
+		ValueWrapper valueWrapper = cache.get(FUNDSFILTER_CACHE_KEY);
+		if (valueWrapper != null) {
+			logger.debug("从缓存中读取基金行情 cacheName={} cacheKey={}", FUNDSFILTER_CACHE_NAME,
+					FUNDSFILTER_CACHE_KEY);
+			return (List<FundMarket>) valueWrapper.get();
+		}
+
+		List<FundMarket> fundMarkets = fundMarketDao.queryAll();
+		
+		cache.put(FUNDSFILTER_CACHE_KEY, fundMarkets);
+		logger.info("读取基金行情并放入缓存 cacheName={} cacheKey={}", FUNDSFILTER_CACHE_NAME, FUNDSFILTER_CACHE_KEY);
+		
+		return fundMarkets;
 	}
 
 }

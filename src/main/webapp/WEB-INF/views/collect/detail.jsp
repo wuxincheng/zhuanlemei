@@ -94,7 +94,7 @@
                 </a>
               </div>
               <div class="product-url">
-                <a class="post-url" data-client="null" href="${product.prodUrl}" ref="nofollow" target="_blank">${product.prodName}</a>
+                <a class="post-url" data-client="null" href="${root}/fund/market/detail?fundCode=${product.fundCode}" ref="nofollow" target="_blank">${product.fundName}</a>
                 <br>
                 <span class="post-tagline">${product.memo}</span>
               </div>
@@ -124,12 +124,12 @@
                     <p class="user-bio">${product.userMemo}</p>
                   </div>
                   <div class="product-comment">
-                    <a class="product-comments" href="${root}/product/detail?prodid=${product.prodid}" target="_blank"> ${product.commentSum} </a>
+                    <a class="product-comments" href="${root}/fund/market/detail?fundCode=${product.fundCode}" target="_blank"> ${product.commentSum} </a>
                   </div>
                 </li>
               </ul>
           </div>
-          <a class="product-link" href="${root}/product/detail?prodid=${product.prodid}" target="_blank"></a>
+          <a class="product-link" href="${root}/fund/market/detail?fundCode=${product.fundCode}" target="_blank"></a>
           </li>
           </c:forEach>
           </c:if>
