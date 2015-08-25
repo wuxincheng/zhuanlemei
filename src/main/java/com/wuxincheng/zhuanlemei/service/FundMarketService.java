@@ -22,6 +22,7 @@ import com.wuxincheng.zhuanlemei.dao.FundMarketDao;
 import com.wuxincheng.zhuanlemei.dao.ProdLikeDao;
 import com.wuxincheng.zhuanlemei.model.FundMarket;
 import com.wuxincheng.zhuanlemei.model.ProdLike;
+import com.wuxincheng.zhuanlemei.model.Product;
 import com.wuxincheng.zhuanlemei.util.Constants;
 import com.wuxincheng.zhuanlemei.util.DateUtil;
 
@@ -284,6 +285,39 @@ public class FundMarketService {
 		cache.put(FUNDSFILTER_CACHE_KEY, fundMarkets);
 		logger.info("读取基金行情并放入缓存 cacheName={} cacheKey={}", FUNDSFILTER_CACHE_NAME, FUNDSFILTER_CACHE_KEY);
 
+		return fundMarkets;
+	}
+	
+	/**
+	 * 根据产品列表查询基金信息
+	 * 
+	 * @param products
+	 * @return
+	 */
+	public List<FundMarket> queryByProducts(List<Product> products) {
+		if (null == products || products.size() < 1) {
+			return null;
+		}
+		
+		// 存放查询出来的基金列表
+		List<FundMarket> fundMarkets = new ArrayList<FundMarket>();
+		
+		// 从缓存中查询基金列表
+		List<FundMarket> cacheFundMarkets = getCacheFundMarkets();
+		
+		for (Product product : products) {
+			if (StringUtils.isNotEmpty(product.getFundCode())) {
+				for (FundMarket cacheFundMarket : cacheFundMarkets) {
+					if (StringUtils.isNotEmpty(cacheFundMarket.getFundCode())) {
+						if (product.getFundCode().equals(cacheFundMarket.getFundCode())) {
+							fundMarkets.add(cacheFundMarket);
+							break;
+						}
+					}
+				}
+			}
+		}
+		
 		return fundMarkets;
 	}
 

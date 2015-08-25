@@ -102,7 +102,7 @@ public class ProductController extends BaseController {
 		}
 		
 		if (StringUtils.isEmpty(product.getMemo())) {
-			model.addAttribute(Constants.MSG_WARN, "产品说明不能为空");
+			model.addAttribute(Constants.MSG_WARN, "产品说明您就简单说两句吧！");
 			return "product/postUI";
 		}
 		

@@ -81,39 +81,60 @@
         </div>
         <a class="btn submit-btn right" href="${root}/product/postUI?collectid=${collect.collectid}">补充好产品</a>
       </section>
-      <div>
-        <input type="hidden" id="likePage" name="likePage" value="list" />
-        <c:choose>
-        <c:when test="${not empty fundMarkets}">
-        <c:forEach items="${fundMarkets}" var="fundMarket">
-          <div class="fund-panel">
-            <div class="zm-votebar goog-scrollfloater">
-              <button class="up" aria-pressed="false" title="赞同"
-                onclick="likeMarket('${fundMarket.fundCode}', '0')">
-              <i class="icon vote-arrow"></i>
-              <span class="label">赞同</span>
-              <div id="${fundMarket.fundCode}count" class="count" style="margin-top: 10px;">${fundMarket.likeScore}</div>
-              </button>
-              <button class="down" aria-pressed="false" title="反对，不会显示你的姓名"
-                onclick="likeMarket('${fundMarket.fundCode}', '1')">
-              <div id="${fundMarket.fundCode}countdown" class="countdown">${fundMarket.unLikeScore}</div>
-              <i class="icon vote-arrowdown"></i>
-              <span class="label">反对，不会显示你的姓名</span>
-              </button>
-            </div>
-            <div class="fund-info">
-              <div class="fund-name"><a href="${root}/fund/market/detail?fundCode=${fundMarket.fundCode}" target="_blank">${fundMarket.fundName}（${fundMarket.fundCode}）</a></div>
-              <div class="fund-base">单位净值&nbsp;[${fundMarket.navDate}] <span class="fund-nv-up">${fundMarket.currentNav}</span><span class="fund-nv-down">（${fundMarket.rateChange}）</span></div>
-              <div class="fund-base">最新规模：${fundMarket.newScale}亿&nbsp;&nbsp;成立日期：${fundMarket.foundedDate}&nbsp;&nbsp;基金经理：${fundMarket.fundManager}</div>
-              <div class="fund-base">（${fundMarket.commentSum}人评价）</div>
-            </div>
+      <section class="post">
+        <ul class="product-list">
+          <c:if test="${not empty products}">
+          <c:forEach items="${products}" var="product">
+          <li class="product-item">
+            <div class="posts-group cf">
+              <div class="upvote <c:if test="${not empty product.likeState}">voted</c:if>" id="prodlike${product.prodid}">
+                <a class="upvote-link vote-up" data-method="put" data-remote="true" onclick="likeProduct('${product.prodid}')">
+                  <i class="upvote-arrow"></i>
+                  <span class="vote-count">${product.score}</span>
+                </a>
+              </div>
+              <div class="product-url">
+                <a class="post-url" data-client="null" href="${root}/fund/market/detail?fundCode=${product.fundCode}" ref="nofollow" target="_blank">${product.fundName}</a>
+                <br>
+                <span class="post-tagline">${product.memo}</span>
+              </div>
+              <ul class="product-meta right">
+                <li class="product-avatar">
+                  <div class="user-image">
+                    <a class="user-image-link" href="${root}/user/main?queryUserid=${product.userid}" target="_blank">
+                      <img alt="0" class="avatar" height="60" width="60"
+                        <c:choose>
+                        <c:when test="${not empty product.socialPicPath}">src="${product.socialPicPath}"</c:when>
+                        <c:when test="${not empty product.picPath}">src="${root}/user/avatar/${product.picPath}"</c:when>
+                        <c:otherwise>src="${root}/assets/img/logo/toplogo.png"</c:otherwise>
+                        </c:choose> />
+                    </a>
+                  </div>
+                  <div class="user-tooltip">
+                    <a class="user-image-link" href="#">
+                      <img alt="0" class="avatar avatar-big" height="120" width="120"
+                        <c:choose>
+                        <c:when test="${not empty product.socialPicPath}">src="${product.socialPicPath}"</c:when>
+                        <c:when test="${not empty product.picPath}">src="${root}/user/avatar/${product.picPath}"</c:when>
+                        <c:otherwise>src="${root}/assets/img/logo/toplogo.png"</c:otherwise>
+                        </c:choose> />
+                    </a>
+                    <h3 class="user-nickname">${product.nickName}</h3>
+                    <h4 class="user-title">${product.userGroup} - ${product.position}<br></h4>
+                    <p class="user-bio">${product.userMemo}</p>
+                  </div>
+                  <div class="product-comment">
+                    <a class="product-comments" href="${root}/fund/market/detail?fundCode=${product.fundCode}" target="_blank"> ${product.commentSum} </a>
+                  </div>
+                </li>
+              </ul>
           </div>
-        </c:forEach>
-        </c:when>
-        <c:otherwise>
-        </c:otherwise>
-        </c:choose>
-      </div>
+          <a class="product-link" href="${root}/fund/market/detail?fundCode=${product.fundCode}" target="_blank"></a>
+          </li>
+          </c:forEach>
+          </c:if>
+        </ul>
+      </section>
     </div>
   </div>    
 

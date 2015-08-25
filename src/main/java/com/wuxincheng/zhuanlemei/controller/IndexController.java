@@ -45,7 +45,7 @@ public class IndexController extends BaseController {
 		model.addAttribute("collects", collects);
 		
 		// 显示前10名热门基金
-		List<FundMarket> fundMarkets = fundMarketService.queryTopHot(5);
+		List<FundMarket> fundMarkets = fundMarketService.queryTopHot(10);
 		model.addAttribute("fundMarkets", fundMarkets);
 		
 		// 显示红榜单

@@ -32,7 +32,7 @@
             <label class="string required" for="note_title">产品名称</label>
             <input type="hidden" id="fundCode" name="fundCode" />
             <input aria-required="true" autofocus="autofocus" class="string required form-control input-small" id="fundName"
-              name="fundName" placeholder="输入基金代码或名称" required="required" type="text" />
+              name="fundName" placeholder="输入基金代码或名称" required="required" type="text" autocomplete="off" />
             <div class="fundPanel">
               <div class="items"></div>
             </div>

@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.wuxincheng.zhuanlemei.model.Collect;
 import com.wuxincheng.zhuanlemei.model.CollectUser;
+import com.wuxincheng.zhuanlemei.model.FundMarket;
 import com.wuxincheng.zhuanlemei.model.Product;
 import com.wuxincheng.zhuanlemei.service.CollectService;
 import com.wuxincheng.zhuanlemei.service.CollectUserService;
+import com.wuxincheng.zhuanlemei.service.FundMarketService;
 import com.wuxincheng.zhuanlemei.service.ProductService;
 import com.wuxincheng.zhuanlemei.util.Constants;
 import com.wuxincheng.zhuanlemei.util.Validation;
@@ -43,6 +45,9 @@ public class CollectController extends BaseController {
 	
 	@Autowired
 	private CollectUserService collectUserService;
+	
+	@Autowired
+	private FundMarketService fundMarketService;
 	
 	@RequestMapping(value = "/list")
 	public String list(Model model, HttpServletRequest request) {
@@ -127,6 +132,7 @@ public class CollectController extends BaseController {
 			logger.debug("详细显示失败：榜单不存在 collectid={}", collectid);
 			return "redirect:list";
 		}
+		request.setAttribute("collect", collect);
 		
 		String userid = null;
 		
@@ -144,8 +150,9 @@ public class CollectController extends BaseController {
 		queryMap.put("userid", userid);
 		List<Product> products = productService.queryProductsByCollectid(queryMap);
 		
-		request.setAttribute("products", products);
-		request.setAttribute("collect", collect);
+		// 关联查询所有基金信息
+		List<FundMarket> fundMarkets = fundMarketService.queryByProducts(products);
+		request.setAttribute("fundMarkets", fundMarkets);
 		
 		return "collect/detail";
 	}
