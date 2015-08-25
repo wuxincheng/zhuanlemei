@@ -66,21 +66,21 @@
   <!-- 每天凌晨一点执行 -->
   <!-- 生成任务 -->
   <task:scheduled-tasks scheduler="taskServiceScheduler">
-    <task:scheduled ref="taskService" method="createFetchTask" cron="0 30 01 * * ?" />
+    <task:scheduled ref="taskService" method="createFetchTask" cron="0 50 01 * * ?" />
   </task:scheduled-tasks>
   <task:scheduler id="taskServiceScheduler" pool-size="10" />
 
   <!-- 每天凌晨两点执行 -->
   <!-- 抓取基金行情信息列表任务 -->
   <task:scheduled-tasks scheduler="howBuyFetchTaskServiceScheduler">
-    <task:scheduled ref="howBuyFetchTaskService" method="fundMarketInfoTask" cron="0 30 03 * * ?" />
+    <task:scheduled ref="howBuyFetchTaskService" method="fundMarketInfoTask" cron="0 15 02 * * ?" />
   </task:scheduled-tasks>
   <task:scheduler id="howBuyFetchTaskServiceScheduler" pool-size="10" />
 
   <!-- 每天凌晨两点执行 -->
   <!-- 抓取基金行情详细信息任务 -->
   <task:scheduled-tasks scheduler="howBuyFetchTaskServiceScheduler">
-    <task:scheduled ref="howBuyFetchTaskService" method="fundDetailInfoTask" cron="0 30 04 * * ?" />
+    <task:scheduled ref="howBuyFetchTaskService" method="fundDetailInfoTask" cron="0 30 03 * * ?" />
   </task:scheduled-tasks>
 
 </beans>

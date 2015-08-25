@@ -28,8 +28,8 @@
             <input type="hidden" id="likePage" name="likePage" value="detail" />
             <div class="fund-name">
               <span>${fundMarket.fundName} （${fundMarket.fundCode}）</span>
-              <span class="fund-type">${fund:type(fundMarket.fundType)}</span>
-              <span class="fund-type">${fund:riskLevel(fundMarket.fundRiskLevel)}</span>
+              <c:if test="${not empty fundMarket.fundType}"><span class="fund-type">${fund:type(fundMarket.fundType)}</span></c:if>
+              <c:if test="${'0' != fundMarket.fundRiskLevel}"><span class="fund-type">${fund:riskLevel(fundMarket.fundRiskLevel)}</span></c:if>
             </div>
             
             <div class="fund-market">
@@ -45,18 +45,23 @@
                   </div></td>
                   <td style="width: 30%;"><div class="fund-nav-sort">
                     <span class="fund-nv-down">
+                      <c:if test="${not empty fundMarket.fundSortThreeMonth}">
                       <span class="fund-nv-up">${fundMarket.fundSortThreeMonth}</span>
                       <span>/&nbsp;${fundMarket.fundTotalThreeMonth}</span>
+                      </c:if>
+                      <c:if test="${empty fundMarket.fundSortThreeMonth}">
+                      <span>无</span>
+                      </c:if>
                     </span><br><span>近3月排名</span>
                   </div></td>
                 </tr></table>
               </div>
               <div class="fund-nav-info">
                 <div class="fund-base">
-                  <span> 近3月：${fundMarket.fundRiseThreeMonth}&nbsp;&nbsp;</span>
-                  <span>近1年：${fundMarket.fundRiseYear}&nbsp;&nbsp;</span>
-                  <span>最新规模：${fundMarket.newScale}亿&nbsp;&nbsp;</span>
-                  <span>成立日期：${fundMarket.foundedDate}</span>
+                  <c:if test="${not empty fundMarket.fundRiseThreeMonth}"><span> 近3月：${fundMarket.fundRiseThreeMonth}&nbsp;&nbsp;</span></c:if>
+                  <c:if test="${not empty fundMarket.fundRiseYear}"><span>近1年：${fundMarket.fundRiseYear}&nbsp;&nbsp;</span></c:if>
+                  <c:if test="${not empty fundMarket.newScale}"><span>最新规模：${fundMarket.newScale}亿&nbsp;&nbsp;</span></c:if>
+                  <c:if test="${not empty fundMarket.foundedDate}"><span>成立日期：${fundMarket.foundedDate}</span></c:if>
                 </div>
               </div>
             </div>
@@ -209,7 +214,7 @@
         </section>
       </div>
     </div>
-    <aside class="aside">
+    <aside class="aside-zlm">
       <jsp:include page="sort.jsp" />
     </aside>
   </div>

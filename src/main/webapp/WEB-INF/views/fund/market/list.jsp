@@ -42,8 +42,15 @@
             </div>
             <div class="fund-info">
               <div class="fund-name"><a href="${root}/fund/market/detail?fundCode=${fundMarket.fundCode}" target="_blank">${fundMarket.fundName}（${fundMarket.fundCode}）</a></div>
-              <div class="fund-base">单位净值&nbsp;[${fundMarket.navDate}] <span class="fund-nv-up">${fundMarket.currentNav}</span><span class="fund-nv-down">（${fundMarket.rateChange}）</span></div>
-              <div class="fund-base">最新规模：${fundMarket.newScale}亿&nbsp;&nbsp;成立日期：${fundMarket.foundedDate}&nbsp;&nbsp;基金经理：${fundMarket.fundManager}</div>
+              <div class="fund-base">单位净值&nbsp;[${fundMarket.navDate}] 
+                <c:if test="${not empty fundMarket.currentNav}"><span class="fund-nv-up">${fundMarket.currentNav}</span></c:if>
+                <c:if test="${not empty fundMarket.rateChange}"><span class="fund-nv-down">（${fundMarket.rateChange}）</span></c:if>
+              </div>
+              <div class="fund-base">
+                <c:if test="${not empty fundMarket.newScale}">最新规模：${fundMarket.newScale}亿&nbsp;&nbsp;</c:if>
+                <c:if test="${not empty fundMarket.foundedDate}">成立日期：${fundMarket.foundedDate}&nbsp;&nbsp;</c:if>
+                <c:if test="${not empty fundMarket.fundManager}">基金经理：${fundMarket.fundManager}</c:if>
+              </div>
               <div class="fund-base">（${fundMarket.commentSum}人评价）</div>
             </div>
           </div>
@@ -65,7 +72,7 @@
       </div>
     </div>
     
-    <aside class="aside">
+    <aside class="aside-zlm">
       <jsp:include page="sort.jsp" />
     </aside>
     

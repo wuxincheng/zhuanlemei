@@ -89,105 +89,155 @@ public class HowBuyHelper {
 			// 基金信息
 			Map<String, String> fundInfoMap = new HashMap<String, String>();
 
-			// 基金代码
-			String fundCode = temps[3].substring(45, temps[3].length() - 10);
-			fundInfoMap.put("fundCode", fundCode);
-			logger.debug("fundCode={}", fundCode);
+			try {
+				// 基金代码
+				String fundCode = temps[3].substring(45, temps[3].length() - 10);
+				fundInfoMap.put("fundCode", fundCode);
+				logger.debug("fundCode={}", fundCode);
+			} catch (Exception e) {
+				logger.error("基金代码提取异常", e);
+				continue;
+			}
 
-			// 基金名称
-			String fundName = temps[4].substring(58, temps[4].length() - 12);
-			fundInfoMap.put("fundName", HowBuyHtmlUtil.formatTag(fundName));
-			logger.debug("fundName={}", temps[4]);
+			try {
+				// 基金名称
+				String fundName = temps[4].substring(58, temps[4].length() - 12);
+				fundInfoMap.put("fundName", HowBuyHtmlUtil.formatTag(fundName));
+				logger.debug("fundName={}", temps[4]);
+			} catch (Exception e) {
+				logger.error("基金名称提取异常", e);
+				fundInfoMap.put("fundName", null);
+			}
 
-			// 基金净值日期
-			String fundNavDate = temps[5].substring(5, temps[5].length() - 6);
-			fundInfoMap.put("fundNavDate", HowBuyHtmlUtil.formatTag(fundNavDate));
-			logger.debug("fundNavDate={}", fundNavDate);
-
-			// 基金净值
-			String fundNav = temps[6].substring(17, temps[6].length() - 8);
-			fundInfoMap.put("fundNav", HowBuyHtmlUtil.formatTag(fundNav));
-			logger.debug("fundNav={}", temps[6]);
+			try {
+				// 基金净值日期
+				String fundNavDate = temps[5].substring(5, temps[5].length() - 6);
+				fundInfoMap.put("fundNavDate", HowBuyHtmlUtil.formatTag(fundNavDate));
+				logger.debug("fundNavDate={}", fundNavDate);
+			} catch (Exception e) {
+				logger.error("基金净值日期提取异常", e);
+				fundInfoMap.put("fundNavDate", null);
+			}
+			
+			try {
+				// 基金净值
+				String fundNav = temps[6].substring(17, temps[6].length() - 8);
+				fundInfoMap.put("fundNav", HowBuyHtmlUtil.formatTag(fundNav));
+				logger.debug("fundNav={}", temps[6]);
+			} catch (Exception e) {
+				logger.error("基金净值提取异常", e);
+				fundInfoMap.put("fundNav", null);
+			}
 
 			/* 下面这几个字段要特殊处理下, 因为有--, 红色, 绿色三种显示风格 */
 
-			// 近一周
-			String fundRiseWeek = temps[7].substring(17, temps[7].length() - 6); // 无样式处理
-			if (fundRiseWeek.contains("<span class=\"cRed\">")) { // 红色样式进一步处理
-				fundRiseWeek = fundRiseWeek.replaceAll("<span class=\"cRed\">", "").replaceAll("</span>", "");
+			try {
+				// 近一周
+				String fundRiseWeek = temps[7].substring(17, temps[7].length() - 6); // 无样式处理
+				if (fundRiseWeek.contains("<span class=\"cRed\">")) { // 红色样式进一步处理
+					fundRiseWeek = fundRiseWeek.replaceAll("<span class=\"cRed\">", "").replaceAll("</span>", "");
+				}
+				if (fundRiseWeek.contains("<span class=\"cGreen\">")) { // 绿色样式进一步处理
+					fundRiseWeek = fundRiseWeek.replaceAll("<span class=\"cGreen\">", "").replaceAll("</span>", "");
+				}
+				fundInfoMap.put("fundRiseWeek", HowBuyHtmlUtil.formatTag(fundRiseWeek));
+				logger.debug("fundRiseWeek={}", temps[7]);
+			} catch (Exception e) {
+				logger.error("近一周净值提取异常", e);
+				fundInfoMap.put("fundRiseWeek", null);
 			}
-			if (fundRiseWeek.contains("<span class=\"cGreen\">")) { // 绿色样式进一步处理
-				fundRiseWeek = fundRiseWeek.replaceAll("<span class=\"cGreen\">", "").replaceAll("</span>", "");
-			}
-			fundInfoMap.put("fundRiseWeek", HowBuyHtmlUtil.formatTag(fundRiseWeek));
-			logger.debug("fundRiseWeek={}", temps[7]);
 
-			// 近一个月
-			String fundRiseMonth = temps[8].substring(17, temps[8].length() - 6);
-			if (fundRiseMonth.contains("<span class=\"cRed\">")) { // 红色样式进一步处理
-				fundRiseMonth = fundRiseMonth.replaceAll("<span class=\"cRed\">", "").replaceAll("</span>", "");
+			try {
+				// 近一个月
+				String fundRiseMonth = temps[8].substring(17, temps[8].length() - 6);
+				if (fundRiseMonth.contains("<span class=\"cRed\">")) { // 红色样式进一步处理
+					fundRiseMonth = fundRiseMonth.replaceAll("<span class=\"cRed\">", "").replaceAll("</span>", "");
+				}
+				if (fundRiseMonth.contains("<span class=\"cGreen\">")) { // 绿色样式进一步处理
+					fundRiseMonth = fundRiseMonth.replaceAll("<span class=\"cGreen\">", "").replaceAll("</span>", "");
+				}
+				fundInfoMap.put("fundRiseMonth", HowBuyHtmlUtil.formatTag(fundRiseMonth));
+				logger.debug("fundRiseMonth={}", temps[8]);
+			} catch (Exception e) {
+				logger.error("近一个月净值提取异常", e);
+				fundInfoMap.put("fundRiseMonth", null);
 			}
-			if (fundRiseMonth.contains("<span class=\"cGreen\">")) { // 绿色样式进一步处理
-				fundRiseMonth = fundRiseMonth.replaceAll("<span class=\"cGreen\">", "").replaceAll("</span>", "");
+			
+			try {
+				// 近三个月
+				String fundRiseThreeMonth = temps[9].substring(17, temps[9].length() - 6);
+				if (fundRiseThreeMonth.contains("<span class=\"cRed\">")) { // 红色样式进一步处理
+					fundRiseThreeMonth = fundRiseThreeMonth.replaceAll("<span class=\"cRed\">", "").replaceAll("</span>",
+							"");
+				}
+				if (fundRiseThreeMonth.contains("<span class=\"cGreen\">")) { // 绿色样式进一步处理
+					fundRiseThreeMonth = fundRiseThreeMonth.replaceAll("<span class=\"cGreen\">", "").replaceAll("</span>",
+							"");
+				}
+				fundInfoMap.put("fundRiseThreeMonth", HowBuyHtmlUtil.formatTag(fundRiseThreeMonth));
+				logger.debug("fundRiseThreeMonth={}", temps[9]);
+			} catch (Exception e) {
+				logger.error("近三个月净值提取异常", e);
+				fundInfoMap.put("fundRiseThreeMonth", null);
 			}
-			fundInfoMap.put("fundRiseMonth", HowBuyHtmlUtil.formatTag(fundRiseMonth));
-			logger.debug("fundRiseMonth={}", temps[8]);
-
-			// 近三个月
-			String fundRiseThreeMonth = temps[9].substring(17, temps[9].length() - 6);
-			if (fundRiseThreeMonth.contains("<span class=\"cRed\">")) { // 红色样式进一步处理
-				fundRiseThreeMonth = fundRiseThreeMonth.replaceAll("<span class=\"cRed\">", "").replaceAll("</span>",
-						"");
+			
+			try {
+				// 近半年
+				String fundRiseHalfYear = temps[10].substring(17, temps[10].length() - 6);
+				if (fundRiseHalfYear.contains("<span class=\"cRed\">")) { // 红色样式进一步处理
+					fundRiseHalfYear = fundRiseHalfYear.replaceAll("<span class=\"cRed\">", "").replaceAll("</span>", "");
+				}
+				if (fundRiseHalfYear.contains("<span class=\"cGreen\">")) { // 绿色样式进一步处理
+					fundRiseHalfYear = fundRiseHalfYear.replaceAll("<span class=\"cGreen\">", "").replaceAll("</span>", "");
+				}
+				fundInfoMap.put("fundRiseHalfYear", HowBuyHtmlUtil.formatTag(fundRiseHalfYear));
+				logger.debug("fundRiseHalfYear={}", temps[10]);
+			} catch (Exception e) {
+				logger.error("近半年净值提取异常", e);
+				fundInfoMap.put("fundRiseHalfYear", null);
 			}
-			if (fundRiseThreeMonth.contains("<span class=\"cGreen\">")) { // 绿色样式进一步处理
-				fundRiseThreeMonth = fundRiseThreeMonth.replaceAll("<span class=\"cGreen\">", "").replaceAll("</span>",
-						"");
+			
+			try {
+				// 近一年
+				String fundRiseYear = temps[11].substring(17, temps[11].length() - 6);
+				if (fundRiseYear.contains("<span class=\"cRed\">")) { // 红色样式进一步处理
+					fundRiseYear = fundRiseYear.replaceAll("<span class=\"cRed\">", "").replaceAll("</span>", "");
+				}
+				if (fundRiseYear.contains("<span class=\"cGreen\">")) { // 绿色样式进一步处理
+					fundRiseYear = fundRiseYear.replaceAll("<span class=\"cGreen\">", "").replaceAll("</span>", "");
+				}
+				fundInfoMap.put("fundRiseYear", HowBuyHtmlUtil.formatTag(fundRiseYear));
+				logger.debug("fundRiseYear={}", temps[11]);
+			} catch (Exception e) {
+				logger.error("近一年净值提取异常", e);
+				fundInfoMap.put("fundRiseYear", null);
 			}
-			fundInfoMap.put("fundRiseThreeMonth", HowBuyHtmlUtil.formatTag(fundRiseThreeMonth));
-			logger.debug("fundRiseThreeMonth={}", temps[9]);
-
-			// 近半年
-			String fundRiseHalfYear = temps[10].substring(17, temps[10].length() - 6);
-			if (fundRiseHalfYear.contains("<span class=\"cRed\">")) { // 红色样式进一步处理
-				fundRiseHalfYear = fundRiseHalfYear.replaceAll("<span class=\"cRed\">", "").replaceAll("</span>", "");
+			
+			try {
+				// 今年
+				String fundRiseThisYear = temps[12].substring(17, temps[12].length() - 6);
+				if (fundRiseThisYear.contains("<span class=\"cRed\">")) { // 红色样式进一步处理
+					fundRiseThisYear = fundRiseThisYear.replaceAll("<span class=\"cRed\">", "").replaceAll("</span>", "");
+				}
+				if (fundRiseThisYear.contains("<span class=\"cGreen\">")) { // 绿色样式进一步处理
+					fundRiseThisYear = fundRiseThisYear.replaceAll("<span class=\"cGreen\">", "").replaceAll("</span>", "");
+				}
+				fundInfoMap.put("fundRiseThisYear", HowBuyHtmlUtil.formatTag(fundRiseThisYear));
+				logger.debug("fundRiseThisYear={}", temps[12]);
+			} catch (Exception e) {
+				logger.error("今年净值提取异常", e);
+				fundInfoMap.put("fundRiseThisYear", null);
 			}
-			if (fundRiseHalfYear.contains("<span class=\"cGreen\">")) { // 绿色样式进一步处理
-				fundRiseHalfYear = fundRiseHalfYear.replaceAll("<span class=\"cGreen\">", "").replaceAll("</span>", "");
-			}
-			fundInfoMap.put("fundRiseHalfYear", HowBuyHtmlUtil.formatTag(fundRiseHalfYear));
-			logger.debug("fundRiseHalfYear={}", temps[10]);
-
-			// 近一年
-			String fundRiseYear = temps[11].substring(17, temps[11].length() - 6);
-			if (fundRiseYear.contains("<span class=\"cRed\">")) { // 红色样式进一步处理
-				fundRiseYear = fundRiseYear.replaceAll("<span class=\"cRed\">", "").replaceAll("</span>", "");
-			}
-			if (fundRiseYear.contains("<span class=\"cGreen\">")) { // 绿色样式进一步处理
-				fundRiseYear = fundRiseYear.replaceAll("<span class=\"cGreen\">", "").replaceAll("</span>", "");
-			}
-			fundInfoMap.put("fundRiseYear", HowBuyHtmlUtil.formatTag(fundRiseYear));
-			logger.debug("fundRiseYear={}", temps[11]);
-
-			// 今年
-			String fundRiseThisYear = temps[12].substring(17, temps[12].length() - 6);
-			if (fundRiseThisYear.contains("<span class=\"cRed\">")) { // 红色样式进一步处理
-				fundRiseThisYear = fundRiseThisYear.replaceAll("<span class=\"cRed\">", "").replaceAll("</span>", "");
-			}
-			if (fundRiseThisYear.contains("<span class=\"cGreen\">")) { // 绿色样式进一步处理
-				fundRiseThisYear = fundRiseThisYear.replaceAll("<span class=\"cGreen\">", "").replaceAll("</span>", "");
-			}
-			fundInfoMap.put("fundRiseThisYear", HowBuyHtmlUtil.formatTag(fundRiseThisYear));
-			logger.debug("fundRiseThisYear={}", temps[12]);
-
+			
 			// 基金类型
 			fundInfoMap.put("fundType", fundType);
 
-			logger.info("成功抓取一条行情记录 fundCode={}, fundNavDate={}", fundCode, fundNavDate);
+			logger.info("成功抓取一条行情记录 fundInfoMap={}", fundInfoMap);
 
 			fundInfos.add(fundInfoMap);
 		}
 
-		logger.info("size={}", fundInfos.size());
+		logger.info("成功抓取size={}条行情信息", fundInfos.size());
 
 		return fundInfos;
 	}

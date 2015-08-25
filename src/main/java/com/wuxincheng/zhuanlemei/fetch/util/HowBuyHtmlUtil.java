@@ -1,5 +1,7 @@
 package com.wuxincheng.zhuanlemei.fetch.util;
 
+import org.springframework.util.StringUtils;
+
 /**
  * 好买网抓取信息处理工具类
  * 
@@ -8,6 +10,10 @@ package com.wuxincheng.zhuanlemei.fetch.util;
  * 
  */
 public class HowBuyHtmlUtil {
+	
+	public static void main(String[] args) {
+		System.out.println(formatTag("--"));
+	}
 
 	/**
 	 * "--"全部处理为null
@@ -16,11 +22,14 @@ public class HowBuyHtmlUtil {
 	 * @return
 	 */
 	public static String formatTag(String format) {
+		if (StringUtils.isEmpty(format)) {
+			return null;
+		}
 		if (format.contains("--")) {
-			format = null;
+			return null;
 		}
 		if (format.contains("span")) {
-			format = null;
+			return null;
 		}
 		if (format.contains("</") && format.length() == 7) {
 			format = format.substring(0, 5);
@@ -110,10 +119,6 @@ public class HowBuyHtmlUtil {
 			newScale = null;
 		}
 		return newScale;
-	}
-
-	public static void main(String[] args) {
-		System.out.println(formatNewScale("415.35亿</span></li>"));
 	}
 
 	/**

@@ -67,6 +67,7 @@ public class HowBuyFetchTaskService {
 			logger.info("已经抓取到基金行情信息列表，准备入库");
 		} catch (Exception e) {
 			logger.error("抓取基金行情信息出现异常", e);
+			return;
 		}
 
 		String currentDateTime = DateUtil.getCurrentDate(new Date(), "yyyy-MM-dd HH:mm:ss");

@@ -141,13 +141,15 @@
   </select>
   
   <select id="queryPager" resultMap="FundMarketMapping" parameterClass="java.util.Map">
-    SELECT * FROM TFundMarket WHERE fundtype != '5' 
+    SELECT * FROM TFundMarket 
+    WHERE fundtype != '5' AND navdate IS NOT NULL OR currentnav IS NOT NULL
     ORDER BY likescore DESC, unlikescore DESC, likeSum DESC, unlikesum DESC 
     LIMIT #start#, #end#
   </select>
   
   <select id="queryAll" resultMap="FundMarketMapping">
-    SELECT * FROM TFundMarket WHERE fundtype != '5' 
+    SELECT * FROM TFundMarket 
+    WHERE fundtype != '5' AND navdate IS NOT NULL OR currentnav IS NOT NULL
     ORDER BY likescore DESC, unlikescore DESC, likeSum DESC, unlikesum DESC 
   </select>
 

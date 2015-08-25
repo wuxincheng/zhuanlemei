@@ -1023,8 +1023,7 @@ input:focus,textarea:focus,select:focus {
 }
 
 .featured {
-	padding: 0 10px;
-	margin-bottom: 50px;
+	margin-bottom: 30px;
 	text-align: center
 }
 
