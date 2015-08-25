@@ -115,12 +115,6 @@
         $(".fundPanel .items a").eq(fundIndex).addClass("hover").focus();
       };
 
-      /*var funcPage = function(i) {
-        var position = $(".fundPanel .items a.hover").position();
-        if (position.top < 0) {          
-        }
-      };*/
-
       $("#fundClear").click(function() {
         $("#fundName").val("");
         $("[name=fundCode]").val("");
@@ -151,12 +145,7 @@
         case 40://下
           funcKey(1);
           return false;
-          /*case 33://PageUp
-            funcPage(-1);
-          case 34://PageDown
-            funcPage(1);*/
         }
-
       });
       
       var keyword = $("#fundName").val();

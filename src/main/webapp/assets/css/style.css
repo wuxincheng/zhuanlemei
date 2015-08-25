@@ -623,3 +623,75 @@ html.no-touch .zm-item-vote-count:hover {
   margin: 0;
 }
 
+
+/**  */
+.keywordPanel {
+  position: relative;
+  display: inline-block;
+}
+
+.keywordPanel .items {
+  position: absolute;
+  width: 340px;
+  border: 1px solid #ccc;
+  background: #fff;
+  left: -180px;
+  top: -15px;
+  padding: 5px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 5px;
+  display: none;
+  z-index: 1000;
+}
+
+.keywordPanel .items ul {
+  list-style-type: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 330px;
+  max-height: 200px;
+}
+
+.keywordPanel .items li {
+  display: inline-block;
+  padding: 0 5px;
+}
+
+.keywordPanel .items li a {
+  display: inline-block;
+  width: 100%;
+  padding: 3px 5px;
+  text-decoration: none;
+  color: #999;
+}
+
+.keywordPanel .items li a:focus {
+  outline: none;
+}
+
+.keywordPanel .items li a.hover {
+  background: #eee;
+  color: #c00;
+  font-weight: bold;
+}
+
+.keywordPanel .items li .fn {
+  display: inline-block;
+  width: 200px;
+}
+
+.keywordPanel .items li .fc {
+  display: inline-block;
+  width: 70px;
+}
+
+.keywordPanel .items .selected {
+  color: #c00;
+  font-weight: bold;
+}
+
+.keywordPanel .btn {
+  margin: 0;
+}
+

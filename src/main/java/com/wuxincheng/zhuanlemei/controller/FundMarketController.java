@@ -52,7 +52,7 @@ public class FundMarketController extends BaseController {
 	private String currentPage;
 
 	@RequestMapping(value = "/list")
-	public String list(Model model, HttpServletRequest request, String currentPage) {
+	public String list(Model model, HttpServletRequest request, String currentPage, String keyword) {
 		logger.info("显示基金行情列表，当前页面 page={}", this.currentPage);
 		requestMessageProcess(request);
 
@@ -72,11 +72,16 @@ public class FundMarketController extends BaseController {
 			start = 0;
 			end = pageSize;
 		}
-
+		
+		if (StringUtils.isEmpty(keyword)) {
+			keyword = "";
+		}
+		
 		// 封装查询条件
 		Map<String, Object> queryParam = new HashMap<String, Object>();
 		queryParam.put("start", start);
 		queryParam.put("end", end);
+		queryParam.put("keyword", keyword);
 
 		Map<String, Object> pager = fundMarketService.queryPager(queryParam, Constants.DATE_TYPE_CACHE);
 
@@ -103,6 +108,7 @@ public class FundMarketController extends BaseController {
 		}
 
 		getTopRedSortList(model); // 查询红绿榜
+		model.addAttribute("keyword", keyword);
 
 		return "fund/market/list";
 	}

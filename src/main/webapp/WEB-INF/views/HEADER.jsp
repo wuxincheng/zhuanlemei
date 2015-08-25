@@ -64,12 +64,15 @@
         </ul>
       </nav>
       
-      <nav class="navigation text-center">
+      <nav class="navigation">
         <ul>
           <li>
             <div class="hunt">
               <form action="${root}/fund/market/list" method="post">
-                <input id="keyword" name="keyword" class="main-hunt_input" type="text" placeholder="查找基金产品、基金代码" />
+                <input id="keyword" name="keyword" class="main-hunt_input" value="${keyword}" type="text" placeholder="查找基金公司、产品或代码" />
+                <div class="keywordPanel">
+                  <div class="items"></div>
+                </div>
                 <input class="main-hunt_button g-search" type="submit">
               </form>  
             </div>

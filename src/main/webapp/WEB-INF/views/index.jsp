@@ -20,11 +20,46 @@
   <jsp:include page="HEADER.jsp" />
   <div class="content row cf">
     <div class="forms">
+      <div class="hotcollect">
+        <div>热门榜单</div>
+        <div class="morehot"><a href="${root}/collect/list">更多>></a></div>
+      </div>
+      <section class="list" style="width: 620px; margin-left: -8px;">
+        <ul class="list-grid cf">
+          <c:if test="${not empty collects}">
+          <c:forEach items="${collects}" var="collect">
+          <li class="list-item">
+            <a class="cover" href="${root}/collect/detail?collectid=${collect.collectid}" target="_blank" style="
+              <c:if test="${empty collect.bgColor}">background-image: url(${root}/collect/coverbg/${collect.coverImgPath});</c:if>
+              <c:if test="${not empty collect.bgColor}">background-color: #${collect.bgColor};</c:if>">
+              <div class="cover-meta">
+                <h3>${collect.collectName}</h3>
+                <ul class="list-meta">
+                  <li><span>${collect.productSum}</span>个产品</li>
+                  <li><span class="liked-count">${collect.collectSum}</span>人收藏</li>
+                </ul>
+              </div>
+            </a>
+            <a class="list-fav-trigger" data-method="put" data-remote="true" href="/posts/collections/1/like" rel="nofollow">
+              <span class="list-fav "></span>
+            </a>
+          </li>
+          </c:forEach>
+          </c:if>
+          <c:if test="${empty collects}">
+          </c:if>
+        </ul>
+      </section>
+      
+      <div class="hotfund">
+        <div>热门产品</div>
+        <div class="morehot"><a href="${root}/fund/market/list">更多>></a></div>
+      </div>
       <div class="main-panel">
         <input type="hidden" id="likePage" name="likePage" value="list" />
         <c:choose>
-        <c:when test="${not empty pager.fundMarkets}">
-        <c:forEach items="${pager.fundMarkets}" var="fundMarket">
+        <c:when test="${not empty fundMarkets}">
+        <c:forEach items="${fundMarkets}" var="fundMarket">
           <div class="fund-panel">
             <div class="zm-votebar goog-scrollfloater">
               <button class="up" aria-pressed="false" title="赞同"
@@ -48,16 +83,6 @@
             </div>
           </div>
         </c:forEach>
-        
-        <div class="pagination cf more-notes">
-          <a <c:if test="${pager.currentPage > 1}">href="${root}/fund/market/list?currentPage=1"</c:if>>首页</a>
-          <a <c:if test="${pager.currentPage > 1}">href="${root}/fund/market/list?currentPage=${pager.currentPage-1}"</c:if>>上一页</a>
-          <a <c:if test="${pager.currentPage < pager.lastPage}">href="${root}/fund/market/list?currentPage=${pager.currentPage+1}"</c:if>>下一页</a>
-          <a <c:if test="${pager.currentPage < pager.lastPage}">href="${root}/fund/market/list?currentPage=${pager.lastPage}"</c:if>>尾页</a>
-          &nbsp;&nbsp;
-          <strong>${pager.currentPage}&nbsp;/&nbsp;${pager.lastPage}</strong>
-        </div>
-        
         </c:when>
         <c:otherwise>
         </c:otherwise>

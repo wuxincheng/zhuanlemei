@@ -19,6 +19,7 @@
 <body id="home" class="notes-index">
   <jsp:include page="../../HEADER.jsp" />
   <div class="content row cf">
+    <c:if test="${not empty keyword}"><div class="keyword">搜索关键字：<span class="fund-nv-up">${keyword}</span></div></c:if>
     <div class="forms">
       <div class="main-panel">
         <input type="hidden" id="likePage" name="likePage" value="list" />
@@ -57,10 +58,18 @@
         </c:forEach>
         
         <div class="pagination cf more-notes">
-          <a <c:if test="${pager.currentPage > 1}">href="${root}/fund/market/list?currentPage=1"</c:if>>首页</a>
-          <a <c:if test="${pager.currentPage > 1}">href="${root}/fund/market/list?currentPage=${pager.currentPage-1}"</c:if>>上一页</a>
-          <a <c:if test="${pager.currentPage < pager.lastPage}">href="${root}/fund/market/list?currentPage=${pager.currentPage+1}"</c:if>>下一页</a>
-          <a <c:if test="${pager.currentPage < pager.lastPage}">href="${root}/fund/market/list?currentPage=${pager.lastPage}"</c:if>>尾页</a>
+          <a <c:if test="${pager.currentPage > 1}">
+          href="${root}/fund/market/list?currentPage=1&keyword=${keyword}"
+          </c:if>>首页</a>
+          <a <c:if test="${pager.currentPage > 1}">
+          href="${root}/fund/market/list?currentPage=${pager.currentPage-1}&keyword=${keyword}"
+          </c:if>>上一页</a>
+          <a <c:if test="${pager.currentPage < pager.lastPage}">
+          href="${root}/fund/market/list?currentPage=${pager.currentPage+1}&keyword=${keyword}"
+          </c:if>>下一页</a>
+          <a <c:if test="${pager.currentPage < pager.lastPage}">
+          href="${root}/fund/market/list?currentPage=${pager.lastPage}&keyword=${keyword}"
+          </c:if>>尾页</a>
           &nbsp;&nbsp;
           <strong>${pager.currentPage}&nbsp;/&nbsp;${pager.lastPage}</strong>
         </div>

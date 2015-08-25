@@ -537,7 +537,32 @@ opacity
   padding: 0;
   position: absolute;
   top: 50%;
-  margin-left: 90px;
+  margin-left: 220px;
+}
+
+.hotcollect {
+  padding: 0px 0px 20px 0px;
+  margin: 0px 0px 30px 0px;
+  font-size: 22px;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.hotfund {
+  padding: 0px 0px 20px 0px;
+  margin: 50px 0px 30px 0px;
+  font-size: 22px;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.morehot {
+  font-size: 14px;
+  float: right;
+  margin-top: -20px;
+}
+
+.keyword {
+  font-size: 14px;
+  margin-top: -10px;
 }
 
 .g-search {
