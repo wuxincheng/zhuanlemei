@@ -115,7 +115,7 @@
                         var fundCode = n.fundCode.replace(keyword, "<span class='selected'>" + keyword
                           + "</span>");
                         $(".keywordPanel .items ul").append(
-                          "<li><a href='javascript:void(0)' fundCode='" + n.fundCode
+                          "<li><a target='_blank' href='${root}/fund/market/detail?fundCode="+n.fundCode+"' fundCode='" + n.fundCode
                             + "' hidefocus='true'><span class='fn'>" + fundName
                             + "</span><span class='fc'>" + fundCode + "</span></a></li>");
                       });

@@ -59,7 +59,7 @@
       <nav class="nav-title">
         <ul>
           <li><a class="main-nav " href="${root}/index">首页</a></li>
-          <li><a class="main-nav " href="${root}/fund/market/list">行情</a></li>
+          <li><a class="main-nav " href="${root}/fund/market/list">产品</a></li>
           <li><a class="main-nav " href="${root}/collect/list">榜单</a></li>
         </ul>
       </nav>
@@ -69,7 +69,8 @@
           <li>
             <div class="hunt">
               <form action="${root}/fund/market/list" method="post">
-                <input id="keyword" name="keyword" class="main-hunt_input" value="${keyword}" type="text" placeholder="查找基金公司、产品或代码" />
+                <input id="keyword" name="keyword" class="main-hunt_input" value="${keyword}" 
+                    type="text" placeholder="查找基金公司、产品或代码" autocomplete="off" />
                 <div class="keywordPanel">
                   <div class="items"></div>
                 </div>
