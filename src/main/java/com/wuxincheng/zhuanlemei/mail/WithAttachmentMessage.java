@@ -78,7 +78,8 @@ public class WithAttachmentMessage {
 
 		// 将邮件中各个部分组合到一个"mixed"型的 MimeMultipart 对象
 		MimeMultipart allPart = new MimeMultipart("mixed");
-		allPart.addBodyPart(attachment01);
+		allPart.addBodyPart(attachment01); 
+		// 可以放多个附件
 		allPart.addBodyPart(content);
 
 		// 将上面混合型的 MimeMultipart 对象作为邮件内容并保存
