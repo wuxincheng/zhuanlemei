@@ -1005,28 +1005,28 @@ input:focus,textarea:focus,select:focus {
 
 .btn {
 	display: inline-block;
-	border-radius: 3px
+	border-radius: 3px;
 }
 
 .content {
-	padding-top: 60px;
+	padding-top: 50px;
 	padding-bottom: 0px;
 	min-height: 400px;
-	position: relative
+	position: relative;
 }
 
 .subcontent {
 	padding-top: 30px;
 	padding-bottom: 60px;
 	min-height: 400px;
-	position: relative
+	position: relative;
 }
 
 .main-header {
-	margin-bottom: 60px;
+	margin-bottom: 30px;
 	line-height: 40px;
 	padding-left: 10px;
-	padding-right: 30px
+	padding-right: 0px;
 }
 
 .submit-btn {
@@ -1039,21 +1039,21 @@ input:focus,textarea:focus,select:focus {
 
 .submit-btn:hover {
 	background: #2a5894;
-	color: #fff
+	color: #fff;
 }
 
 .post {
 	position: relative;
-	margin-bottom: 50px
+	margin-bottom: 50px;
 }
 
 .featured {
 	margin-bottom: 30px;
-	text-align: center
+	text-align: center;
 }
 
 .featured h3 {
-	font-size: 1.125rem
+	font-size: 1.125rem;
 }
 
 .featured-item {
@@ -1066,11 +1066,11 @@ input:focus,textarea:focus,select:focus {
 	margin-bottom: 10px;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
-	background-size: cover
+	background-size: cover;
 }
 
 .featured-item:hover {
-	color: #fff
+	color: #fff;
 }
 
 .featured-item:before {
@@ -1084,25 +1084,25 @@ input:focus,textarea:focus,select:focus {
 	background-image: -webkit-linear-gradient(-90deg, rgba(0, 0, 0, 0) 0%,
 		rgba(0, 0, 0, 0.8) 100%);
 	background-image: linear-gradient(-180deg, rgba(0, 0, 0, 0) 0%,
-		rgba(0, 0, 0, 0.8) 100%)
+		rgba(0, 0, 0, 0.8) 100%);
 }
 
 @media screen and (min-width: 46.9375em) {
 	.featured-2col {
 		width: 350px;
-		margin-bottom: 0
+		margin-bottom: 0;
 	}
 }
 
 @media screen and (min-width: 46.9375em) {
 	.featured-left {
-		float: left
+		float: left;
 	}
 }
 
 @media screen and (min-width: 46.9375em) {
 	.featured-right {
-		float: right
+		float: right;
 	}
 }
 
@@ -1116,11 +1116,11 @@ input:focus,textarea:focus,select:focus {
 }
 
 .product .product-item:hover {
-	background: none
+	background: none;
 }
 
 .product-item {
-	position: relative
+	position: relative;
 }
 
 .product-item:hover {
@@ -1128,32 +1128,32 @@ input:focus,textarea:focus,select:focus {
 }
 
 .product-item .product-mark {
-	margin-left: 4px
+	margin-left: 4px;
 }
 
 .product-item .product-avatar {
-	margin-left: 15px
+	margin-left: 15px;
 }
 
 @media screen and (max-width: 30em) {
 	.product-mark {
-		display: none
+		display: none;
 	}
 }
 
 .product-meta li {
 	float: left;
-	height: 44px
+	height: 44px;
 }
 
 .product-avatar {
 	display: inline-block;
-	position: relative
+	position: relative;
 }
 
 .upvote,.post-url,.user-image {
 	z-index: 1;
-	position: relative
+	position: relative;
 }
 
 .product-link {
@@ -1161,7 +1161,7 @@ input:focus,textarea:focus,select:focus {
 	width: 100%;
 	height: 100%;
 	top: 0;
-	left: 0
+	left: 0;
 }
 
 .date {
@@ -1172,7 +1172,7 @@ input:focus,textarea:focus,select:focus {
 .date small {
 	line-height: 44px;
 	font-size: 1.125rem;
-	font-weight: 600
+	font-weight: 600;
 }
 
 .cal {
@@ -1184,46 +1184,46 @@ input:focus,textarea:focus,select:focus {
 	height: 48px;
 	background: #2a5894;
 	color: #fff;
-	text-align: center
+	text-align: center;
 }
 
 .cal i {
 	position: relative;
 	font-style: normal;
-	display: block
+	display: block;
 }
 
 .month {
 	text-transform: uppercase;
 	font-size: 0.625rem;
-	top: 2px
+	top: 2px;
 }
 
 .day {
 	font-weight: 600;
-	font-size: 1.25rem
+	font-size: 1.25rem;
 }
 
 .posts-group {
 	position: relative;
-	padding: 15px 10px
+	padding: 15px 10px;
 }
 
 .post-url {
 	font-weight: 600;
-	font-size: 1.125rem
+	font-size: 1.125rem;
 }
 
 .post-url:visited {
-	color: #888888
+	color: #888888;
 }
 
 .post-url:hover {
-	color: #1C3B64
+	color: #1C3B64;
 }
 
 .upvote {
-	float: left
+	float: left;
 }
 
 .upvote-link {
@@ -1238,19 +1238,19 @@ input:focus,textarea:focus,select:focus {
 	background: #fff;
 	border: 1px solid #E0E3E6;
 	-webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
-	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1)
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
 }
 
 .upvote-link:hover {
-	border: 1px solid #2a5894
+	border: 1px solid #2a5894;
 }
 
 .upvote-link:hover .upvote-arrow {
-	background-position: -16px 0
+	background-position: -16px 0;
 }
 
 .upvote-link.voted {
-	border: 1px solid #2a5894
+	border: 1px solid #2a5894;
 }
 
 .upvote-arrow {
@@ -2464,9 +2464,9 @@ body {
 
 @media screen and (min-width: 48.0625em) {
 	.list {
-		width: 980px;
+		width: 1000px;
 		position: relative;
-		left: -5px
+		left: -30px
 	}
 }
 
@@ -2504,7 +2504,7 @@ body {
 .list-item {
 	float: left;
 	position: relative;
-	padding: 0 15px 30px
+	padding: 0 10px 30px 30px;
 }
 
 .cover-meta {

@@ -24,7 +24,7 @@
         <div>热门榜单</div>
         <div class="morehot"><a href="${root}/collect/list">更多>></a></div>
       </div>
-      <section class="list" style="width: 620px; margin-left: -8px;">
+      <section class="list" style="width: 620px;">
         <ul class="list-grid cf">
           <c:if test="${not empty collects}">
           <c:forEach items="${collects}" var="collect">

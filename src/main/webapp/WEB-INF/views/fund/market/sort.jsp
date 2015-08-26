@@ -6,19 +6,6 @@
 <!DOCTYPE html>
 <html>
 
-<section class="featured cf">
-  <a class="featured-item" href="http://www.howbuy.com/mobile/zsjj/"
-    style="background-image: url(${root}/assets/images/ad/ad1.png)"
-    target="_blank">
-    <div class="featured-meta">
-      <h3>掌上基金</h3>
-      <p>人人都是基金经理</p>
-    </div>
-  </a>
-</section>
-
-<p>&nbsp;</p>
-
 <div class="fund-sort">
   <span class="fund-nv-up">红榜</span>
 </div>
@@ -41,5 +28,14 @@
     <a href="${root}/fund/market/detail?fundCode=${topGreenMarket.fundCode}" target="_blank">${s.index+1}、${topGreenMarket.fundName}</a>
   </div>
 </c:forEach>
+
+<p>&nbsp;</p>
+
+<section class="featured cf" style="margin-top: 30px;">
+  <a class="featured-item" href="http://www.howbuy.com/topic/hlwyy.html"
+    style="background-image: url(${root}/assets/images/ad/ad-left-bottom.jpg)"
+    target="_blank">
+  </a>
+</section>
 
 </html>

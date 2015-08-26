@@ -116,6 +116,8 @@
     </div>
   </header>
   
+  <!-- 
+  
   <div class="row">
     <c:if test="${not empty success}">
     <div id="msg-alert" class="alert alert-success fade in row" style="margin-top: 30px;">
@@ -141,6 +143,7 @@
     </div>
     </c:if>
   </div>
+   -->
   
   <script type="text/javascript">
     $(document).ready(function(){

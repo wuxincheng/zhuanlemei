@@ -6,7 +6,15 @@
 <head>
 </head>
 <body>
-
+  
+  <!-- 
+  <div class="cf row">
+    <a href="http://www.howbuy.com/mobile/zsjj/" target="_blank">
+      <img src="${root}/assets/images/ad/ad-bar.jpg" />
+    </a>
+  </div>
+   -->
+  
   <footer class="footer">
     <div class="text-center">
       <div class="copyright">
