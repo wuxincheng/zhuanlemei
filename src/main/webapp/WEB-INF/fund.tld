@@ -19,5 +19,11 @@
     <function-class>com.wuxincheng.zhuanlemei.tag.FundTag</function-class>
     <function-signature>java.lang.String fundTypeName(java.lang.String)</function-signature>
   </function>
+  
+  <function>
+    <name>huntHigh</name>
+    <function-class>com.wuxincheng.zhuanlemei.tag.FundTag</function-class>
+    <function-signature>java.lang.String huntHigh(java.lang.String, java.lang.String)</function-signature>
+  </function>
 
 </taglib>

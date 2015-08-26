@@ -176,6 +176,60 @@ public class FundMarketService {
 	}
 
 	/**
+	 * 查询所有的基金公司
+	 * 
+	 * @return
+	 */
+	public List<String> queryFundCompanys(){
+		List<String> fundCompanys = new ArrayList<String>();
+		
+		// 从缓存中读取行情信息
+		List<FundMarket> fundMarkets = getCacheFundMarkets();
+		for (FundMarket fundMarket : fundMarkets) {
+			boolean flag = false;
+			if (StringUtils.isNotEmpty(fundMarket.getFundCompany())) {
+				for (String fundCompany : fundCompanys) {
+					if (fundMarket.getFundCompany().equals(fundCompany)) {
+						flag = true;
+					}
+				}
+			}
+			if (!flag) {
+				fundCompanys.add(fundMarket.getFundCompany());
+			}
+		}
+		
+		return fundCompanys;
+	}
+	
+	/**
+	 * 查询所有的基金经理
+	 * 
+	 * @return
+	 */
+	public List<String> queryFundManagers(){
+		List<String> fundManagers = new ArrayList<String>();
+		
+		// 从缓存中读取行情信息
+		List<FundMarket> fundMarkets = getCacheFundMarkets();
+		for (FundMarket fundMarket : fundMarkets) {
+			boolean flag = false;
+			if (StringUtils.isNotEmpty(fundMarket.getFundManager())) {
+				for (String fundManager : fundManagers) {
+					if (fundMarket.getFundManager().equals(fundManager)) {
+						flag = true;
+					}
+				}
+			}
+			if (!flag) {
+				fundManagers.add(fundMarket.getFundManager());
+			}
+		}
+		
+		return fundManagers;
+	}
+	
+	/**
 	 * 根据关键字查询详细基金信息
 	 * 
 	 * @param keyword
@@ -209,7 +263,7 @@ public class FundMarketService {
 				}
 			}
 			
-			// 过滤基金名称fundName
+			// 过滤基金公司fundCompany
 			if (StringUtils.isNotEmpty(fundMarket.getFundCompany())) {
 				if (fundMarket.getFundCompany().indexOf(keyword) >= 0) {
 					funds.add(fundMarket);

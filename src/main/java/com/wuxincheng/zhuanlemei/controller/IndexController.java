@@ -56,6 +56,8 @@ public class IndexController extends BaseController {
 		List<FundMarket> topGreenMarkets = fundMarketService.queryGreenTopHot(Constants.DATE_TYPE_CACHE);
 		model.addAttribute("topGreenMarkets", topGreenMarkets);
 		
+		fundMarketService.queryFundCompanys();
+		
 		return "index";
 	}
 	

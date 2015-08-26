@@ -30,17 +30,8 @@ public class FundInfoController {
 	@RequestMapping(value = "/query")
 	@ResponseBody
 	public List<Map<String, String>> query(String keyword) {
-		logger.info("根据关键字异步查询基金信息 keyword={}", keyword);
+		logger.debug("根据关键字异步查询基金信息 keyword={}", keyword);
 		return fundMarketService.queryFunds(keyword);
-	}
-	
-	@RequestMapping(value = "/search")
-	public String search(String keyword) {
-		logger.info("根据关键字同步查询基金信息 keyword={}", keyword);
-		
-		// 
-		
-		return "/fund/market/list";
 	}
 
 }

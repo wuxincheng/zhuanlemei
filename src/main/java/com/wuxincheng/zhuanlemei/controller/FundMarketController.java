@@ -53,7 +53,7 @@ public class FundMarketController extends BaseController {
 
 	@RequestMapping(value = "/list")
 	public String list(Model model, HttpServletRequest request, String currentPage, String keyword) {
-		logger.info("显示基金行情列表，当前页面 page={}", this.currentPage);
+		logger.info("显示基金行情列表，当前页面 page={}，keyword={}", this.currentPage, keyword);
 		requestMessageProcess(request);
 
 		if (Validation.isBlank(currentPage) || !Validation.isInt(currentPage, "0+")) {

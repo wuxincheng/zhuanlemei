@@ -1,6 +1,6 @@
 package com.wuxincheng.zhuanlemei.tag;
 
-import org.springframework.util.StringUtils;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * 基金标签处理
@@ -89,6 +89,26 @@ public class FundTag {
 		}
 		
 		return null;
+	}
+	
+	/**
+	 * 处理搜索关键字高不]亮显示
+	 * 
+	 * @param fundName
+	 * @param keyword
+	 * @return
+	 */
+	public static String huntHigh(String fundName, String keyword){
+		if (StringUtils.isEmpty(fundName)) {
+			return null;
+		}
+		
+		if (StringUtils.isEmpty(keyword)) {
+			return fundName;
+		}
+		// 处理样式
+		String highKeyword = "<span class='hunt-high'>"+keyword+"</span>";
+		return fundName.replaceAll(keyword, highKeyword);
 	}
 	
 }

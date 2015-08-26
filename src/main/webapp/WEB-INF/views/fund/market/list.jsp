@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="hfn" uri="/WEB-INF/hfn.tld"%>
+<%@ taglib prefix="fund" uri="/WEB-INF/fund.tld"%>
 <c:set var="root" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
@@ -42,7 +43,11 @@
               </button>
             </div>
             <div class="fund-info">
-              <div class="fund-name"><a href="${root}/fund/market/detail?fundCode=${fundMarket.fundCode}" target="_blank">${fundMarket.fundName}（${fundMarket.fundCode}）</a></div>
+              <div class="fund-name">
+                <a href="${root}/fund/market/detail?fundCode=${fundMarket.fundCode}" target="_blank">
+                ${fund:huntHigh(fundMarket.fundName, keyword)}
+                (${fund:huntHigh(fundMarket.fundCode, keyword)})
+                </a></div>
               <div class="fund-base">单位净值&nbsp;[${fundMarket.navDate}] 
                 <c:if test="${not empty fundMarket.currentNav}"><span class="fund-nv-up">${fundMarket.currentNav}</span></c:if>
                 <c:if test="${not empty fundMarket.rateChange}"><span class="fund-nv-down">（${fundMarket.rateChange}）</span></c:if>
@@ -76,6 +81,9 @@
         
         </c:when>
         <c:otherwise>
+          <div id="msg-alert" class="alert alert-info fade in row" style="margin-top: 30px;">
+            <h4>没有查询到相关的基金信息</h4>
+          </div>
         </c:otherwise>
         </c:choose>
       </div>

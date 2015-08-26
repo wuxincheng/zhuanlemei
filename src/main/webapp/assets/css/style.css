@@ -695,3 +695,8 @@ html.no-touch .zm-item-vote-count:hover {
   margin: 0;
 }
 
+
+/**  */
+.hunt-high {
+  color: #C00;
+}
