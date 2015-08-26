@@ -115,7 +115,7 @@ public class TencentLoginController {
 		} else {
 			logger.info("用户授权成功");
 			model.addAttribute(Constants.MSG_SUCCESS, "用户授权成功");
-			return "redirect:/fund/market/list";
+			return "redirect:/index";
 		}
 	}
 

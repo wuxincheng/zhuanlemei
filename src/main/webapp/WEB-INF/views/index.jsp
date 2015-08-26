@@ -12,8 +12,8 @@
 <link href="${root}/assets/img/logo/logoEN.png" type="image/x-icon" rel="icon" />
 <link href="${root}/assets/img/logo/logoEN.png" type="image/x-icon" rel="shortcut icon" />
 
-<meta name="description" content="赚了没-TOP|找到你喜欢的理财产品，榜单|赚了没-TOP">
-<meta name="keywords" content="赚了没-TOP|找到你喜欢的理财产品，榜单|赚了没-TOP">
+<meta name="description" content="找到你喜欢的理财产品">
+<meta name="keywords" content="赚了没，基金点评，基金分享，基金排行榜">
 
 </head>
 <body id="home" class="notes-index">

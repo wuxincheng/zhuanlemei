@@ -2527,7 +2527,7 @@ body {
 
 .list-header {
 	position: relative;
-	min-height: 460px
+	min-height: 400px
 }
 
 .list-header-cover {
@@ -2571,7 +2571,8 @@ body {
 }
 
 .list-header-info p {
-	font-size: 1.075rem
+	font-size: 0.875rem;
+	padding: 0 50px;
 }
 
 .list-stats {
@@ -2598,7 +2599,7 @@ body {
 
 @media screen and (min-width: 30.0625em) {
 	.list-bio {
-		margin-bottom: 110px
+		margin-bottom: 100px;
 	}
 }
 
@@ -2626,7 +2627,8 @@ body {
 
 @media screen and (min-width: 30.0625em) {
 	.list-header-meta .share {
-		float: right
+		float: right;
+		margin-right: 20px;
 	}
 }
 
@@ -2645,7 +2647,8 @@ body {
 
 @media screen and (min-width: 30.0625em) {
 	.list-fav-btn {
-		float: left
+		float: left;
+		margin-left: 50px;
 	}
 }
 

@@ -20,7 +20,7 @@
   <jsp:include page="../HEADER.jsp" />
   <div>
 
-    <section class="list-header" style="margin-top: -22px;">
+    <section class="list-header row" style="margin-top: -22px;">
       <div class="list-header-cover" style="
         <c:if test="${empty collect.bgColor}">background-image: url(${root}/collect/coverbg/${collect.coverImgPath});</c:if>
         <c:if test="${not empty collect.bgColor}">background-color: #${collect.bgColor};</c:if>">

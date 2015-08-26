@@ -70,13 +70,13 @@ public class WechatLoginController {
 
 		if (StringUtils.isEmpty(state)) {
 			model.addAttribute(Constants.MSG_WARN, "授权失败，Session为空");
-			return "redirect:/product/list";
+			return "redirect:/index";
 		}
 		
 		// 验证state参数
 		if (!request.getSession().getId().equals(state)) {
 			model.addAttribute(Constants.MSG_WARN, "授权失败，不合法的Session");
-			return "redirect:/product/list";
+			return "redirect:/index";
 		}
 		
 		String code = request.getParameter("code");
@@ -85,7 +85,7 @@ public class WechatLoginController {
 		// 若用户禁止授权，则重定向后不会带上code参数，仅会带上state参数
 		if (StringUtils.isEmpty(code)) {
 			model.addAttribute(Constants.MSG_WARN, "您取消了微信登录操作");
-			return "redirect:/product/list";
+			return "redirect:/index";
 		}
 		
 		logger.debug("开始获取 access_token");
@@ -93,7 +93,7 @@ public class WechatLoginController {
 		Map<String, Object> responseMap = wechatHttpsHelper.getAccessTokenByCode(code);
 		if (null == responseMap) {
 			model.addAttribute(Constants.MSG_WARN, "获取微信AccessToken失败");
-			return "redirect:/product/list";
+			return "redirect:/index";
 		}
 		
 		logger.debug("开始获取用户个人信息");
@@ -114,7 +114,7 @@ public class WechatLoginController {
 		
 		model.addAttribute(Constants.MSG_SUCCESS, "微信授权登录成功");
 		
-		return "redirect:/fund/market/list";
+		return "redirect:/index";
 	}
 	
 	/**
