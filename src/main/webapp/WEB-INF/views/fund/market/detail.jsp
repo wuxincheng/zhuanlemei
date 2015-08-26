@@ -27,7 +27,7 @@
           <div class="fund-detail-panel">
             <input type="hidden" id="likePage" name="likePage" value="detail" />
             <div class="fund-name">
-              <span>${fundMarket.fundName} (${fundMarket.fundCode})</span>
+              <span>${fundMarket.fundName}（${fundMarket.fundCode}）</span>
               <c:if test="${not empty fundMarket.fundType}"><span class="fund-type">${fund:type(fundMarket.fundType)}</span></c:if>
               <c:if test="${'0' != fundMarket.fundRiskLevel}"><span class="fund-type">${fund:riskLevel(fundMarket.fundRiskLevel)}</span></c:if>
             </div>

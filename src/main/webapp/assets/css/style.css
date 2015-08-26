@@ -154,7 +154,6 @@ h1,h2,h3,h4,h5,h6 {
 /** fund */
 /*********************************/
 
-
 .bar-title {
   color: #C00;
   font-size: 16px;
@@ -552,7 +551,7 @@ html.no-touch .zm-item-vote-count:hover {
   background: #0B4C0B;
 }
 
-/**  */
+/****************************/
 .fundPanel {
   position: relative;
   display: inline-block;
@@ -624,7 +623,7 @@ html.no-touch .zm-item-vote-count:hover {
 }
 
 
-/**  */
+/***************************/
 .keywordPanel {
   position: relative;
   display: inline-block;
@@ -696,7 +695,19 @@ html.no-touch .zm-item-vote-count:hover {
 }
 
 
-/**  */
+/*******************************/
 .hunt-high {
   color: #C00;
+}
+
+.subfooter {
+  display: block;
+  padding-top: 0px;
+  padding-bottom: 120px;
+  background: #f9f9f9;
+  border-top: 1px solid #E62B1E;
+  border-bottom: 2px solid #f2f2f2;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
 }

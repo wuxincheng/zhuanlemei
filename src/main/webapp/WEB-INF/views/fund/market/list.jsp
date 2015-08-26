@@ -45,8 +45,7 @@
             <div class="fund-info">
               <div class="fund-name">
                 <a href="${root}/fund/market/detail?fundCode=${fundMarket.fundCode}" target="_blank">
-                ${fund:huntHigh(fundMarket.fundName, keyword)}
-                (${fund:huntHigh(fundMarket.fundCode, keyword)})
+                ${fund:huntHigh(fundMarket.fundName, keyword)}（${fund:huntHigh(fundMarket.fundCode, keyword)}）
                 </a></div>
               <div class="fund-base">单位净值&nbsp;[${fundMarket.navDate}] 
                 <c:if test="${not empty fundMarket.currentNav}"><span class="fund-nv-up">${fundMarket.currentNav}</span></c:if>

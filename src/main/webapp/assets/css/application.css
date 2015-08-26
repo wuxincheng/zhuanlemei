@@ -2323,10 +2323,10 @@ body {
 	width: 100%;
 	color: #747f8c;
 	text-align: center;
-	background: #332e36;
+	background: #fff;
 	padding-top: 30px;
 	padding-bottom: 30px;
-	border-top: 1px solid #1d111e
+	border-top: 1px solid #f2f2f2;
 }
 
 @media screen and (min-width: 48.0625em) {

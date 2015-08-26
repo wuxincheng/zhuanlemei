@@ -50,7 +50,7 @@ public class WechatHttpsHelper {
 		String wechatOAuthUrl = wechatConfig.getWechatOAuthUrl()
 				.replaceAll("APPID", wechatConfig.getAppid())
 				.replaceAll("REDIRECT_URI", redirectURLEncoder).replaceAll("STATE", sessionid);
-		logger.info("微信授权登录地址 wechatOAuthUrl={}", wechatOAuthUrl);
+		// logger.info("微信授权登录地址 wechatOAuthUrl={}", wechatOAuthUrl);
 
 		return wechatOAuthUrl;
 	}
