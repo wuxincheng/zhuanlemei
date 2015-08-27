@@ -26,17 +26,20 @@ import com.wuxincheng.zhuanlemei.util.DateUtil;
  */
 @Service("productService")
 public class ProductService {
-	
-	@Resource private ProductDao productDao;
-	@Resource private CollectDao collectDao;
-	@Resource private ProdLikeService prodLikeService;
-	
+
+	@Resource
+	private ProductDao productDao;
+	@Resource
+	private CollectDao collectDao;
+	@Resource
+	private ProdLikeService prodLikeService;
+
 	/**
 	 * 发布产品
 	 */
 	public void post(Product product, String userid) throws Exception {
 		Date date = new Date();
-		
+
 		product.setCommentSum(0);
 		product.setLikeSum(0);
 		product.setPostDate(DateUtil.getCurrentDate(date, Constants.DEFAULT_DATE));
@@ -44,15 +47,15 @@ public class ProductService {
 		product.setPostDateTime(DateUtil.getCurrentDate(date, Constants.DEFAULT_DATE_FORMAT));
 		product.setUserid(userid);
 		product.setScore("0"); // 产品关注度初始为0
-		
+
 		if (product.getCollectid() != null) {
 			// 更新产品集中产品的数量
 			collectDao.addProductSum(product.getCollectid());
 		}
-		
+
 		// 发布这个产品
 		productDao.post(product);
-		
+
 		// 当前用户在发布产品的时默认赞这个产品
 		List<Product> products = productDao.queryPostByUserid(userid);
 		if (null == products || products.size() < 1) {
@@ -74,9 +77,9 @@ public class ProductService {
 	 */
 	public Pager queryProductsByDate(List<String> groupDates, String userid) {
 		Pager pager = new Pager();
-		
+
 		List<Map<String, List<Product>>> productMapList = new ArrayList<Map<String, List<Product>>>();
-		
+
 		Map<String, String> queryMap = null;
 		for (String queryPostDate : groupDates) {
 			queryMap = new HashMap<String, String>();
@@ -85,12 +88,12 @@ public class ProductService {
 			List<Product> products = productDao.queryByPostDate(queryMap);
 			Map<String, List<Product>> productMap = new HashMap<String, List<Product>>();
 			productMap.put(queryPostDate, products);
-			
+
 			productMapList.add(productMap);
 		}
-		
+
 		pager.setProductMapList(productMapList);
-		
+
 		return pager;
 	}
 
@@ -121,37 +124,26 @@ public class ProductService {
 		// Set<Product> products = new HashSet<Product>();
 
 		/*
-		// 查询用户发布的所有产品
-		List<Product> postProducts = productDao.queryPostByUserid(userid);
-		if (postProducts != null && postProducts.size() > 0) {
-			for (Product postProduct : postProducts) {
-				products.add(postProduct);
-			}
-		}
+		 * // 查询用户发布的所有产品 List<Product> postProducts =
+		 * productDao.queryPostByUserid(userid); if (postProducts != null &&
+		 * postProducts.size() > 0) { for (Product postProduct : postProducts) {
+		 * products.add(postProduct); } }
 		 */
-		
+
 		// 查询用户赞过的所有产品
 		List<Product> likeProducts = productDao.queryLikeByUserid(userid);
 		/*
-		if (likeProducts != null && likeProducts.size() > 0) {
-			for (Product likeProduct : likeProducts) {
-				products.add(likeProduct);
-			}
-		}
-
-		if (products == null || products.size() < 1) {
-			return null;
-		}
-		
-		List<Product> userProducts = new ArrayList<Product>();
-		
-		// 转换成List集合
-		Iterator<Product> itp = products.iterator();
-		while(itp.hasNext()){
-			userProducts.add(itp.next());
-        }
+		 * if (likeProducts != null && likeProducts.size() > 0) { for (Product
+		 * likeProduct : likeProducts) { products.add(likeProduct); } }
+		 * 
+		 * if (products == null || products.size() < 1) { return null; }
+		 * 
+		 * List<Product> userProducts = new ArrayList<Product>();
+		 * 
+		 * // 转换成List集合 Iterator<Product> itp = products.iterator();
+		 * while(itp.hasNext()){ userProducts.add(itp.next()); }
 		 */
-		
+
 		return likeProducts;
 	}
 

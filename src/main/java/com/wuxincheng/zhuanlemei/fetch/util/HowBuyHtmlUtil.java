@@ -10,7 +10,7 @@ import org.springframework.util.StringUtils;
  * 
  */
 public class HowBuyHtmlUtil {
-	
+
 	public static void main(String[] args) {
 		System.out.println(formatTag("--"));
 	}
@@ -71,8 +71,7 @@ public class HowBuyHtmlUtil {
 	 * @return
 	 */
 	public static String[] formatFundSortThreeMonth(String fundSortThreeMonth) {
-		String sortIndex = fundSortThreeMonth.substring(
-				fundSortThreeMonth.indexOf("class=\"b-rate\">") + 15,
+		String sortIndex = fundSortThreeMonth.substring(fundSortThreeMonth.indexOf("class=\"b-rate\">") + 15,
 				fundSortThreeMonth.indexOf("</em><em class=\"b-rate b-2\">"));
 
 		String sortTotal = fundSortThreeMonth.substring(
@@ -90,8 +89,7 @@ public class HowBuyHtmlUtil {
 	 */
 	public static String formatRateChange(String rateChange) {
 		if (rateChange.contains("b-rate")) {
-			rateChange = rateChange
-					.substring(rateChange.indexOf("b-rate") + 8, rateChange.length());
+			rateChange = rateChange.substring(rateChange.indexOf("b-rate") + 8, rateChange.length());
 		}
 		if (rateChange.contains("--")) {
 			rateChange = null;

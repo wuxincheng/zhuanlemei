@@ -29,103 +29,103 @@ import com.wuxincheng.zhuanlemei.util.Validation;
  * 产品集，现更名为榜单
  * 
  * @author wuxincheng(wxcking)
- * @date 2015年7月1日 下午10:30:45 
- *
+ * @date 2015年7月1日 下午10:30:45
+ * 
  */
 @Controller
 @RequestMapping("/collect")
 public class CollectController extends BaseController {
 	private static final Logger logger = LoggerFactory.getLogger(CollectController.class);
-	
+
 	@Autowired
 	private CollectService collectService;
-	
+
 	@Autowired
 	private ProductService productService;
-	
+
 	@Autowired
 	private CollectUserService collectUserService;
-	
+
 	@Autowired
 	private FundMarketService fundMarketService;
-	
+
 	@RequestMapping(value = "/list")
 	public String list(Model model, HttpServletRequest request) {
 		logger.info("显示榜单列表");
-		
+
 		requestMessageProcess(request);
-		
+
 		List<Collect> collects = collectService.queryAll();
-		
+
 		if (null == collects || collects.size() < 1) {
 			model.addAttribute(Constants.MSG_INFO, "目前还没发布榜单");
 			logger.debug("目前还没发布榜单");
 		}
-		
+
 		request.setAttribute("collects", collects);
-		
+
 		return "collect/list";
 	}
-	
+
 	@RequestMapping(value = "/edit")
 	public String edit(Model model, HttpServletRequest request) {
 		logger.info("显示添加榜单页面");
 		requestMessageProcess(request);
-		
+
 		// 判断用户是否有创建榜单权限
 		if (!isCollectPermission(request)) {
 			model.addAttribute(Constants.MSG_WARN, "您还没有该项权限");
 			return "redirect:list";
 		}
-		
+
 		request.setAttribute(Constants.CURRENT_USERID, getCurrentUserid(request));
-		
+
 		return "collect/edit";
 	}
-	
+
 	@RequestMapping(value = "/create")
 	public String create(Model model, HttpServletRequest request, Collect collect) {
 		logger.info("添加新的榜单");
 
 		String userid = getCurrentUserid(request);
-		
+
 		// 判断用户是否有创建榜单权限
 		if (!isCollectPermission(request)) {
 			model.addAttribute(Constants.MSG_WARN, "您还没有该项权限");
 			return "redirect:edit";
 		}
-		
+
 		// 图片存放路径
-		String ctxPath = request.getSession().getServletContext().getRealPath("/") + "collect/coverbg/"; 
+		String ctxPath = request.getSession().getServletContext().getRealPath("/") + "collect/coverbg/";
 		logger.debug("图片存放路径 ctxPath={}", ctxPath);
-		
+
 		String responseMessage = collectService.createOrUpdate(collect, ctxPath, userid);
 		if (StringUtils.isNotEmpty(responseMessage)) {
-			model.addAttribute(Constants.MSG_WARN, "处理失败："+responseMessage);
+			model.addAttribute(Constants.MSG_WARN, "处理失败：" + responseMessage);
 			logger.debug(responseMessage);
 			return "redirect:edit";
 		}
-		
+
 		logger.info("榜单创建成功");
-		
+
 		model.addAttribute(Constants.MSG_SUCCESS, "榜单创建成功");
-		
+
 		return "redirect:list";
 	}
-	
+
 	@RequestMapping(value = "/detail")
 	public String detail(HttpServletRequest request, String collectid) {
 		logger.info("显示榜单 collectionid={}", collectid);
-		
+
 		// 提示信息显示
 		requestMessageProcess(request);
-		
+
 		// 判断collectid
 		if (StringUtils.isEmpty(collectid) || !Validation.isIntPositive(collectid)) {
 			logger.debug("详细显示失败：collectid为空");
 			return "redirect:list";
 		}
-		
+
 		// 是否存在这个榜单
 		Collect collect = collectService.queryDetailByCollectid(collectid);
 		if (null == collect) {
@@ -133,30 +133,30 @@ public class CollectController extends BaseController {
 			return "redirect:list";
 		}
 		request.setAttribute("collect", collect);
-		
+
 		String userid = null;
-		
+
 		// 判断用户是否已经登录
 		if (getCurrentUserid(request) != null) {
 			// 如果登录，查询该用户是否已经收藏该榜单
-			CollectUser collectUser =collectUserService.query(collectid, getCurrentUserid(request));
+			CollectUser collectUser = collectUserService.query(collectid, getCurrentUserid(request));
 			request.setAttribute("collectUser", collectUser);
 			userid = getCurrentUserid(request);
 		}
-		
+
 		// 查询这个榜单下的所有产品
 		Map<String, String> queryMap = new HashMap<String, String>();
 		queryMap.put("collectid", collectid);
 		queryMap.put("userid", userid);
 		List<Product> products = productService.queryProductsByCollectid(queryMap);
-		
+
 		// 关联查询所有基金信息
 		List<FundMarket> fundMarkets = fundMarketService.queryByProducts(products);
 		request.setAttribute("fundMarkets", fundMarkets);
-		
+
 		return "collect/detail";
 	}
-	
+
 	/**
 	 * 榜单收藏和取消收藏操作
 	 * 
@@ -167,15 +167,15 @@ public class CollectController extends BaseController {
 	@RequestMapping(value = "/collect")
 	public String collect(String collectid, String userid) {
 		logger.info("榜单收藏和取消收藏操作 collectionid={} userid={}", collectid, userid);
-		
+
 		if (collectid != null && userid != null) {
 			collectUserService.collect(collectid, userid);
 			logger.debug("榜单收藏和取消收藏操作成功");
 		} else {
 			logger.debug("榜单收藏和取消收藏操作失败：collectid或userid为空");
 		}
-		
-		return "redirect:/collect/detail?collectid="+collectid;
+
+		return "redirect:/collect/detail?collectid=" + collectid;
 	}
 
 }

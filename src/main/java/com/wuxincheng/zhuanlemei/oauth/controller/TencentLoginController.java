@@ -67,15 +67,15 @@ public class TencentLoginController {
 			AccessToken accessTokenObj = (new Oauth()).getAccessTokenByRequest(request);
 
 			if (StringUtils.isNotEmpty(accessTokenObj.getAccessToken())) {
-				logger.info("QQ用户登录授权信息 accessToken={}，tokenExpireIn={}",
-						accessTokenObj.getAccessToken(), accessTokenObj.getExpireIn());
+				logger.info("QQ用户登录授权信息 accessToken={}，tokenExpireIn={}", accessTokenObj.getAccessToken(),
+						accessTokenObj.getExpireIn());
 
 				OpenID openIDObj = new OpenID(accessTokenObj.getAccessToken());
 				logger.info("QQ用户登录授权信息 openID={}", openIDObj.getUserOpenID());
 
 				// 根据AccessToken和UserOpenID获取用户信息
-				Map<String, Object> userInfoMap = tencentHttpsHelper.getUserInfo(
-						accessTokenObj.getAccessToken(), openIDObj.getUserOpenID());
+				Map<String, Object> userInfoMap = tencentHttpsHelper.getUserInfo(accessTokenObj.getAccessToken(),
+						openIDObj.getUserOpenID());
 
 				if (null == userInfoMap) {
 					model.addAttribute(Constants.MSG_ERROR, "授权失败：qq信息返回为空");

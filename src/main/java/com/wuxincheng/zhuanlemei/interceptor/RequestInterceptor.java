@@ -8,18 +8,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.wuxincheng.zhuanlemei.model.User;
-
 /**
- * 登录Session拦截
+ * IP和路径访问记录拦截器
  * 
  * @author wuxincheng(wxcking)
- * @date 2015年6月29日 下午3:15:11
+ * @date 2015年8月27日 下午5:49:13
  * 
  */
-public class LoginSessionInterceptor implements HandlerInterceptor {
-
-	private static Logger logger = LoggerFactory.getLogger(LoginSessionInterceptor.class);
+public class RequestInterceptor implements HandlerInterceptor {
+	private static Logger logger = LoggerFactory.getLogger(RequestInterceptor.class);
 
 	private String mappingURL; // 利用正则映射到需要拦截的路径
 
@@ -34,25 +31,23 @@ public class LoginSessionInterceptor implements HandlerInterceptor {
 	}
 
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws Exception {
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) {
 		String url = request.getRequestURL().toString();
+		String remoteAddress = request.getRemoteAddr();
 
-		if (mappingURL == null || url.matches(mappingURL)) {
-			User user = (User) request.getSession().getAttribute("user");
-
-			if (null == user) {
-				logger.info("用户登录Session失效，跳转到登录页面");
-
-				String msg = "您的登录已失效，请重新登录！";
-				// encode一下，否则页面接收不到值
-				msg = java.net.URLEncoder.encode(msg.toString(), "utf-8");
-
-				// 重定向
-				response.sendRedirect(request.getContextPath() + "/login/?info=" + msg);
-
-				return false;
-			}
+		if (!(mappingURL == null || url.matches(mappingURL))) {
+			logger.info("mappingURL={}", mappingURL);
 		}
+
+		String requestIp = url.substring(url.indexOf("//") + 2, url.length());
+		String requestSystemPath = requestIp.substring(requestIp.indexOf('/'), requestIp.length());
+
+		if ("/".equals(requestSystemPath)) {
+			return true;
+		}
+
+		System.out.println("");
+		logger.info("访客信息记录：IP地址={}, 访问路径={}", remoteAddress, requestSystemPath);
 
 		return true;
 	}

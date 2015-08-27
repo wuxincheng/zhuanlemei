@@ -53,8 +53,9 @@
               </div>
               <div class="fund-base">
                 <c:if test="${not empty fundMarket.newScale}">最新规模：${fundMarket.newScale}亿&nbsp;&nbsp;</c:if>
-                <c:if test="${not empty fundMarket.foundedDate}">成立日期：${fundMarket.foundedDate}&nbsp;&nbsp;</c:if>
-                <c:if test="${not empty fundMarket.fundManager}">基金经理：${fundMarket.fundManager}</c:if>
+                <c:if test="${not empty fundMarket.fundManager}">基金经理：${fund:huntHigh(fundMarket.fundManager, keyword)}&nbsp;&nbsp;</c:if>
+                <c:if test="${not empty fundMarket.fundCompany}">基金公司：${fund:huntHigh(fundMarket.fundCompany, keyword)}&nbsp;&nbsp;</c:if>
+                <c:if test="${not empty fundMarket.foundedDate}"><span>成立日期：${fundMarket.foundedDate}</span></c:if>
               </div>
               <div class="fund-base">（${fundMarket.commentSum}人评价）</div>
             </div>

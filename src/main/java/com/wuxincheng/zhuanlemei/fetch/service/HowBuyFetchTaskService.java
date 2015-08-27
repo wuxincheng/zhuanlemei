@@ -79,8 +79,8 @@ public class HowBuyFetchTaskService {
 				// 根据基金代码查询当天净值数据是否存在
 				FundMarket fundMarketFlag = fundMarketDao.queryDetail(fundMarketMap.get("fundCode"));
 				if (fundMarketFlag != null) { // 如果存在, 更新相关信息
-					logger.debug("更新行情信息 fundCode={}, fundNavDate={}",
-							fundMarketMap.get("fundCode"), fundMarketMap.get("fundNavDate"));
+					logger.debug("更新行情信息 fundCode={}, fundNavDate={}", fundMarketMap.get("fundCode"),
+							fundMarketMap.get("fundNavDate"));
 
 					logger.debug("封装更新基金行情信息");
 
@@ -110,8 +110,8 @@ public class HowBuyFetchTaskService {
 
 					logger.info("成功更新一条基金行情信息 fundCode={}", fundMarketMap.get("fundCode"));
 				} else { // 如果不存在, 则添加这条行情信息
-					logger.debug("新增行情信息 fundCode={}, fundNavDate={}",
-							fundMarketMap.get("fundCode"), fundMarketMap.get("fundNavDate"));
+					logger.debug("新增行情信息 fundCode={}, fundNavDate={}", fundMarketMap.get("fundCode"),
+							fundMarketMap.get("fundNavDate"));
 
 					FundMarket fundMarket = new FundMarket();
 
@@ -181,7 +181,7 @@ public class HowBuyFetchTaskService {
 		// 查询所有基金行情数据
 		List<FundMarket> fundMarkets = fundMarketDao.queryAll();
 		// List<FundMarket> fundMarketsNull = fundMarketDao.queryAllNull();
-		
+
 		logger.info("已经查询当天所有基金行情信息 size={}", fundMarkets.size());
 		for (FundMarket fundMarket : fundMarkets) {
 			Map<String, String> fundMarketMap = null;
@@ -219,20 +219,6 @@ public class HowBuyFetchTaskService {
 
 		// 更新任务进度
 		updateFetchTaskFlag(FetchConstants.TASK_FUND_MARKET_DETAIL, currentDateTime);
-	}
-
-	/**
-	 * TODO 任务3：从基金行情信息表中提取信息到基金信息表（只提取当天的数据）
-	 */
-	public void fundInfoTask() {
-
-	}
-
-	/**
-	 * TODO 任务4：把当天的行情信息转移到历史表中
-	 */
-	public void fundMarketHistoryTask() {
-
 	}
 
 	/**

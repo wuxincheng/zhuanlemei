@@ -3,7 +3,7 @@ package com.wuxincheng.zhuanlemei.model;
 import java.io.Serializable;
 
 /**
- * 产品
+ * 产品(评论和基金组成)
  * 
  * @author wuxincheng(wxcking)
  * @date 2015年6月25日 下午7:05:27

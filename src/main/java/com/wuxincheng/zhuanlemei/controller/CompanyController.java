@@ -16,8 +16,8 @@ public class CompanyController extends BaseController {
 	@RequestMapping(value = "/list")
 	public String list(Model model, HttpServletRequest request) {
 		logger.info("基金公司列表");
-		
+
 		return "company/list";
 	}
-	
+
 }

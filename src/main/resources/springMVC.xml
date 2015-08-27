@@ -41,6 +41,20 @@
       <!-- interceptor -->
       <bean class="com.wuxincheng.zhuanlemei.interceptor.LoginSessionInterceptor" />
     </mvc:interceptor>
+    
+    <!-- 配置拦截的URL -->
+    <mvc:interceptor>
+      <!-- 配置拦截的URL -->
+      <mvc:mapping path="/**" />
+      
+      <!-- 配置不拦截的URL(对资源等不进行拦截) -->
+      <mvc:exclude-mapping path="/assets/**" />
+      <mvc:exclude-mapping path="/collect/**" />
+      <mvc:exclude-mapping path="/user/**" />
+      
+      <!-- 配置执行的拦截器 -->
+      <bean class="com.wuxincheng.zhuanlemei.interceptor.RequestInterceptor" />
+    </mvc:interceptor>
   </mvc:interceptors>
 
   <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">

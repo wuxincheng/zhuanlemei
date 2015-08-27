@@ -39,9 +39,8 @@ public class TencentHttpsHelper {
 		// 发送获取请求
 		logger.info("发送获取请求");
 
-		String userInfoURL = QQConnectConfig.getValue("getUserInfoURL") + "?access_token="
-				+ accessToken + "&oauth_consumer_key=" + QQConnectConfig.getValue("app_ID")
-				+ "&openid=" + userOpenID;
+		String userInfoURL = QQConnectConfig.getValue("getUserInfoURL") + "?access_token=" + accessToken
+				+ "&oauth_consumer_key=" + QQConnectConfig.getValue("app_ID") + "&openid=" + userOpenID;
 		logger.info("获取用户信息 userInfoURL={}", userInfoURL);
 
 		String response = null;

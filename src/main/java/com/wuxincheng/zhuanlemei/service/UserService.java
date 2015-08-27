@@ -13,12 +13,12 @@ import com.wuxincheng.zhuanlemei.util.Constants;
 
 @Service("userService")
 public class UserService {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
 	@Resource
 	private UserDao userDao;
-	
+
 	/**
 	 * 根据邮箱查询用户
 	 */
@@ -42,16 +42,16 @@ public class UserService {
 	 */
 	public User validateOAuthUser(User oauthUser) {
 		logger.info("验证授权登录用户");
-		
+
 		logger.info("根据授权Openid查询用户信息");
 		User queryOAuthUser = userDao.queryByOAuthOpenid(oauthUser.getOpenid());
-		
+
 		if (queryOAuthUser == null) {
 			logger.info("未查询这该用户授权登录信息");
 			// 记录这条信息
 			this.register(oauthUser);
 			logger.info("用户授权登录信息已添加");
-			
+
 			// 再查询一次
 			queryOAuthUser = userDao.queryByOAuthOpenid(oauthUser.getOpenid());
 		} else {
@@ -61,11 +61,11 @@ public class UserService {
 			queryOAuthUser.setSocialPicPath(oauthUser.getSocialPicPath());
 			queryOAuthUser.setAccessToken(oauthUser.getAccessToken());
 			queryOAuthUser.setTokenExpireIn(oauthUser.getTokenExpireIn());
-			
+
 			userDao.updateInfo(queryOAuthUser);
 			logger.info("用户授权登录信息已更新");
 		}
-		
+
 		return queryOAuthUser;
 	}
 
@@ -74,7 +74,7 @@ public class UserService {
 	 */
 	public void updateInfo(User user) {
 		logger.info("更新用户信息");
-		
+
 		// 根据用户主键查询用户信息是否存在
 		User updateUser = userDao.queryByUserid(user.getUserid());
 		if (updateUser != null) {
@@ -86,11 +86,11 @@ public class UserService {
 			userDao.updateInfo(updateUser);
 		}
 	}
-	
+
 	/**
 	 * 根据用户主键查询用户信息
 	 */
-	public User queryByUserid(String userid){
+	public User queryByUserid(String userid) {
 		if (StringUtils.isEmpty(userid)) {
 			return null;
 		}

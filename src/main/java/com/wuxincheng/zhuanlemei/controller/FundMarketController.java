@@ -72,11 +72,11 @@ public class FundMarketController extends BaseController {
 			start = 0;
 			end = pageSize;
 		}
-		
+
 		if (StringUtils.isEmpty(keyword)) {
 			keyword = "";
 		}
-		
+
 		// 封装查询条件
 		Map<String, Object> queryParam = new HashMap<String, Object>();
 		queryParam.put("start", start);
@@ -176,7 +176,7 @@ public class FundMarketController extends BaseController {
 	 * 查询红榜和绿榜
 	 */
 	public void getTopRedSortList(Model model) {
-		logger.info("查询红绿榜");
+		logger.debug("查询红绿榜");
 
 		List<FundMarket> topRedMarkets = fundMarketService.queryRedTopHot(Constants.DATE_TYPE_CACHE);
 		model.addAttribute("topRedMarkets", topRedMarkets);

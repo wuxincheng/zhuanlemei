@@ -40,7 +40,7 @@ public class Register extends BaseController {
 	
 	@RequestMapping(value = "/")
 	public String login(Model model, HttpServletRequest request) {
-		logger.info("显示用户登录页面");
+		logger.info("显示用户注册授权页面");
 		
 		requestMessageProcess(request);
 		

@@ -69,12 +69,12 @@ public class FundMarketService {
 			fundMarkets = fundMarketDao.queryPager(queryParam);
 			totalCount = fundMarketDao.queryCount(queryParam); // 总记录数
 		} else { // 从缓存中获取
-			if (StringUtils.isNotEmpty((String)queryParam.get("keyword"))) {
-				fundMarkets = queryFundMarkets((String)queryParam.get("keyword"));
+			if (StringUtils.isNotEmpty((String) queryParam.get("keyword"))) {
+				fundMarkets = queryFundMarkets((String) queryParam.get("keyword"));
 			} else {
 				fundMarkets = getCacheFundMarkets();
 			}
-			
+
 			totalCount = fundMarkets.size(); // 总记录数据
 			if ((Integer) queryParam.get("end") < totalCount) {
 				fundMarkets = fundMarkets.subList((Integer) queryParam.get("start"), (Integer) queryParam.get("end"));
@@ -180,9 +180,9 @@ public class FundMarketService {
 	 * 
 	 * @return
 	 */
-	public List<String> queryFundCompanys(){
+	public List<String> queryFundCompanys() {
 		List<String> fundCompanys = new ArrayList<String>();
-		
+
 		// 从缓存中读取行情信息
 		List<FundMarket> fundMarkets = getCacheFundMarkets();
 		for (FundMarket fundMarket : fundMarkets) {
@@ -198,18 +198,18 @@ public class FundMarketService {
 				fundCompanys.add(fundMarket.getFundCompany());
 			}
 		}
-		
+
 		return fundCompanys;
 	}
-	
+
 	/**
 	 * 查询所有的基金经理
 	 * 
 	 * @return
 	 */
-	public List<String> queryFundManagers(){
+	public List<String> queryFundManagers() {
 		List<String> fundManagers = new ArrayList<String>();
-		
+
 		// 从缓存中读取行情信息
 		List<FundMarket> fundMarkets = getCacheFundMarkets();
 		for (FundMarket fundMarket : fundMarkets) {
@@ -225,10 +225,10 @@ public class FundMarketService {
 				fundManagers.add(fundMarket.getFundManager());
 			}
 		}
-		
+
 		return fundManagers;
 	}
-	
+
 	/**
 	 * 根据关键字查询详细基金信息
 	 * 
@@ -262,7 +262,7 @@ public class FundMarketService {
 					continue;
 				}
 			}
-			
+
 			// 过滤基金公司fundCompany
 			if (StringUtils.isNotEmpty(fundMarket.getFundCompany())) {
 				if (fundMarket.getFundCompany().indexOf(keyword) >= 0) {
@@ -270,11 +270,19 @@ public class FundMarketService {
 					continue;
 				}
 			}
+
+			// 过滤基金经理fundManager
+			if (StringUtils.isNotEmpty(fundMarket.getFundManager())) {
+				if (fundMarket.getFundManager().indexOf(keyword) >= 0) {
+					funds.add(fundMarket);
+					continue;
+				}
+			}
 		}
 
 		return funds;
-	}	
-	
+	}
+
 	/**
 	 * 根据关键字查询基金信息
 	 * 
@@ -341,7 +349,7 @@ public class FundMarketService {
 
 		return fundMarkets;
 	}
-	
+
 	/**
 	 * 根据产品列表查询基金信息
 	 * 
@@ -352,13 +360,13 @@ public class FundMarketService {
 		if (null == products || products.size() < 1) {
 			return null;
 		}
-		
+
 		// 存放查询出来的基金列表
 		List<FundMarket> fundMarkets = new ArrayList<FundMarket>();
-		
+
 		// 从缓存中查询基金列表
 		List<FundMarket> cacheFundMarkets = getCacheFundMarkets();
-		
+
 		for (Product product : products) {
 			if (StringUtils.isNotEmpty(product.getFundCode())) {
 				for (FundMarket cacheFundMarket : cacheFundMarkets) {
@@ -371,7 +379,7 @@ public class FundMarketService {
 				}
 			}
 		}
-		
+
 		return fundMarkets;
 	}
 
