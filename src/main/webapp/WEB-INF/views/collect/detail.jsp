@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>TOP - 榜单</title>
+<title>${collect.collectName} - 榜单|赚了没</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="description" content="赚了没-TOP|找到你喜欢的理财产品，榜单|赚了没-TOP">
@@ -25,8 +25,8 @@
         <div class="main-panel">
           <section class="list-header row" style="max-width: 960px; left: -10px;">
             <div class="list-header-cover" style="
-              <c:if test="${empty collect.bgColor}">background-image: url(${root}/collect/coverbg/${collect.coverImgPath});</c:if>
-              <c:if test="${not empty collect.bgColor}">background-color: #${collect.bgColor};</c:if>">
+              <c:if test="${not empty collect.coverImgPath}">background-image: url(${root}/collect/coverbg/${collect.coverImgPath});</c:if>
+              <c:if test="${empty collect.coverImgPath}">background-color: #${collect.bgColor};</c:if>">
             </div>
           </section>
         </div>
@@ -39,11 +39,11 @@
             <ul class="product-meta left">
               <li class="product-avatar">
                 <div class="user-image">
-                  <a class="user-image-link" href="${root}/user/main?queryUserid=${product.userid}" target="_blank">
+                  <a class="user-image-link" href="${root}/user/main?queryUserid=${userQuery.userid}" target="_blank">
                     <img alt="0" class="avatar" height="60" width="60" 
                       <c:choose>
-                      <c:when test="${not empty product.socialPicPath}">src="${product.socialPicPath}"</c:when>
-                      <c:when test="${not empty product.picPath}">src="${root}/user/avatar/${product.picPath}"</c:when>
+                      <c:when test="${not empty userQuery.socialPicPath}">src="${userQuery.socialPicPath}"</c:when>
+                      <c:when test="${not empty userQuery.picPath}">src="${root}/user/avatar/${userQuery.picPath}"</c:when>
                       <c:otherwise>src="${root}/assets/img/logo/toplogo.png"</c:otherwise>
                       </c:choose> />
                   </a>
@@ -52,14 +52,14 @@
                   <a class="user-image-link" href="#">
                     <img alt="0" class="avatar avatar-big" height="120" width="120"
                       <c:choose>
-                      <c:when test="${not empty product.socialPicPath}">src="${product.socialPicPath}"</c:when>
-                      <c:when test="${not empty product.picPath}">src="${root}/user/avatar/${product.picPath}"</c:when>
+                      <c:when test="${not empty userQuery.socialPicPath}">src="${userQuery.socialPicPath}"</c:when>
+                      <c:when test="${not empty userQuery.picPath}">src="${root}/user/avatar/${userQuery.picPath}"</c:when>
                       <c:otherwise>src="${root}/assets/img/logo/toplogo.png"</c:otherwise>
                       </c:choose> />
                   </a>
-                  <h3 class="user-nickname">${product.nickName}</h3>
-                  <h4 class='user-title'>${product.userGroup} - ${product.position}<br></h4>
-                  <p class="user-bio"> ${product.userMemo} </p>
+                  <h3 class="user-nickname">${userQuery.nickName}</h3>
+                  <h4 class='user-title'>${userQuery.userGroup} - ${userQuery.position}<br></h4>
+                  <p class="user-bio"> ${userQuery.memo} </p>
                 </div>
               </li>
               <li>

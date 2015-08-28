@@ -59,7 +59,7 @@
 
     <section class="post">
       <ul class="product-list">
-        <c:if test="${not empty products}">
+        <c:if test="${not empty fundmarkets}">
         <c:forEach items="${products}" var="product">
         <li class="product-item">
           <div class="posts-group cf">

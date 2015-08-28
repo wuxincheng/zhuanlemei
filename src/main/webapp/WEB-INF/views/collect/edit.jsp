@@ -37,7 +37,7 @@
               name="collectName" placeholder="榜单名称" required="required" type="text" />
           </div>
           <div class="form-group string required note_title">
-            <label class="string required" for="note_title">榜单背景图片（建议：1600*600）</label>
+            <label class="string required" for="note_title">榜单背景图片（建议：625*350）</label>
             <input autofocus="autofocus" class="form-control input-small" 
               id="coverImgFile" name="coverImgFile" type="file" />
           </div>

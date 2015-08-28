@@ -31,13 +31,15 @@
           <div class="form-group string">
             <input type="hidden" id="collectid" name="collectid" value="${collect.collectid}" />
             <input type="hidden" id="coverImgPathHidden" name="coverImgPathHidden" value="${collect.coverImgPath}" />
-            <label class="string" for="note_title">榜单背景图片（建议：1600*600）</label>
+            <label class="string" for="note_title">榜单背景图片（建议：625*350）</label>
             <input autofocus="autofocus" class="form-control input-small" 
               id="coverImgFile" name="coverImgFile" type="file" onclick="changeCoverImg(this)" />
           </div>
           <div class="form-group string">
             <input type="hidden" id="coverImgPath" name="coverImgPath" value="${collect.coverImgPath}" />
-            <img src="${root}/collect/coverbg/${collect.coverImgPath}" style="width: 300px; height: 112.5px;" />
+            <c:if test="${not empty collect.coverImgPath}">
+            <img src="${root}/collect/coverbg/${collect.coverImgPath}" style="width: 300px; height: 168px;" />
+            </c:if>
           </div>
           <div class="form-group text required note_summary">
             <label class="text required" for="note_summary">一句话介绍</label>

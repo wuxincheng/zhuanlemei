@@ -194,5 +194,5 @@
            unlikesum=(unlikesum+#unLikeSum#) 
      WHERE fundcode = #fundCode#
   </update>
-
+  
 </sqlMap>

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
@@ -20,12 +21,14 @@ import com.wuxincheng.zhuanlemei.model.CollectUser;
 import com.wuxincheng.zhuanlemei.model.Comment;
 import com.wuxincheng.zhuanlemei.model.FundMarket;
 import com.wuxincheng.zhuanlemei.model.Product;
+import com.wuxincheng.zhuanlemei.model.User;
 import com.wuxincheng.zhuanlemei.service.CollectService;
 import com.wuxincheng.zhuanlemei.service.CollectUserService;
 import com.wuxincheng.zhuanlemei.service.CommentService;
 import com.wuxincheng.zhuanlemei.service.FundMarketService;
 import com.wuxincheng.zhuanlemei.service.ProdLikeService;
 import com.wuxincheng.zhuanlemei.service.ProductService;
+import com.wuxincheng.zhuanlemei.service.UserService;
 import com.wuxincheng.zhuanlemei.util.Constants;
 import com.wuxincheng.zhuanlemei.util.Validation;
 
@@ -58,6 +61,9 @@ public class CollectController extends BaseController {
 
 	@Autowired
 	private ProdLikeService prodLikeService;
+	
+	@Resource
+	private UserService userService;
 
 	@RequestMapping(value = "/list")
 	public String list(Model model, HttpServletRequest request) {
@@ -144,6 +150,10 @@ public class CollectController extends BaseController {
 		}
 		request.setAttribute("collect", collect);
 
+		// 查询用户
+		User userQuery = userService.queryByUserid(collect.getUserid());
+		request.setAttribute("userQuery", userQuery);
+		
 		String userid = null;
 
 		// 判断用户是否已经登录
