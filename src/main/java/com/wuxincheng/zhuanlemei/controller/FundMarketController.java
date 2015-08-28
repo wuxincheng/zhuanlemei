@@ -160,7 +160,7 @@ public class FundMarketController extends BaseController {
 		}
 
 		logger.info("调用点赞服务");
-		Integer[] scores = fundMarketService.likeHandle(fundCode, likeState, userid);
+		Integer[] scores = prodLikeService.fundMarketLikeHandle(fundCode, likeState, userid);
 		if (scores != null && scores.length == 2) {
 			result.put("flag", true);
 			result.put("likeScore", scores[0]);

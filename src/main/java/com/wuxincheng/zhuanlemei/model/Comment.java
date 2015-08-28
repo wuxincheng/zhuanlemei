@@ -20,9 +20,12 @@ public class Comment implements Serializable {
 	/** 产品主键 */
 	private String productid;
 
+	/** 产品集主键 */
+	private String collectid;
+
 	/** 基金代码 */
 	private String fundCode;
-	
+
 	private String userid;
 
 	private String content;
@@ -34,23 +37,23 @@ public class Comment implements Serializable {
 	private Integer likeSum;
 
 	private Integer replySum;
-	
+
 	/** 评论类型: fundMarket/product */
 	private String commentType;
-	
+
 	// ===== 用户信息 =====
 	private String nickName;
-	
+
 	private String loginEmail;
-	
+
 	private String picPath;
-	
+
 	private String socialPicPath;
-	
+
 	private String userMemo;
-	
+
 	private String userGroup;
-	
+
 	private String position;
 
 	public String getCommentid() {
@@ -195,6 +198,14 @@ public class Comment implements Serializable {
 
 	public void setCommentType(String commentType) {
 		this.commentType = commentType;
+	}
+
+	public String getCollectid() {
+		return collectid;
+	}
+
+	public void setCollectid(String collectid) {
+		this.collectid = collectid;
 	}
 
 }

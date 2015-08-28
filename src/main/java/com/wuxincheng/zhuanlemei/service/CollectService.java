@@ -133,6 +133,12 @@ public class CollectService {
 			collect.setUpdateState(Constants.DEFAULT_STATE);
 			collect.setCollectState(Constants.DEFAULT_STATE);
 			collect.setUserid(userid);
+			/* 新增评论总数和赞同反对 */
+			collect.setLikeSum(0);
+			collect.setLikeScore(0);
+			collect.setUnLikeSum(0);
+			collect.setUnLikeScore(0);
+			collect.setCommentSum(0);
 
 			logger.debug("新增榜单");
 			collectDao.create(collect);

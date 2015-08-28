@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.wuxincheng.zhuanlemei.dao.CollectDao;
 import com.wuxincheng.zhuanlemei.dao.CommentDao;
 import com.wuxincheng.zhuanlemei.dao.FundMarketDao;
 import com.wuxincheng.zhuanlemei.dao.ProductDao;
@@ -36,6 +37,9 @@ public class CommentService {
 	
 	@Resource
 	private FundMarketDao fundMarketDao;
+	
+	@Resource
+	private CollectDao collectDao;
 
 	/**
 	 * 发表回复
@@ -70,6 +74,7 @@ public class CommentService {
 			return responseMessage;
 		}
 
+		// 基金行情的评论
 		if (StringUtils.isNotEmpty(comment.getFundCode())) {
 			// 更新基金行情的评论数
 			logger.info("更新基金行情的评论数");
@@ -83,6 +88,19 @@ public class CommentService {
 			fundMarketDao.plusLikeScore(updateMap);
 		}
 		
+		// 产品集的评论
+		if (StringUtils.isNotEmpty(comment.getCollectid())) {
+			// 更新产品集的评论数
+			collectDao.plusCommentSum(comment.getCollectid());
+			
+			// 更新产品集关注度
+			Map<String, Object> updateMap = new HashMap<String, Object>();
+			updateMap.put("collectid", comment.getCollectid());
+			updateMap.put("likeScore", 5);
+			collectDao.plusLikeScore(updateMap);
+		}
+		
+		// 产品的评论
 		if (StringUtils.isNotEmpty(comment.getProductid())) {
 			// 更新产品的评论数
 			productDao.plusCommentSum(comment.getProductid());
@@ -117,6 +135,20 @@ public class CommentService {
 		}
 
 		return commentDao.queryByFundCode(fundCode);
+	}
+
+	/**
+	 * 根据collectid查询评论列表
+	 * 
+	 * @param collectid
+	 * @return
+	 */
+	public List<Comment> queryByCollectid(String collectid) {
+		if (StringUtils.isEmpty(collectid)) {
+			return null;
+		}
+
+		return commentDao.queryByCollectid(collectid);
 	}
 
 }

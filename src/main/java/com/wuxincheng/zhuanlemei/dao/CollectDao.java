@@ -1,6 +1,7 @@
 package com.wuxincheng.zhuanlemei.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -57,6 +58,22 @@ public class CollectDao extends BaseDao {
 	@SuppressWarnings("unchecked")
 	public List<Collect> queryTopHot(Integer topLimit) {
 		return this.getSqlMapClientTemplate().queryForList("Collect.queryTopHot", topLimit);
+	}
+
+	public void plusCommentSum(String collectid) {
+		this.getSqlMapClientTemplate().update("Collect.plusCommentSum", collectid);
+	}
+
+	public void plusLikeScore(Map<String, Object> updateMap) {
+		this.getSqlMapClientTemplate().update("Collect.likeScore", updateMap);
+	}
+
+	public void updateLikeInfo(Map<String, Object> updateMap) {
+		this.getSqlMapClientTemplate().update("Collect.updateLikeInfo", updateMap);
+	}
+
+	public void updateUnLikeInfo(Map<String, Object> updateMap) {
+		this.getSqlMapClientTemplate().update("Collect.updateUnLikeInfo", updateMap);
 	}
 
 }

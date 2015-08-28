@@ -17,6 +17,11 @@
     <result property="updateTime" column="updatetime" />
     <result property="createTime" column="createtime" />
     <result property="collectState" column="collectstate" />
+    <result property="likeSum" column="likesum" />
+    <result property="likeScore" column="likescore" />
+    <result property="unLikeSum" column="unlikesum" />
+    <result property="unLikeScore" column="unlikescore" />
+    <result property="commentSum" column="commentsum" />
   </resultMap>
   
   <select id="queryAll" resultMap="CollectMapping">
@@ -35,13 +40,13 @@
   
   <insert id="create" parameterClass="Collect">
     INSERT INTO 
-      t_next_collect( collectname, coverimgpath, bgcolor, userid, 
-        productsum, collectsum, memo, recommend, updatestate, 
-        updatetime, createtime, collectstate)
+      t_next_collect( collectname, coverimgpath, bgcolor, userid, productsum, collectsum, 
+        memo, recommend, updatestate, updatetime, createtime, collectstate, 
+        likesum, likescore, unlikesum, unlikescore, commentsum)
     VALUES ( #collectName#, #coverImgPath#, #bgColor#, #userid#, 
         #productSum#, #collectSum#, #memo#, 
-        #recommend#, #updateState#, #updateTime#, 
-        #createTime#, #collectState#)
+        #recommend#, #updateState#, #updateTime#, #createTime#, #collectState#,
+        #likeSum#, #likeScore#, #unLikeSum#, #unLikeScore#, #commentSum#)
   </insert>
   
   <update id="update" parameterClass="Collect">
@@ -72,5 +77,27 @@
   <delete id="delete" parameterClass="java.lang.String">
     DELETE FROM t_next_collect WHERE collectid = #collectid#
   </delete>
+  
+  <update id="plusCommentSum" parameterClass="java.lang.String">
+    UPDATE t_next_collect SET commentsum=commentsum+1 WHERE collectid = #collectid#
+  </update>
+  
+  <update id="likeScore" parameterClass="java.util.Map">
+    UPDATE t_next_collect SET likescore=(likescore+#likeScore#) WHERE collectid = #collectid#
+  </update>
+  
+  <update id="updateLikeInfo" parameterClass="java.util.Map">
+    UPDATE t_next_collect 
+       SET likescore=(likescore+#likeScore#), 
+           likesum=(likesum+#likeSum#) 
+     WHERE collectid = #collectid#
+  </update>
 
+  <update id="updateUnLikeInfo" parameterClass="java.util.Map">
+    UPDATE t_next_collect 
+       SET unlikescore=(unlikescore+#unLikeScore#), 
+           unlikesum=(unlikesum+#unLikeSum#) 
+     WHERE collectid = #collectid#
+  </update>
+  
 </sqlMap>

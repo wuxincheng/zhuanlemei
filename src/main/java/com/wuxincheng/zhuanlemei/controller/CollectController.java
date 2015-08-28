@@ -13,14 +13,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wuxincheng.zhuanlemei.model.Collect;
 import com.wuxincheng.zhuanlemei.model.CollectUser;
+import com.wuxincheng.zhuanlemei.model.Comment;
 import com.wuxincheng.zhuanlemei.model.FundMarket;
 import com.wuxincheng.zhuanlemei.model.Product;
 import com.wuxincheng.zhuanlemei.service.CollectService;
 import com.wuxincheng.zhuanlemei.service.CollectUserService;
+import com.wuxincheng.zhuanlemei.service.CommentService;
 import com.wuxincheng.zhuanlemei.service.FundMarketService;
+import com.wuxincheng.zhuanlemei.service.ProdLikeService;
 import com.wuxincheng.zhuanlemei.service.ProductService;
 import com.wuxincheng.zhuanlemei.util.Constants;
 import com.wuxincheng.zhuanlemei.util.Validation;
@@ -48,6 +52,12 @@ public class CollectController extends BaseController {
 
 	@Autowired
 	private FundMarketService fundMarketService;
+
+	@Autowired
+	private CommentService commentService;
+
+	@Autowired
+	private ProdLikeService prodLikeService;
 
 	@RequestMapping(value = "/list")
 	public String list(Model model, HttpServletRequest request) {
@@ -114,7 +124,7 @@ public class CollectController extends BaseController {
 	}
 
 	@RequestMapping(value = "/detail")
-	public String detail(HttpServletRequest request, String collectid) {
+	public String detail(Model model, HttpServletRequest request, String collectid) {
 		logger.info("显示榜单 collectionid={}", collectid);
 
 		// 提示信息显示
@@ -154,6 +164,10 @@ public class CollectController extends BaseController {
 		List<FundMarket> fundMarkets = fundMarketService.queryByProducts(products);
 		request.setAttribute("fundMarkets", fundMarkets);
 
+		// 查询这个榜单的所有评论
+		List<Comment> comments = commentService.queryByCollectid(collectid);
+		model.addAttribute("comments", comments);
+
 		return "collect/detail";
 	}
 
@@ -176,6 +190,37 @@ public class CollectController extends BaseController {
 		}
 
 		return "redirect:/collect/detail?collectid=" + collectid;
+	}
+
+	@RequestMapping(value = "/like")
+	@ResponseBody
+	public Map<String, Object> like(Model model, HttpServletRequest request, String collectid, String likeState) {
+		logger.info("用户点赞同和反对操作 collectid={}, likeState={}", collectid, likeState);
+
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("flag", false);
+		result.put("collectid", collectid);
+
+		// 用户是否登录
+		String userid = getCurrentUserid(request);
+
+		if (StringUtils.isEmpty(userid)) {
+			result.put("message", "您还没有登录");
+			logger.info("用户还没有登录 result={}", result);
+			return result;
+		}
+
+		logger.info("调用点赞服务");
+		Integer[] scores = prodLikeService.collectLikeHandle(collectid, likeState, userid);
+		if (scores != null && scores.length == 2) {
+			result.put("flag", true);
+			result.put("likeScore", scores[0]);
+			result.put("unLikeScore", scores[1]);
+
+			logger.info("用户点赞成功 result={}", result);
+		}
+
+		return result;
 	}
 
 }

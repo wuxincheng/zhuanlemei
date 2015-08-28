@@ -20,6 +20,8 @@ public class ProdLike implements Serializable {
 
 	/** 基金代码 */
 	private String fundCode;
+	
+	private String collectid;
 
 	private String likeTime;
 
@@ -140,6 +142,14 @@ public class ProdLike implements Serializable {
 
 	public void setLikeType(String likeType) {
 		this.likeType = likeType;
+	}
+
+	public String getCollectid() {
+		return collectid;
+	}
+
+	public void setCollectid(String collectid) {
+		this.collectid = collectid;
 	}
 
 }

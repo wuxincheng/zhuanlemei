@@ -711,3 +711,60 @@ html.no-touch .zm-item-vote-count:hover {
   position: absolute;
   width: 100%;
 }
+
+/******* 榜单详细页面样式 *******/
+.collect-left {
+  background: #fafafa;
+  float: right;
+  width: 325px;
+  min-height: 350px;
+  padding: 30px;
+}
+
+.collect-left .collect-name {
+  padding-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.collect-left .collect-create {
+  margin-top: 0px;
+  width: 100%;
+}
+
+.collect-left .collect-creater {
+  margin-top: 20px;
+}
+
+.collect-left .collect-time {
+  padding: 5px;
+}
+
+.collect-left .collect-memo {
+  border-top: 1px solid #E7E7E7;
+  margin-top: 0px;
+  padding-top: 30px;
+  display: inline-block;
+  width: 100%;
+  color: #A3A3A3;
+}
+
+.collect-hand {
+  border: 1px solid #F8FAFA;
+  padding: 0 30px;
+  border-radius: 0px;
+  background-color: #F8FAFA;
+}
+
+.collect-fund {
+  padding: 10px;
+}
+
+/**********************************/
+.list-fav-btn .btn {
+  width: 90px;
+  padding: 8px 22px;
+  text-align: center;
+}
+
+

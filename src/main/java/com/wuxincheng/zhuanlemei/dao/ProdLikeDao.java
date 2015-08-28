@@ -36,9 +36,18 @@ public class ProdLikeDao extends BaseDao {
 		return (ProdLike) this.getSqlMapClientTemplate().queryForObject(
 				"ProdLike.queryDetailByFundCode", queryMap);
 	}
+	
+	public ProdLike queryDetailByCollectid(Map<String, String> queryMap) {
+		return (ProdLike) this.getSqlMapClientTemplate().queryForObject(
+				"ProdLike.queryDetailByCollectid", queryMap);
+	}
 
 	public void updateFundMarketLike(Map<String, Object> updateMarketLikeMap) {
 		this.getSqlMapClientTemplate().update("ProdLike.updateFundMarketLike", updateMarketLikeMap);
+	}
+	
+	public void updateCollectLike(Map<String, Object> updateCollectLikeMap) {
+		this.getSqlMapClientTemplate().update("ProdLike.updateCollectLike", updateCollectLikeMap);
 	}
 
 	/**
@@ -48,6 +57,15 @@ public class ProdLikeDao extends BaseDao {
 	 */
 	public void deleteFundLike(ProdLike prodLike) {
 		this.getSqlMapClientTemplate().delete("ProdLike.deleteFundLike", prodLike);
+	}
+	
+	/**
+	 * 删除产品集赞同反对记录
+	 * 
+	 * @param prodLike fundCode/userid
+	 */
+	public void deleteCollectLike(ProdLike prodLike) {
+		this.getSqlMapClientTemplate().delete("ProdLike.deleteCollectLike", prodLike);
 	}
 
 }

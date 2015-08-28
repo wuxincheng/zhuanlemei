@@ -46,20 +46,21 @@ public class CommentController extends BaseController {
 	public String post(Model model, HttpServletRequest request, Comment comment) {
 		logger.info("保存评论数据");
 
-		// 基金代码, 用于判断是产品评论还是行情评论的标识
+		// 基金代码, 用于判断是产品集评论还是行情评论的标识
 		String fundCodeFlag = comment.getFundCode();
 
-		model.addAttribute("prodid", comment.getProductid());
+		// model.addAttribute("prodid", comment.getProductid());
 		model.addAttribute("fundCode", comment.getFundCode());
+		model.addAttribute("collectid", comment.getCollectid());
 
 		// 保存处理
 		String responseMessage = commentService.post(comment, getCurrentUserid(request));
 		if (StringUtils.isNotEmpty(responseMessage)) { // 返回异常信息处理
 			model.addAttribute(Constants.MSG_WARN, "" + responseMessage);
-			return fundCodeFlag == null ? "redirect:/product/detail" : "redirect:/fund/market/detail";
+			return fundCodeFlag == null ? "redirect:/collect/detail" : "redirect:/fund/market/detail";
 		}
 
-		return fundCodeFlag == null ? "redirect:/product/detail" : "redirect:/fund/market/detail";
+		return fundCodeFlag == null ? "redirect:/collect/detail" : "redirect:/fund/market/detail";
 	}
 
 	@RequestMapping(value = "/list")

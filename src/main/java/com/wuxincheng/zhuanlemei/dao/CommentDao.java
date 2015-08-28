@@ -51,4 +51,15 @@ public class CommentDao extends BaseDao {
 		return this.getSqlMapClientTemplate().queryForList("Comment.queryByFundCode", fundCode);
 	}
 
+	/**
+	 * 根据产品集主键查询行情评论列表
+	 * 
+	 * @param collectid
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Comment> queryByCollectid(String collectid) {
+		return this.getSqlMapClientTemplate().queryForList("Comment.queryByCollectid", collectid);
+	}
+
 }

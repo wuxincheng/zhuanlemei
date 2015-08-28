@@ -41,7 +41,7 @@ public class IndexController extends BaseController {
 		requestMessageProcess(request);
 
 		// 显示前3名热门榜单
-		List<Collect> collects = collectService.queryTopHot(3);
+		List<Collect> collects = collectService.queryTopHot(6);
 		model.addAttribute("collects", collects);
 
 		// 显示前10名热门基金

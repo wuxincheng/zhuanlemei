@@ -58,6 +58,21 @@ public class Collect implements Serializable {
 	private String collectState;
 
 	private String recommend;
+	
+	/** 产品集赞数 */
+	private Integer likeSum;
+	
+	/** 产品集赞度 */
+	private Integer likeScore;
+	
+	/** 产品集反对数 */
+	private Integer unLikeSum;
+	
+	/** 产品集反对度 */
+	private Integer unLikeScore;
+
+	/** 产品集评论数 */
+	private Integer commentSum;
 
 	public Collect() {
 	}
@@ -180,6 +195,46 @@ public class Collect implements Serializable {
 
 	public void setBgColor(String bgColor) {
 		this.bgColor = bgColor;
+	}
+
+	public Integer getLikeSum() {
+		return likeSum;
+	}
+
+	public void setLikeSum(Integer likeSum) {
+		this.likeSum = likeSum;
+	}
+
+	public Integer getLikeScore() {
+		return likeScore;
+	}
+
+	public void setLikeScore(Integer likeScore) {
+		this.likeScore = likeScore;
+	}
+
+	public Integer getUnLikeSum() {
+		return unLikeSum;
+	}
+
+	public void setUnLikeSum(Integer unLikeSum) {
+		this.unLikeSum = unLikeSum;
+	}
+
+	public Integer getUnLikeScore() {
+		return unLikeScore;
+	}
+
+	public void setUnLikeScore(Integer unLikeScore) {
+		this.unLikeScore = unLikeScore;
+	}
+
+	public Integer getCommentSum() {
+		return commentSum;
+	}
+
+	public void setCommentSum(Integer commentSum) {
+		this.commentSum = commentSum;
 	}
 
 }
