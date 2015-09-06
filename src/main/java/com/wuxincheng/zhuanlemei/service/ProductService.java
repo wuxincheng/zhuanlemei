@@ -8,6 +8,9 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.wuxincheng.zhuanlemei.Pager;
@@ -26,6 +29,7 @@ import com.wuxincheng.zhuanlemei.util.DateUtil;
  */
 @Service("productService")
 public class ProductService {
+	private static final Logger logger = LoggerFactory.getLogger(ProductService.class);
 
 	@Resource
 	private ProductDao productDao;
@@ -35,9 +39,48 @@ public class ProductService {
 	private ProdLikeService prodLikeService;
 
 	/**
-	 * 发布产品
+	 * 发布产品(基金产品+简单评论)
 	 */
-	public void post(Product product, String userid) throws Exception {
+	public String post(Product product, String userid) throws Exception {
+		String responseMessage = null;
+
+		logger.debug("验证产品发布参数");
+
+		// 验证主要参数
+		if (StringUtils.isEmpty(product.getFundName())) {
+			responseMessage = "产品名称不能为空";
+			logger.info(responseMessage);
+			return responseMessage;
+		}
+
+		if (StringUtils.isEmpty(product.getFundCode())) {
+			responseMessage = "产品代码不能为空";
+			logger.info(responseMessage);
+			return responseMessage;
+		}
+
+		if (StringUtils.isEmpty(product.getMemo())) {
+			responseMessage = "产品说明您就简单说两句吧！";
+			logger.info(responseMessage);
+			return responseMessage;
+		}
+
+		if (StringUtils.isEmpty(product.getCollectid())) {
+			responseMessage = "榜单无效";
+			logger.info(responseMessage);
+			return responseMessage;
+		}
+
+		// TODO 同一个榜单下不能重复添加同一个基金产品
+		/*
+		Product queryProduct = productDao.queryByFundCodeAndCollectid(product.getFundCode(), product.getCollectid());
+		if (queryProduct != null) {
+			responseMessage = "该基金榜单中已经存在";
+			logger.info(responseMessage);
+			return responseMessage;
+		}
+		 */
+
 		Date date = new Date();
 
 		product.setCommentSum(0);
@@ -48,21 +91,28 @@ public class ProductService {
 		product.setUserid(userid);
 		product.setScore("0"); // 产品关注度初始为0
 
-		if (product.getCollectid() != null) {
-			// 更新产品集中产品的数量
-			collectDao.addProductSum(product.getCollectid());
-		}
-
 		// 发布这个产品
 		productDao.post(product);
+		
+		// 更新产品集中产品的数量
+		collectDao.addProductSum(product.getCollectid());
+		
+		// TODO 每增加一个产品, 榜单分数加3
+		// TODO 查询用户是否已经赞这个榜单
+		// TODO 如果已经赞, 不进行操作, 如果没有赞则赞同操作, 并加上赞同人数和分数
+		// TODO 更新榜单赞人数和赞分数
 
+		/*
 		// 当前用户在发布产品的时默认赞这个产品
 		List<Product> products = productDao.queryPostByUserid(userid);
 		if (null == products || products.size() < 1) {
-			return;
+			return responseMessage;
 		}
 		// 最新发布的产品
 		prodLikeService.like(products.get(0).getProdid(), userid);
+		 */
+
+		return responseMessage;
 	}
 
 	/**

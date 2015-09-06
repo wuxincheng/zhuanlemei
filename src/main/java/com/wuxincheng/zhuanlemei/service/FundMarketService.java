@@ -369,6 +369,7 @@ public class FundMarketService {
 				for (FundMarket cacheFundMarket : cacheFundMarkets) {
 					if (StringUtils.isNotEmpty(cacheFundMarket.getFundCode())) {
 						if (product.getFundCode().equals(cacheFundMarket.getFundCode())) {
+							cacheFundMarket.setFundMemo(product.getMemo());
 							fundMarkets.add(cacheFundMarket);
 							break;
 						}

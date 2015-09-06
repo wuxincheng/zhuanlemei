@@ -14,6 +14,8 @@ public class CollectUser implements Serializable {
 	private static final long serialVersionUID = -361294005914978730L;
 
 	private String collectid;
+	
+	private String fundCode;
 
 	private String userid;
 
@@ -51,6 +53,14 @@ public class CollectUser implements Serializable {
 
 	public void setCollectState(String collectState) {
 		this.collectState = collectState;
+	}
+
+	public String getFundCode() {
+		return fundCode;
+	}
+
+	public void setFundCode(String fundCode) {
+		this.fundCode = fundCode;
 	}
 
 }

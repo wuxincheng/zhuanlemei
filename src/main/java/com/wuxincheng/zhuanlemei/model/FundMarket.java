@@ -91,21 +91,32 @@ public class FundMarket implements Serializable {
 
 	/** 更新时间 */
 	private String updateTime;
-	
+
 	/** 产品赞数 */
 	private Integer likeSum;
-	
+
 	/** 产品赞度 */
 	private Integer likeScore;
-	
+
 	/** 产品反对数 */
 	private Integer unLikeSum;
-	
+
 	/** 产品反对度 */
 	private Integer unLikeScore;
 
 	/** 产品评论数 */
 	private Integer commentSum;
+
+	/** 临时字段 */
+	private String fundMemo;
+
+	public String getFundMemo() {
+		return fundMemo;
+	}
+
+	public void setFundMemo(String fundMemo) {
+		this.fundMemo = fundMemo;
+	}
 
 	public String getMarketDate() {
 		return marketDate;

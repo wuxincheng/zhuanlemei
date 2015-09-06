@@ -30,6 +30,22 @@
               <span>${fundMarket.fundName}（${fundMarket.fundCode}）</span>
               <c:if test="${not empty fundMarket.fundType}"><span class="fund-type">${fund:type(fundMarket.fundType)}</span></c:if>
               <c:if test="${'0' != fundMarket.fundRiskLevel}"><span class="fund-type">${fund:riskLevel(fundMarket.fundRiskLevel)}</span></c:if>
+              <span style="font-size: 14px; float: right;">
+              <a class="btn info" style="padding: 5px 22px;" 
+                href="${root}/collect/collect?collectid=${collect.collectid}&userid=${user.userid}">加入榜单</a>
+              </span>
+              <c:if test="${not empty collectUser}">
+              <span style="font-size: 14px;">
+              <a class="btn primary" style="padding: 5px 22px; margin-bottom: 5px; float: right; margin-right: 10px;" 
+                href="${root}/fund/market/focus?fundCode=${fundMarket.fundCode}&userid=${userid}">已关注</a>
+              </span>
+              </c:if>
+              <c:if test="${empty collectUser}">
+              <span style="font-size: 14px;">
+              <a class="btn warning" style="padding: 5px 22px; margin-bottom: 5px; float: right; margin-right: 10px;" 
+                href="${root}/fund/market/focus?fundCode=${fundMarket.fundCode}&userid=${userid}">+关注</a>
+              </span>
+              </c:if>
             </div>
             
             <div class="fund-market">
@@ -156,7 +172,7 @@
               data-for="content" required="required" mentionable="true">
             </div>
             <input class="btn submit" name="commit" type="submit" value="发表评论" />
-            <span class='help-inline'>支持Markdown语法</span>
+            <span class='help-inline'></span>
           </form>
           </c:if>
           

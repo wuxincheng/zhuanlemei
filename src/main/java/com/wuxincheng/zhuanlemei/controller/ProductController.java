@@ -46,6 +46,7 @@ public class ProductController extends BaseController {
 	private ProdLikeService prodLikeService;
 
 	@RequestMapping(value = "/list")
+	@Deprecated
 	public String list(Model model, HttpServletRequest request, String currentPage) {
 		logger.info("显示产品列表");
 		requestMessageProcess(request);
@@ -86,27 +87,20 @@ public class ProductController extends BaseController {
 		return "product/postUI";
 	}
 
+	/**
+	 * 目前只支持在榜单中添加新的基金产品, 已不支持在TOP中首页添加产品
+	 * 
+	 * @param model
+	 * @param request
+	 * @param product
+	 * @return
+	 */
 	@RequestMapping(value = "/doPost")
 	public String doPost(Model model, HttpServletRequest request, Product product) {
 		logger.info("处理发布分享新产品数据");
 
-		// 验证主要参数
-		if (StringUtils.isEmpty(product.getFundName())) {
-			model.addAttribute(Constants.MSG_WARN, "产品名称不能为空");
-			return "product/postUI";
-		}
-
-		if (StringUtils.isEmpty(product.getFundCode())) {
-			model.addAttribute(Constants.MSG_WARN, "产品代码不能为空");
-			return "product/postUI";
-		}
-
-		if (StringUtils.isEmpty(product.getMemo())) {
-			model.addAttribute(Constants.MSG_WARN, "产品说明您就简单说两句吧！");
-			return "product/postUI";
-		}
-
 		try {
+			model.addAttribute(Constants.MSG_WARN, "产品名称不能为空");
 			// 发布产品
 			productService.post(product, getCurrentUserid(request));
 			logger.info("产品信息发布成功");
@@ -122,6 +116,7 @@ public class ProductController extends BaseController {
 	}
 
 	@RequestMapping(value = "/detail")
+	@Deprecated
 	public String detail(Model model, HttpServletRequest request, String prodid) {
 		logger.info("显示产品详细页面 prodid={}", prodid);
 
@@ -152,6 +147,7 @@ public class ProductController extends BaseController {
 	 */
 	@RequestMapping(value = "/like")
 	@ResponseBody
+	@Deprecated
 	public Map<String, String> like(HttpServletRequest request, String prodid) {
 		logger.info("点赞异步操作 prodid={}", prodid);
 
@@ -171,6 +167,11 @@ public class ProductController extends BaseController {
 		logger.info("点赞操作结果 result={}", result);
 
 		return result;
+	}
+	
+	@RequestMapping(value = "/delete")
+	public String delete(Model model, String prodid) {
+		return "product/detail";
 	}
 
 }

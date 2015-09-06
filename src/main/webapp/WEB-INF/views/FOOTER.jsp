@@ -13,7 +13,7 @@
       <img src="${root}/assets/images/ad/ad-bar.jpg" />
     </a>
   </div>
-   -->
+
   
   <div style="margin: 170px;">&nbsp;</div>
   
@@ -127,6 +127,7 @@
       </div>
     </div>
   </div>
+     -->
   
   <footer class="footer">
     <div class="text-center">

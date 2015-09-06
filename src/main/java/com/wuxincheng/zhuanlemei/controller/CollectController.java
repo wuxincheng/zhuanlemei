@@ -177,6 +177,10 @@ public class CollectController extends BaseController {
 		// 查询这个榜单的所有评论
 		List<Comment> comments = commentService.queryByCollectid(collectid);
 		model.addAttribute("comments", comments);
+		
+		// 显示前5名热门榜单
+		List<Collect> collects = collectService.queryTopHot(5);
+		model.addAttribute("collects", collects);
 
 		return "collect/detail";
 	}

@@ -15,9 +15,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.wuxincheng.zhuanlemei.model.CollectUser;
 import com.wuxincheng.zhuanlemei.model.Comment;
 import com.wuxincheng.zhuanlemei.model.FundMarket;
 import com.wuxincheng.zhuanlemei.model.ProdLike;
+import com.wuxincheng.zhuanlemei.service.CollectUserService;
 import com.wuxincheng.zhuanlemei.service.CommentService;
 import com.wuxincheng.zhuanlemei.service.FundMarketService;
 import com.wuxincheng.zhuanlemei.service.ProdLikeService;
@@ -44,6 +46,9 @@ public class FundMarketController extends BaseController {
 
 	@Autowired
 	private ProdLikeService prodLikeService;
+	
+	@Autowired
+	private CollectUserService collectUserService;
 
 	/** 每页显示条数 */
 	private final Integer pageSize = 10;
@@ -136,6 +141,15 @@ public class FundMarketController extends BaseController {
 			model.addAttribute("prodLike", prodLike);
 		}
 
+		// 判断用户是否已经登录
+		if (getCurrentUserid(request) != null) {
+			// 如果登录，查询该用户是否已经收藏该榜单
+			CollectUser collectUser = collectUserService.queryByFundCode(fundCode, getCurrentUserid(request));
+			request.setAttribute("collectUser", collectUser);
+			userid = getCurrentUserid(request);
+			model.addAttribute("userid", userid);
+		}
+		
 		getTopRedSortList(model); // 查询红绿榜
 
 		return "fund/market/detail";
@@ -170,6 +184,20 @@ public class FundMarketController extends BaseController {
 		}
 
 		return result;
+	}
+	
+	@RequestMapping(value = "/focus")
+	public String focus(String fundCode, String userid) {
+		logger.info("基金收藏和取消收藏操作 fundCode={} userid={}", fundCode, userid);
+
+		if (fundCode != null && userid != null) {
+			collectUserService.focusFund(fundCode, userid);
+			logger.debug("基金收藏和取消收藏操作成功");
+		} else {
+			logger.debug("基金收藏和取消收藏操作失败：collectid或userid为空");
+		}
+
+		return "redirect:/fund/market/detail?fundCode=" + fundCode;
 	}
 
 	/**

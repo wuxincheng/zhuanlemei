@@ -40,9 +40,6 @@
                 </ul>
               </div>
             </a>
-            <a class="list-fav-trigger" data-method="put" data-remote="true" href="/posts/collections/1/like" rel="nofollow">
-              <span class="list-fav "></span>
-            </a>
           </li>
           </c:forEach>
           </c:if>

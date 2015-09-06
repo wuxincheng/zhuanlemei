@@ -26,6 +26,8 @@
 
   <mvc:interceptors>
     <mvc:interceptor>
+      <!-- fund -->
+      <mvc:mapping path="/fund/market/focus" />
       <!-- product -->
       <mvc:mapping path="/product/postUI" />
       <mvc:mapping path="/product/doPost" />

@@ -25,5 +25,13 @@ public class CollectUserDao extends BaseDao {
 	public List<CollectUser> queryCollects(String userid) {
 		return this.getSqlMapClientTemplate().queryForList("CollectUser.queryCollects", userid);
 	}
+
+	public CollectUser queryByFundCode(CollectUser collectUser) {
+		return (CollectUser)this.getSqlMapClientTemplate().queryForObject("CollectUser.queryByFundCode", collectUser);
+	}
+
+	public void deleteByFundCode(CollectUser collectUser) {
+		this.getSqlMapClientTemplate().delete("CollectUser.deleteByFundCode", collectUser);
+	}
 	
 }

@@ -36,6 +36,13 @@ public class CollectUserService {
 		collectUser.setUserid(userid);
 		return collectUser = collectUserDao.query(collectUser);
 	}
+	
+	public CollectUser queryByFundCode(String fundCode, String userid) {
+		CollectUser collectUser = new CollectUser();
+		collectUser.setFundCode(fundCode);
+		collectUser.setUserid(userid);
+		return collectUser = collectUserDao.queryByFundCode(collectUser);
+	}
 
 	/**
 	 * 收藏
@@ -65,6 +72,37 @@ public class CollectUserService {
 
 			// 产品集收藏-1
 			collectDao.cutCollectSum(collectid);
+		}
+	}
+	
+	/**
+	 * 收藏基金
+	 * 
+	 * @param collectid
+	 * @param userid
+	 */
+	public void focusFund(String fundCode, String userid) {
+		CollectUser deleteOrQueryCollectUser = new CollectUser();
+		deleteOrQueryCollectUser.setFundCode(fundCode);
+		deleteOrQueryCollectUser.setUserid(userid);
+
+		CollectUser querycu = collectUserDao.queryByFundCode(deleteOrQueryCollectUser);
+		if (null == querycu) { // 收藏
+			CollectUser collectUser = new CollectUser();
+			collectUser.setFundCode(fundCode);
+			collectUser.setUserid(userid);
+			collectUser.setCreateTime(DateUtil.getCurrentDate(new Date(), "yyyyMMdd HH:mm:ss"));
+			collectUser.setCollectState(Constants.DEFAULT_STATE);
+
+			collectUserDao.insert(collectUser);
+
+			// TODO 产品集收藏+1
+			// collectDao.addCollectSum(fundCode);
+		} else { // 取消收藏
+			collectUserDao.deleteByFundCode(deleteOrQueryCollectUser);
+
+			// TODO 产品集收藏-1
+			// collectDao.cutCollectSum(collectid);
 		}
 	}
 

@@ -713,12 +713,23 @@ html.no-touch .zm-item-vote-count:hover {
 }
 
 /******* 榜单详细页面样式 *******/
+.collect-main-panel {
+  margin-bottom: 30px;
+  width: 670px;
+}
+
 .collect-left {
   background: #fafafa;
   float: right;
-  width: 325px;
+  width: 280px;
   min-height: 350px;
   padding: 30px;
+}
+
+.collect-sort-left {
+  float: right;
+  width: 280px;
+  min-height: 350px;
 }
 
 .collect-left .collect-name {
@@ -750,19 +761,34 @@ html.no-touch .zm-item-vote-count:hover {
 }
 
 .collect-hand {
-  border: 1px solid #F8FAFA;
+  border: 0px solid #F8FAFA;
   padding: 0 30px;
   border-radius: 0px;
-  background-color: #F8FAFA;
+  background-color: #Fff;
 }
 
 .collect-fund {
+  margin-bottom: 20px;
+  padding: 20px;
+  padding-bottom: 10px;
+  background-color: #EAF4F5;
+}
+
+.collect-fund-info {
+  text-align: left;
   padding: 10px;
+  line-height: 1.42857143;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #eee;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  line-height: 22px !important;
 }
 
 /**********************************/
 .list-fav-btn .btn {
-  width: 90px;
   padding: 8px 22px;
   text-align: center;
 }
