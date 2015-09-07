@@ -30,22 +30,25 @@
               <span>${fundMarket.fundName}（${fundMarket.fundCode}）</span>
               <c:if test="${not empty fundMarket.fundType}"><span class="fund-type">${fund:type(fundMarket.fundType)}</span></c:if>
               <c:if test="${'0' != fundMarket.fundRiskLevel}"><span class="fund-type">${fund:riskLevel(fundMarket.fundRiskLevel)}</span></c:if>
-              <span style="font-size: 14px; float: right;">
-              <a class="btn info" style="padding: 5px 22px;" 
-                href="${root}/collect/collect?collectid=${collect.collectid}&userid=${user.userid}">加入榜单</a>
-              </span>
-              <c:if test="${not empty collectUser}">
-              <span style="font-size: 14px;">
-              <a class="btn primary" style="padding: 5px 22px; margin-bottom: 5px; float: right; margin-right: 10px;" 
-                href="${root}/fund/market/focus?fundCode=${fundMarket.fundCode}&userid=${userid}">已关注</a>
-              </span>
-              </c:if>
-              <c:if test="${empty collectUser}">
-              <span style="font-size: 14px;">
-              <a class="btn warning" style="padding: 5px 22px; margin-bottom: 5px; float: right; margin-right: 10px;" 
-                href="${root}/fund/market/focus?fundCode=${fundMarket.fundCode}&userid=${userid}">+关注</a>
-              </span>
-              </c:if>
+              
+              <div style="margin-top: -30px; font-weight: normal; font-size: 14px;">
+                <span style="float: right;">
+                <a class="btn info" style="padding: 5px 15px;" 
+                  href="${root}/collect/collect?collectid=${collect.collectid}&userid=${user.userid}">加入榜单</a>
+                </span>
+                <c:if test="${not empty collectUser}">
+                <span>
+                <a class="btn primary" style="padding: 5px 10px; margin-bottom: 5px; float: right; margin-right: 10px;" 
+                  href="${root}/fund/market/focus?fundCode=${fundMarket.fundCode}&userid=${userid}">已关注 (${fundMarket.focusSum})</a>
+                </span>
+                </c:if>
+                <c:if test="${empty collectUser}">
+                <span>
+                <a class="btn warning" style="padding: 5px 10px; margin-bottom: 5px; float: right; margin-right: 10px;" 
+                  href="${root}/fund/market/focus?fundCode=${fundMarket.fundCode}&userid=${userid}">+ 关注 (${fundMarket.focusSum})</a>
+                </span>
+                </c:if>
+              </div>
             </div>
             
             <div class="fund-market">
@@ -98,64 +101,27 @@
               <span class="label">反对，不会显示你的姓名</span>
               </button></td>
             </tr></table>
-          </div>
-          
-          <c:if test="${not empty prodLikes}">
-          <div class="upvotes">
-            <h2>${product.likeSum}人觉得很赞：</h2>
-            <ul class="upvote-users cf">
-            <c:forEach items="${prodLikes}" var="prodLike">
-              <li class="product-avatar">
-                <div class="user-image">
-                  <a class="user-image-link" href="${root}/user/main?queryUserid=${prodLike.userid}" target="_blank">
-                    <img class="avatar" height="60" width="60" 
-                      <c:choose>
-                      <c:when test="${not empty prodLike.socialPicPath}">src="${prodLike.socialPicPath}"</c:when>
-                      <c:when test="${not empty prodLike.picPath}">src="${root}/user/avatar/${prodLike.picPath}"</c:when>
-                      <c:otherwise>src="${root}/assets/img/logo/toplogo.png"</c:otherwise>
-                      </c:choose> />
-                  </a>
+            <div class="share" style="padding-bottom: 0px; text-align: left; float: right; border: 0px; display: inline; margin-top: -40px;">
+              <div class="share-weibo">
+                <a href="http://service.weibo.com/share/share.php?searchPic=false&amp;title=${fundMarket.fundName}[${fundMarket.fundCode}]&amp;url=http://www.zhuanlemei.com/fund/market/detail?fundCode=${fundMarket.fundCode}" target="_blank" title="点击分享到微博">
+                  <i class="svg-weibo"></i> <span>微博</span>
+                </a>
+              </div>
+              <div class="share-wechat" style="padding-right: 0px;">
+                <a title="微信扫码后分享" href="javascript:void(0)">
+                  <i class="svg-wechat"></i> <span>微信</span>
+                </a>
+                <div class="dropdown share-dropdown">
+                  <img height="156" src="http://s.jiathis.com/qrcode.php?url=http://www.zhuanlemei.com/fund/market/detail?fundCode=${fundMarket.fundCode}"
+                     width="156" />
+                  <span>微信扫一扫：分享</span>
                 </div>
-                <div class="user-tooltip">
-                  <a class="user-image-link" href="#">
-                    <img class="avatar avatar-big" height="120" width="120"
-                      <c:choose>
-                      <c:when test="${not empty prodLike.socialPicPath}">src="${prodLike.socialPicPath}"</c:when>
-                      <c:when test="${not empty prodLike.picPath}">src="${root}/user/avatar/${prodLike.picPath}"</c:when>
-                      <c:otherwise>src="${root}/assets/img/logo/toplogo.png"</c:otherwise>
-                      </c:choose> />
-                  </a>
-                  <h3 class="user-nickname">${prodLike.nickName}</h3>
-                  <h4 class="user-title">${prodLike.userGroup} - ${prodLike.position}<br></h4>
-                  <p class="user-bio">${prodLike.memo}</p>
-                </div>
-              </li>
-            </c:forEach>
-            </ul>
-          </div>
-          </c:if>
-        
-          <div class="share">
-            <h3>分享到</h3>
-            <div class="share-weibo">
-              <a href="http://service.weibo.com/share/share.php?searchPic=false&amp;title=${fundMarket.fundName}[${fundMarket.fundCode}]&amp;url=http://www.zhuanlemei.com/fund/market/detail?fundCode=${fundMarket.fundCode}" target="_blank" title="点击分享到微博">
-                <i class="svg-weibo"></i> <span>微博</span>
-              </a>
-            </div>
-            <div class="share-wechat">
-              <a title="微信扫码后分享" href="javascript:void(0)">
-                <i class="svg-wechat"></i> <span>微信</span>
-              </a>
-              <div class="dropdown share-dropdown">
-                <img height="156" src="http://s.jiathis.com/qrcode.php?url=http://www.zhuanlemei.com/fund/market/detail?fundCode=${fundMarket.fundCode}"
-                   width="156" />
-                <span>微信扫一扫：分享</span>
               </div>
             </div>
           </div>
         </section>
         
-        <section class="comments row" id="comments">
+        <section class="comments" id="comments">
           <h4>评论 (${fundMarket.commentSum})</h4>
           <c:if test="${empty user}">
           <form accept-charset="UTF-8" action="" class="simple_form comment" method="post">

@@ -36,6 +36,8 @@
     <result property="unLikeSum" column="unlikesum" />
     <result property="unLikeScore" column="unlikescore" />
     <result property="commentSum" column="commentsum" />
+    <result property="focusSum" column="focussum" />
+    <result property="focusScore" column="focusscore" />
   </resultMap>
   
   <insert id="insert" parameterClass="FundMarket">
@@ -71,7 +73,9 @@
       likescore,
       unlikesum,
       unlikescore,
-      commentsum)
+      commentsum,
+      focussum,
+      focusscore)
     VALUES (
       #marketDate#, 
       #fundName#, 
@@ -104,7 +108,9 @@
       #likeScore#,
       #unLikeSum#,
       #unLikeScore#,
-      #commentSum#
+      #commentSum#,
+      #focusSum#,
+      #focusScore#
     )
   </insert>
   
@@ -192,6 +198,13 @@
     UPDATE TFundMarket 
        SET unlikescore=(unlikescore+#unLikeScore#), 
            unlikesum=(unlikesum+#unLikeSum#) 
+     WHERE fundcode = #fundCode#
+  </update>
+  
+  <update id="updateFocusInfo" parameterClass="java.util.Map">
+    UPDATE TFundMarket 
+       SET focusscore=(focusscore+#focusScore#), 
+           focussum=(focussum+#focusSum#) 
      WHERE fundcode = #fundCode#
   </update>
   

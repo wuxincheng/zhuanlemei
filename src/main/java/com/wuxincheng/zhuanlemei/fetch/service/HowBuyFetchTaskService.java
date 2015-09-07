@@ -133,11 +133,14 @@ public class HowBuyFetchTaskService {
 					fundMarket.setFundRiseThisYear(fundMarketMap.get("fundRiseThisYear"));
 					fundMarket.setCreateTime(currentDateTime);
 					fundMarket.setUpdateTime(currentDateTime);
+					// 以下均为初始默认值
 					fundMarket.setLikeSum(0);
 					fundMarket.setLikeScore(0);
 					fundMarket.setUnLikeScore(0);
 					fundMarket.setUnLikeSum(0);
 					fundMarket.setCommentSum(0);
+					fundMarket.setFocusSum(0);
+					fundMarket.setFocusScore(0);
 
 					fundMarketDao.insert(fundMarket);
 

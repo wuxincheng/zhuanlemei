@@ -153,4 +153,13 @@ public class FundMarketDao extends BaseDao {
 		return this.getSqlMapClientTemplate().queryForList("FundMarket.queryTopGreenMarkets");
 	}
 
+	/**
+	 * 更新关注度和关注人数
+	 * 
+	 * @param updateInfoMap
+	 */
+	public void updateFocusInfo(Map<String, Object> updateInfoMap) {
+		this.getSqlMapClientTemplate().update("FundMarket.updateFocusInfo", updateInfoMap);
+	}
+
 }

@@ -1,7 +1,9 @@
 package com.wuxincheng.zhuanlemei.service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.wuxincheng.zhuanlemei.dao.CollectDao;
 import com.wuxincheng.zhuanlemei.dao.CollectUserDao;
+import com.wuxincheng.zhuanlemei.dao.FundMarketDao;
 import com.wuxincheng.zhuanlemei.model.CollectUser;
 import com.wuxincheng.zhuanlemei.util.Constants;
 import com.wuxincheng.zhuanlemei.util.DateUtil;
@@ -21,6 +24,9 @@ public class CollectUserService {
 
 	@Resource
 	private CollectDao collectDao;
+	
+	@Resource
+	private FundMarketDao fundMarketDao;
 
 	public void insert(CollectUser collectUser) {
 		collectUserDao.insert(collectUser);
@@ -96,13 +102,21 @@ public class CollectUserService {
 
 			collectUserDao.insert(collectUser);
 
-			// TODO 产品集收藏+1
-			// collectDao.addCollectSum(fundCode);
+			// 基金产品收藏人数+1, 分数增加5分
+			Map<String, Object> updateInfoMap = new HashMap<String, Object>();
+			updateInfoMap.put("focusSum", 1);
+			updateInfoMap.put("focusScore", 5);
+			updateInfoMap.put("fundCode", fundCode);
+			fundMarketDao.updateFocusInfo(updateInfoMap);
 		} else { // 取消收藏
 			collectUserDao.deleteByFundCode(deleteOrQueryCollectUser);
 
-			// TODO 产品集收藏-1
-			// collectDao.cutCollectSum(collectid);
+			// 基金产品收藏人数-1, 分数减少5分
+			Map<String, Object> updateInfoMap = new HashMap<String, Object>();
+			updateInfoMap.put("focusSum", -1);
+			updateInfoMap.put("focusScore", -5);
+			updateInfoMap.put("fundCode", fundCode);
+			fundMarketDao.updateFocusInfo(updateInfoMap);
 		}
 	}
 

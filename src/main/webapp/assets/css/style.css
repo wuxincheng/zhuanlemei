@@ -92,7 +92,6 @@ h1,h2,h3,h4,h5,h6 {
 .fund-detail-panel {
   text-align: left;
   padding: 20px 0px 0px 0px;
-  margin-bottom: 20px;
   line-height: 1.42857143;
   background-color: #FFFFFF;
   border: 0px solid #eee;
@@ -116,7 +115,6 @@ h1,h2,h3,h4,h5,h6 {
 .fund-market {
   text-align: left;
   padding: 10px 20px;
-  margin-bottom: 20px;
   line-height: 1.42857143;
   background-color: #f2f6fb;
   border: 0px solid #eee;
@@ -762,7 +760,7 @@ html.no-touch .zm-item-vote-count:hover {
 
 .collect-hand {
   border: 0px solid #F8FAFA;
-  padding: 0 30px;
+  padding: 0 15px;
   border-radius: 0px;
   background-color: #Fff;
 }
@@ -771,7 +769,7 @@ html.no-touch .zm-item-vote-count:hover {
   margin-bottom: 20px;
   padding: 20px;
   padding-bottom: 10px;
-  background-color: #EAF4F5;
+  background-color: #F3FCFD;
 }
 
 .collect-fund-info {

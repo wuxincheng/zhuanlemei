@@ -107,6 +107,12 @@ public class FundMarket implements Serializable {
 	/** 产品评论数 */
 	private Integer commentSum;
 
+	/** 产品关注人数 */
+	private Integer focusSum;
+
+	/** 产品关注度 */
+	private Integer focusScore;
+
 	/** 临时字段 */
 	private String fundMemo;
 
@@ -372,6 +378,22 @@ public class FundMarket implements Serializable {
 
 	public void setCommentSum(Integer commentSum) {
 		this.commentSum = commentSum;
+	}
+
+	public Integer getFocusSum() {
+		return focusSum;
+	}
+
+	public void setFocusSum(Integer focusSum) {
+		this.focusSum = focusSum;
+	}
+
+	public Integer getFocusScore() {
+		return focusScore;
+	}
+
+	public void setFocusScore(Integer focusScore) {
+		this.focusScore = focusScore;
 	}
 
 }

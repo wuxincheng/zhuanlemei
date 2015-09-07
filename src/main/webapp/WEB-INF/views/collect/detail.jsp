@@ -78,54 +78,43 @@
       <div class="forms">
         <div class="collect-main-panel">
           <c:if test="${not empty collect.recommend}">
-          <div class="container row">
-            <div class="product-item">
-              <div class="posts-group cf">
-                <span class="post-tagline">${collect.recommend}</span>
-              </div>
+          <div class="container row" style="padding: 0px;">
+            <div style="font-size: 16px;">
+              <span>${collect.recommend}</span>
             </div>
           </div>
           </c:if>
           
-          <div class="row">
-            <div class="collect-hand">
-              <ul class="upvote-users cf">
-                <li class="product-avatar">
-                  <div class="zmd-votebar" style="width: 200px; margin-bottom: 20px; margin-left: -25px;">
-                    <table><tr>
-                      <td width="50px">&nbsp;<br><button class="up" aria-pressed="false" title="赞同" 
-                        onclick="likeCollect('${collect.collectid}', '0')">
-                      <i class="icon vote-arrow"></i>
-                      <span class="label">赞同</span>
-                      <div id="likeScore" class="count" style="margin-top: 10px;">${collect.likeScore}</div>
-                      </button></td>
-                      <td style="width:50px;">&nbsp;<br><button class="down" aria-pressed="false" 
-                        onclick="likeCollect('${collect.collectid}', '1')" title="反对，不会显示你的姓名">
-                      <div id="unLikeScore" class="countdown">${collect.unLikeScore}</div>
-                      <i class="icon vote-arrowdown"></i>
-                      <span class="label">反对，不会显示你的姓名</span>
-                      </button></td>
-                    </tr></table>
-                  </div>
-                </li>
-                <li class="product-avatar">
-                  <div class="user-image" style="margin-top: -60px; margin-left: 180px;">
-                    <div class="list-fav-btn" style="margin-bottom: 0px;">
-                      <c:if test="${not empty collectUser}">
-                      <a class="btn primary" href="${root}/collect/collect?collectid=${collect.collectid}&userid=${user.userid}">已关注</a>
-                      </c:if>
-                      <c:if test="${empty collectUser}">
-                      <a class="btn warning" href="${root}/collect/collect?collectid=${collect.collectid}&userid=${user.userid}">+关注</a>
-                      </c:if>
-                      <span class="fav-number"><span class='total-count'>${collect.collectSum}</span> 人已关注</span>
-                    </div>
-                  </div>
-                </li>
-              </ul>
+          <div class="row" style="padding: 0px 0px 0px 10px;">
+            <div class="collect-hand" style="padding-right: 0px; margin-bottom: 35px;">
+              <div class="zmd-votebar" style="width: 200px; margin-bottom: 20px; margin-left: -25px;">
+                <table><tr>
+                  <td width="50px">&nbsp;<br><button class="up" aria-pressed="false" title="赞同" 
+                    onclick="likeCollect('${collect.collectid}', '0')">
+                  <i class="icon vote-arrow"></i>
+                  <span class="label">赞同</span>
+                  <div id="likeScore" class="count" style="margin-top: 10px;">${collect.likeScore}</div>
+                  </button></td>
+                  <td style="width:50px;">&nbsp;<br><button class="down" aria-pressed="false" 
+                    onclick="likeCollect('${collect.collectid}', '1')" title="反对，不会显示你的姓名">
+                  <div id="unLikeScore" class="countdown">${collect.unLikeScore}</div>
+                  <i class="icon vote-arrowdown"></i>
+                  <span class="label">反对，不会显示你的姓名</span>
+                  </button></td>
+                </tr></table>
+              </div>
+              <div style="display: inline; float: right; margin-top: -60px;">
+                  <c:if test="${not empty collectUser}">
+                  <a class="btn primary" href="${root}/collect/collect?collectid=${collect.collectid}&userid=${user.userid}">已关注 (${collect.collectSum})</a>
+                  </c:if>
+                  <c:if test="${empty collectUser}">
+                  <a class="btn warning" href="${root}/collect/collect?collectid=${collect.collectid}&userid=${user.userid}">+ 关注 (${collect.collectSum})</a>
+                  </c:if>
+              </div>
             </div>
           </div>    
           
-          <div class="content row" style="padding-top: 0px;">
+          <div class="content row" style="padding: 0px;">
             <div>
               <input type="hidden" id="likePage" name="likePage" value="list" />
               <c:choose>
@@ -153,41 +142,33 @@
             </div>
           </div>
           
-          <p>&nbsp;</p><p>&nbsp;</p>
+          <p>&nbsp;</p>
           
-          <div class="row">
-            <div class="collect-hand">
-              <ul class="upvote-users cf">
-                <li class="product-avatar">
-                  <div class="user-image" style="margin-top: -60px; margin-left: -25px;">
-                    <a class="btn submit right" href="${root}/product/postUI?collectid=${collect.collectid}">补充好产品</a>
-                  </div>
-                </li>
-                <li class="product-avatar" style="top: -37px;">
-                  <div class="share" style="border-bottom:0px; padding-bottom: 0px; margin-left: 280px;">
-                    <div class="share-weibo">
-                        <a href="http://service.weibo.com/share/share.php?searchPic=false&amp;title=申万菱信量化小盘股票LOF[163110]&amp;url=http://www.zhuanlemei.com/fund/market/detail?fundCode=163110" target="_blank" title="点击分享到微博">
-                          <i class="svg-weibo"></i> <span>微博</span>
-                        </a>
-                      </div>
-                    <div class="share-wechat">
-                      <a title="微信扫码后分享" href="javascript:void(0)">
-                        <i class="svg-wechat"></i> <span>微信</span>
-                      </a>
-                      <div class="dropdown share-dropdown">
-                        <img height="156" src="http://s.jiathis.com/qrcode.php?url=http://www.zhuanlemei.com/top/collect/detail?collectid=${collect.collectid}" width="156" />
-                        <span>微信扫一扫：分享</span>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
+          <div class="row" style="padding: 0px;">
+            <div class="share" style="border-bottom:0px; padding-bottom: 0px; text-align: left;">
+              <div class="share-weibo" style="padding-left: 0px;">
+                <a href="http://service.weibo.com/share/share.php?searchPic=false&amp;title=${fundMarket.fundName}[${fundMarket.fundCode}]&amp;url=http://www.zhuanlemei.com/fund/market/detail?fundCode=${fundMarket.fundCode}" target="_blank" title="点击分享到微博">
+                  <i class="svg-weibo"></i> <span>微博</span>
+                </a>
+              </div>
+              <div class="share-wechat">
+                <a title="微信扫码后分享" href="javascript:void(0)">
+                  <i class="svg-wechat"></i> <span>微信</span>
+                </a>
+                <div class="dropdown share-dropdown">
+                  <img height="156" src="http://s.jiathis.com/qrcode.php?url=http://www.zhuanlemei.com/top/collect/detail?collectid=${collect.collectid}" width="156" />
+                  <span>微信扫一扫：分享</span>
+                </div>
+              </div>
+              <div style="display: inline; float: right; padding-right: 0px;">
+                <a class="btn submit" href="${root}/product/postUI?collectid=${collect.collectid}">补充好产品</a>
+              </div>
             </div>
           </div>  
           
           <!-- 评论 --> 
-          <div class="row" style="margin-top: 30px;">
-            <section class="comments row" id="comments">
+          <div class="row" style="margin-top: 35px; padding: 0px;">
+            <section class="comments" id="comments">
               <h4>评论 (${collect.commentSum})</h4>
               <c:if test="${empty user}">
               <form accept-charset="UTF-8" action="" class="simple_form comment" method="post">
