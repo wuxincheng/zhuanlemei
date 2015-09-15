@@ -13,6 +13,8 @@
 <link href="${root}/assets/img/logo/logoEN.png" type="image/x-icon" rel="icon" />
 <link href="${root}/assets/img/logo/logoEN.png" type="image/x-icon" rel="shortcut icon" />
 
+<script type="text/javascript" src="${root}/assets/js/popup.js"></script>
+
 <meta name="description" content="${fundMarket.fundName}，赚了没-TOP|找到你喜欢的理财产品，榜单|赚了没-TOP">
 <meta name="keywords" content="${fundMarket.fundName}，赚了没-TOP|找到你喜欢的理财产品，榜单|赚了没-TOP">
 
@@ -27,14 +29,14 @@
           <div class="fund-detail-panel">
             <input type="hidden" id="likePage" name="likePage" value="detail" />
             <div class="fund-name">
+              <input type="hidden" id="userid" name="userid" value="${userid}" />
               <span>${fundMarket.fundName}（${fundMarket.fundCode}）</span>
               <c:if test="${not empty fundMarket.fundType}"><span class="fund-type">${fund:type(fundMarket.fundType)}</span></c:if>
               <c:if test="${'0' != fundMarket.fundRiskLevel}"><span class="fund-type">${fund:riskLevel(fundMarket.fundRiskLevel)}</span></c:if>
               
               <div style="margin-top: -30px; font-weight: normal; font-size: 14px;">
                 <span style="float: right;">
-                <a class="btn info" style="padding: 5px 15px;" 
-                  href="${root}/collect/collect?collectid=${collect.collectid}&userid=${user.userid}">加入榜单</a>
+                <a class="btn submit" style="padding: 5px 15px;" href="#" onclick="selected('${fundMarket.fundCode}');">加入榜单</a>
                 </span>
                 <c:if test="${not empty collectUser}">
                 <span>
@@ -44,7 +46,7 @@
                 </c:if>
                 <c:if test="${empty collectUser}">
                 <span>
-                <a class="btn warning" style="padding: 5px 10px; margin-bottom: 5px; float: right; margin-right: 10px;" 
+                <a class="btn submit" style="padding: 5px 10px; margin-bottom: 5px; float: right; margin-right: 10px;" 
                   href="${root}/fund/market/focus?fundCode=${fundMarket.fundCode}&userid=${userid}">+ 关注 (${fundMarket.focusSum})</a>
                 </span>
                 </c:if>
@@ -88,18 +90,22 @@
           
           <div class="zmd-votebar">
             <table><tr>
-              <td width="50px">&nbsp;<br><button class="up" aria-pressed="false" title="赞同" 
+              <td width="60px">&nbsp;<br><button class="up" aria-pressed="false" title="赞同" 
                 onclick="likeMarket('${fundMarket.fundCode}', '0')">
               <i class="icon vote-arrow"></i>
               <span class="label">赞同</span>
               <div id="likeScore" class="count" style="margin-top: 10px;">${fundMarket.likeScore}</div>
-              </button></td>
+              </button><br>
+              <div>（${fundMarket.likeScore}）</div>
+              </td>
               <td style="width:50px;">&nbsp;<br><button class="down" aria-pressed="false" 
                 onclick="likeMarket('${fundMarket.fundCode}', '1')" title="反对，不会显示你的姓名">
               <div id="unLikeScore" class="countdown">${fundMarket.unLikeScore}</div>
               <i class="icon vote-arrowdown"></i>
               <span class="label">反对，不会显示你的姓名</span>
-              </button></td>
+              </button><br>
+              <div>（${fundMarket.unLikeScore}）</div>
+              </td>
             </tr></table>
             <div class="share" style="padding-bottom: 0px; text-align: left; float: right; border: 0px; display: inline; margin-top: -40px;">
               <div class="share-weibo">
@@ -196,12 +202,30 @@
         </section>
       </div>
     </div>
-    <aside class="aside-zlm">
+    <aside class="aside-zlm" style="font-weight: normal;">
       <jsp:include page="sort.jsp" />
     </aside>
   </div>
 
   <jsp:include page="../../FOOTER.jsp" />
+  
+  <script type="text/javascript">
+    function selected(fundCode) {
+    	var userid = $("#userid").val();
+    	if (userid == null || userid == '') {
+    		alert('您还没有登录，请登录！');
+    		window.location.href = "${root}/login/";
+    		return;
+    	}
+      
+      	var url = "${root}/collect/addin?fundCode="+fundCode;
+      	var pop = new Popup({ contentType:1,scrollType:'auto',isReloadOnClose:false,width:700,height:390});
+          pop.setContent("contentUrl", url);
+          pop.setContent("title", "+ 加入榜单");
+          pop.build();
+          pop.show();
+    }
+  </script>
   
 </body>
 </html>

@@ -63,11 +63,11 @@
                 onclick="likeMarket('${fundMarket.fundCode}', '0')">
               <i class="icon vote-arrow"></i>
               <span class="label">赞同</span>
-              <div id="${fundMarket.fundCode}count" class="count" style="margin-top: 10px;">${fundMarket.likeScore}</div>
+              <div id="${fundMarket.fundCode}count" class="count" style="margin-top: 10px;">赚</div>
               </button>
               <button class="down" aria-pressed="false" title="反对，不会显示你的姓名"
                 onclick="likeMarket('${fundMarket.fundCode}', '1')">
-              <div id="${fundMarket.fundCode}countdown" class="countdown">${fundMarket.unLikeScore}</div>
+              <div id="${fundMarket.fundCode}countdown" class="countdown">赔</div>
               <i class="icon vote-arrowdown"></i>
               <span class="label">反对，不会显示你的姓名</span>
               </button>
@@ -76,7 +76,7 @@
               <div class="fund-name"><a href="${root}/fund/market/detail?fundCode=${fundMarket.fundCode}" target="_blank">${fundMarket.fundName}（${fundMarket.fundCode}）</a></div>
               <div class="fund-base">单位净值&nbsp;[${fundMarket.navDate}] <span class="fund-nv-up">${fundMarket.currentNav}</span><span class="fund-nv-down">（${fundMarket.rateChange}）</span></div>
               <div class="fund-base">最新规模：${fundMarket.newScale}亿&nbsp;&nbsp;成立日期：${fundMarket.foundedDate}&nbsp;&nbsp;基金经理：${fundMarket.fundManager}</div>
-              <div class="fund-base">（${fundMarket.commentSum}人评价）</div>
+              <div class="fund-base">赚（${fundMarket.likeScore}）&nbsp;&nbsp;赔（${fundMarket.unLikeScore}）&nbsp;&nbsp;评论（${fundMarket.commentSum}）</div>
             </div>
           </div>
         </c:forEach>

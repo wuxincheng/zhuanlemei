@@ -726,14 +726,13 @@ html.no-touch .zm-item-vote-count:hover {
 
 .collect-sort-left {
   float: right;
-  width: 280px;
+  width: 240px;
   min-height: 350px;
 }
 
 .collect-left .collect-name {
   padding-top: 20px;
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 30px;
 }
 
 .collect-left .collect-create {
@@ -756,6 +755,7 @@ html.no-touch .zm-item-vote-count:hover {
   display: inline-block;
   width: 100%;
   color: #A3A3A3;
+  font-size: 16px;
 }
 
 .collect-hand {
@@ -785,10 +785,66 @@ html.no-touch .zm-item-vote-count:hover {
   line-height: 22px !important;
 }
 
+/** 加入榜单 */
+.collect-addin {
+  position: relative;
+  display: inline-block;
+}
+
+.collect-addin .items {
+  position: absolute;
+  width: 300px;
+  border: 1px solid #ccc;
+  background: #fff;
+  left: -180px;
+  top: -15px;
+  padding: 5px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  display: none;
+  z-index: 1000;
+}
+
+.collect-addin .items ul {
+  list-style-type: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 290px;
+  max-height: 200px;
+}
+
+.collect-addin .items li {
+  display: inline-block;
+  padding: 0 5px;
+  margin-bottom: 10px;
+}
+
+.collect-addin .items li a {
+  display: inline-block;
+  width: 100%;
+  padding: 3px 5px;
+  text-decoration: none;
+  color: #999;
+}
+
+.collect-addin .items li a:focus {
+  outline: none;
+}
+
+.collect-addin .items li a:hover {
+  background: #eee;
+  color: #c00;
+  font-weight: bold;
+}
+
+.collect-addin .items li .name {
+  display: inline-block;
+  width: 200px;
+}
+
 /**********************************/
 .list-fav-btn .btn {
   padding: 8px 22px;
   text-align: center;
 }
-
-

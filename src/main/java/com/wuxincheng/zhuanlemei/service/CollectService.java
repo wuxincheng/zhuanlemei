@@ -227,8 +227,8 @@ public class CollectService {
 			return responseMessage;
 		}
 		if (StringUtils.isNotEmpty(collect.getRecommend())) {
-			if (collect.getRecommend().length() > 100) {
-				responseMessage = "内容介绍长度过长，不能超过200个字";
+			if (collect.getRecommend().length() > 250) {
+				responseMessage = "内容介绍长度过长，不能超过250个字";
 				return responseMessage;
 			}
 		}

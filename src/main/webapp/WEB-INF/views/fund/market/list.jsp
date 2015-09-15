@@ -33,11 +33,11 @@
                 onclick="likeMarket('${fundMarket.fundCode}', '0')">
               <i class="icon vote-arrow"></i>
               <span class="label">赞同</span>
-              <div id="${fundMarket.fundCode}count" class="count" style="margin-top: 10px;">${fundMarket.likeScore}</div>
+              <div id="${fundMarket.fundCode}count" class="count" style="margin-top: 10px;">赚</div>
               </button>
               <button class="down" aria-pressed="false" title="反对，不会显示你的姓名"
                 onclick="likeMarket('${fundMarket.fundCode}', '1')">
-              <div id="${fundMarket.fundCode}countdown" class="countdown">${fundMarket.unLikeScore}</div>
+              <div id="${fundMarket.fundCode}countdown" class="countdown">赔</div>
               <i class="icon vote-arrowdown"></i>
               <span class="label">反对，不会显示你的姓名</span>
               </button>
@@ -57,7 +57,7 @@
                 <c:if test="${not empty fundMarket.fundCompany}">基金公司：${fund:huntHigh(fundMarket.fundCompany, keyword)}&nbsp;&nbsp;</c:if>
                 <c:if test="${not empty fundMarket.foundedDate}"><span>成立日期：${fundMarket.foundedDate}</span></c:if>
               </div>
-              <div class="fund-base">（${fundMarket.commentSum}人评价）</div>
+              <div class="fund-base">赚（${fundMarket.likeScore}）&nbsp;&nbsp;赔（${fundMarket.unLikeScore}）&nbsp;&nbsp;评论（${fundMarket.commentSum}）</div>
             </div>
           </div>
         </c:forEach>

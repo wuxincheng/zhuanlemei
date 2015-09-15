@@ -111,8 +111,8 @@ public class ProductController extends BaseController {
 			return "product/postUI";
 		}
 
-		return product.getCollectid() == null ? "redirect:list" : "redirect:/collect/detail?collectid="
-				+ product.getCollectid();
+		return product.getLikeState() == null ? "redirect:/collect/detail?collectid=" + product.getCollectid()
+				: "product/success";
 	}
 
 	@RequestMapping(value = "/detail")
@@ -168,7 +168,7 @@ public class ProductController extends BaseController {
 
 		return result;
 	}
-	
+
 	@RequestMapping(value = "/delete")
 	public String delete(Model model, String prodid) {
 		return "product/detail";

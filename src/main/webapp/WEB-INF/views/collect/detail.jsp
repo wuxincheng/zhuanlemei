@@ -32,7 +32,7 @@
         </div>
       </div>
       
-      <div class="collect-left">
+      <div class="collect-left" style="width: 290px;">
         <div class="collect-name">${collect.collectName}</div>
         <div class="collect-create">
           <div class="collect-creater">
@@ -78,8 +78,8 @@
       <div class="forms">
         <div class="collect-main-panel">
           <c:if test="${not empty collect.recommend}">
-          <div class="container row" style="padding: 0px;">
-            <div style="font-size: 16px;">
+          <div class="container row" style="padding: 0px; margin-bottom: 60px;">
+            <div style="font-size: 18px; color: #71777f; border-left: 2px solid #57adfd; padding: 10px 16px;">
               <span>${collect.recommend}</span>
             </div>
           </div>
@@ -93,14 +93,17 @@
                     onclick="likeCollect('${collect.collectid}', '0')">
                   <i class="icon vote-arrow"></i>
                   <span class="label">赞同</span>
-                  <div id="likeScore" class="count" style="margin-top: 10px;">${collect.likeScore}</div>
-                  </button></td>
+                  <div id="likeScore" class="count" style="margin-top: 10px;">赚</div>
+                  </button><br>
+                  <div>（${collect.likeScore}）</div>
+                  </td>
                   <td style="width:50px;">&nbsp;<br><button class="down" aria-pressed="false" 
                     onclick="likeCollect('${collect.collectid}', '1')" title="反对，不会显示你的姓名">
-                  <div id="unLikeScore" class="countdown">${collect.unLikeScore}</div>
+                  <div id="unLikeScore" class="countdown">赔</div>
                   <i class="icon vote-arrowdown"></i>
                   <span class="label">反对，不会显示你的姓名</span>
-                  </button></td>
+                  </button><br>
+                  <div>（${collect.unLikeScore}）</div></td>
                 </tr></table>
               </div>
               <div style="display: inline; float: right; margin-top: -60px;">
@@ -108,7 +111,7 @@
                   <a class="btn primary" href="${root}/collect/collect?collectid=${collect.collectid}&userid=${user.userid}">已关注 (${collect.collectSum})</a>
                   </c:if>
                   <c:if test="${empty collectUser}">
-                  <a class="btn warning" href="${root}/collect/collect?collectid=${collect.collectid}&userid=${user.userid}">+ 关注 (${collect.collectSum})</a>
+                  <a class="btn submit" href="${root}/collect/collect?collectid=${collect.collectid}&userid=${user.userid}">+ 关注 (${collect.collectSum})</a>
                   </c:if>
               </div>
             </div>
@@ -131,7 +134,7 @@
                       <c:if test="${not empty fundMarket.foundedDate}"><span>成立日期：${fundMarket.foundedDate}</span></c:if>
                     </div>
                   </div>
-                  <div style="margin-top: 10px; font-weight: bold;">评语：${fundMarket.fundMemo}</div>
+                  <div style="margin-top: 10px;">评语：${fundMarket.fundMemo}</div>
                 </div>
               </c:forEach>
               </c:when>
@@ -247,7 +250,7 @@
       
       <div class="collect-sort-left">
         <div class="fund-sort">
-          <span class="fund-nv-down">热门榜单</span>
+          <span class="fund-nv-down" style="color: #333;">热门榜单</span>
         </div>
         <c:forEach items="${collects}" var="collect" varStatus="s">
           <div class="fund-sort">

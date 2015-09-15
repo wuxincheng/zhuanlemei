@@ -236,5 +236,27 @@ public class CollectController extends BaseController {
 
 		return result;
 	}
+	
+	/**
+	 * 基金产品加入榜单
+	 * 
+	 * @param fundCode
+	 * @param userid
+	 * @return
+	 */
+	@RequestMapping(value = "/addin")
+	public String addin(Model model, String fundCode) {
+		logger.info("基金产品加入榜单操作 fundCode={}", fundCode);
+		
+		// 查询出所有榜单
+		List<Collect> collects = collectService.queryAll();
+		model.addAttribute("collects", collects);
+		
+		FundMarket fundMarket = fundMarketService.queryDetailByFundCode(fundCode);
+		model.addAttribute("fundName", fundMarket.getFundName());
+		model.addAttribute("fundCode", fundCode);
+
+		return "collect/addin";
+	}
 
 }
