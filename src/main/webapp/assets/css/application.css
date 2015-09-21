@@ -262,7 +262,7 @@ a {
 
 a:hover {
 	text-decoration: none;
-	color: #2a5894
+	color: #E62B1E;
 }
 
 a:focus {
@@ -730,7 +730,7 @@ opacity
 }
 
 .main-nav:hover {
-	color: #4E63B6;
+	color: #E62B1E;
 	background: rgba(0, 0, 0, 0.1)
 }
 
@@ -2360,12 +2360,20 @@ body {
 	left: 0;
 	bottom: 0;
 	width: 100%;
-	color: #747f8c;
+	color: #D1CECE;
 	text-align: center;
-	background: #fff;
+	background: #2d3237;
 	padding-top: 30px;
 	padding-bottom: 30px;
 	border-top: 1px solid #f2f2f2;
+}
+
+.footer a{
+  color: #fff;
+}
+
+.footer a:HOVER{
+  color: #C00;
 }
 
 @media screen and (min-width: 48.0625em) {
@@ -2510,8 +2518,8 @@ body {
 }
 
 .list .cover {
-	width: 160px;
-	height: 180px;
+	width: 210px;
+	height: 120px;
 	display: block;
 	color: #fff;
 	position: relative;

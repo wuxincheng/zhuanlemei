@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>${fundMarket.fundName}【${fundMarket.fundCode}】 | 赚了没</title>
+<title>${fundMarket.fundName}(${fundMarket.fundCode})&nbsp;&nbsp;最好玩的基金排行榜就在赚了没+www.zhuanlemei.com</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <link href="${root}/assets/img/logo/logoEN.png" type="image/x-icon" rel="icon" />
@@ -94,13 +94,13 @@
                 onclick="likeMarket('${fundMarket.fundCode}', '0')">
               <i class="icon vote-arrow"></i>
               <span class="label">赞同</span>
-              <div id="likeScore" class="count" style="margin-top: 10px;">${fundMarket.likeScore}</div>
+              <div id="likeScore" class="count" style="margin-top: 10px;">赚</div>
               </button><br>
               <div>（${fundMarket.likeScore}）</div>
               </td>
               <td style="width:50px;">&nbsp;<br><button class="down" aria-pressed="false" 
                 onclick="likeMarket('${fundMarket.fundCode}', '1')" title="反对，不会显示你的姓名">
-              <div id="unLikeScore" class="countdown">${fundMarket.unLikeScore}</div>
+              <div id="unLikeScore" class="countdown">赔</div>
               <i class="icon vote-arrowdown"></i>
               <span class="label">反对，不会显示你的姓名</span>
               </button><br>

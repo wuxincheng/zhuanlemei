@@ -222,13 +222,13 @@ public class CollectService {
 			responseMessage = "榜单名称长度不合法，应在4到15位之间";
 			return responseMessage;
 		}
-		if (collect.getMemo().length() > 36 || collect.getMemo().length() < 5) {
-			responseMessage = "一句话介绍长度不合法，应在5到36位之间";
+		if (collect.getMemo().length() > 500 || collect.getMemo().length() < 5) {
+			responseMessage = "一句话介绍长度不合法，应在5到500位之间";
 			return responseMessage;
 		}
 		if (StringUtils.isNotEmpty(collect.getRecommend())) {
-			if (collect.getRecommend().length() > 250) {
-				responseMessage = "内容介绍长度过长，不能超过250个字";
+			if (collect.getRecommend().length() > 3000) {
+				responseMessage = "内容介绍长度过长，不能超过3000个字";
 				return responseMessage;
 			}
 		}

@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>TOP - 榜单</title>
+<title>榜单 - 赚了没：最好玩的基金排行榜</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="description" content="赚了没-TOP|找到你喜欢的理财产品，榜单|赚了没-TOP">

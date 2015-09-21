@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>${collect.collectName} - 榜单|赚了没</title>
+<title>${collect.collectName}&nbsp;&nbsp;最好玩的基金排行榜就在赚了没+www.zhuanlemei.com</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="description" content="赚了没-TOP|找到你喜欢的理财产品，榜单|赚了没-TOP">
@@ -159,7 +159,7 @@
                   <i class="svg-wechat"></i> <span>微信</span>
                 </a>
                 <div class="dropdown share-dropdown">
-                  <img height="156" src="http://s.jiathis.com/qrcode.php?url=http://www.zhuanlemei.com/top/collect/detail?collectid=${collect.collectid}" width="156" />
+                  <img height="156" src="http://s.jiathis.com/qrcode.php?url=http://www.zhuanlemei.com/collect/detail?collectid=${collect.collectid}" width="156" />
                   <span>微信扫一扫：分享</span>
                 </div>
               </div>
@@ -292,5 +292,6 @@
         });
     }
   </script>
+
 </body>
 </html>

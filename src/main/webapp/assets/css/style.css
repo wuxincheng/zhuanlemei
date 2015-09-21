@@ -848,3 +848,25 @@ html.no-touch .zm-item-vote-count:hover {
   padding: 8px 22px;
   text-align: center;
 }
+
+.sort-num-up {
+  border-radius: 50%; 
+  border: 2px solid #C00; 
+  width: 20px; 
+  color: #FFF; 
+  background-color: #C00;
+  margin-right: 10px;
+  display: inline-block;
+  text-align: center;
+}
+
+.sort-num-down {
+  border-radius: 50%; 
+  border: 2px solid #080; 
+  width: 20px; 
+  color: #FFF; 
+  background-color: #080;
+  margin-right: 10px;
+  display: inline-block;
+  text-align: center;
+}

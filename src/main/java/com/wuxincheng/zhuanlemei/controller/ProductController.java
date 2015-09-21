@@ -100,11 +100,14 @@ public class ProductController extends BaseController {
 		logger.info("处理发布分享新产品数据");
 
 		try {
-			model.addAttribute(Constants.MSG_WARN, "产品名称不能为空");
 			// 发布产品
-			productService.post(product, getCurrentUserid(request));
-			logger.info("产品信息发布成功");
-			model.addAttribute(Constants.MSG_SUCCESS, "产品信息发布成功");
+			String responseMsg = productService.post(product, getCurrentUserid(request));
+			if (StringUtils.isNotEmpty(responseMsg)) {
+				model.addAttribute(Constants.MSG_WARN, responseMsg);
+			} else {
+				logger.info("产品信息发布成功");
+				model.addAttribute(Constants.MSG_SUCCESS, "产品信息发布成功");
+			}
 		} catch (Exception e) {
 			logger.error("产品发布出现异常：", e);
 			model.addAttribute(Constants.MSG_ERROR, "产品发布出现异常，请稍后重试！");

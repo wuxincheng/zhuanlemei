@@ -7,128 +7,6 @@
 </head>
 <body>
   
-  <!-- 
-  <div class="cf row">
-    <a href="http://www.howbuy.com/mobile/zsjj/" target="_blank">
-      <img src="${root}/assets/images/ad/ad-bar.jpg" />
-    </a>
-  </div>
-
-  
-  <div style="margin: 170px;">&nbsp;</div>
-  
-  <div class="subfooter">
-    <div class="row">
-      <div class="upvotes" style="border-top: 0px solid rgba(67, 79, 93, 0.2);">
-        <h2>基金公司：</h2>
-        <ul class="upvote-users cf">
-          <li class="product-avatar">
-            <div class="user-image">
-              <a class="user-image-link" href="${root}/fund/market/list">
-                <img src="${root}/assets/img/fund/jsfund-logo.jpg"  />
-              </a>
-            </div>
-          </li>
-          
-          <li class="product-avatar">
-            <div class="user-image">
-              <a class="user-image-link" href="${root}/fund/market/list">
-                <img src="${root}/assets/img/fund/jxfund-logo.jpg"  />
-              </a>
-            </div>
-          </li>
-          
-          <li class="product-avatar">
-            <div class="user-image">
-              <a class="user-image-link" href="${root}/fund/market/list">
-                <img src="${root}/assets/img/fund/htffund-logo.jpg"  />
-              </a>
-            </div>
-          </li>
-          
-          <li class="product-avatar">
-            <div class="user-image">
-              <a class="user-image-link" href="${root}/fund/market/list">
-                <img src="${root}/assets/img/fund/axfund-logo.jpg"  />
-              </a>
-            </div>
-          </li>
-          
-          <li class="product-avatar">
-            <div class="user-image">
-              <a class="user-image-link" href="${root}/fund/market/list">
-                <img src="${root}/assets/img/fund/hsfund-logo.jpg"  />
-              </a>
-            </div>
-          </li>
-          
-          <li class="product-avatar">
-            <div class="user-image">
-              <a class="user-image-link" href="${root}/fund/market/list">
-                <img src="${root}/assets/img/fund/byfund-logo.jpg"  />
-              </a>
-            </div>
-          </li>
-          
-          <li class="product-avatar">
-            <div class="user-image">
-              <a class="user-image-link" href="${root}/fund/market/list">
-                <img src="${root}/assets/img/fund/bsfund-logo.jpg"  />
-              </a>
-            </div>
-          </li>
-          
-          <li class="product-avatar">
-            <div class="user-image">
-              <a class="user-image-link" href="${root}/fund/market/list">
-                <img src="${root}/assets/img/fund/dbfund-logo.jpg"  />
-              </a>
-            </div>
-          </li>
-          
-          <li class="product-avatar">
-            <div class="user-image">
-              <a class="user-image-link" href="${root}/fund/market/list">
-                <img src="${root}/assets/img/fund/dcfund-logo.jpg"  />
-              </a>
-            </div>
-          </li>
-          
-          <li class="product-avatar">
-            <div class="user-image">
-              <a class="user-image-link" href="${root}/fund/market/list">
-                <img src="${root}/assets/img/fund/zsfund-logo.jpg"  />
-              </a>
-            </div>
-          </li>
-          
-          <li class="product-avatar">
-            <div class="user-image">
-              <a class="user-image-link" href="${root}/fund/market/list">
-                <img src="${root}/assets/img/fund/hafund-logo.jpg"  />
-              </a>
-            </div>
-          </li>
-          
-          <li class="product-avatar">
-            <div class="user-image">
-              <a class="user-image-link" href="${root}/fund/market/list">
-                <img src="${root}/assets/img/fund/hftfund-logo.jpg"  />
-              </a>
-            </div>
-          </li>
-          
-          <li class="product-avatar">
-            <div class="user-image">
-              <a class="user-image-link" href="${root}/fund/market/list">更多>></a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-     -->
-  
   <footer class="footer">
     <div class="text-center">
       <div class="copyright">
@@ -292,5 +170,16 @@
         });
     }
   </script>
+  
+  <!-- 百度分享 -->
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?98c61cccc0b766aeadc9cd6e2e3fb5b9";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>   
 </body>
 </html>
