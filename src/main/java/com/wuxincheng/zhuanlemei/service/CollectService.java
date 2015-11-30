@@ -21,6 +21,7 @@ import com.wuxincheng.zhuanlemei.util.ColorUtil;
 import com.wuxincheng.zhuanlemei.util.Constants;
 import com.wuxincheng.zhuanlemei.util.DateUtil;
 import com.wuxincheng.zhuanlemei.util.ImageUtil;
+import com.wuxincheng.zhuanlemei.util.MarkDownUtil;
 import com.wuxincheng.zhuanlemei.util.Validation;
 
 @Service("collectService")
@@ -233,6 +234,10 @@ public class CollectService {
 			}
 		}
 
+		// 处理HTML中的A标签
+		collect.setMemo(MarkDownUtil.filterLink(collect.getMemo()));
+		collect.setRecommend(MarkDownUtil.filterLink(collect.getRecommend()));
+		
 		logger.debug("开始验证榜单封面图片");
 
 		// 验证是否上传了图片

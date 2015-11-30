@@ -17,6 +17,7 @@ import com.wuxincheng.zhuanlemei.dao.FundMarketDao;
 import com.wuxincheng.zhuanlemei.dao.ProductDao;
 import com.wuxincheng.zhuanlemei.model.Comment;
 import com.wuxincheng.zhuanlemei.util.Constants;
+import com.wuxincheng.zhuanlemei.util.MarkDownUtil;
 
 /**
  * 评论
@@ -59,6 +60,9 @@ public class CommentService {
 			logger.warn(responseMessage);
 			return responseMessage;
 		}
+		
+		// 处理HTML中的A标签
+		comment.setContent(MarkDownUtil.filterLink(comment.getContent()));
 		
 		try {
 			// 发表评论
