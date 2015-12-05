@@ -9,7 +9,7 @@ body {
   font-size: 14px;
   font-family: Arial, 微软雅黑, Verdana, Geneva, Tahoma, 宋体, 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
-  background: #fff;
+  background: #eee;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -17,4 +17,205 @@ h1,h2,h3,h4,h5,h6 {
   font-weight: 400;
   margin-top: 5px;
   margin-bottom: 5px;
+}
+
+/***********************************/
+/** fund panel */
+.fund-panel {
+  text-align: left;
+  padding: 15px;
+  line-height: 1.42857143;
+  background-color: #FFFFFF;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  line-height: 22px !important;
+  margin-bottom: 10px;
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.fund-info {
+  text-align: left;
+  line-height: 1.42857143;
+  background-color: #FFFFFF;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  line-height: 22px !important;
+}
+
+.fund-name {
+  text-align: left;
+  font-size: 18px;
+  font-weight: bold;
+  color: #2a5894;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.fund-base {
+  text-align: left;
+  font-size: 14px;
+  margin: 5px 0;
+  width: 100%;
+}
+
+.fund-nv-up {
+  color: #C00;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 0px;
+}
+
+.fund-nv-down {
+  color: #080;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 0px;
+}
+
+.fund-sort {
+  text-align: left;
+  color: #2a5894;
+  margin-top: 10px;
+  margin-left: 5px;
+  padding: 5px 0;
+  font-size: 14px;
+  border-bottom: 1px solid #eee;
+  width: 100%;
+}
+
+.fund-detail-panel {
+  text-align: left;
+  padding: 20px 0px 0px 0px;
+  line-height: 1.42857143;
+  background-color: #FFFFFF;
+  border: 0px solid #eee;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  line-height: 22px !important;
+}
+
+.fund-type{
+  font-size: 10px;
+  margin-left: 20px;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 5px 10px;
+  background-color: #B5B2B2;
+  color: #FFFFFF;
+}
+
+.fund-market {
+  text-align: left;
+  padding: 10px 20px;
+  line-height: 1.42857143;
+  background-color: #f2f6fb;
+  border: 0px solid #eee;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  line-height: 22px !important;
+}
+
+.fund-nav-panel {
+  margin-bottom: 10px;
+}
+
+.fund-nav-info {
+  margin-top: 10px;
+  border-top: 1px dashed #B8B0B0;
+  padding-top: 5px;
+}
+
+.fund-nav {
+  border-right: 1px dashed #B8B0B0;
+  margin-left: 0px;
+}
+
+.fund-nav-updown {
+  text-align: center;
+}
+
+.fund-nav-sort {
+  border-left: 1px dashed #B8B0B0;
+  text-align: center;
+}
+
+/** fund */
+
+/****************************/
+.fundPanel {
+  position: relative;
+  display: inline-block;
+}
+
+.fundPanel .items {
+  position: absolute;
+  width: 340px;
+  border: 1px solid #ccc;
+  background: #fff;
+  left: -180px;
+  top: -15px;
+  padding: 5px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 5px;
+  display: none;
+  z-index: 1000;
+}
+
+.fundPanel .items ul {
+  list-style-type: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 330px;
+  max-height: 200px;
+}
+
+.fundPanel .items li {
+  display: inline-block;
+  padding: 0 5px;
+}
+
+.fundPanel .items li a {
+  display: inline-block;
+  width: 100%;
+  padding: 3px 5px;
+  text-decoration: none;
+  color: #999;
+}
+
+.fundPanel .items li a:focus {
+  outline: none;
+}
+
+.fundPanel .items li a.hover {
+  background: #eee;
+  color: #c00;
+  font-weight: bold;
+}
+
+.fundPanel .items li .fn {
+  display: inline-block;
+  width: 200px;
+}
+
+.fundPanel .items li .fc {
+  display: inline-block;
+  width: 70px;
+}
+
+.fundPanel .items .selected {
+  color: #c00;
+  font-weight: bold;
+}
+
+.fundPanel .btn {
+  margin: 0;
 }

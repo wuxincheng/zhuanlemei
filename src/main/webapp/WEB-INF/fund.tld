@@ -5,24 +5,24 @@
 
   <description>WXC Tag Library</description>
   <tlib-version>1.0</tlib-version>
-  <short-name>wuxincheng</short-name>
+  <short-name>zhuanlemei</short-name>
   <uri>http://www.wuxincheng.com.cn/tags</uri>
 
   <function>
     <name>riskLevel</name>
-    <function-class>com.wuxincheng.zhuanlemei.tag.FundTag</function-class>
+    <function-class>lihu.zhuanlemei.util.FundTldUtil</function-class>
     <function-signature>java.lang.String fundRiskLevelName(java.lang.String)</function-signature>
   </function>
   
   <function>
     <name>type</name>
-    <function-class>com.wuxincheng.zhuanlemei.tag.FundTag</function-class>
+    <function-class>lihu.zhuanlemei.util.FundTldUtil</function-class>
     <function-signature>java.lang.String fundTypeName(java.lang.String)</function-signature>
   </function>
   
   <function>
     <name>huntHigh</name>
-    <function-class>com.wuxincheng.zhuanlemei.tag.FundTag</function-class>
+    <function-class>lihu.zhuanlemei.util.FundTldUtil</function-class>
     <function-signature>java.lang.String huntHigh(java.lang.String, java.lang.String)</function-signature>
   </function>
 

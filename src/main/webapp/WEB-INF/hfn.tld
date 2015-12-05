@@ -5,36 +5,36 @@
 
   <description>WXC Tag Library</description>
   <tlib-version>1.0</tlib-version>
-  <short-name>wuxincheng</short-name>
+  <short-name>zhuanlemei</short-name>
   <uri>http://www.wuxincheng.com.cn/tags</uri>
 
   <function>
     <name>engMonth</name>
-    <function-class>com.wuxincheng.zhuanlemei.util.HfntldUtil</function-class>
+    <function-class>lihu.zhuanlemei.util.HfntldUtil</function-class>
     <function-signature>java.lang.String getEngMonth(java.lang.String)</function-signature>
   </function>
   
   <function>
     <name>simpleDay</name>
-    <function-class>com.wuxincheng.zhuanlemei.util.HfntldUtil</function-class>
+    <function-class>lihu.zhuanlemei.util.HfntldUtil</function-class>
     <function-signature>java.lang.String getSimpleDay(java.lang.String)</function-signature>
   </function>
 
   <function>
     <name>monthDay</name>
-    <function-class>com.wuxincheng.zhuanlemei.util.HfntldUtil</function-class>
+    <function-class>lihu.zhuanlemei.util.HfntldUtil</function-class>
     <function-signature>java.lang.String getMonthDay(java.lang.String)</function-signature>
   </function>
 
   <function>
     <name>weekday</name>
-    <function-class>com.wuxincheng.zhuanlemei.util.HfntldUtil</function-class>
+    <function-class>lihu.zhuanlemei.util.HfntldUtil</function-class>
     <function-signature>java.lang.String getWeekday(java.lang.String)</function-signature>
   </function>
   
   <function>
     <name>relativeDateFormat</name>
-    <function-class>com.wuxincheng.zhuanlemei.util.HfntldUtil</function-class>
+    <function-class>lihu.zhuanlemei.util.HfntldUtil</function-class>
     <function-signature>java.lang.String getRelativeDateFormat(java.lang.String)</function-signature>
   </function>
 
