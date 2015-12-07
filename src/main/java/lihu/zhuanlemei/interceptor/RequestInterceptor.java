@@ -33,7 +33,7 @@ public class RequestInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) {
 		String url = request.getRequestURL().toString();
-		String remoteAddress = request.getRemoteAddr();
+		// String remoteAddress = request.getRemoteAddr();
 
 		if (!(mappingURL == null || url.matches(mappingURL))) {
 			logger.info("mappingURL={}", mappingURL);
@@ -46,8 +46,8 @@ public class RequestInterceptor implements HandlerInterceptor {
 			return true;
 		}
 
-		System.out.println("");
-		logger.info("访客信息记录：IP地址={}, 访问路径={}", remoteAddress, requestSystemPath);
+		// System.out.println("");
+		// logger.info("访客信息记录：IP地址={}, 访问路径={}", remoteAddress, requestSystemPath);
 
 		return true;
 	}

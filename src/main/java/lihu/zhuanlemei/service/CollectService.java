@@ -297,5 +297,5 @@ public class CollectService {
 
 		return responseMessage;
 	}
-
+	
 }
