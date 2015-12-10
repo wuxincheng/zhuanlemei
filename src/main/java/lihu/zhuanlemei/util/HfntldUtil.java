@@ -21,7 +21,13 @@ public class HfntldUtil {
 	 * @return
 	 */
 	public static String getRelativeDateFormat(String formatDate){
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:m:s");
+		SimpleDateFormat format = null;
+		if (formatDate.indexOf("-") > 0) {
+			format = new SimpleDateFormat("yyyy-MM-dd HH:m:s");
+		} else {
+			format = new SimpleDateFormat("yyyyMMdd HH:m:s");
+		}
+		
 		Date date = null;
 		try {
 			date = format.parse(formatDate);
