@@ -413,8 +413,8 @@ body {
   outline: none;
   display: inline-block;
   text-decoration: none;
-  color: #000000;
-  padding: 10px 36px;
+  color: #fff;
+  padding: 10px 20px;
   background-color: #ffc81f;
   font-size: 14px;
   line-height: 14px;
@@ -969,7 +969,7 @@ html.with-statusbar-overlay .popup.tablet-fullscreen {
   max-width: 160px;
   height: 100%;
   color: #ffffff;
-  font-size: 16px;
+  font-size: 14px;
   display: inline-block;
   text-overflow: ellipsis;
   overflow: hidden;

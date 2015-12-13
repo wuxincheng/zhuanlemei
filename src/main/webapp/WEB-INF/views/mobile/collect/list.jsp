@@ -11,7 +11,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <meta name="format-detection" content="telephone=no">
-  
+  <link href="${root}/assets/vendor/bootstrap/css/bootstrap.css" media="all" rel="stylesheet">
   <script src="${root}/assets/vendor/mobile/js/analytics.js"></script>
   <script type="text/javascript">
     // 转化rem到vm，主要是用来计算padding，margin，width等等
@@ -27,12 +27,11 @@
         setUnitA();
     })(window);
   </script>
-  
-  <script src="${root}/assets/vendor/mobile/js/redirect.js" type="text/javascript"></script>
-  <link href="${root}/assets/vendor/mobile/css/index.css" media="all" rel="stylesheet" type="text/css">
 </head>
 <body class="mobile homes index">
-
+  
+  <jsp:include page="../top.jsp"></jsp:include>
+  
   <div class="page-content">
     <div class="packery-container articles clearfix">
       <div class="packery-item combo" id="item-content">

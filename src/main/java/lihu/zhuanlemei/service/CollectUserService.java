@@ -87,7 +87,7 @@ public class CollectUserService {
 	 * @param collectid
 	 * @param userid
 	 */
-	public void focusFund(String fundCode, String userid) {
+	public String focusFund(String fundCode, String userid) {
 		CollectUser deleteOrQueryCollectUser = new CollectUser();
 		deleteOrQueryCollectUser.setFundCode(fundCode);
 		deleteOrQueryCollectUser.setUserid(userid);
@@ -108,6 +108,8 @@ public class CollectUserService {
 			updateInfoMap.put("focusScore", 5);
 			updateInfoMap.put("fundCode", fundCode);
 			fundMarketDao.updateFocusInfo(updateInfoMap);
+			
+			return "1";
 		} else { // 取消收藏
 			collectUserDao.deleteByFundCode(deleteOrQueryCollectUser);
 
@@ -117,6 +119,8 @@ public class CollectUserService {
 			updateInfoMap.put("focusScore", -5);
 			updateInfoMap.put("fundCode", fundCode);
 			fundMarketDao.updateFocusInfo(updateInfoMap);
+			
+			return "0";
 		}
 	}
 

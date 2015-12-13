@@ -1,0 +1,31 @@
+
+.mobile_login_form {
+  text-align: center;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.form-panel {
+  padding: 30px;
+}
+
+.form-panel .title {
+  padding-bottom: 30px; 
+  font-size: 20px; 
+  text-align: center;
+  margin-top: 100px;
+}
+
+.form-panel .reg-title {
+  padding-bottom: 30px; 
+  font-size: 20px; 
+  text-align: center;
+  margin-top: 50px;
+}
+
+.form-panel .fotter-tip {
+  margin-top: 30px;
+}
+

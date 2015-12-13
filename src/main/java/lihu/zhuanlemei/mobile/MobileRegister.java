@@ -3,21 +3,22 @@ package lihu.zhuanlemei.mobile;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import lihu.zhuanlemei.Result;
+import lihu.zhuanlemei.controller.BaseController;
+import lihu.zhuanlemei.model.User;
+import lihu.zhuanlemei.service.UserService;
+import lihu.zhuanlemei.util.Constants;
+import lihu.zhuanlemei.util.MD5;
+import lihu.zhuanlemei.util.StringUtil;
+import lihu.zhuanlemei.util.Validation;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import lihu.zhuanlemei.controller.BaseController;
-import lihu.zhuanlemei.model.User;
-import lihu.zhuanlemei.oauth.helper.WechatHttpsHelper;
-import lihu.zhuanlemei.service.UserService;
-import lihu.zhuanlemei.util.Constants;
-import lihu.zhuanlemei.util.MD5;
-import lihu.zhuanlemei.util.StringUtil;
-import lihu.zhuanlemei.util.Validation;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 用户注册
@@ -35,48 +36,34 @@ public class MobileRegister extends BaseController {
 	@Resource
 	private UserService userService;
 	
-	@Resource 
-	private WechatHttpsHelper wechatHttpsHelper;
-	
 	@RequestMapping(value = "/")
-	public String login(Model model, HttpServletRequest request) {
-		logger.info("显示用户注册授权页面");
-		
-		requestMessageProcess(request);
-		
-		// 获取微信登录二维码地址
-		String sessionid = request.getSession().getId();
-		logger.debug("获取用户浏览器Session sessionid={}", sessionid);
-		
-		String wechatOAuthJSURI = wechatHttpsHelper.getOAuthLoginURI(sessionid);
-		logger.debug("登录二维码地址 wechatOAuthJSURI={}", wechatOAuthJSURI);
-		
-		model.addAttribute("wechatOAuthJSURI", wechatOAuthJSURI);
-		
+	public String login(Model model) {
+		logger.info("显示移动端用户注册页面");
 		return "mobile/register";
 	}
 	
-	@RequestMapping(value = "/doRegister")
-	public String doRegister(Model model, HttpServletRequest request, User user) {
-		logger.info("用户注册 user={}", StringUtil.toStringMultiLine(user));
+	@RequestMapping(value = "/submit")
+	@ResponseBody
+	public Result submit(Model model, HttpServletRequest request, User user) {
+		logger.info("移动端用户注册 user={}", StringUtil.toStringMultiLine(user));
+		
+		Result result = new Result();
 		
 		// 验证用户注册信息
 		String responseValidateMsg = validateUserInfo(user);
 		if (StringUtils.isNotEmpty(responseValidateMsg)) {
 			model.addAttribute(Constants.MSG_WARN, responseValidateMsg);
-			return "redirect:/register/";
+			return result.reject(responseValidateMsg);
 		}
 		
 		// 登录密码加密
 		user.setPassword(MD5.encryptMD5Pwd(user.getPassword()));
 		userService.register(user);
 		
-		model.addAttribute(Constants.MSG_SUCCESS, "注册成功");
-		
 		user = userService.checkLogin(user.getLoginEmail());
 		request.getSession().setAttribute(Constants.CURRENT_USER, user);
 		
-		return "redirect:/product/list";
+		return result.redirect("/mobile/collect/list");
 	}
 
 	/**

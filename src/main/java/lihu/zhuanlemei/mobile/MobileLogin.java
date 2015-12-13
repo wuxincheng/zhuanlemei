@@ -8,7 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import lihu.zhuanlemei.Result;
 import lihu.zhuanlemei.controller.BaseController;
 import lihu.zhuanlemei.model.User;
 import lihu.zhuanlemei.oauth.helper.WechatHttpsHelper;
@@ -39,44 +41,25 @@ public class MobileLogin extends BaseController {
 	@RequestMapping(value = "/")
 	public String login(Model model, HttpServletRequest request) {
 		logger.info("显示用户登录授权页面");
-		
-		requestMessageProcess(request);
-		
-		// 初始化第三方授权登录
-		
-		// 微信
-		
-		// 获取微信登录二维码地址
-		String sessionid = request.getSession().getId();
-		logger.debug("获取用户浏览器Session sessionid={}", sessionid);
-		
-		String wechatOAuthJSURI = wechatHttpsHelper.getOAuthLoginURI(sessionid);
-		logger.debug("登录二维码地址 wechatOAuthJSURI={}", wechatOAuthJSURI);
-		
-		model.addAttribute("wechatOAuthJSURI", wechatOAuthJSURI);
-		
-		// QQ（目前没有需求）
-		
-		// 新浪微博（目前没有需求）
-		
 		return "mobile/login";
 	}
 	
-	@RequestMapping(value = "/doLogin")
-	public String doLogin(Model model, HttpServletRequest request, User user) {
-		logger.info("用户登录 loginEmail={}", user.getLoginEmail());
+	@RequestMapping(value = "/submit")
+	@ResponseBody
+	public Result submit(Model model, HttpServletRequest request, User user) {
+		logger.info("移动端用户登录 loginEmail={}", user.getLoginEmail());
+		
+		Result result = new Result();
 		
 		// 验证登录信息
 		if (Validation.isBlank(user.getLoginEmail()) || Validation.isBlank(user.getPassword())) {
-			model.addAttribute(Constants.MSG_WARN, "用户邮箱和密码都不能为空");
-			return "redirect:/login/";
+			return result.reject("用户邮箱和密码都不能为空");
 		}
 		
 		User userFlag = userService.checkLogin(user.getLoginEmail());
 		
 		if (null == userFlag) {
-			model.addAttribute(Constants.MSG_WARN, "用户邮箱不存在！");
-			return "redirect:/login/";
+			return result.reject("用户邮箱不存在");
 		}
 		
 		String passwordFlag = userFlag.getPassword(); // 数据库中的密码
@@ -87,13 +70,10 @@ public class MobileLogin extends BaseController {
 		if (!Validation.isBlank(passwordFlag) && passwordFlag.equals(adminsPwdMD5Str)) {
 			request.getSession().setAttribute(Constants.CURRENT_USER, userFlag);
 		} else {
-			model.addAttribute(Constants.MSG_WARN, "用户密码不正确");
-			return "redirect:/login/";
+			return result.reject("用户密码不正确");
 		}
 		
-		model.addAttribute(Constants.MSG_SUCCESS, "登录成功");
-		
-		return "redirect:/index";
+		return result.redirect("/mobile/collect/list");
 	}
 	
 }

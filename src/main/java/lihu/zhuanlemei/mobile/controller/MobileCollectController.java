@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import lihu.zhuanlemei.Result;
 import lihu.zhuanlemei.controller.BaseController;
 import lihu.zhuanlemei.mobile.service.MobileCollectService;
 import lihu.zhuanlemei.model.Collect;
@@ -166,6 +167,29 @@ public class MobileCollectController extends BaseController {
 		model.addAttribute("comments", comments);
 
 		return "mobile/collect/detail";
+	}
+
+	@RequestMapping(value = "/focus")
+	@ResponseBody
+	public Result focus(String fundCode, HttpServletRequest request) {
+		logger.info("基金收藏和取消收藏操作 fundCode={}", fundCode);
+
+		Result result = new Result();
+
+		String userid = getCurrentUserid(request);
+		if (StringUtils.isEmpty(userid)) {
+			return result.redirect("/mobile/login/");
+		}
+
+		if (fundCode != null && userid != null) {
+			String msg = collectUserService.focusFund(fundCode, userid);
+			result.setSuccess(true);
+			result.setSuccessMsg(msg);
+			return result;
+		} else {
+			logger.debug("基金收藏和取消收藏操作失败：collectid或userid为空");
+			return result.reject("操作失败");
+		}
 	}
 
 }

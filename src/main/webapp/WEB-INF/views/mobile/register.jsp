@@ -6,80 +6,74 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>注册 - TOP</title>
+<title>注册 - 赚了没</title>
 
 <link href="${root}/assets/img/logo/logoEN.png" type="image/x-icon" rel="icon" />
 <link href="${root}/assets/img/logo/logoEN.png" type="image/x-icon" rel="shortcut icon" />
 
+<script src="${root}/assets/js/jquery.min.js"></script>
+<script src="${root}/assets/vendor/layer/layer.js"></script>
+
+<link href="${root}/assets/vendor/bootstrap/css/bootstrap.css" media="all" rel="stylesheet">
+<link href="${root}/assets/vendor/mobile/css/style.css" media="all" rel="stylesheet">
+
 <!-- meta -->
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="renderer" content="webkit">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<script type="text/javascript">
+$(document).ready(function() {
+});
+function doSubmit() {
+    var form_data = $('form').serialize();
+	$.ajax( {
+		type : "POST",
+        url : '${root}'+"/mobile/register/submit",
+        data : form_data,
+        dataType : "json",
+        success : function(response){
+        	if (!response.success) {
+        		layer.msg(response.errorMsg);
+              	return;
+        	}
+        	if (response.redirectUrl) {
+        		window.location = '${root}'+response.redirectUrl;
+        	}
+        	layer.msg("注册成功");
+        },
+        error : function(){layer.msg("新用户注册失败");}
+    });
+}
+</script>
 </head>
-<body id="home" class="notes-index">
-  <jsp:include page="../HEADER.jsp" />
-  
+<body>
   <div class="container">
-    <div class="content row cf"> <!-- login-row  -->
-      <div class="forms "> <!-- login-box -->
-        <form accept-charset="UTF-8" action="${root}/register/doRegister" class="simple_form form" id="new_user" method="post">
+      <div class="form-panel">
+        <div class="reg-title">新用户注册</div>
+        <form accept-charset="UTF-8" action="${root}/mobile/register/submit" method="post">
           <div class="form-group email optional user_email">
-            <label class="email optional" for="loginEmail">邮箱（用于登录）</label>
-            <input aria-required="true" class="string email optional form-control input-small" id="loginEmail" name="loginEmail"
-              placeholder="name@your_company.com" type="email" value="" maxlength="50" />
+            <input class="form-control" id="loginEmail" name="loginEmail"
+              placeholder="请输入邮箱" type="email" maxlength="50" />
           </div>
           <div class="form-group nickname optional user_nickname">
-            <label class="nickname optional" for="loginEmail">昵称</label>
-            <input aria-required="true" class="string nickname optional form-control input-small" id="nickName" name="nickName"
-              placeholder="昵称" type="text" value="" maxlength="10" />
+            <input class="form-control" id="nickName" name="nickName"
+              placeholder="请输入昵称" type="text" maxlength="10" />
           </div>
-          <div class="form-group password required user_password">
-            <label class="password required" for="password">密码</label>
-            <input aria-required="true" class="password required form-control input-small" maxlength="50"
-              id="password" name="password" placeholder="密码" required="required" type="password" />
+          <div class="form-group">
+            <input class="form-control" maxlength="50"
+              id="password" name="password" placeholder="请输入密码" type="password" />
           </div>
-          <div class="form-group password required user_password">
-            <label class="password required" for="password">重新输入密码</label>
-            <input aria-required="true" class="password required form-control input-small" maxlength="50"
-              id="password2" name="password2" placeholder="重新输入密码" required="required" type="password" />
+          <div class="form-group">
+            <input class="form-control" maxlength="50"
+              id="password2" name="password2" placeholder="重新输入密码" type="password" />
           </div>
-          <input class="btn submit" name="commit" type="submit" value="完成注册" />
+          <input class="btn btn-primary btn-block" type="button" onclick="doSubmit();" value="注册" />
+          <input class="btn btn-block" type="button" value="取消" />
           
-          <div class="oauth-panel" >
-            <ul class="upvote-users cf">
-              <li class="product-avatar">
-                <div class="user-image"><strong><a href="${root}/login/">立即登录</a></strong>
-                <div style="margin-top:10px; font-style:italic;">注册好麻烦呀，在右则直接使用微信扫码登录</div></div>
-              </li>
-            </ul>
+          <div class="fotter-tip">
+            <strong><a href="${root}/mobile/login/">立即登录</a></strong>
           </div>
         </form>
       </div>
-      
-      <aside class="aside" style="width: 500px; padding-left: 150px;">
-        <iframe id="main" name="main" src="${wechatOAuthJSURI}" style="width:350px; height: 400px;
-          frameborder="0" scrolling="no" marginheight="0" allowTransparency="true" >
-        </iframe>
-        <div class="oauth-panel" style="margin: 0px; padding: 20px 0;">
-          <ul class="upvote-users cf" style="float: left;">
-            <li class="product-avatar">
-              <div class="user-image"><strong><a href="${root}/register/">　　其它方式授权登录：</a></strong></div>
-            </li>
-            <li class="product-avatar">
-              <div class="user-image">
-                <a class="user-image-link" href="${root}/oauth/qq/login">
-                  <img  src="${root}/assets/img/oauth/Connect_logo_1.png" style="height: 16px; width: 16px; margin-top: 0px; margin-bottom: 0px;" />
-                </a>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </aside>
-      
-    </div>
   </div>
-
-  <jsp:include page="../FOOTER.jsp" />
 </body>
 </html>

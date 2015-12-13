@@ -2246,7 +2246,7 @@ em {
 }
 
 .forms {
-	
+	padding: 30px;
 }
 
 .settings-profile {
@@ -2338,10 +2338,6 @@ input[type="checkbox"] {
 
 .aside-tips li {
 	margin-bottom: 10px
-}
-
-body {
-	margin: 0 0 410px
 }
 
 @media screen and (min-width: 48.0625em) {
