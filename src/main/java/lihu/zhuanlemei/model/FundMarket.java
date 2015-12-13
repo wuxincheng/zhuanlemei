@@ -115,6 +115,8 @@ public class FundMarket implements Serializable {
 
 	/** 临时字段 */
 	private String fundMemo;
+	
+	private String thisUserFocus;
 
 	public String getFundMemo() {
 		return fundMemo;
@@ -394,6 +396,14 @@ public class FundMarket implements Serializable {
 
 	public void setFocusScore(Integer focusScore) {
 		this.focusScore = focusScore;
+	}
+
+	public String getThisUserFocus() {
+		return thisUserFocus;
+	}
+
+	public void setThisUserFocus(String thisUserFocus) {
+		this.thisUserFocus = thisUserFocus;
 	}
 
 }

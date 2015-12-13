@@ -85,4 +85,9 @@ public class ProductDao extends BaseDao {
 		return this.getSqlMapClientTemplate().queryForList("Product.queryUserMain", queryMap);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Product> queryCollectProductUser(Map<String, String> queryMap) {
+		return this.getSqlMapClientTemplate().queryForList("Product.queryCollectProductUser", queryMap);
+	}
+	
 }

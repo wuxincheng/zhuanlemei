@@ -196,6 +196,10 @@ public class ProductService {
 
 		return likeProducts;
 	}
+	
+	public List<Product> queryCollectProductUser(Map<String, String> queryMap) {
+		return productDao.queryCollectProductUser(queryMap);
+	}
 
 	/**
 	 * 查询用户主页，和已登录用户赞过这个用户的产品列表

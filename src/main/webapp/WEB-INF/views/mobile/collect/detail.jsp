@@ -62,14 +62,14 @@
         window.location = '${root}'+response.redirectUrl;
         return;
       }
-      if (response.success) {
-    	  var flag = response.success;
+      if (response.successMsg) {
+    	  var flag = response.successMsg;
     	  if (flag == '1') {
     		layer.msg("关注成功");
     		// 修改关注按钮样式
     	  }
     	  if (flag == '0') {
-    		layer.msg("已经取消关注");
+    		layer.msg("取消关注成功");
     		// 修改关注按钮样式
     	  }
     	  // 列表中是否已经关注使用标签来控制, 好的, 吃饭吧
@@ -111,7 +111,7 @@
                 <div class="public_fund_item">
                   <div><h3 class="name">${fundMarket.fundName}（${fundMarket.fundCode}）</h3></div>
                   <div class="public-fund-type">
-                    <span class="gray9">[混合型]</span>
+                    <span class="gray9">[混合型]${fundMarket.thisUserFocus}</span>
                   </div>
                   <div class="rate cf">
                     <ul class="fl">

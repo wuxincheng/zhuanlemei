@@ -370,6 +370,8 @@ public class FundMarketService {
 					if (StringUtils.isNotEmpty(cacheFundMarket.getFundCode())) {
 						if (product.getFundCode().equals(cacheFundMarket.getFundCode())) {
 							cacheFundMarket.setFundMemo(product.getMemo());
+							// 表示当前用户已经关注
+							cacheFundMarket.setThisUserFocus(product.getLikeState());
 							fundMarkets.add(cacheFundMarket);
 							break;
 						}
