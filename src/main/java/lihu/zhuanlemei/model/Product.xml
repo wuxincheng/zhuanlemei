@@ -99,6 +99,7 @@
     ) l ON d.prodid = l.prodid
   </select>
   
+  <!-- 未完成 -->
   <select id="queryCollectProductUser" parameterClass="java.util.Map" resultMap="ProductDetailMapping">
     SELECT d.*, l.likestate
     FROM (
@@ -106,9 +107,16 @@
                 p.postdate, p.postdatetime, p.collectid, p.score, p.nickname, p.loginemail, p.fundcode, p.fundname,
                 p.picpath, p.socialpicpath, p.usermemo AS usermemo, p.usergroup, p.position, p.userid
         FROM t_next_prodlike t
-        WHERE t.collectid = #collectid# AND t.fundcode IS NOT NULL ) d
+            LEFT JOIN ( 
+                 SELECT t.*, u.nickname, u.loginemail, u.picpath, u.socialpicpath, 
+                       u.memo AS usermemo, u.usergroup, u.position 
+                  FROM t_next_product t 
+                  LEFT JOIN t_next_user u ON t.userid = u.userid
+                  WHERE t.fundcode IS NOT NULL
+            ) p ON t.prodid = p.prodid
+        WHERE t.userid = #queryUserid# AND t.fundcode IS NOT NULL ) d
     LEFT JOIN (
-         SELECT t.* FROM t_next_prodlike t WHERE t.userid = #userid# AND t.fundcode IS NOT NULL
+         SELECT t.* FROM t_next_prodlike t WHERE t.userid = #sessionUserid# AND t.fundcode IS NOT NULL
     ) l ON d.prodid = l.prodid
   </select>
   
