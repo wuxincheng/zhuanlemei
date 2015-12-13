@@ -71,7 +71,7 @@
         <div class="banner">
           <img 
             <c:choose>
-            <c:when test="${collect.coverImgPath}">src="${root}/collect/coverbg/${collect.coverImgPath}"</c:when>
+            <c:when test="${not empty collect.coverImgPath}">src="${root}/collect/coverbg/${collect.coverImgPath}"</c:when>
             <c:when test="${empty collect.coverImgPath}">src="${collect.bgColor}"</c:when>
             <c:otherwise></c:otherwise>
             </c:choose> />
@@ -93,12 +93,12 @@
                       <li>近6月收益</li>
                       <li><span class="cGreen">${fundMarket.rateChange}</span></li>
                     </ul>
-                    <ul class="fl">
+                    <ul class="fl" style="padding-left: 20px;">
                       <li>最新净值</li>
                       <li><span>${fundMarket.currentNav}</span></li>
                     </ul>
                     <ul class="fr" style="padding-top: 10px;">
-                      <li><a class="btn" href="#">关注</a></li>
+                      <li style="margin-left:20px;"><a class="btn" href="#">关注</a></li>
                     </ul>
                   </div>
                 </div>

@@ -1706,8 +1706,8 @@ html.with-statusbar-overlay .popup.tablet-fullscreen {
   margin-right: 0;
 }
 .com-article-detail {
-  padding-bottom: 0px;
   padding-bottom: 0rem;
+  padding-bottom: 15px;
 }
 .com-article-detail .tags {
   font-size: 12px;
