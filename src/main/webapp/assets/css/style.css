@@ -870,3 +870,9 @@ html.no-touch .zm-item-vote-count:hover {
   display: inline-block;
   text-align: center;
 }
+
+.wrp_code img {
+  height: 300px;
+  width: 300px;
+}
+

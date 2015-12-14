@@ -54,6 +54,7 @@
         <iframe id="main" name="main" src="${wechatOAuthJSURI}" style="width:350px; height: 400px;
           frameborder="0" scrolling="no" marginheight="0" allowTransparency="true" >
         </iframe>
+        
         <div class="oauth-panel" style="margin: 0px; padding: 20px 0;">
           <ul class="upvote-users cf" style="float: left;">
             <li class="product-avatar">
@@ -68,6 +69,7 @@
             </li>
           </ul>
         </div>
+        
       </aside>
     </div>
   </div>

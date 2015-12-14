@@ -8,7 +8,7 @@
 }
 
 .form-panel {
-  padding: 30px;
+  padding: 25px;
 }
 
 .form-panel .title {
@@ -29,7 +29,7 @@
 
 .form-panel .fotter-tip {
   margin-top: 30px;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .fotter-tip a {
@@ -41,9 +41,9 @@
   display: block;
   text-align: center;
   width: 100%;
-  font-size: 20px;
-  height: 50px;
-  line-height: 45px;
+  font-size: 16px;
+  height: 40px;
+  line-height: 40px;
   color: #ffffff;
   background-color: #ffc81f;
   border-radius: 0px;
@@ -55,9 +55,9 @@
   display: block;
   text-align: center;
   width: 100%;
-  font-size: 20px;
-  height: 45px;
-  line-height: 45px;
+  font-size: 16px;
+  height: 40px;
+  line-height: 40px;
   border-radius: 0px;
   margin-top: 10px;
   background-color: #ffffff;
@@ -67,8 +67,8 @@
 
 .login-reg-input {
     width: 100%;
-    font-size: 16px;
-    padding: 11px 17px;
+    font-size: 14px;
+    padding: 8px 15px;
     border: 1px solid #e5e5e5;
     border-radius: 0;
     line-height: 1.5;

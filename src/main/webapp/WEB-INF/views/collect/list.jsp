@@ -16,7 +16,7 @@
 <link href="${root}/assets/img/logo/logoEN.png" type="image/x-icon" rel="shortcut icon" />
 
 </head>
-<body id="home" class="notes-index">
+<body id="home" class="notes-index" style="background-color: #eeeeee;">
   <jsp:include page="../HEADER.jsp" />
   <div class="container">
 
@@ -40,14 +40,12 @@
             <a class="cover" href="${root}/collect/detail?collectid=${collect.collectid}" target="_blank" style="
               <c:if test="${not empty collect.coverImgPath}">background-image: url(http://www.zhuanlemei.com/collect/coverbg/${collect.coverImgPath});</c:if>
               <c:if test="${empty collect.coverImgPath}">background-color: #${collect.bgColor};</c:if>">
-              <div class="cover-meta">
-                <h3>${collect.collectName}</h3>
-                <ul class="list-meta">
-                  <li><span>${collect.productSum}</span>个产品</li>
-                  <li><span class="liked-count">${collect.collectSum}</span>人收藏</li>
-                </ul>
-              </div>
             </a>
+            <div class="list-item-memo"><a href="${root}/collect/detail?collectid=${collect.collectid}" target="_blank">${collect.collectName}</a></div>
+            <div class="item-article">
+              <div class="prods"><span>${collect.productSum}</span>个产品</div>
+              <div class="focus"><span>${collect.collectSum}</span>人收藏</div>
+            </div>
           </li>
           </c:forEach>
           </c:if>

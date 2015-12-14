@@ -8,9 +8,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>赚了没|找到你喜欢的理财产品，榜单|赚了没</title>
 
-<link data-turbolinks-track="true" href="${root}/assets/css/style.css" media="all" rel="stylesheet">
-<link data-turbolinks-track="true" href="${root}/assets/css/application.css" media="all" rel="stylesheet">
-<script data-turbolinks-track="true" src="${root}/assets/js/application.js"></script>
+<link href="${root}/assets/css/style.css" media="all" rel="stylesheet">
+<link href="${root}/assets/css/application.css" media="all" rel="stylesheet">
+<script src="${root}/assets/js/application.js"></script>
+
+<script src="${root}/assets/js/jquery.min.js"></script>
+<script src="${root}/assets/vendor/layer/layer.js"></script>
 
 <!-- meta -->
 <meta charset="utf-8">

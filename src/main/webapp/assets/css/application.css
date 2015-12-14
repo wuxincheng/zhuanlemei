@@ -512,7 +512,7 @@ opacity
 	background: #fff;
 	position: relative;
 	border-top: 2px solid #E62B1E;
-	border-bottom: 2px solid #f2f2f2;
+	border-bottom: 2px solid #E2DFDF;
 	/**
 	box-shadow: 0 1px 3px rgba(0,0,0,.1);
 	margin-bottom: 0px;
@@ -2346,12 +2346,12 @@ input[type="checkbox"] {
 }
 
 body {
-	margin: 0 0 410px
+	margin: 0 0 410px;
 }
 
 @media screen and (min-width: 48.0625em) {
 	body {
-		margin: 0 0 150px
+		margin: 0 0 150px;
 	}
 }
 
@@ -2518,12 +2518,12 @@ body {
 }
 
 .list .cover {
-	width: 210px;
-	height: 120px;
+	width: 237px;
+	height: 160px;
 	display: block;
 	color: #fff;
 	position: relative;
-	border-radius: 3px;
+	border-radius: 0px;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	background-size: cover;
@@ -2551,7 +2551,39 @@ body {
 .list-item {
 	float: left;
 	position: relative;
-	padding: 0 10px 30px 30px;
+	margin: 0px 0px 10px 10px;
+	background: #fff;
+}
+
+.list-item-memo {
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: normal;
+  max-height: 44px;
+  padding: 10px;
+  margin-bottom: 25px;
+}
+
+.list-item-memo a {
+  color: #0f1419;
+}
+
+.list-item .item-article {
+  font-size: 13px;
+  padding: 0px 10px 10px 10px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: #8C8B8B;
+}
+
+.list-item .item-article .prods {
+  float: left;
+}
+
+.list-item .item-article .focus {
+  float: right;
 }
 
 .cover-meta {
