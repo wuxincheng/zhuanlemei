@@ -47,19 +47,18 @@ function doSubmit() {
       <div class="form-panel" style="padding-top: 10px;"> <!-- login-box -->
         <div class="title">账号登录</div>
         <form accept-charset="UTF-8" action="${root}/mobile/login/submit" method="post">
-          <div class="form-group email required user_email">
-            <input class="form-control" maxlength="50" autocomplete="off"
-              id="loginEmail" name="loginEmail" placeholder="邮箱" type="email" />
+          <div class="form-group">
+            <input class="login-reg-input" maxlength="50" autocomplete="off"
+              id="loginEmail" name="loginEmail" placeholder="邮箱" type="text" />
           </div>
-          <div class="form-group password required user_password">
-            <input class="password required form-control input-small" maxlength="50"
-              id="password" name="password" placeholder="密码" required="required" type="password">
+          <div class="form-group">
+            <input class="login-reg-input" maxlength="50"
+              id="password" name="password" placeholder="密码" type="password">
           </div>
-          <button class="btn btn-primary btn-block" type="button" onclick="doSubmit();">登录</button>
-          <button class="btn btn-block" type="button">取消</button>
+          <button class="login-reg-btn btn" type="button" onclick="doSubmit();">登录</button>
 
           <div class="fotter-tip">
-            <strong><a href="${root}/mobile/register/">还是去注册吧！</a></strong>
+            <strong><a href="${root}/mobile/register/">新用户注册</a></strong>
           </div>
         </form>
     </div>

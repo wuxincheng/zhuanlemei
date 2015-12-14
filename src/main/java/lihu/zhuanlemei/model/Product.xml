@@ -99,25 +99,12 @@
     ) l ON d.prodid = l.prodid
   </select>
   
-  <!-- 未完成 -->
   <select id="queryCollectProductUser" parameterClass="java.util.Map" resultMap="ProductDetailMapping">
-    SELECT d.*, l.likestate
-    FROM (
-        SELECT  p.prodid, p.prodname, p.produrl, p.memo, p.likesum, p.commentsum, p.prodstate, 
-                p.postdate, p.postdatetime, p.collectid, p.score, p.nickname, p.loginemail, p.fundcode, p.fundname,
-                p.picpath, p.socialpicpath, p.usermemo AS usermemo, p.usergroup, p.position, p.userid
-        FROM t_next_prodlike t
-            LEFT JOIN ( 
-                 SELECT t.*, u.nickname, u.loginemail, u.picpath, u.socialpicpath, 
-                       u.memo AS usermemo, u.usergroup, u.position 
-                  FROM t_next_product t 
-                  LEFT JOIN t_next_user u ON t.userid = u.userid
-                  WHERE t.fundcode IS NOT NULL
-            ) p ON t.prodid = p.prodid
-        WHERE t.userid = #queryUserid# AND t.fundcode IS NOT NULL ) d
-    LEFT JOIN (
-         SELECT t.* FROM t_next_prodlike t WHERE t.userid = #sessionUserid# AND t.fundcode IS NOT NULL
-    ) l ON d.prodid = l.prodid
+    SELECT t1.*, '' nickname, '' loginemail, '' picpath, '' socialpicpath, '' usermemo, 
+		 '' usergroup, '' position, t2.userid as likestate 
+    FROM t_next_product t1 
+    LEFT OUTER JOIN t_next_collectuser t2 ON t1.fundcode = t2.fundcode AND t2.userid = #userid#
+    WHERE t1.collectid = #collectid# 
   </select>
   
   <select id="queryByPostDate" resultMap="ProductDetailMapping" parameterClass="java.util.Map">

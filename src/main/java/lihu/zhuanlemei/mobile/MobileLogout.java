@@ -8,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import lihu.zhuanlemei.util.Constants;
-
 /**
  * 退出系统
  * 
@@ -28,12 +26,9 @@ public class MobileLogout {
 		logger.info("退出系统");
 		
 		request.getSession().removeAttribute("user"); // 这一步可以不需要
-		
 		request.getSession().invalidate(); // 完全使用整个Session失效
 		
-		model.addAttribute(Constants.MSG_SUCCESS, "退出成功");
-		
-		return "redirect:/index";
+		return "redirect:/mobile/collect/list";
 	}
 	
 }

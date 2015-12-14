@@ -31,9 +31,6 @@
 		setUnitA();
 	})(window);
 </script>
-<script src="${root}/assets/vendor/mobile/js/redirect.js" type="text/javascript"></script>
-<link href="${root}/assets/vendor/mobile/css/fund.css" media="all" rel="stylesheet" type="text/css">
-<link href="${root}/assets/vendor/mobile/css/show.css" media="all" rel="stylesheet" type="text/css">
 <meta content="authenticity_token" name="csrf-param">
 <meta content="0NHL00yRE9MiwmISDmJC7SCOvoWJEpLAMT9qghUsUHA=" name="csrf-token">
 </head>
@@ -67,12 +64,15 @@
     	  if (flag == '1') {
     		layer.msg("关注成功");
     		// 修改关注按钮样式
+    		$("#focus-btn-"+fundCode).addClass("focus-btn");
+    		$("#focus-btn-"+fundCode).val("已关注");
     	  }
     	  if (flag == '0') {
     		layer.msg("取消关注成功");
     		// 修改关注按钮样式
+    		$("#focus-btn-"+fundCode).removeClass("focus-btn");
+    		$("#focus-btn-"+fundCode).val("关注");
     	  }
-    	  // 列表中是否已经关注使用标签来控制, 好的, 吃饭吧
       }
     });
   }
@@ -111,7 +111,7 @@
                 <div class="public_fund_item">
                   <div><h3 class="name">${fundMarket.fundName}（${fundMarket.fundCode}）</h3></div>
                   <div class="public-fund-type">
-                    <span class="gray9">[混合型]${fundMarket.thisUserFocus}</span>
+                    <span class="gray9">[混合型]</span>
                   </div>
                   <div class="rate cf">
                     <ul class="fl">
@@ -123,7 +123,14 @@
                       <li><span>${fundMarket.currentNav}</span></li>
                     </ul>
                     <ul class="fr" style="padding-top: 10px;">
-                      <li><input type="button" class="btn" onclick="focusFund('${fundMarket.fundCode}');" value="关注" /></li>
+                      <li>
+                      <c:if test="${not empty fundMarket.thisUserFocus}">
+                        <input id="focus-btn-${fundMarket.fundCode}" type="button" class="btn focus-btn" style="width: 80px;" onclick="focusFund('${fundMarket.fundCode}');" value="已关注" />
+                      </c:if>
+                      <c:if test="${empty fundMarket.thisUserFocus}">
+                        <input id="focus-btn-${fundMarket.fundCode}" type="button" class="btn" style="width: 80px;" onclick="focusFund('${fundMarket.fundCode}');" value="关注" />
+                      </c:if>
+                      </li>
                     </ul>
                   </div>
                 </div>

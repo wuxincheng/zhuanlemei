@@ -11,13 +11,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <link href="${root}/assets/vendor/bootstrap/css/bootstrap.css" media="all" rel="stylesheet">
+  <link href="${root}/assets/vendor/mobile/css/index.css" media="all" rel="stylesheet" type="text/css">
+  <link href="${root}/assets/vendor/mobile/css/fund.css" media="all" rel="stylesheet" type="text/css">
+  <link href="${root}/assets/vendor/mobile/css/show.css" media="all" rel="stylesheet" type="text/css">
+  <link href="${root}/assets/vendor/mobile/css/style.css" media="all" rel="stylesheet">
   
   <script src="${root}/assets/js/jquery.min.js"></script>
-<script src="${root}/assets/vendor/layer/layer.js"></script>
+  <script src="${root}/assets/vendor/layer/layer.js"></script>
   <script src="${root}/assets/vendor/mobile/js/analytics.js"></script>
-  
+  <script src="${root}/assets/vendor/mobile/js/redirect.js"></script>
   <script src="${root}/assets/vendor/mobile/js/redirect.js" type="text/javascript"></script>
-  <link href="${root}/assets/vendor/mobile/css/index.css" media="all" rel="stylesheet" type="text/css">
+  
   <script type="text/javascript">
   	function showMenu(){
   		var flag = $("#menu-flag").val();
@@ -55,9 +59,7 @@
               </a>
             </li>
             <li class="item account-logout">
-              <form action="/users/sign_out" method="post">
-                <a href=""><span class="glyphicon glyphicon-log-out"></span> 退出登录</a>
-              </form>
+               <a href="${root}/mobile/logout/"><span class="glyphicon glyphicon-log-out"></span> 退出登录</a>
             </li>
           </ul>
         </div>
@@ -66,7 +68,7 @@
       
       <c:if test="${empty user}">
       <div class="user unsign">
-        <a href="#" data-popup=".com-login-popup" class="user-hd open-popup">
+        <a href="${root}/mobile/login/" data-popup=".com-login-popup" class="user-hd open-popup">
           <span class="glyphicon glyphicon-user"></span> 登录
         </a>
       </div>

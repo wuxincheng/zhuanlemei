@@ -53,7 +53,7 @@ public class MobileLogin extends BaseController {
 		
 		// 验证登录信息
 		if (Validation.isBlank(user.getLoginEmail()) || Validation.isBlank(user.getPassword())) {
-			return result.reject("用户邮箱和密码都不能为空");
+			return result.reject("邮箱和密码都不能为空");
 		}
 		
 		User userFlag = userService.checkLogin(user.getLoginEmail());

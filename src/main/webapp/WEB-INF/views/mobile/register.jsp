@@ -50,24 +50,24 @@ function doSubmit() {
       <div class="form-panel">
         <div class="reg-title">新用户注册</div>
         <form accept-charset="UTF-8" action="${root}/mobile/register/submit" method="post">
-          <div class="form-group email optional user_email">
-            <input class="form-control" id="loginEmail" name="loginEmail"
+          <div class="form-group">
+            <input class="login-reg-input" id="loginEmail" name="loginEmail"
               placeholder="请输入邮箱" type="email" maxlength="50" />
           </div>
-          <div class="form-group nickname optional user_nickname">
-            <input class="form-control" id="nickName" name="nickName"
+          <div class="form-group">
+            <input class="login-reg-input" id="nickName" name="nickName"
               placeholder="请输入昵称" type="text" maxlength="10" />
           </div>
           <div class="form-group">
-            <input class="form-control" maxlength="50"
+            <input class="login-reg-input" maxlength="50"
               id="password" name="password" placeholder="请输入密码" type="password" />
           </div>
           <div class="form-group">
-            <input class="form-control" maxlength="50"
+            <input class="login-reg-input" maxlength="50"
               id="password2" name="password2" placeholder="重新输入密码" type="password" />
           </div>
-          <input class="btn btn-primary btn-block" type="button" onclick="doSubmit();" value="注册" />
-          <input class="btn btn-block" type="button" value="取消" />
+          <input class="btn login-reg-btn" type="button" onclick="doSubmit();" value="注册" />
+          <input class="btn cancel-btn" type="button" value="取消" />
           
           <div class="fotter-tip">
             <strong><a href="${root}/mobile/login/">立即登录</a></strong>

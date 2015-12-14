@@ -157,7 +157,7 @@ public class MobileCollectController extends BaseController {
 		queryMap.put("collectid", collectid);
 		queryMap.put("userid", userid);
 		// TODO 
-		List<Product> products = productService.queryProductsByCollectid(queryMap);
+		List<Product> products = productService.queryCollectProductUser(queryMap);
 
 		// 关联查询所有基金信息
 		List<FundMarket> fundMarkets = fundMarketService.queryByProducts(products);
