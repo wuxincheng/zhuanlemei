@@ -50,9 +50,11 @@ public class RequestInterceptor implements HandlerInterceptor {
 			return true;
 		}
 
+		request.getSession();
+		
 		// 获取用户浏览器信息
 		String userAgent = request.getHeader("User-Agent");
-		logger.info("userAgent={}", userAgent);
+		// logger.info("userAgent={}", userAgent);
 		
 		// 控制PC端和移动端之间的跳转
 		if (userAgent.indexOf("Android") > -1 || userAgent.indexOf("iPhone") > -1 || userAgent.indexOf("PlayBook") > -1

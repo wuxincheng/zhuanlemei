@@ -28,8 +28,8 @@
           <a class="list-faved " href="/posts/collections/hot">热门</a>
         </div>
          -->
-        <a class="btn submit-btn right" href="${root}/collect/edit">创建榜单</a>
         <c:if test="${'1' eq user.collectPermission}">
+        <a class="btn submit-btn right" href="${root}/collect/edit">创建榜单</a>
         </c:if>
       </section>
       <section class="list">

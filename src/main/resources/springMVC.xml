@@ -52,6 +52,8 @@
       
       <!-- 配置不拦截的URL(对资源等不进行拦截) -->
       <mvc:exclude-mapping path="/assets/**" />
+      <mvc:exclude-mapping path="/ckeditor/**" />
+      <mvc:exclude-mapping path="/ckfinder/**" />
       <mvc:exclude-mapping path="/collect/coverbg/**" />
       <mvc:exclude-mapping path="/user/avatar/**" />
       

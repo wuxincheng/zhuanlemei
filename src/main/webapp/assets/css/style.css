@@ -876,3 +876,18 @@ html.no-touch .zm-item-vote-count:hover {
   width: 300px;
 }
 
+.collect-form-panel {
+  width: 500px;
+}
+
+.collect-form-panel input[type=text] {
+  width: 350px;
+}
+
+.collect-form-panel input[type=file] {
+  width: 350px;
+}
+
+.collect-form-panel textarea {
+  width: 350px;
+}
