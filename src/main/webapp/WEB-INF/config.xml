@@ -17,7 +17,11 @@
 	Configure the location of uploaded files. See the following article for more details:
 	http://docs.cksource.com/CKFinder_2.x/Developers_Guide/Java/Configuration/baseURL_and_baseDir
 	-->
-	<baseURL>http://www.zhuanlemei.com/lihucm/imgcache</baseURL>
+    <!-- 
+    <baseURL>http://www.zhuanlemei.com/collect</baseURL>
+    <baseURL>http://127.0.0.1/imagecache</baseURL>
+     -->
+	<baseURL></baseURL>
 	<baseDir></baseDir>
 	<licenseKey></licenseKey>
 	<licenseName></licenseName>

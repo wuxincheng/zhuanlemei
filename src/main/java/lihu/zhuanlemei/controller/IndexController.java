@@ -61,4 +61,9 @@ public class IndexController extends BaseController {
 		return "index";
 	}
 
+	@RequestMapping(value = "/sessionExpired")
+	public String sessionExpired(Model model) {
+		return "sessionExpired";
+	}
+
 }

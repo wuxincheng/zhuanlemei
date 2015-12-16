@@ -200,6 +200,7 @@ public class Result implements Serializable {
 	}
 
 	public void setSuccessMsg(String successMsg) {
+		this.success = true;
 		this.successMsg = successMsg;
 	}
 

@@ -22,7 +22,7 @@
 </script>
 </head>
 <body id="home" class="notes-index">
-  <jsp:include page="../HEADER.jsp" />
+  <jsp:include page="../../HEADER.jsp" />
   <div class="container">
 
     <div class="content row row cf">
@@ -78,7 +78,7 @@
     </div>
   </div>
 
-  <jsp:include page="../FOOTER.jsp" />
+  <jsp:include page="../../FOOTER.jsp" />
   <script type="text/javascript">
   function doSubmit() {
 	var dc= CKEDITOR.instances.detailContent.getData();

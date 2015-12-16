@@ -22,6 +22,7 @@
     <result property="unLikeSum" column="unlikesum" />
     <result property="unLikeScore" column="unlikescore" />
     <result property="commentSum" column="commentsum" />
+    <result property="detailContent" column="detailcontent" />
   </resultMap>
   
   <select id="queryAll" resultMap="CollectMapping">
@@ -42,17 +43,18 @@
     INSERT INTO 
       t_next_collect( collectname, coverimgpath, bgcolor, userid, productsum, collectsum, 
         memo, recommend, updatestate, updatetime, createtime, collectstate, 
-        likesum, likescore, unlikesum, unlikescore, commentsum)
+        likesum, likescore, unlikesum, unlikescore, commentsum, detailcontent)
     VALUES ( #collectName#, #coverImgPath#, #bgColor#, #userid#, 
         #productSum#, #collectSum#, #memo#, 
         #recommend#, #updateState#, #updateTime#, #createTime#, #collectState#,
-        #likeSum#, #likeScore#, #unLikeSum#, #unLikeScore#, #commentSum#)
+        #likeSum#, #likeScore#, #unLikeSum#, #unLikeScore#, #commentSum#, #detailContent#)
   </insert>
   
   <update id="update" parameterClass="Collect">
     UPDATE t_next_collect 
-       SET collectname = #collectName#, coverimgpath = #coverImgPath#, bgcolor = #bgColor#,
-           memo = #memo#, recommend = #recommend#, updatetime=#updateTime# 
+       SET collectname = #collectName#, coverimgpath = #coverImgPath#, 
+           bgcolor = #bgColor#, memo = #memo#, recommend = #recommend#, 
+           updatetime=#updateTime#, detailcontent=#detailContent# 
      WHERE collectid = #collectid#
   </update>
 

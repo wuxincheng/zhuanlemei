@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import lihu.zhuanlemei.Result;
 import lihu.zhuanlemei.model.Collect;
 import lihu.zhuanlemei.model.CollectUser;
 import lihu.zhuanlemei.model.Comment;
@@ -61,7 +62,7 @@ public class CollectController extends BaseController {
 
 	@Autowired
 	private ProdLikeService prodLikeService;
-	
+
 	@Resource
 	private UserService userService;
 
@@ -100,15 +101,17 @@ public class CollectController extends BaseController {
 	}
 
 	@RequestMapping(value = "/create")
-	public String create(Model model, HttpServletRequest request, Collect collect) {
+	@ResponseBody
+	public Result create(Model model, HttpServletRequest request, Collect collect) {
 		logger.info("添加新的榜单");
 
 		String userid = getCurrentUserid(request);
 
+		Result result = new Result();
+
 		// 判断用户是否有创建榜单权限
 		if (!isCollectPermission(request)) {
-			model.addAttribute(Constants.MSG_WARN, "您还没有该项权限");
-			return "redirect:edit";
+			return result.reject("对不起，您没有操作权限");
 		}
 
 		// 图片存放路径
@@ -117,16 +120,15 @@ public class CollectController extends BaseController {
 
 		String responseMessage = collectService.createOrUpdate(collect, ctxPath, userid);
 		if (StringUtils.isNotEmpty(responseMessage)) {
-			model.addAttribute(Constants.MSG_WARN, "处理失败：" + responseMessage);
-			logger.debug(responseMessage);
-			return "redirect:edit";
+			return result.reject("处理失败：" + responseMessage);
 		}
 
 		logger.info("榜单创建成功");
 
-		model.addAttribute(Constants.MSG_SUCCESS, "榜单创建成功");
+		result.setSuccessMsg("榜单创建成功");
+		result.setRedirectUrl("/list");
 
-		return "redirect:list";
+		return result;
 	}
 
 	@RequestMapping(value = "/detail")
@@ -153,7 +155,7 @@ public class CollectController extends BaseController {
 		// 查询用户
 		User userQuery = userService.queryByUserid(collect.getUserid());
 		request.setAttribute("userQuery", userQuery);
-		
+
 		String userid = null;
 
 		// 判断用户是否已经登录
@@ -177,7 +179,7 @@ public class CollectController extends BaseController {
 		// 查询这个榜单的所有评论
 		List<Comment> comments = commentService.queryByCollectid(collectid);
 		model.addAttribute("comments", comments);
-		
+
 		// 显示前5名热门榜单
 		List<Collect> collects = collectService.queryTopHot(5);
 		model.addAttribute("collects", collects);
@@ -236,7 +238,7 @@ public class CollectController extends BaseController {
 
 		return result;
 	}
-	
+
 	/**
 	 * 基金产品加入榜单
 	 * 
@@ -247,11 +249,11 @@ public class CollectController extends BaseController {
 	@RequestMapping(value = "/addin")
 	public String addin(Model model, String fundCode) {
 		logger.info("基金产品加入榜单操作 fundCode={}", fundCode);
-		
+
 		// 查询出所有榜单
 		List<Collect> collects = collectService.queryAll();
 		model.addAttribute("collects", collects);
-		
+
 		FundMarket fundMarket = fundMarketService.queryDetailByFundCode(fundCode);
 		model.addAttribute("fundName", fundMarket.getFundName());
 		model.addAttribute("fundCode", fundCode);

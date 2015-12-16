@@ -198,7 +198,7 @@ public class CollectService {
 	private String checkAndProcessCollectInfo(Collect collect, Collect queryCollect, String ctxPath) {
 		String responseMessage = null;
 
-		if (StringUtils.isEmpty(ctxPath)) {
+		if (StringUtils.isBlank(ctxPath)) {
 			responseMessage = "榜单封面图片保存路径不能为空";
 			logger.warn(responseMessage);
 			return responseMessage;
@@ -211,27 +211,38 @@ public class CollectService {
 		}
 
 		// 验证榜单名称和说明是否为空
-		if (StringUtils.isEmpty(collect.getCollectName())) {
+		if (StringUtils.isBlank(collect.getCollectName())) {
 			responseMessage = "榜单名称不能为空";
 			return responseMessage;
 		}
-		if (StringUtils.isEmpty(collect.getMemo())) {
-			responseMessage = "榜单说明不能为空";
+		
+		if (collect.getCollectName().length() > 15 || collect.getCollectName().length() < 3) {
+			responseMessage = "榜单名称长度不合法，应在3到20位之间";
 			return responseMessage;
 		}
-		if (collect.getCollectName().length() > 15 || collect.getCollectName().length() < 4) {
-			responseMessage = "榜单名称长度不合法，应在4到15位之间";
-			return responseMessage;
+		
+		if (StringUtils.isNotBlank(collect.getMemo())) {
+			if (collect.getMemo().length() > 500) {
+				responseMessage = "一句话介绍长度过长，不能超过500个字";
+				return responseMessage;
+			}
 		}
-		if (collect.getMemo().length() > 500 || collect.getMemo().length() < 5) {
-			responseMessage = "一句话介绍长度不合法，应在5到500位之间";
-			return responseMessage;
-		}
-		if (StringUtils.isNotEmpty(collect.getRecommend())) {
+		
+		if (StringUtils.isNotBlank(collect.getRecommend())) {
 			if (collect.getRecommend().length() > 3000) {
 				responseMessage = "内容介绍长度过长，不能超过3000个字";
 				return responseMessage;
 			}
+		}
+		
+		if (StringUtils.isBlank(collect.getDetailContent())) {
+			responseMessage = "内容详细不能为空";
+			return responseMessage;
+		}
+		
+		if (collect.getDetailContent().length() > 50000) {
+			responseMessage = "内容详细字数过长，不能超过5万个字";
+			return responseMessage;
 		}
 
 		// 处理HTML中的A标签

@@ -14,6 +14,9 @@
 
 <script src="${root}/assets/js/jquery.min.js"></script>
 <script src="${root}/assets/vendor/layer/layer.js"></script>
+<script src="${root}/assets/js/zlm.js"></script>
+
+<link href="${root}/assets/css/layer-less.css" media="all" rel="stylesheet">
 
 <!-- meta -->
 <meta charset="utf-8">

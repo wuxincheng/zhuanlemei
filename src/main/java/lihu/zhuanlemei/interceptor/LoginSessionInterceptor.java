@@ -43,12 +43,8 @@ public class LoginSessionInterceptor implements HandlerInterceptor {
 			if (null == user) {
 				logger.info("用户登录Session失效，跳转到登录页面");
 
-				String msg = "您的登录已失效，请重新登录！";
-				// encode一下，否则页面接收不到值
-				msg = java.net.URLEncoder.encode(msg.toString(), "utf-8");
-
 				// 重定向
-				response.sendRedirect(request.getContextPath() + "/login/?info=" + msg);
+				response.sendRedirect(request.getContextPath() + "/sessionExpired");
 
 				return false;
 			}
