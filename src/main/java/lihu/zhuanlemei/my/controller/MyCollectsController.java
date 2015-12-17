@@ -4,6 +4,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import lihu.zhuanlemei.controller.BaseController;
+import lihu.zhuanlemei.model.Collect;
+import lihu.zhuanlemei.service.CollectService;
+import lihu.zhuanlemei.service.ProductService;
+import lihu.zhuanlemei.util.Constants;
+import lihu.zhuanlemei.util.Validation;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,13 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import lihu.zhuanlemei.controller.BaseController;
-import lihu.zhuanlemei.model.Collect;
-import lihu.zhuanlemei.service.CollectService;
-import lihu.zhuanlemei.service.ProductService;
-import lihu.zhuanlemei.util.Constants;
-import lihu.zhuanlemei.util.Validation;
 
 /**
  * 我的榜单（相当于榜单的后台管理）
@@ -48,6 +48,9 @@ public class MyCollectsController extends BaseController {
 		List<Collect> collects = collectService.queryByUserid(userid);
 		
 		// List<Collect> collects = collectService.queryAll();
+		if (null == collects || collects.size() < 1) {
+			model.addAttribute(Constants.MSG_INFO, "您还没有创建过榜单");
+		}
 		
 		model.addAttribute("collects", collects);
 		
@@ -76,7 +79,7 @@ public class MyCollectsController extends BaseController {
 		logger.info("处理榜单数据");
 
 		try {
-			String ctxPath = request.getSession().getServletContext().getRealPath("/") + "collect/coverbg/"; 
+			String ctxPath = request.getSession().getServletContext().getRealPath("/") + "imgbase/coverbg/"; 
 			String userid = getCurrentUserid(request);
 			
 			String response = collectService.createOrUpdate(collect, ctxPath, userid);
@@ -102,22 +105,15 @@ public class MyCollectsController extends BaseController {
 		logger.info("删除榜单 collectid={}", collectid);
 		
 		String userid = getCurrentUserid(request);
-		if (StringUtils.isEmpty(userid)) {
-			model.addAttribute(Constants.MSG_WARN, "用户登录失效，请重新登录");
-			return "redirect:list";
-		}
 		
 		String responseMessage = collectService.delete(collectid, userid);
 		
 		if (!StringUtils.isEmpty(responseMessage)) {
-			model.addAttribute(Constants.MSG_WARN, "删除失败："+responseMessage);
 			logger.debug("删除失败：{}", responseMessage);
 			return "redirect:list";
 		}
 		
 		logger.info("删除成功");
-		
-		model.addAttribute(Constants.MSG_INFO, "删除成功");
 		
 		return "redirect:list";
 	}

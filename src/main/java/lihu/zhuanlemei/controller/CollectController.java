@@ -112,7 +112,7 @@ public class CollectController extends BaseController {
 		}
 
 		// 图片存放路径
-		String ctxPath = request.getSession().getServletContext().getRealPath("/") + "collect/coverbg/";
+		String ctxPath = request.getSession().getServletContext().getRealPath("/") + "imgbase/coverbg/";
 		logger.debug("图片存放路径 ctxPath={}", ctxPath);
 
 		String responseMessage = collectService.createOrUpdate(collect, ctxPath, userid);

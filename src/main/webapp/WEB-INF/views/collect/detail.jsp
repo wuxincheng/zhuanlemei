@@ -25,7 +25,7 @@
         <div class="collect-main-panel">
           <section class="list-header row" style="max-width: 960px; left: -10px;">
             <div class="list-header-cover" style="
-              <c:if test="${not empty collect.coverImgPath}">background-image: url(${root}/collect/coverbg/${collect.coverImgPath});</c:if>
+              <c:if test="${not empty collect.coverImgPath}">background-image: url(${root}/imgbase/coverbg/${collect.coverImgPath});</c:if>
               <c:if test="${empty collect.coverImgPath}">background-color: #${collect.bgColor};</c:if>">
             </div>
           </section>
@@ -43,7 +43,7 @@
                     <img alt="0" class="avatar" height="60" width="60" 
                       <c:choose>
                       <c:when test="${not empty userQuery.socialPicPath}">src="${userQuery.socialPicPath}"</c:when>
-                      <c:when test="${not empty userQuery.picPath}">src="${root}/user/avatar/${userQuery.picPath}"</c:when>
+                      <c:when test="${not empty userQuery.picPath}">src="${root}/imgbase/avatar/${userQuery.picPath}"</c:when>
                       <c:otherwise>src="${root}/assets/img/logo/toplogo.png"</c:otherwise>
                       </c:choose> />
                   </a>
@@ -53,7 +53,7 @@
                     <img alt="0" class="avatar avatar-big" height="120" width="120"
                       <c:choose>
                       <c:when test="${not empty userQuery.socialPicPath}">src="${userQuery.socialPicPath}"</c:when>
-                      <c:when test="${not empty userQuery.picPath}">src="${root}/user/avatar/${userQuery.picPath}"</c:when>
+                      <c:when test="${not empty userQuery.picPath}">src="${root}/imgbase/avatar/${userQuery.picPath}"</c:when>
                       <c:otherwise>src="${root}/assets/img/logo/toplogo.png"</c:otherwise>
                       </c:choose> />
                   </a>
@@ -106,7 +106,7 @@
                   <div>（${collect.unLikeScore}）</div></td>
                 </tr></table>
               </div>
-              <div style="display: inline; float: right; margin-top: -60px;">
+              <div style="display: inline; float: right; margin-top: -75px;">
                   <c:if test="${not empty collectUser}">
                   <a class="btn primary" href="${root}/collect/collect?collectid=${collect.collectid}&userid=${user.userid}">已关注 (${collect.collectSum})</a>
                   </c:if>
@@ -206,7 +206,7 @@
                       <img class="avatar" height="60" width="60" 
                         <c:choose>
                         <c:when test="${not empty comment.socialPicPath}">src="${comment.socialPicPath}"</c:when>
-                        <c:when test="${not empty comment.picPath}">src="${root}/user/avatar/${comment.picPath}"</c:when>
+                        <c:when test="${not empty comment.picPath}">src="${root}/imgbase/avatar/${comment.picPath}"</c:when>
                         <c:otherwise>src="${root}/assets/img/logo/toplogo.png"</c:otherwise>
                         </c:choose> />
                     </a>
@@ -216,7 +216,7 @@
                       <img class="avatar avatar-big" height="120" width="120" 
                         <c:choose>
                         <c:when test="${not empty comment.socialPicPath}">src="${comment.socialPicPath}"</c:when>
-                        <c:when test="${not empty comment.picPath}">src="${root}/user/avatar/${comment.picPath}"</c:when>
+                        <c:when test="${not empty comment.picPath}">src="${root}/imgbase/avatar/${comment.picPath}"</c:when>
                         <c:otherwise>src="${root}/assets/img/logo/toplogo.png"</c:otherwise>
                         </c:choose> />
                     </a>

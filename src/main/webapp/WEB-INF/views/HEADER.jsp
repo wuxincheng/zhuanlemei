@@ -91,7 +91,7 @@
               <img class="avatar" height="30" width="30"
               <c:choose>
               <c:when test="${not empty user.picPath}">
-              src="${root}/user/avatar/${user.picPath}"
+              src="${root}/imgbase/avatar/${user.picPath}"
               </c:when>
               <c:when test="${not empty user.socialPicPath}">
               src="${user.socialPicPath}"
@@ -104,7 +104,9 @@
             <ul class="dropdown login-dropdown">
               <li><a href="${root}/my/home/list">我的主页</a></li>
               <li><a href="${root}/my/collect/list">我的收藏</a></li>
+              <c:if test="${'1' eq user.collectPermission}">
               <li><a href="${root}/my/collects/list">我的榜单</a></li>
+              </c:if>
               <li><a href="${root}/my/info/query">个人设置</a></li>
               <li><a href="#" style="cursor: pointer;" id="user_logout">退出登录</a></li>
             </ul>

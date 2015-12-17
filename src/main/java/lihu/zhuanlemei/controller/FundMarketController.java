@@ -107,6 +107,10 @@ public class FundMarketController extends BaseController {
 				pager.put("pageSize", pageSize);
 
 				model.addAttribute("pager", pager);
+				
+				if (totalCount == 0) {
+					model.addAttribute(Constants.MSG_INFO, "系统初始化，目前赞无产品数据");
+				}
 			}
 		} catch (Exception e) {
 			logger.error("分页查询出现异常", e);

@@ -69,7 +69,7 @@ public class MyInfoController extends BaseController {
 				logger.debug("用户头像图片格式为 lastFix={}", lastFix);
 				
 				// 生成图片名称
-				String ctxPath = request.getSession().getServletContext().getRealPath("/") + "user/avatar/";
+				String ctxPath = request.getSession().getServletContext().getRealPath("/") + "imgbase/avatar/";
 				logger.debug("保存用户头像路径为 ctxPath={}", ctxPath);
 				String coverImgPath = System.currentTimeMillis() + lastFix;
 				logger.info("封面图片 coverImgPath={}", coverImgPath);

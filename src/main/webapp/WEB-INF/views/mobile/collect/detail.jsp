@@ -86,7 +86,7 @@
             <span class="avatar x25 circle"><img
               <c:choose>
               <c:when test="${not empty userQuery.socialPicPath}">src="${userQuery.socialPicPath}"</c:when>
-              <c:when test="${not empty userQuery.picPath}">src="${root}/user/avatar/${userQuery.picPath}"</c:when>
+              <c:when test="${not empty userQuery.picPath}">src="${root}/imgbase/avatar/${userQuery.picPath}"</c:when>
               <c:otherwise>src="${root}/assets/img/logo/toplogo.png"</c:otherwise>
               </c:choose> /></span>
             <span class="name">${userQuery.nickName}</span>
@@ -96,7 +96,7 @@
         <div class="banner">
           <img 
             <c:choose>
-            <c:when test="${not empty collect.coverImgPath}">src="${root}/collect/coverbg/${collect.coverImgPath}"</c:when>
+            <c:when test="${not empty collect.coverImgPath}">src="${root}/imgbase/coverbg/${collect.coverImgPath}"</c:when>
             <c:when test="${empty collect.coverImgPath}">src="${collect.bgColor}"</c:when>
             <c:otherwise></c:otherwise>
             </c:choose> />

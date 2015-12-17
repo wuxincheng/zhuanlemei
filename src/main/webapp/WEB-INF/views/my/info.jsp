@@ -41,7 +41,7 @@
           <label class="file optional" for="user_avatar">头像</label>
           <div class="avatar-wrapper cf ">
             <c:if test="${not empty user.picPath}">
-              <img src="${root}/user/avatar/${user.picPath}" class="avatar" />
+              <img src="${root}/imgbase/avatar/${user.picPath}" class="avatar" />
             </c:if>
             <input class="upload" id="avatarFile" name="avatarFile" type="file" />
             <input id="picPath" name="picPath" type="hidden" value="${user.picPath}" />

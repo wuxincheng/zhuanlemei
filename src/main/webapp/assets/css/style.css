@@ -893,7 +893,7 @@ html.no-touch .zm-item-vote-count:hover {
 }
 
 .detail-content img {
-  width: 100%;
+  max-width: 100%;
 }
 
 .detail-content {

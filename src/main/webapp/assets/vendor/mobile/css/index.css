@@ -1744,6 +1744,7 @@ body.panel-closing .views {
   height: 16px;
   line-height: 16px;
   transform: scale(0.83333333);
+  color: #fff;
 }
 .com-grid-article .grid-article-hd .ribbon .iconfont {
   color: #ffffff;

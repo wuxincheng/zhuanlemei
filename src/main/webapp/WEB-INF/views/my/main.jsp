@@ -27,7 +27,7 @@
         <img class="avatar" height="50px" width="50px" 
           <c:choose>
           <c:when test="${not empty userQuery.socialPicPath}">src="${userQuery.socialPicPath}"</c:when>
-          <c:when test="${not empty userQuery.picPath}">src="${root}/user/avatar/${userQuery.picPath}"</c:when>
+          <c:when test="${not empty userQuery.picPath}">src="${root}/imgbase/avatar/${userQuery.picPath}"</c:when>
           <c:otherwise>src="${root}/assets/img/logo/toplogo.png"</c:otherwise>
           </c:choose> />
       </a>
@@ -45,7 +45,7 @@
         <img class="avatar" height="50px" width="50px" 
           <c:choose>
           <c:when test="${not empty user.socialPicPath}">src="${user.socialPicPath}"</c:when>
-          <c:when test="${not empty user.picPath}">src="${root}/user/avatar/${user.picPath}"</c:when>
+          <c:when test="${not empty user.picPath}">src="${root}/imgbase/avatar/${user.picPath}"</c:when>
           <c:otherwise>src="${root}/assets/img/logo/toplogo.png"</c:otherwise>
           </c:choose> />
       </a>

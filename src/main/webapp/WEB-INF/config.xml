@@ -21,7 +21,7 @@
     <baseURL>http://www.zhuanlemei.com/collect</baseURL>
     <baseURL>http://127.0.0.1/imagecache</baseURL>
      -->
-	<baseURL></baseURL>
+	<baseURL>/imgbase</baseURL>
 	<baseDir></baseDir>
 	<licenseKey></licenseKey>
 	<licenseName></licenseName>

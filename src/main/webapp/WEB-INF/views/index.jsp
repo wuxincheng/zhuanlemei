@@ -30,7 +30,7 @@
           <c:forEach items="${collects}" var="collect">
           <li class="list-item">
             <a class="cover" href="${root}/collect/detail?collectid=${collect.collectid}" target="_blank" style="
-              <c:if test="${not empty collect.coverImgPath}">background-image: url(${root}/collect/coverbg/${collect.coverImgPath});</c:if>
+              <c:if test="${not empty collect.coverImgPath}">background-image: url(${root}/imgbase/coverbg/${collect.coverImgPath});</c:if>
               <c:if test="${empty collect.coverImgPath}">background-color: #${collect.bgColor};</c:if>">
               <div class="cover-meta">
                 <h3>${collect.collectName}</h3>

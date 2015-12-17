@@ -28,6 +28,9 @@
         <c:if test="${'1' eq user.collectPermission}">
         </c:if>
          -->
+        <c:if test="${'1' eq user.collectPermission}">
+          <a class="btn submit-btn right" href="${root}/collect/edit">创建榜单</a>
+        </c:if>
       </section>
       <section class="list">
         <ul class="list-grid cf">
@@ -35,7 +38,7 @@
           <c:when test="${not empty collects}">
           <c:forEach items="${collects}" var="collect">
           <li class="list-item">
-            <div class="cover" style="background-image: url(${root}/collect/coverbg/${collect.coverImgPath})">
+            <div class="cover" style="background-image: url(${root}/imgbase/coverbg/${collect.coverImgPath})">
               <div class="cover-meta">
                 <h3>${collect.collectName}</h3>
                 <ul class="list-meta">
@@ -47,7 +50,7 @@
                   <li><a href="${root}/collect/detail?collectid=${collect.collectid}" target="_blank">查看</a></li>
                   <li><a href="${root}/my/collects/edit?collectid=${collect.collectid}">修改</a></li>
                   <c:if test="${collect.productSum < 1 && collect.collectSum < 1}">
-                  <li><a href="${root}/my/collects/delete?collectid=${collect.collectid}">删除</a></li>
+                  <li><a href="#" onclick="delCollect(${collect.collectid});">删除</a></li>
                   </c:if>
                 </ul>
               </div>
@@ -64,6 +67,22 @@
   </div>
 
   <jsp:include page="../../FOOTER.jsp" />
-
+  <script type="text/javascript">
+  function delCollect(collectid) {
+  	layer.confirm('您确定要删除该榜单吗？', {
+  	    btn: ['确定','取消'] //按钮
+  	}, function(){
+  		$.get('${root}'+"/my/collects/delete", {
+  			"collectid": collectid
+  		}, function(response){
+  			checkDataAndReload(response);
+  			layer.msg("榜单删除成功");
+  		});
+  	}, function(){
+  		layer.msg("榜单没有删除");
+  	});
+  	return false;
+  }
+  </script>
 </body>
 </html>

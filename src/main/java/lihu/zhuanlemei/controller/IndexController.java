@@ -40,13 +40,18 @@ public class IndexController extends BaseController {
 
 		requestMessageProcess(request);
 
+		// 显示前10名热门基金
+		List<FundMarket> fundMarkets = fundMarketService.queryTopHot(10);
+		if (null == fundMarkets || fundMarkets.size() < 1) {
+			model.addAttribute(Constants.MSG_INFO, "系统初始化，目前赞无数据");
+			return "index";
+		}
+		
+		model.addAttribute("fundMarkets", fundMarkets);
+		
 		// 显示前3名热门榜单
 		List<Collect> collects = collectService.queryTopHot(6);
 		model.addAttribute("collects", collects);
-
-		// 显示前10名热门基金
-		List<FundMarket> fundMarkets = fundMarketService.queryTopHot(10);
-		model.addAttribute("fundMarkets", fundMarkets);
 
 		// 显示红榜单
 		List<FundMarket> topRedMarkets = fundMarketService.queryRedTopHot(Constants.DATE_TYPE_CACHE);

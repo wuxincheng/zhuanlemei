@@ -55,11 +55,8 @@
       <mvc:exclude-mapping path="/assets/**" />
       <mvc:exclude-mapping path="/ckeditor/**" />
       <mvc:exclude-mapping path="/ckfinder/**" />
-      <mvc:exclude-mapping path="/userfiles/**" />
-      <mvc:exclude-mapping path="/mobile/userfiles/**" />
-      <mvc:exclude-mapping path="/collect/coverbg/**" />
-      <mvc:exclude-mapping path="/user/avatar/**" />
-      
+      <mvc:exclude-mapping path="/imgbase/**" />
+      <mvc:exclude-mapping path="/mobile/imgbase/**" />
       
       <bean class="lihu.zhuanlemei.interceptor.RequestInterceptor" />
     </mvc:interceptor>
@@ -69,8 +66,6 @@
       <!-- 配置拦截的URL -->
       <mvc:mapping path="/collect/**" />
       <mvc:mapping path="/mobile/collect/**" />
-      
-      <mvc:exclude-mapping path="/collect/coverbg/**" />
       
       <bean class="lihu.zhuanlemei.interceptor.MobileInterceptor" />
     </mvc:interceptor>

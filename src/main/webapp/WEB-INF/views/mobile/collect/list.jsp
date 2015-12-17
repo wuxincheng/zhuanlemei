@@ -71,15 +71,11 @@ $(document).ready(function(){
 	'<a href="${root}/mobile/collect/detail?collectid=COLLECT_ID" class="com-grid-article" data-initialized="true" data-guid="10">\
   	<div class="grid-article-hd">\
   		<div class="imgcover">\
-  			<img class="pic" src="http://www.zhuanlemei.com/collect/coverbg/COVER_IMG_PATH" />\
+  			<img class="pic" src="${root}/imgbase/coverbg/COVER_IMG_PATH" />\
   		</div>\
-  		<p class="category clearfix">\
-  			<img src="${root}/assets/vendor/mobile/image/mock/18.png" />\
-  			<span>商业</span>\
-  		</p>\
   		<div class="ribbon">\
-  				<span class="iconfont icon-message">17</span>\
-  				<span class="iconfont icon-heart">32</span>\
+  				<span class="glyphicon glyphicon-th">PRODUCT_SUM</span>\
+  				<span class="glyphicon glyphicon-heart">COLLECT_SUM</span>\
   		</div>\
   	</div>\
   	<div class="grid-article-bd">\
@@ -102,7 +98,9 @@ $(document).ready(function(){
     $.each(objs, function(i, obj){
       var item = html.replace("COLLECT_NAME", obj.collectName)
       				 .replace("COVER_IMG_PATH", obj.coverImgPath)
-      				 .replace("COLLECT_ID", obj.collectid);
+      				 .replace("COLLECT_ID", obj.collectid)
+      				 .replace("PRODUCT_SUM", obj.productSum)
+      				 .replace("COLLECT_SUM", obj.collectSum);
       $("#item-content").append(item);
     });
     },

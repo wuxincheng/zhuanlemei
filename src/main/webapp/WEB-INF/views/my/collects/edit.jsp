@@ -54,7 +54,7 @@
           <div class="form-group string">
             <input type="hidden" id="coverImgPath" name="coverImgPath" value="${collect.coverImgPath}" />
             <c:if test="${not empty collect.coverImgPath}">
-            <img src="${root}/collect/coverbg/${collect.coverImgPath}" style="width: 350px;" />
+            <img src="${root}/imgbase/coverbg/${collect.coverImgPath}" style="width: 350px;" />
             </c:if>
           </div>
           <!-- 

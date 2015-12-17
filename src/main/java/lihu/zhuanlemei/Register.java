@@ -76,7 +76,7 @@ public class Register extends BaseController {
 		user = userService.checkLogin(user.getLoginEmail());
 		request.getSession().setAttribute(Constants.CURRENT_USER, user);
 		
-		return "redirect:/product/list";
+		return "redirect:/index";
 	}
 
 	/**

@@ -81,9 +81,11 @@
         
         </c:when>
         <c:otherwise>
+          <!-- 
           <div id="msg-alert" class="alert alert-info fade in row" style="margin-top: 30px;">
             <h4>没有查询到相关的基金信息</h4>
           </div>
+           -->
         </c:otherwise>
         </c:choose>
       </div>
