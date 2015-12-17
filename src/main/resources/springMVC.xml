@@ -25,6 +25,7 @@
   <mvc:default-servlet-handler />
 
   <mvc:interceptors>
+    <!-- 配置登录拦截器 -->
     <mvc:interceptor>
       <!-- fund -->
       <mvc:mapping path="/fund/market/focus" />
@@ -45,7 +46,7 @@
       <bean class="lihu.zhuanlemei.interceptor.LoginSessionInterceptor" />
     </mvc:interceptor>
     
-    <!-- 配置拦截的URL -->
+    <!-- 配置请求拦截器 -->
     <mvc:interceptor>
       <!-- 配置拦截的URL -->
       <mvc:mapping path="/**" />
@@ -54,11 +55,24 @@
       <mvc:exclude-mapping path="/assets/**" />
       <mvc:exclude-mapping path="/ckeditor/**" />
       <mvc:exclude-mapping path="/ckfinder/**" />
+      <mvc:exclude-mapping path="/userfiles/**" />
+      <mvc:exclude-mapping path="/mobile/userfiles/**" />
       <mvc:exclude-mapping path="/collect/coverbg/**" />
       <mvc:exclude-mapping path="/user/avatar/**" />
       
-      <!-- 配置执行的拦截器 -->
+      
       <bean class="lihu.zhuanlemei.interceptor.RequestInterceptor" />
+    </mvc:interceptor>
+    
+    <!-- 配置移动请求拦截器 -->
+    <mvc:interceptor>
+      <!-- 配置拦截的URL -->
+      <mvc:mapping path="/collect/**" />
+      <mvc:mapping path="/mobile/collect/**" />
+      
+      <mvc:exclude-mapping path="/collect/coverbg/**" />
+      
+      <bean class="lihu.zhuanlemei.interceptor.MobileInterceptor" />
     </mvc:interceptor>
   </mvc:interceptors>
 
