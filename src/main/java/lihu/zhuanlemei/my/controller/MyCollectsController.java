@@ -87,8 +87,8 @@ public class MyCollectsController extends BaseController {
 				return "redirect:list";
 			}
 			
-			logger.info("榜单数据处理成功");
-			model.addAttribute(Constants.MSG_SUCCESS, "榜单数据处理成功");
+			logger.info("榜单数据修改成功");
+			model.addAttribute(Constants.MSG_SUCCESS, "榜单修改成功");
 		} catch (Exception e) {
 			logger.error("榜单数据处理出现异常", e);
 			model.addAttribute(Constants.MSG_ERROR, "榜单数据处理出现异常，请联系管理员");

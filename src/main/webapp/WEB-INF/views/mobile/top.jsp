@@ -38,7 +38,7 @@
 </head>
 <body>
   <div class="com-header clearfix" data-islogined="false" data-guid="1" data-initialized="true">
-    <div class="header-left" style="font-size: 16px;"><strong>赚了没？</strong></div>
+    <div class="header-left" style="font-size: 18px;">赚了没？</div>
     <div class="header-right">
       <c:if test="${not empty user}">
       <div class="user signin">

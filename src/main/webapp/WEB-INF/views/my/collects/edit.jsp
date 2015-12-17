@@ -22,12 +22,12 @@
 </script>
 </head>
 <body id="home" class="notes-index">
-  <jsp:include page="../HEADER.jsp" />
+  <jsp:include page="../../HEADER.jsp" />
   <div class="container">
 
     <div class="content row row cf">
       <div class="collect-form-panel">
-        <form accept-charset="UTF-8" action="${root}/collect/create" class="simple_form new_note"
+        <form accept-charset="UTF-8" action="${root}/my/collects/modify" class="simple_form new_note"
           method="post" enctype="multipart/form-data">
           <div style="display: none">
             <input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token"
@@ -42,12 +42,20 @@
             <input type="hidden" id="userid" name="userid" value="${userid}" />
             <label class="string required" for="note_title">榜单名称：</label><input aria-required="true"
               autofocus="autofocus" class="string required form-control input-small" id="collectName"
-              name="collectName" placeholder="榜单名称" required="required" type="text" />
+              name="collectName" value="${collect.collectName}" placeholder="榜单名称" required="required" type="text" />
           </div>
-          <div class="string required note_title">
-            <label class="string required" for="note_title">榜单背景图片：（建议：625*350）</label>
+          <div class="form-group string">
+            <input type="hidden" id="collectid" name="collectid" value="${collect.collectid}" />
+            <input type="hidden" id="coverImgPathHidden" name="coverImgPathHidden" value="${collect.coverImgPath}" />
+            <label class="string" for="note_title">榜单背景图片（建议：625*350）</label>
             <input autofocus="autofocus" class="form-control input-small" 
-              id="coverImgFile" name="coverImgFile" type="file" />
+              id="coverImgFile" name="coverImgFile" type="file" onclick="changeCoverImg(this)" />
+          </div>
+          <div class="form-group string">
+            <input type="hidden" id="coverImgPath" name="coverImgPath" value="${collect.coverImgPath}" />
+            <c:if test="${not empty collect.coverImgPath}">
+            <img src="${root}/collect/coverbg/${collect.coverImgPath}" style="width: 350px;" />
+            </c:if>
           </div>
           <!-- 
           <div class="text required note_summary">
@@ -59,15 +67,15 @@
           <div class="text required note_summary">
             <label class="text required" for="note_summary">内容介绍：</label>
             <textarea aria-required="true" class="text required form-control input-big"
-              id="recommend" name="recommend" required="required"></textarea>
+              id="recommend" name="recommend" required="required">${collect.recommend}</textarea>
           </div>
           
           <div>
             <label class="detailContent">内容详细：</label>
-            <textarea id="detailContent" name="detailContent"></textarea>
+            <textarea id="detailContent" name="detailContent">${collect.detailContent}</textarea>
           </div>
           <p>&nbsp;</p>
-          <input class="btn submit" name="commit" type="submit" value="提交" />
+          <input class="btn submit" name="commit" type="submit" value="提交" onclick="doSubmit();" />
         </form>
       </div>
 
@@ -78,32 +86,12 @@
     </div>
   </div>
 
-  <jsp:include page="../FOOTER.jsp" />
-  <script type="text/javascript">/**
-  function doSubmit() {
-	var dc= CKEDITOR.instances.detailContent.getData();
-	$("#detailContent").val(dc);
-    var form_data = $('form').serialize();
-    $.ajax( {
-      type : "POST",
-          url : '${root}'+"/collect/create",
-          data : form_data,
-          dataType : "json",
-          success : function(response){
-            if (!response.success) {
-              layer.alert(response.errorMsg);
-              return;
-            }
-            if (response.redirectUrl) {
-              window.location = '${root}'+response.redirectUrl;
-            }
-            layer.msg("创建成功");
-          },
-          error : function(response){
-        	  window.top.location.reload();
-          }
-      });
-  }**/
-  </script>  
+  <jsp:include page="../../FOOTER.jsp" />
+  
+  <script type="text/javascript">
+  	function changeCoverImg(file){
+  		$("#coverImgPath").val(null);
+  	}
+  </script>
 </body>
 </html>

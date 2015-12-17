@@ -115,7 +115,11 @@
                   </c:if>
               </div>
             </div>
-          </div>    
+          </div>
+          
+          <div class="detail-content container row">
+            <span>${collect.detailContent}</span>
+          </div>
           
           <div class="content row" style="padding: 0px;">
             <div>

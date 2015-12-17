@@ -114,6 +114,7 @@ public class CollectService {
 			queryCollect.setMemo(collect.getMemo());
 			queryCollect.setRecommend(collect.getRecommend());
 			queryCollect.setUpdateTime(currentDate);
+			queryCollect.setDetailContent(collect.getDetailContent());
 
 			collectDao.update(queryCollect);
 		} else { // 新增榜单信息

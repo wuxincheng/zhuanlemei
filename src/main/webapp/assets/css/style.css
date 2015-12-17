@@ -891,3 +891,20 @@ html.no-touch .zm-item-vote-count:hover {
 .collect-form-panel textarea {
   width: 350px;
 }
+
+.detail-content img {
+  width: 100%;
+}
+
+.detail-content {
+  padding-top: 30px;
+  padding-bottom: 50px; 
+  margin-top: 5px; 
+  margin-bottom: 50px; 
+  border-top: 0px solid #eee;
+  border-bottom: 0px solid #eee;
+}
+
+.list-meta li a {
+  color: #fff;
+}

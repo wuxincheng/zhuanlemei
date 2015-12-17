@@ -7,16 +7,6 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import lihu.zhuanlemei.Result;
 import lihu.zhuanlemei.model.Collect;
 import lihu.zhuanlemei.model.CollectUser;
 import lihu.zhuanlemei.model.Comment;
@@ -32,6 +22,15 @@ import lihu.zhuanlemei.service.ProductService;
 import lihu.zhuanlemei.service.UserService;
 import lihu.zhuanlemei.util.Constants;
 import lihu.zhuanlemei.util.Validation;
+
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 产品集，现更名为榜单
@@ -101,17 +100,15 @@ public class CollectController extends BaseController {
 	}
 
 	@RequestMapping(value = "/create")
-	@ResponseBody
-	public Result create(Model model, HttpServletRequest request, Collect collect) {
+	public String create(Model model, HttpServletRequest request, Collect collect) {
 		logger.info("添加新的榜单");
 
 		String userid = getCurrentUserid(request);
 
-		Result result = new Result();
-
 		// 判断用户是否有创建榜单权限
 		if (!isCollectPermission(request)) {
-			return result.reject("对不起，您没有操作权限");
+			request.setAttribute(Constants.MSG_WARN, "对不起，您没有操作权限");
+			return "collect/edit";
 		}
 
 		// 图片存放路径
@@ -120,15 +117,15 @@ public class CollectController extends BaseController {
 
 		String responseMessage = collectService.createOrUpdate(collect, ctxPath, userid);
 		if (StringUtils.isNotEmpty(responseMessage)) {
-			return result.reject("处理失败：" + responseMessage);
+			request.setAttribute(Constants.MSG_WARN, "处理失败：" + responseMessage);
+			return "collect/edit";
 		}
 
 		logger.info("榜单创建成功");
 
-		result.setSuccessMsg("榜单创建成功");
-		result.setRedirectUrl("/list");
+		request.setAttribute(Constants.MSG_SUCCESS, "榜单创建成功");
 
-		return result;
+		return "collect/edit";
 	}
 
 	@RequestMapping(value = "/detail")

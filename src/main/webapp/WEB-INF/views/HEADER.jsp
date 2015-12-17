@@ -106,7 +106,7 @@
               <li><a href="${root}/my/collect/list">我的收藏</a></li>
               <li><a href="${root}/my/collects/list">我的榜单</a></li>
               <li><a href="${root}/my/info/query">个人设置</a></li>
-              <li><a data-method="delete" href="${root}/logout/" rel="nofollow">退出登录</a></li>
+              <li><a href="#" style="cursor: pointer;" id="user_logout">退出登录</a></li>
             </ul>
           </li>        
           </c:when>
@@ -122,6 +122,7 @@
     </div>
   </header>
   
+  <!-- 
   <div class="row">
     <c:if test="${not empty success}">
     <div id="msg-alert" class="alert alert-success fade in row" style="margin-top: 30px;">
@@ -147,20 +148,43 @@
     </div>
     </c:if>
   </div>
+   -->
   
   <script type="text/javascript">
     $(document).ready(function(){
+    	var success = '${success}';
+    	if (success != '') {
+    		layer.msg(success);
+    	}
+    	var info = '${info}';
+    	if (info != '') {
+    		layer.msg(info);
+    	}
+    	var warning = '${warning}';
+    	if (warning != '') {
+    		layer.msg(warning);
+    	}
+    	var danger = '${danger}';
+    	if (danger != '') {
+    		layer.msg(danger);
+    	}
+    	
+    	$("#user_logout").bind("click", function() {
+    		layer.confirm('您确定要退出吗？', {
+    		    btn: ['确定','取消'],
+    		    title: '系统提示'
+    		}, function(){
+    			window.location ='${root}'+"/logout/";
+    		    layer.msg('退出成功');
+    		}, function(){
+    		    layer.msg('您没有退出系统');
+    		});
+    	});
+    	
   	  var msg = $("#msg-alert").text();
     	if (msg == '') {
     		return;
     	}
-    	
-    	// sleep(1000);
-    	
-    	// $("#msg-alert").remove();
-    	
-    	// $("#msg-alert").hide(8000, 'swing');
-    	// $("#msg-alert").fadeTo(50000,1).hide();
     });
     
     function sleep(numberMillis) { 

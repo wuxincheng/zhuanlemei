@@ -101,6 +101,10 @@ public class FundMarketService {
 
 		// 从缓存中读取行情信息
 		List<FundMarket> fundMarkets = getCacheFundMarkets();
+		if (null == fundMarkets || fundMarkets.size() < topIndex) {
+			return fundMarkets;
+		}
+		
 		fundMarkets = fundMarkets.subList(0, topIndex);
 
 		return fundMarkets;
@@ -136,6 +140,10 @@ public class FundMarketService {
 			}
 		});
 
+		if (null == sortFundMarkets || sortFundMarkets.size() < 5) {
+			return sortFundMarkets;
+		}
+		
 		return sortFundMarkets.subList(0, 5);
 	}
 
@@ -169,6 +177,10 @@ public class FundMarketService {
 			}
 		});
 
+		if (null == sortFundMarkets || sortFundMarkets.size() < 5) {
+			return sortFundMarkets;
+		}
+		
 		return sortFundMarkets.subList(0, 5);
 	}
 

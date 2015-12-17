@@ -104,43 +104,44 @@
       </div>
       <div class="article-detail-bd">
         <div class="excerpt">${collect.recommend}</div>
-          <div class="public-fund-list">
-            <c:choose>
-            <c:when test="${not empty fundMarkets}">
-              <c:forEach items="${fundMarkets}" var="fundMarket">
-                <div class="public_fund_item">
-                  <div><h3 class="name">${fundMarket.fundName}（${fundMarket.fundCode}）</h3></div>
-                  <div class="public-fund-type">
-                    <span class="gray9">[混合型]</span>
-                  </div>
-                  <div class="rate cf">
-                    <ul class="fl">
-                      <li>近6月收益</li>
-                      <li><span class="cGreen">${fundMarket.rateChange}</span></li>
-                    </ul>
-                    <ul class="fl" style="padding-left: 20px;">
-                      <li>最新净值</li>
-                      <li><span>${fundMarket.currentNav}</span></li>
-                    </ul>
-                    <ul class="fr" style="padding-top: 10px;">
-                      <li>
-                      <c:if test="${not empty fundMarket.thisUserFocus}">
-                        <input id="focus-btn-${fundMarket.fundCode}" type="button" class="btn focus-btn" style="width: 80px;" onclick="focusFund('${fundMarket.fundCode}');" value="已关注" />
-                      </c:if>
-                      <c:if test="${empty fundMarket.thisUserFocus}">
-                        <input id="focus-btn-${fundMarket.fundCode}" type="button" class="btn" style="width: 80px;" onclick="focusFund('${fundMarket.fundCode}');" value="关注" />
-                      </c:if>
-                      </li>
-                    </ul>
-                  </div>
+        <div class="detail">${collect.detailContent}</div>
+        <div class="public-fund-list">
+          <c:choose>
+          <c:when test="${not empty fundMarkets}">
+            <c:forEach items="${fundMarkets}" var="fundMarket">
+              <div class="public_fund_item">
+                <div><h3 class="name">${fundMarket.fundName}（${fundMarket.fundCode}）</h3></div>
+                <div class="public-fund-type">
+                  <span class="gray9">[混合型]</span>
                 </div>
-              </c:forEach>
-            </c:when>
-            <c:otherwise>
-              <div style="color: #5AABE7; font-weight: bold; margin-top: 30px;">目前还没有添加任何基金产品</div>
-            </c:otherwise>
-          </c:choose>
-        </div>
+                <div class="rate cf">
+                  <ul class="fl">
+                    <li>近6月收益</li>
+                    <li><span class="cGreen">${fundMarket.rateChange}</span></li>
+                  </ul>
+                  <ul class="fl" style="padding-left: 20px;">
+                    <li>最新净值</li>
+                    <li><span>${fundMarket.currentNav}</span></li>
+                  </ul>
+                  <ul class="fr" style="padding-top: 10px;">
+                    <li>
+                    <c:if test="${not empty fundMarket.thisUserFocus}">
+                      <input id="focus-btn-${fundMarket.fundCode}" type="button" class="btn focus-btn" style="width: 80px;" onclick="focusFund('${fundMarket.fundCode}');" value="已关注" />
+                    </c:if>
+                    <c:if test="${empty fundMarket.thisUserFocus}">
+                      <input id="focus-btn-${fundMarket.fundCode}" type="button" class="btn" style="width: 80px;" onclick="focusFund('${fundMarket.fundCode}');" value="关注" />
+                    </c:if>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </c:forEach>
+          </c:when>
+          <c:otherwise>
+             <div style="color: #FB9F03; background: #fff; padding: 15px;">目前还没有添加任何基金产品</div>
+          </c:otherwise>
+        </c:choose>
+      </div>
       </div>
     </div>
   </div>
