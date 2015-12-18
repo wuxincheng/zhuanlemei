@@ -8,6 +8,9 @@
 <title>登录 - 赚了没</title>
 
 <link href="${root}/assets/vendor/bootstrap/css/bootstrap.css" media="all" rel="stylesheet">
+<link href="${root}/assets/vendor/mobile/css/index.css" media="all" rel="stylesheet" type="text/css">
+<link href="${root}/assets/vendor/mobile/css/fund.css" media="all" rel="stylesheet" type="text/css">
+<link href="${root}/assets/vendor/mobile/css/show.css" media="all" rel="stylesheet" type="text/css">
 <link href="${root}/assets/vendor/mobile/css/style.css" media="all" rel="stylesheet">
 
 <script src="${root}/assets/js/jquery.min.js"></script>
@@ -43,6 +46,13 @@ function doSubmit() {
 </script>
 </head>
 <body>
+  <div class="com-header clearfix" data-islogined="false" data-guid="1" data-initialized="true">
+    <!-- 
+    <div class="header-left"><a href="javascript:window.opener=null;window.close();">返回</a></div>
+     -->
+    <div class="header-center">登录</div>
+  </div>
+  
   <div class="container">
       <div class="form-panel" style="padding-top: 10px;"> <!-- login-box -->
         <div class="title">账号登录</div>

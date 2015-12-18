@@ -68,7 +68,7 @@
 $(document).ready(function(){
   var url = "${root}/mobile/collect/loadmore";
   var html = 
-	'<a href="${root}/mobile/collect/detail?collectid=COLLECT_ID" class="com-grid-article" data-initialized="true" data-guid="10">\
+	'<a href="${root}/mobile/collect/detail?collectid=COLLECT_ID" class="com-grid-article">\
   	<div class="grid-article-hd">\
   		<div class="imgcover">\
   			<img class="pic" src="${root}/imgbase/coverbg/COVER_IMG_PATH" />\

@@ -117,9 +117,11 @@
             </div>
           </div>
           
+          <c:if test="${not empty collect.detailContent}">
           <div class="detail-content container row">
             <span>${collect.detailContent}</span>
           </div>
+          </c:if>
           
           <div class="content row" style="padding: 0px;">
             <div>

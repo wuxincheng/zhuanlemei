@@ -1344,6 +1344,10 @@ html.with-statusbar-overlay .popup.tablet-fullscreen {
   background-color: #000000;
   color: #ffffff;
   padding: 3px 15px;
+  font-size: 16px;
+}
+.com-header a{
+  color: #fff;
 }
 .com-header .header-left {
   float: left;
@@ -1356,6 +1360,11 @@ html.with-statusbar-overlay .popup.tablet-fullscreen {
 .com-header .header-left .logo img {
   height: 100%;
   max-height: 100%;
+}
+.com-header .header-center {
+  text-align: center;
+  font-weight: bold;
+  /*margin-right: 35px;*/
 }
 .com-header .header-right {
   float: right;

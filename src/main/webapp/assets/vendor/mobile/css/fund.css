@@ -2323,9 +2323,9 @@ a {
 }
 
 .public-fund-list {
-  background: #f2f2f2;
   margin: -15px;
   margin-top: 30px;
+  padding: 15px;
 }
 
 .public_fund_item {
@@ -2339,7 +2339,7 @@ a {
 
 .public_fund_item
 .name {
-  padding: 0 10px;
+  /*padding: 0 10px;*/
   font-size: 14px;
   height: 45px;
   line-height: 45px;
@@ -2383,7 +2383,7 @@ img {
 
 .public_fund_item
 .rate {
-  padding: 0px 10px
+  /*padding: 0px 10px*/
 }
 
 .public_fund_item .rate

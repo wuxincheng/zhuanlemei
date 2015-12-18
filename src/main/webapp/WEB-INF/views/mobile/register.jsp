@@ -15,6 +15,9 @@
 <script src="${root}/assets/vendor/layer/layer.js"></script>
 
 <link href="${root}/assets/vendor/bootstrap/css/bootstrap.css" media="all" rel="stylesheet">
+<link href="${root}/assets/vendor/mobile/css/index.css" media="all" rel="stylesheet" type="text/css">
+<link href="${root}/assets/vendor/mobile/css/fund.css" media="all" rel="stylesheet" type="text/css">
+<link href="${root}/assets/vendor/mobile/css/show.css" media="all" rel="stylesheet" type="text/css">
 <link href="${root}/assets/vendor/mobile/css/style.css" media="all" rel="stylesheet">
 
 <!-- meta -->
@@ -46,6 +49,13 @@ function doSubmit() {
 </script>
 </head>
 <body>
+  <div class="com-header clearfix" data-islogined="false" data-guid="1" data-initialized="true">
+    <!-- 
+    <div class="header-left"><a href="javascript:window.opener=null;window.close();">返回</a></div>
+     -->
+    <div class="header-center">注册</div>
+    <div class="header-right">返回</div>
+  </div>
   <div class="container">
       <div class="form-panel">
         <div class="reg-title">新用户注册</div>
@@ -67,7 +77,6 @@ function doSubmit() {
               id="password2" name="password2" placeholder="重新输入密码" type="password" />
           </div>
           <input class="btn login-reg-btn" type="button" onclick="doSubmit();" value="注册" />
-          <input class="btn cancel-btn" type="button" value="取消" />
           
           <div class="fotter-tip">
             <strong><a href="${root}/mobile/login/">立即登录</a></strong>

@@ -38,7 +38,7 @@
 </head>
 <body>
   <div class="com-header clearfix" data-islogined="false" data-guid="1" data-initialized="true">
-    <div class="header-left" style="font-size: 18px;">赚了没？</div>
+    <div class="header-left" style="font-size: 18px;"><a href="${root}/mobile/collect/list">赚了没？</a></div>
     <div class="header-right">
       <c:if test="${not empty user}">
       <div class="user signin">
@@ -68,7 +68,7 @@
       
       <c:if test="${empty user}">
       <div class="user unsign">
-        <a href="${root}/mobile/login/" data-popup=".com-login-popup" class="user-hd open-popup">
+        <a href="${root}/mobile/login/" class="user-hd open-popup">
           <span class="glyphicon glyphicon-user"></span> 登录
         </a>
       </div>

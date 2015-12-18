@@ -35,11 +35,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * 移动版榜单
+ * 移动端榜单
  * 
- * @author wuxincheng(wxcking)
- * @date 2015年7月1日 下午10:30:45
- * 
+ * @author wuxincheng(wxcking) 
+ * @date 2015年12月18日 上午10:39:54 
+ *
  */
 @Controller
 @RequestMapping("/mobile/collect")

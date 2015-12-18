@@ -104,17 +104,22 @@
       </div>
       <div class="article-detail-bd">
         <div class="excerpt">${collect.recommend}</div>
+        <c:if test="${not empty collect.detailContent}">
         <div class="detail">${collect.detailContent}</div>
+        </c:if>
         <div class="public-fund-list">
           <c:choose>
           <c:when test="${not empty fundMarkets}">
             <c:forEach items="${fundMarkets}" var="fundMarket">
               <div class="public_fund_item">
+                <a href="${root}/mobile/fund/market/detail?fundCode=${fundMarket.fundCode}">
                 <div><h3 class="name">${fundMarket.fundName}（${fundMarket.fundCode}）</h3></div>
                 <div class="public-fund-type">
                   <span class="gray9">[混合型]</span>
                 </div>
+                </a>
                 <div class="rate cf">
+                  <a href="${root}/mobile/fund/market/detail?fundCode=${fundMarket.fundCode}">
                   <ul class="fl">
                     <li>近6月收益</li>
                     <li><span class="cGreen">${fundMarket.rateChange}</span></li>
@@ -123,6 +128,7 @@
                     <li>最新净值</li>
                     <li><span>${fundMarket.currentNav}</span></li>
                   </ul>
+                  </a>
                   <ul class="fr" style="padding-top: 10px;">
                     <li>
                     <c:if test="${not empty fundMarket.thisUserFocus}">
@@ -159,7 +165,7 @@
               <img 
                 <c:choose>
                 <c:when test="${not empty comment.socialPicPath}">src="${comment.socialPicPath}"</c:when>
-                <c:when test="${not empty comment.picPath}">src="${root}/user/avatar/${comment.picPath}"</c:when>
+                <c:when test="${not empty comment.picPath}">src="${root}/imgbase/avatar/${comment.picPath}"</c:when>
                 <c:otherwise>src="${root}/assets/img/logo/toplogo.png"</c:otherwise>
                 </c:choose> />
             </a>

@@ -64,8 +64,11 @@
     <!-- 配置移动请求拦截器 -->
     <mvc:interceptor>
       <!-- 配置拦截的URL -->
+      <mvc:mapping path="/login/**" />
+      <mvc:mapping path="/register/**" />
       <mvc:mapping path="/collect/**" />
-      <mvc:mapping path="/mobile/collect/**" />
+      <mvc:mapping path="/fund/**" />
+      <mvc:mapping path="/mobile/**" />
       
       <bean class="lihu.zhuanlemei.interceptor.MobileInterceptor" />
     </mvc:interceptor>

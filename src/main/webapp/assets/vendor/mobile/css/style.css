@@ -80,3 +80,397 @@
   color: #808080;
 }
 
+/** fund panel */
+.fund-panel {
+  text-align: left;
+  padding: 20px 0px 0px 50px;
+  margin-bottom: 20px;
+  line-height: 1.42857143;
+  background-color: #FFFFFF;
+  border: 0px solid #eee;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  line-height: 22px !important;
+}
+
+.fund-info {
+  text-align: left;
+  padding-bottom: 10px;
+  line-height: 1.42857143;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #eee;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  line-height: 22px !important;
+}
+
+.fund-name {
+  text-align: left;
+  font-size: 18px;
+  font-weight: bold;
+  color: #2a5894;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.fund-base {
+  text-align: left;
+  font-size: 14px;
+  margin: 5px 0;
+  width: 100%;
+}
+
+.fund-nv-up {
+  color: #C00;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 0px;
+}
+
+.fund-nv-down {
+  color: #080;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 0px;
+}
+
+.fund-sort {
+  text-align: left;
+  color: #2a5894;
+  margin-top: 10px;
+  margin-left: 5px;
+  padding: 5px 0;
+  font-size: 14px;
+  border-bottom: 1px solid #eee;
+  width: 100%;
+}
+
+.fund-detail-panel {
+  text-align: left;
+  padding: 20px 0px 0px 0px;
+  line-height: 1.42857143;
+  background-color: #FFFFFF;
+  border: 0px solid #eee;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  line-height: 22px !important;
+}
+
+.fund-type{
+  font-size: 10px;
+  margin-left: 20px;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 5px 10px;
+  background-color: #B5B2B2;
+  color: #FFFFFF;
+}
+
+.fund-market {
+  text-align: left;
+  padding: 10px 20px;
+  line-height: 1.42857143;
+  background-color: #f2f6fb;
+  border: 0px solid #eee;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  line-height: 22px !important;
+}
+
+.fund-nav-panel {
+  margin-bottom: 10px;
+}
+
+.fund-nav-info {
+  margin-top: 10px;
+  border-top: 0px dashed #B8B0B0;
+  padding-top: 5px;
+  line-height: 25px;
+  font-size: 11px;
+}
+
+.fundPanel .name {
+  font-size: 18px;
+}
+
+.fund-nav {
+  border-right: 1px dashed #B8B0B0;
+  margin-left: 0px;
+}
+
+.fund-nav-updown {
+  text-align: center;
+}
+
+.fund-nav-sort {
+  border-left: 1px dashed #B8B0B0;
+  text-align: center;
+}
+
+/** fund */
+/*********************************/
+
+.bar-title {
+  color: #C00;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/****************************/
+.fundPanel {
+  border-top: 0px #DFDFDF solid;
+  margin-top: 0px;
+  padding-top: 0px;
+}
+
+.fundPanel .items {
+  position: absolute;
+  width: 340px;
+  border: 1px solid #ccc;
+  background: #fff;
+  left: -180px;
+  top: -15px;
+  padding: 5px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 5px;
+  display: none;
+  z-index: 1000;
+}
+
+.fundPanel .items ul {
+  list-style-type: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 330px;
+  max-height: 200px;
+}
+
+.fundPanel .items li {
+  display: inline-block;
+  padding: 0 5px;
+}
+
+.fundPanel .items li a {
+  display: inline-block;
+  width: 100%;
+  padding: 3px 5px;
+  text-decoration: none;
+  color: #999;
+}
+
+.fundPanel .items li a:focus {
+  outline: none;
+}
+
+.fundPanel .items li a.hover {
+  background: #eee;
+  color: #c00;
+  font-weight: bold;
+}
+
+.fundPanel .items li .fn {
+  display: inline-block;
+  width: 200px;
+}
+
+.fundPanel .items li .fc {
+  display: inline-block;
+  width: 70px;
+}
+
+.fundPanel .items .selected {
+  color: #c00;
+  font-weight: bold;
+}
+
+.fundPanel .btn {
+  margin: 0;
+}
+
+/*******************************/
+.hunt-high {
+  color: #C00;
+}
+
+.subfooter {
+  display: block;
+  padding-top: 0px;
+  padding-bottom: 120px;
+  background: #f9f9f9;
+  border-top: 1px solid #E62B1E;
+  border-bottom: 2px solid #f2f2f2;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}
+
+/******* 榜单详细页面样式 *******/
+.collect-main-panel {
+  margin-bottom: 30px;
+  width: 670px;
+}
+
+.collect-left {
+  background: #fafafa;
+  float: right;
+  width: 280px;
+  min-height: 350px;
+  padding: 30px;
+}
+
+.collect-sort-left {
+  float: right;
+  width: 240px;
+  min-height: 350px;
+}
+
+.collect-left .collect-name {
+  padding-top: 20px;
+  font-size: 30px;
+}
+
+.collect-left .collect-create {
+  margin-top: 0px;
+  width: 100%;
+}
+
+.collect-left .collect-creater {
+  margin-top: 20px;
+}
+
+.collect-left .collect-time {
+  padding: 5px;
+}
+
+.collect-left .collect-memo {
+  border-top: 1px solid #E7E7E7;
+  margin-top: 0px;
+  padding-top: 30px;
+  display: inline-block;
+  width: 100%;
+  color: #A3A3A3;
+  font-size: 16px;
+}
+
+.collect-hand {
+  border: 0px solid #F8FAFA;
+  padding: 0 15px;
+  border-radius: 0px;
+  background-color: #Fff;
+}
+
+.collect-fund {
+  margin-bottom: 20px;
+  padding: 20px;
+  padding-bottom: 10px;
+  background-color: #F3FCFD;
+}
+
+.collect-fund-info {
+  text-align: left;
+  padding: 10px;
+  line-height: 1.42857143;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #eee;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  line-height: 22px !important;
+}
+
+/** 加入榜单 */
+.collect-addin {
+  position: relative;
+  display: inline-block;
+}
+
+.collect-addin .items {
+  position: absolute;
+  width: 300px;
+  border: 1px solid #ccc;
+  background: #fff;
+  left: -180px;
+  top: -15px;
+  padding: 5px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  display: none;
+  z-index: 1000;
+}
+
+.collect-addin .items ul {
+  list-style-type: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 290px;
+  max-height: 200px;
+}
+
+.collect-addin .items li {
+  display: inline-block;
+  padding: 0 5px;
+  margin-bottom: 10px;
+}
+
+.collect-addin .items li a {
+  display: inline-block;
+  width: 100%;
+  padding: 3px 5px;
+  text-decoration: none;
+  color: #999;
+}
+
+.collect-addin .items li a:focus {
+  outline: none;
+}
+
+.collect-addin .items li a:hover {
+  background: #eee;
+  color: #c00;
+  font-weight: bold;
+}
+
+.collect-addin .items li .name {
+  display: inline-block;
+  width: 200px;
+}
+
+/**********************************/
+.list-fav-btn .btn {
+  padding: 8px 22px;
+  text-align: center;
+}
+
+.sort-num-up {
+  border-radius: 50%; 
+  border: 2px solid #C00; 
+  width: 20px; 
+  color: #FFF; 
+  background-color: #C00;
+  margin-right: 10px;
+  display: inline-block;
+  text-align: center;
+}
+
+.sort-num-down {
+  border-radius: 50%; 
+  border: 2px solid #080; 
+  width: 20px; 
+  color: #FFF; 
+  background-color: #080;
+  margin-right: 10px;
+  display: inline-block;
+  text-align: center;
+}
+
