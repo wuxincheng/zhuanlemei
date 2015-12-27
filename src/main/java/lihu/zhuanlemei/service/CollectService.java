@@ -80,8 +80,8 @@ public class CollectService {
 
 		// 当前时间
 		String currentDate = DateUtil.getCurrentDate(new Date(), "yyyyMMdd HH:mm:ss");
-
-		if (collect.getCollectid() != null) { // 更新榜单信息
+		
+		if (StringUtils.isNotBlank(collect.getCollectid())) { // 更新榜单信息
 			logger.info("更新榜单信息");
 
 			if (StringUtils.isEmpty(userid)) {
@@ -229,11 +229,14 @@ public class CollectService {
 			}
 		}
 		
-		if (StringUtils.isNotBlank(collect.getRecommend())) {
-			if (collect.getRecommend().length() > 3000) {
-				responseMessage = "内容介绍长度过长，不能超过3000个字";
-				return responseMessage;
-			}
+		if (StringUtils.isBlank(collect.getRecommend())) {
+			responseMessage = "内容介绍不能为空";
+			return responseMessage;
+		}
+		
+		if (collect.getRecommend().length() > 500) {
+			responseMessage = "内容介绍长度过长，不能超过500个字";
+			return responseMessage;
 		}
 		
 		if (StringUtils.isBlank(collect.getDetailContent())) {
@@ -246,18 +249,26 @@ public class CollectService {
 			return responseMessage;
 		}
 
+		// 验证是否上传了图片
+		if (StringUtils.isBlank(collect.getCoverImgPath())) {
+			// 如果没有上传图片, 则随机添加一个背景色
+			collect.setBgColor(ColorUtil.getBgColorRandom());
+			return null;
+		}
+		
+		if (StringUtils.isNotBlank(collect.getCollectName())) {
+			return responseMessage;
+		}
+		
+		// 不执行下面操作了
+		
+		// =====================================================
+		
 		// 处理HTML中的A标签
 		collect.setMemo(MarkDownUtil.filterLink(collect.getMemo()));
 		collect.setRecommend(MarkDownUtil.filterLink(collect.getRecommend()));
 		
 		logger.debug("开始验证榜单封面图片");
-
-		// 验证是否上传了图片
-		if (null == collect.getCoverImgFile() || collect.getCoverImgFile().getSize() < 1) {
-			// 如果没有上传图片, 则随机添加一个背景色
-			collect.setBgColor(ColorUtil.getBgColorRandom());
-			return null;
-		}
 
 		// 控制图片大小不能大于3M
 		if (collect.getCoverImgFile().getSize() > 5 * 1024 * 1024) {

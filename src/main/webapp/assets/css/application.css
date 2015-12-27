@@ -2519,7 +2519,9 @@ body {
 
 .list .cover {
 	width: 237px;
+	/**
 	height: 160px;
+	*/
 	display: block;
 	color: #fff;
 	position: relative;

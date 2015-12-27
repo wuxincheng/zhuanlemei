@@ -46,12 +46,12 @@ function doSubmit() {
 </script>
 </head>
 <body>
-  <div class="com-header clearfix" data-islogined="false" data-guid="1" data-initialized="true">
     <!-- 
+  <div class="com-header clearfix" data-islogined="false" data-guid="1" data-initialized="true">
     <div class="header-left"><a href="javascript:window.opener=null;window.close();">返回</a></div>
-     -->
     <div class="header-center">登录</div>
   </div>
+     -->
   
   <div class="container">
       <div class="form-panel" style="padding-top: 10px;"> <!-- login-box -->

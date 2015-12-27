@@ -37,8 +37,27 @@
           <c:if test="${not empty collects}">
           <c:forEach items="${collects}" var="collect">
           <li class="list-item">
+            <a href="${root}/collect/detail?collectid=${collect.collectid}" target="_blank">
+            <c:if test="${not empty collect.coverImgPath}">
+            <img class="cover" src="${collect.coverImgPath}" />
+            </c:if>
+            <c:if test="${empty collect.coverImgPath}">
+            <div style="height:123px; width: 237px; background-color: ${collect.bgColor};">&nbsp;</div>
+            </c:if>
+            </a>
+            <div class="list-item-memo">
+              <a href="${root}/collect/detail?collectid=${collect.collectid}" target="_blank">${collect.collectName}</a>
+            </div>
+            <div class="item-article">
+              <div class="prods"><span>${collect.productSum}</span>个产品</div>
+              <div class="focus"><span>${collect.collectSum}</span>人收藏</div>
+            </div>
+          </li>
+          
+          <!-- 
+          <li class="list-item">
             <a class="cover" href="${root}/collect/detail?collectid=${collect.collectid}" target="_blank" style="
-              <c:if test="${not empty collect.coverImgPath}">background-image: url(${root}/imgbase/coverbg/${collect.coverImgPath});</c:if>
+              <c:if test="${not empty collect.coverImgPath}">background-image: url(${collect.coverImgPath});</c:if>
               <c:if test="${empty collect.coverImgPath}">background-color: #${collect.bgColor};</c:if>">
             </a>
             <div class="list-item-memo"><a href="${root}/collect/detail?collectid=${collect.collectid}" target="_blank">${collect.collectName}</a></div>
@@ -47,6 +66,8 @@
               <div class="focus"><span>${collect.collectSum}</span>人收藏</div>
             </div>
           </li>
+           -->
+          
           </c:forEach>
           </c:if>
           <c:if test="${empty collects}">

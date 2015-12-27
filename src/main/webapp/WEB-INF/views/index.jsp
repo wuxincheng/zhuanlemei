@@ -25,21 +25,25 @@
         <div class="morehot"><a href="${root}/collect/list">更多>></a></div>
       </div>
       <section class="list" style="width: 580px;">
-        <ul class="list-grid cf">
+        <ul class="list-grid cf" style="margin-left: -22px;">
           <c:if test="${not empty collects}">
           <c:forEach items="${collects}" var="collect">
           <li class="list-item">
-            <a class="cover" href="${root}/collect/detail?collectid=${collect.collectid}" target="_blank" style="
-              <c:if test="${not empty collect.coverImgPath}">background-image: url(${root}/imgbase/coverbg/${collect.coverImgPath});</c:if>
-              <c:if test="${empty collect.coverImgPath}">background-color: #${collect.bgColor};</c:if>">
-              <div class="cover-meta">
-                <h3>${collect.collectName}</h3>
-                <ul class="list-meta">
-                  <li><span>${collect.productSum}</span>个产品</li>
-                  <li><span class="liked-count">${collect.collectSum}</span>人收藏</li>
-                </ul>
-              </div>
+            <a href="${root}/collect/detail?collectid=${collect.collectid}" target="_blank">
+            <c:if test="${not empty collect.coverImgPath}">
+            <img class="cover" src="${collect.coverImgPath}" />
+            </c:if>
+            <c:if test="${empty collect.coverImgPath}">
+            <div style="height:123px; width: 237px; background-color: ${collect.bgColor};">&nbsp;</div>
+            </c:if>
             </a>
+            <div class="list-item-memo" style="background-color: #f6f6f6;">
+              <a href="${root}/collect/detail?collectid=${collect.collectid}" target="_blank">${collect.collectName}</a>
+            </div>
+            <div class="item-article" style="background-color: #f6f6f6;">
+              <div class="prods"><span>${collect.productSum}</span>个产品</div>
+              <div class="focus"><span>${collect.collectSum}</span>人收藏</div>
+            </div>
           </li>
           </c:forEach>
           </c:if>

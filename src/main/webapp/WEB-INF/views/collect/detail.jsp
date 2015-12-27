@@ -24,10 +24,12 @@
       <div class="forms">
         <div class="collect-main-panel">
           <section class="list-header row" style="max-width: 960px; left: -10px;">
-            <div class="list-header-cover" style="
-              <c:if test="${not empty collect.coverImgPath}">background-image: url(${root}/imgbase/coverbg/${collect.coverImgPath});</c:if>
-              <c:if test="${empty collect.coverImgPath}">background-color: #${collect.bgColor};</c:if>">
-            </div>
+            <c:if test="${not empty collect.coverImgPath}">
+            <img class="cover" src="${collect.coverImgPath}" />
+            </c:if>
+            <c:if test="${empty collect.coverImgPath}">
+            <div style="height:350px; width: 670px; background-color: ${collect.bgColor};">&nbsp;</div>
+            </c:if>
           </section>
         </div>
       </div>

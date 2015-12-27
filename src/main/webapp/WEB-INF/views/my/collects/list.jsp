@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>我的榜单 - TOP</title>
+<title>我的榜单 - 赚了没？</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 
@@ -14,7 +14,7 @@
 <link href="${root}/assets/img/logo/logoEN.png" type="image/x-icon" rel="shortcut icon" />
 
 </head>
-<body id="home" class="notes-index">
+<body id="home" class="notes-index" style="background-color: #eeeeee;">
   <jsp:include page="../../HEADER.jsp" />
   <div class="container">
     <div class="content row ">
@@ -38,22 +38,29 @@
           <c:when test="${not empty collects}">
           <c:forEach items="${collects}" var="collect">
           <li class="list-item">
-            <div class="cover" style="background-image: url(${root}/imgbase/coverbg/${collect.coverImgPath})">
-              <div class="cover-meta">
-                <h3>${collect.collectName}</h3>
-                <ul class="list-meta">
-                  <li><span>${collect.productSum}</span>个产品</li>
-                  <li><span class="liked-count">${collect.collectSum}</span>人收藏</li>
-                </ul>
-                <div style="margin-top: 15px; margin-bottom: 10px; border-top: 1px solid #e4e4e4;"></div>
-                <ul class="list-meta">
-                  <li><a href="${root}/collect/detail?collectid=${collect.collectid}" target="_blank">查看</a></li>
-                  <li><a href="${root}/my/collects/edit?collectid=${collect.collectid}">修改</a></li>
-                  <c:if test="${collect.productSum < 1 && collect.collectSum < 1}">
-                  <li><a href="#" onclick="delCollect(${collect.collectid});">删除</a></li>
-                  </c:if>
-                </ul>
-              </div>
+            <a href="${root}/collect/detail?collectid=${collect.collectid}" target="_blank">
+            <c:if test="${not empty collect.coverImgPath}">
+            <img class="cover" src="${collect.coverImgPath}" />
+            </c:if>
+            <c:if test="${empty collect.coverImgPath}">
+            <div style="height:123px; width: 237px; background-color: ${collect.bgColor};">&nbsp;</div>
+            </c:if>
+            </a>
+            <div style="padding: 10px 10px 0px 10px;">
+              <ul class="list-meta">
+                <li><a href="${root}/collect/detail?collectid=${collect.collectid}" target="_blank">查看</a></li>
+                <li><a href="${root}/my/collects/edit?collectid=${collect.collectid}">修改</a></li>
+                <c:if test="${collect.productSum < 1 && collect.collectSum < 1}">
+                <li><a href="#" onclick="delCollect(${collect.collectid});">删除</a></li>
+                </c:if>
+              </ul>
+            </div>
+            <div class="list-item-memo">
+              <a href="${root}/collect/detail?collectid=${collect.collectid}" target="_blank">${collect.collectName}</a>
+            </div>
+            <div class="item-article">
+              <div class="prods"><span>${collect.productSum}</span>个产品</div>
+              <div class="focus"><span>${collect.collectSum}</span>人收藏</div>
             </div>
           </li>
           </c:forEach>

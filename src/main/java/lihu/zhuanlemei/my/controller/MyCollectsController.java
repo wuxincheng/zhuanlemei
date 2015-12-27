@@ -71,10 +71,11 @@ public class MyCollectsController extends BaseController {
 		
 		model.addAttribute("collect", collect);
 		
-		return "my/collects/edit";
+		return "collect/edit";
 	}
 	
 	@RequestMapping(value = "/modify")
+	@Deprecated
 	public String modify(Model model, HttpServletRequest request, Collect collect) {
 		logger.info("处理榜单数据");
 

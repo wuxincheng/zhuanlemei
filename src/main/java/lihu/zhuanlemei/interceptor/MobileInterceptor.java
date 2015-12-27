@@ -47,13 +47,13 @@ public class MobileInterceptor implements HandlerInterceptor {
 		
 		// 获取用户浏览器信息
 		String userAgent = request.getHeader("User-Agent");
-		logger.info("userAgent={}", userAgent);
+		logger.debug("userAgent={}", userAgent);
 		
 		// 控制PC端和移动端之间的跳转
 		if (userAgent.indexOf("Android") > -1 || userAgent.indexOf("iPhone") > -1 || userAgent.indexOf("PlayBook") > -1
 				|| userAgent.indexOf("Touch") > -1 || userAgent.indexOf("Windows Phone") > -1) {
 			if (requestSystemPath.indexOf("/mobile") == -1) {
-				logger.info("PC端转移动端");
+				logger.debug("PC端转移动端");
 				String contentPath = request.getContextPath();
 				String path = requestSystemPath.substring(contentPath.length(), requestSystemPath.length());
 				String redirectPatch = HttpRequestUtil.getRequestFullUrl(request).replace(path, "/mobile" + path);
@@ -62,7 +62,7 @@ public class MobileInterceptor implements HandlerInterceptor {
 			}
 		} else {
 			if (requestSystemPath.indexOf("/mobile") > -1) {
-				logger.info("移动端转PC端");
+				logger.debug("移动端转PC端");
 				String redirectPatch = HttpRequestUtil.getRequestFullUrl(request).replace("/mobile", "");
 				response.sendRedirect(redirectPatch);
 				return false;

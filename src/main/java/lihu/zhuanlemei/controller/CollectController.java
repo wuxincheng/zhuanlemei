@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import lihu.zhuanlemei.Result;
 import lihu.zhuanlemei.model.Collect;
 import lihu.zhuanlemei.model.CollectUser;
 import lihu.zhuanlemei.model.Comment;
@@ -100,15 +101,17 @@ public class CollectController extends BaseController {
 	}
 
 	@RequestMapping(value = "/create")
-	public String create(Model model, HttpServletRequest request, Collect collect) {
+	@ResponseBody
+	public Result create(Model model, HttpServletRequest request, Collect collect) {
 		logger.info("添加新的榜单");
 
 		String userid = getCurrentUserid(request);
+		
+		Result result = new Result();
 
 		// 判断用户是否有创建榜单权限
 		if (!isCollectPermission(request)) {
-			request.setAttribute(Constants.MSG_WARN, "对不起，您没有操作权限");
-			return "collect/edit";
+			return result.reject("对不起，您没有操作权限");
 		}
 
 		// 图片存放路径
@@ -117,15 +120,14 @@ public class CollectController extends BaseController {
 
 		String responseMessage = collectService.createOrUpdate(collect, ctxPath, userid);
 		if (StringUtils.isNotEmpty(responseMessage)) {
-			request.setAttribute(Constants.MSG_WARN, "处理失败：" + responseMessage);
-			return "collect/edit";
+			return result.reject("提交失败：" + responseMessage);
 		}
 
-		logger.info("榜单创建成功");
+		logger.info("榜单信息处理成功");
 
-		request.setAttribute(Constants.MSG_SUCCESS, "榜单创建成功");
+		request.setAttribute(Constants.MSG_SUCCESS, "榜单信息处理成功");
 
-		return "collect/edit";
+		return result.redirect("/collect/edit");
 	}
 
 	@RequestMapping(value = "/detail")
