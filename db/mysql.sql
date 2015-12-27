@@ -8,7 +8,7 @@ CREATE TABLE t_next_collect (
   collectid int(5) NOT NULL AUTO_INCREMENT COMMENT '产品集主键',
   collectname varchar(100) NOT NULL DEFAULT '' COMMENT '产品集名称',
   coverimgpath varchar(100) DEFAULT '' COMMENT '封面路径',
-  bgcolor char(6) DEFAULT NULL COMMENT '背景颜色',
+  bgcolor char(7) DEFAULT NULL COMMENT '背景颜色',
   userid int(5) NOT NULL DEFAULT '0' COMMENT '创建用户',
   productsum int(5) NOT NULL DEFAULT '0' COMMENT '产品总数',
   collectsum int(5) NOT NULL DEFAULT '0' COMMENT '被收藏次数',
