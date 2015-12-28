@@ -103,7 +103,7 @@
               return;
             }
             if (response.redirectUrl) {
-            	layer.confirm("榜单创建成功", {
+            	layer.confirm("榜单信息编辑成功", {
     			    btn: ['确定'],
     			    closeBtn: 0
     			}, function(){
