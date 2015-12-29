@@ -71,7 +71,7 @@ $(document).ready(function(){
 	'<a href="${root}/mobile/collect/detail?collectid=COLLECT_ID" class="com-grid-article">\
   	<div class="grid-article-hd">\
   		<div class="imgcover">\
-  			<img class="pic" src="${root}/imgbase/coverbg/COVER_IMG_PATH" />\
+  			<img class="pic" src="COVER_IMG_PATH" />\
   		</div>\
   		<div class="ribbon">\
   				<span class="glyphicon glyphicon-th">PRODUCT_SUM</span>\

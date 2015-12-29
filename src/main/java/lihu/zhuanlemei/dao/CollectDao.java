@@ -10,9 +10,9 @@ import lihu.zhuanlemei.model.Collect;
 /**
  * 榜单Dao
  * 
- * @author wuxincheng(wxcking) 
- * @date 2015年8月24日 下午10:13:02 
- *
+ * @author wuxincheng(wxcking)
+ * @date 2015年8月24日 下午10:13:02
+ * 
  */
 @Repository("collectDao")
 public class CollectDao extends BaseDao {
@@ -32,6 +32,10 @@ public class CollectDao extends BaseDao {
 
 	public void addProductSum(String collectid) {
 		this.getSqlMapClientTemplate().update("Collect.addProductSum", collectid);
+	}
+
+	public void removeProductSum(String collectid) {
+		this.getSqlMapClientTemplate().update("Collect.removeProductSum", collectid);
 	}
 
 	public void addCollectSum(String collectid) {

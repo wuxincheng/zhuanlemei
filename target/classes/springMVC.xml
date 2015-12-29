@@ -40,6 +40,7 @@
       <mvc:mapping path="/collect/create" />
       <mvc:mapping path="/collect/collect" />
       <mvc:mapping path="/collect/addin" />
+      <mvc:mapping path="/collect/remove" />
       <!-- my -->
       <mvc:mapping path="/my/**" />
       <!-- interceptor -->

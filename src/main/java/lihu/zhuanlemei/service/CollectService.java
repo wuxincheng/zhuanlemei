@@ -320,5 +320,44 @@ public class CollectService {
 
 		return responseMessage;
 	}
+
+	/**
+	 * 从榜单中移除产品
+	 */
+	public String remove(String collectid, String prodid, String userid) {
+		if (StringUtils.isBlank(prodid) || StringUtils.isBlank(collectid)) {
+			return "参数不合法";
+		}
+		
+		Collect collect = collectDao.queryDetailByCollectid(collectid);
+		if (null == collect) {
+			return "榜单不存在";
+		}
+		
+		Map<String, String> queryMap = new HashMap<String, String>();
+		queryMap.put("prodid", prodid);
+		queryMap.put("userid", userid);
+		Product product = productDao.queryDetailByProdid(queryMap);
+		if (null == product) {
+			return "产品已移除或不存在";
+		}
+		
+		if (!collectid.equals(product.getCollectid())) {
+			return "产品已移除或不存在";
+		}
+		
+		if (!userid.equals(collect.getUserid())) {
+			return "您没有权限";
+		}
+		
+		Map<String, String> removeMap = new HashMap<String, String>();
+		removeMap.put("collectid", collectid);
+		removeMap.put("prodid", prodid);
+		productDao.remove(removeMap);
+		
+		collectDao.removeProductSum(product.getCollectid());
+		
+		return null;
+	}
 	
 }

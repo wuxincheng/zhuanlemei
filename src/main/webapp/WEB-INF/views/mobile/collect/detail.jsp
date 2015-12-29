@@ -80,7 +80,7 @@
   <div class="page-content">
     <div class="com-article-detail short" data-categoryid="62" data-initialized="true" data-guid="7">
       <div class="article-detail-hd">
-        <h1 class="title">${collect.collectName}</h1>
+        <h3 class="title">${collect.collectName}</h3>
         <div class="author-date clearfix">
           <div class="author clearfix">
             <span class="avatar x25 circle"><img
@@ -96,7 +96,7 @@
         <div class="banner">
           <img 
             <c:choose>
-            <c:when test="${not empty collect.coverImgPath}">src="${root}/imgbase/coverbg/${collect.coverImgPath}"</c:when>
+            <c:when test="${not empty collect.coverImgPath}">src="${collect.coverImgPath}"</c:when>
             <c:when test="${empty collect.coverImgPath}">src="${collect.bgColor}"</c:when>
             <c:otherwise></c:otherwise>
             </c:choose> />

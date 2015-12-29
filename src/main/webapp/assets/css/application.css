@@ -305,7 +305,8 @@ img {
 	display: block;
 	height: auto;
 	border: 0;
-	vertical-align: middle
+	vertical-align: middle;
+	border: 1px solid #F1EFEF;
 }
 
 .icons-weibo,.icons-twitter,.icons-blog,.icons-rss {
@@ -2526,11 +2527,14 @@ body {
 	color: #fff;
 	position: relative;
 	border-radius: 0px;
+	border: 1px solid #F6F6F6;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	background-size: cover;
+	/**
 	-webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1)
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+	*/
 }
 
 .list .cover:before {

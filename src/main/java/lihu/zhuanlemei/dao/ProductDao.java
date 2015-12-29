@@ -10,9 +10,9 @@ import lihu.zhuanlemei.model.Product;
 /**
  * 产品及产品相关（赞）的数据库操作
  * 
- * @author wuxincheng(wxcking) 
- * @date 2015年8月7日 上午8:49:12 
- *
+ * @author wuxincheng(wxcking)
+ * @date 2015年8月7日 上午8:49:12
+ * 
  */
 @Repository("productDao")
 public class ProductDao extends BaseDao {
@@ -62,7 +62,7 @@ public class ProductDao extends BaseDao {
 	public void score(Map<String, Object> like) {
 		this.getSqlMapClientTemplate().update("Product.score", like);
 	}
-	
+
 	public void postLikeScore(Map<String, Object> likeScore) {
 		this.getSqlMapClientTemplate().update("Product.postLikeScore", likeScore);
 	}
@@ -71,7 +71,7 @@ public class ProductDao extends BaseDao {
 	public List<Product> queryPostByUserid(String userid) {
 		return this.getSqlMapClientTemplate().queryForList("Product.queryPostByUserid", userid);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Product> queryLikeByUserid(String userid) {
 		return this.getSqlMapClientTemplate().queryForList("Product.queryLikeByUserid", userid);
@@ -84,10 +84,14 @@ public class ProductDao extends BaseDao {
 	public List<Product> queryUserMain(Map<String, String> queryMap) {
 		return this.getSqlMapClientTemplate().queryForList("Product.queryUserMain", queryMap);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Product> queryCollectProductUser(Map<String, String> queryMap) {
 		return this.getSqlMapClientTemplate().queryForList("Product.queryCollectProductUser", queryMap);
 	}
-	
+
+	public void remove(Map<String, String> removeMap) {
+		this.getSqlMapClientTemplate().delete("Product.remove", removeMap);
+	}
+
 }

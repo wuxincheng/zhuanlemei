@@ -131,9 +131,16 @@
               <c:choose>
               <c:when test="${not empty fundMarkets}">
               <c:forEach items="${fundMarkets}" var="fundMarket">
-                <div class="collect-fund">
+                <div class="collect-fund" id="product-${fundMarket.prodid}">
                   <div class="collect-fund-info">
-                    <div class="fund-name"><a href="${root}/fund/market/detail?fundCode=${fundMarket.fundCode}" target="_blank">${fundMarket.fundName}（${fundMarket.fundCode}）</a></div>
+                    <div class="fund-name">
+                      <a href="${root}/fund/market/detail?fundCode=${fundMarket.fundCode}" target="_blank">${fundMarket.fundName}（${fundMarket.fundCode}）</a>
+                      <c:if test="${collect.userid==user.userid}">
+                      <div style="float: right; font-size: 13px; font-weight: normal;">
+                        <input type="button" onclick="delProd(${fundMarket.prodid});" value="删除" />
+                      </div>
+                      </c:if>
+                    </div>
                     <div class="fund-base">单位净值&nbsp;[${fundMarket.navDate}] <span class="fund-nv-up">${fundMarket.currentNav}</span><span class="fund-nv-down">（${fundMarket.rateChange}）</span></div>
                     <div class="fund-base">
                       <c:if test="${not empty fundMarket.newScale}">最新规模：${fundMarket.newScale}亿&nbsp;&nbsp;</c:if>
@@ -299,6 +306,33 @@
           }
         });
     }
+    function delProd(prodid, collectid){
+    	layer.confirm('您确定移除该产品吗？', {
+		    btn: ['确定','取消'],
+		    title: '系统提示'
+		}, function(){
+			$.get("/collect/remove", {
+      			"prodid": prodid,
+      			"collectid": '${collect.collectid}'
+      		}, function(response){
+      			checkDataAndReload(response);
+      			
+      			if (!response.success) {
+                  	layer.alert(response.errorMsg);
+                  	return;
+              	}
+      			if (response.success) {
+              		$("#product-"+prodid).remove();
+          			layer.msg("产品移除成功");
+          			return;
+              	}
+      			//window.location ='${root}'+"/sessionExpired";
+      		});
+		    layer.msg('移除成功');
+		}, function(){
+		    layer.msg('您没有移除');
+		});
+    };
   </script>
 
 </body>

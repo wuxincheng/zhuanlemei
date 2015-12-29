@@ -157,4 +157,8 @@
     UPDATE t_next_product SET likesum=(likesum+#likeSum#), score=(score+#score#) WHERE prodid = #prodid#
   </update>
   
+  <delete id="remove" parameterClass="java.util.Map">
+    DELETE FROM t_next_product WHERE collectid = #collectid# AND prodid=#prodid#
+  </delete>
+  
 </sqlMap>

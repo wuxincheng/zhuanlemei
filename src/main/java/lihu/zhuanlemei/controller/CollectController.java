@@ -106,7 +106,7 @@ public class CollectController extends BaseController {
 		logger.info("添加新的榜单");
 
 		String userid = getCurrentUserid(request);
-		
+
 		Result result = new Result();
 
 		// 判断用户是否有创建榜单权限
@@ -258,6 +258,25 @@ public class CollectController extends BaseController {
 		model.addAttribute("fundCode", fundCode);
 
 		return "collect/addin";
+	}
+
+	@RequestMapping(value = "/remove")
+	@ResponseBody
+	public Result remove(String prodid, String collectid, HttpServletRequest request) {
+		logger.info("从榜单中移除产品 collectid={}, prodid={}", collectid, prodid);
+
+		String userid = getCurrentUserid(request);
+
+		Result result = new Result();
+
+		String responseMessage = collectService.remove(collectid, prodid, userid);
+		if (StringUtils.isNotEmpty(responseMessage)) {
+			return result.reject("移除失败：" + responseMessage);
+		}
+
+		logger.info("产品移除成功");
+
+		return result.success();
 	}
 
 }

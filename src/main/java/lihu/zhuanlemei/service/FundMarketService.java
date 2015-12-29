@@ -384,6 +384,7 @@ public class FundMarketService {
 							cacheFundMarket.setFundMemo(product.getMemo());
 							// 表示当前用户已经关注
 							cacheFundMarket.setThisUserFocus(product.getLikeState());
+							cacheFundMarket.setProdid(product.getProdid());
 							fundMarkets.add(cacheFundMarket);
 							break;
 						}
