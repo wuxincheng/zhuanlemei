@@ -8,3 +8,8 @@ function checkDataAndReload(data){
 		return flag;
 	}
 }
+
+function checkAjaxResponse(data){
+	var htmlRegex = /<[a-z\][\s\S]*>/;
+	return htmlRegex.test(data);
+}

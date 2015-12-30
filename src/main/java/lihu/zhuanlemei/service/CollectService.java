@@ -326,11 +326,13 @@ public class CollectService {
 	 */
 	public String remove(String collectid, String prodid, String userid) {
 		if (StringUtils.isBlank(prodid) || StringUtils.isBlank(collectid)) {
+			logger.debug("参数不合法：prodid或collectid为空");
 			return "参数不合法";
 		}
 		
 		Collect collect = collectDao.queryDetailByCollectid(collectid);
 		if (null == collect) {
+			logger.debug("榜单不存在");
 			return "榜单不存在";
 		}
 		
@@ -339,23 +341,30 @@ public class CollectService {
 		queryMap.put("userid", userid);
 		Product product = productDao.queryDetailByProdid(queryMap);
 		if (null == product) {
+			logger.debug("产品已移除或不存在");
 			return "产品已移除或不存在";
 		}
 		
 		if (!collectid.equals(product.getCollectid())) {
+			logger.debug("产品已移除或不存在");
 			return "产品已移除或不存在";
 		}
 		
 		if (!userid.equals(collect.getUserid())) {
+			logger.debug("没有权限操作，不是当前用户创建的榜单");
 			return "您没有权限";
 		}
 		
 		Map<String, String> removeMap = new HashMap<String, String>();
 		removeMap.put("collectid", collectid);
 		removeMap.put("prodid", prodid);
+		// 从榜单中删除这个产品
 		productDao.remove(removeMap);
+		logger.debug("榜单移除成功");
 		
-		collectDao.removeProductSum(product.getCollectid());
+		if (collect.getProductSum() > 0) {
+			collectDao.removeProductSum(product.getCollectid());
+		}
 		
 		return null;
 	}

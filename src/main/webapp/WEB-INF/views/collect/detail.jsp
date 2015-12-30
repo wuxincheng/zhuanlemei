@@ -137,7 +137,7 @@
                       <a href="${root}/fund/market/detail?fundCode=${fundMarket.fundCode}" target="_blank">${fundMarket.fundName}（${fundMarket.fundCode}）</a>
                       <c:if test="${collect.userid==user.userid}">
                       <div style="float: right; font-size: 13px; font-weight: normal;">
-                        <input type="button" onclick="delProd(${fundMarket.prodid});" value="删除" />
+                        <input type="button" class="wx-btn" onclick="delProd(${fundMarket.prodid});" value="删除" />
                       </div>
                       </c:if>
                     </div>
@@ -315,8 +315,9 @@
       			"prodid": prodid,
       			"collectid": '${collect.collectid}'
       		}, function(response){
-      			checkDataAndReload(response);
-      			
+      			if (checkAjaxResponse(response)) {
+      				window.location ='${root}'+"/sessionExpired";
+      			}
       			if (!response.success) {
                   	layer.alert(response.errorMsg);
                   	return;
@@ -326,9 +327,7 @@
           			layer.msg("产品移除成功");
           			return;
               	}
-      			//window.location ='${root}'+"/sessionExpired";
       		});
-		    layer.msg('移除成功');
 		}, function(){
 		    layer.msg('您没有移除');
 		});
