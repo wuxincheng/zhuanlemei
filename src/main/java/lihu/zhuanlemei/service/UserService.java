@@ -61,6 +61,7 @@ public class UserService {
 			queryOAuthUser.setSocialPicPath(oauthUser.getSocialPicPath());
 			queryOAuthUser.setAccessToken(oauthUser.getAccessToken());
 			queryOAuthUser.setTokenExpireIn(oauthUser.getTokenExpireIn());
+			queryOAuthUser.setSex(oauthUser.getSex());
 
 			userDao.updateInfo(queryOAuthUser);
 			logger.info("用户授权登录信息已更新");

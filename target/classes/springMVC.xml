@@ -59,6 +59,8 @@
       <mvc:exclude-mapping path="/imgbase/**" />
       <mvc:exclude-mapping path="/mobile/imgbase/**" />
       
+      <mvc:exclude-mapping path="/refused" />
+      
       <bean class="lihu.zhuanlemei.interceptor.RequestInterceptor" />
     </mvc:interceptor>
     

@@ -64,7 +64,8 @@
         accesstoken = #accessToken#,
         tokenexpirein = #tokenExpireIn#,
         openid = #openid#,
-        logintype = #loginType#
+        logintype = #loginType#,
+        sex=#sex#
     WHERE userid = #userid# 
   </update>
   

@@ -18,6 +18,7 @@ import lihu.zhuanlemei.model.User;
 import lihu.zhuanlemei.oauth.helper.WechatHttpsHelper;
 import lihu.zhuanlemei.service.UserService;
 import lihu.zhuanlemei.util.Constants;
+import lihu.zhuanlemei.util.MapFormatUtil;
 
 /**
  * 微信登录验证
@@ -110,6 +111,7 @@ public class WechatLoginController {
 		oauthUser.setTokenExpireIn(code);
 		oauthUser.setOpenid(responseUserInfoMap.get("openid").toString());
 		oauthUser.setLoginType(Constants.OAUTH_WECHAT);
+		oauthUser.setSex(MapFormatUtil.getInt(responseUserInfoMap, "sex")+"");
 		checkAndProcessOAuthUser(oauthUser, request);
 
 		model.addAttribute(Constants.MSG_SUCCESS, "微信授权登录成功");

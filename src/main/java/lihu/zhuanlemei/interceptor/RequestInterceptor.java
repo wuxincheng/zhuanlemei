@@ -36,6 +36,11 @@ public class RequestInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws IOException {
 		String url = request.getRequestURL().toString();
 		String remoteAddress = request.getRemoteAddr();
+		
+		if (!BlankList.isAccess(remoteAddress)) {
+			response.sendRedirect(request.getContextPath() + "/refused");
+			return false;
+		}
 
 		if (!(mappingURL == null || url.matches(mappingURL))) {
 			logger.info("mappingURL={}", mappingURL);

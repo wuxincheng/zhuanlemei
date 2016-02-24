@@ -70,5 +70,10 @@ public class IndexController extends BaseController {
 	public String sessionExpired(Model model) {
 		return "sessionExpired";
 	}
+	
+	@RequestMapping(value = "/refused")
+	public String refused(Model model) {
+		return "refused";
+	}
 
 }
