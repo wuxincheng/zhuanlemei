@@ -250,7 +250,7 @@ public class HowBuyHelper {
 	 * @return
 	 */
 	public Map<String, String> fectFundInfo(String fundCode) {
-		logger.info("根据基金代码抓取基金详细信息 fundCode={}", fundCode);
+		logger.debug("根据基金代码抓取基金详细信息 fundCode={}", fundCode);
 		if (StringUtils.isEmpty(fundCode)) {
 			logger.info("funcCode为空");
 			return null;
@@ -263,9 +263,9 @@ public class HowBuyHelper {
 
 		String fetchData = null;
 		try {
-			logger.info("开始抓取");
+			logger.debug("开始抓取");
 			fetchData = hp.getData(fetchURL);
-			logger.info("抓取成功");
+			logger.debug("抓取成功");
 		} catch (Exception e) {
 			logger.error("抓取出现异常", e);
 			return null;
@@ -279,7 +279,7 @@ public class HowBuyHelper {
 			logger.debug("开始处理基金成立日期标签");
 			String foundedDate = fetchData.substring(fetchData.indexOf("<li>成立时间<span>") + 14,
 					fetchData.indexOf("<li>成立时间<span>") + 24);
-			logger.info("基金成立日期 foundedDate={}", foundedDate);
+			logger.debug("基金成立日期 foundedDate={}", foundedDate);
 			fundInfoMap.put("foundedDate", HowBuyHtmlUtil.formatFundDate(foundedDate));
 		} catch (Exception e) {
 			logger.error("抓取处理基金成立日期标签异常", e.getMessage());
@@ -292,7 +292,7 @@ public class HowBuyHelper {
 			String fundManager = fetchData.substring(
 					fetchData.indexOf("class=\"on\"><a href=\"javascript:void(0)\"\ntarget=\"_self\">") + 55,
 					fetchData.indexOf("class=\"on\"><a href=\"javascript:void(0)\"\ntarget=\"_self\">") + 60);
-			logger.info("基金经理 fundManager={}", fundManager);
+			logger.debug("基金经理 fundManager={}", fundManager);
 			fundInfoMap.put("fundManager", HowBuyHtmlUtil.formatFundManager(fundManager));
 		} catch (Exception e) {
 			logger.error("抓取处理基金经理标签异常", e.getMessage());
@@ -304,7 +304,7 @@ public class HowBuyHelper {
 			logger.debug("开始处理基金最新规模标签");
 			String newScale = fetchData.substring(fetchData.indexOf("<li>最新规模<span>") + 14,
 					fetchData.indexOf("<li>最新规模<span>") + 50);
-			logger.info("基金最新规模 newScale={}", newScale);
+			logger.debug("基金最新规模 newScale={}", newScale);
 			fundInfoMap.put("newScale", HowBuyHtmlUtil.formatNewScale(newScale));
 		} catch (Exception e) {
 			logger.error("抓取处理基金最新规模标签异常", e.getMessage());
@@ -313,10 +313,10 @@ public class HowBuyHelper {
 
 		try {
 			// 公司简称
-			logger.info("开始处理公司简称标签");
+			logger.debug("开始处理公司简称标签");
 			String fundCompany = fetchData.substring(fetchData.indexOf("<li>公司简称：<a") + 64,
 					fetchData.indexOf("<li>公司简称：<a") + 90);
-			logger.info("公司简称 fundCompany={}", fundCompany);
+			logger.debug("公司简称 fundCompany={}", fundCompany);
 			fundInfoMap.put("fundCompany", HowBuyHtmlUtil.formatFundCompany(fundCompany));
 		} catch (Exception e) {
 			logger.error("抓取处理公司简称标签异常", e.getMessage());
@@ -325,10 +325,10 @@ public class HowBuyHelper {
 		
 		try {
 			// 基金近3月排名/7日年化排名
-			logger.info("开始处理基金近3月排名标签");
+			logger.debug("开始处理基金近3月排名标签");
 			String fundSortThreeMonth = fetchData.substring(fetchData.indexOf("</em><em class=\"b-rate b-2\">") - 30,
 					fetchData.indexOf("</em><em class=\"b-rate b-2\">") + 50);
-			logger.info("基金近3月排名/7日年化排名 fundSortThreeMonth={}", fundSortThreeMonth);
+			logger.debug("基金近3月排名/7日年化排名 fundSortThreeMonth={}", fundSortThreeMonth);
 			String[] fundSorts = HowBuyHtmlUtil.formatFundSortThreeMonth(fundSortThreeMonth);
 			fundInfoMap.put("fundSortThreeMonth", fundSorts[0]);
 			fundInfoMap.put("fundTotalThreeMonth", fundSorts[1]);
@@ -345,7 +345,7 @@ public class HowBuyHelper {
 			logger.debug("开始处理基金风险级别标签");
 			String fundRiskLevel = fetchData.substring(fetchData.indexOf("<p class=\"risk\"><span>") + 22,
 					fetchData.indexOf("<p class=\"risk\"><span>") + 30);
-			logger.info("基金风险级别 fundRiskLevel={}", fundRiskLevel);
+			logger.debug("基金风险级别 fundRiskLevel={}", fundRiskLevel);
 			fundRiskLevel = HowBuyHtmlUtil.getFundRiskLevel(fundRiskLevel);
 			fundInfoMap.put("fundRiskLevel", fundRiskLevel);
 		} catch (Exception e) {
@@ -358,7 +358,7 @@ public class HowBuyHelper {
 			logger.debug("开始处理基金涨跌幅标签");
 			String rateChange = fetchData.substring(fetchData.indexOf("<div class=\"b-0 b-1\">涨跌幅</div>") - 35,
 					fetchData.indexOf("<div class=\"b-0 b-1\">涨跌幅</div>") - 15);
-			logger.info("基金涨跌幅 rateChange={}", rateChange);
+			logger.debug("基金涨跌幅 rateChange={}", rateChange);
 			fundInfoMap.put("rateChange", HowBuyHtmlUtil.formatRateChange(rateChange));
 		} catch (Exception e) {
 			logger.error("抓取处理基金涨跌幅/7日年化标签异常", e.getMessage());
