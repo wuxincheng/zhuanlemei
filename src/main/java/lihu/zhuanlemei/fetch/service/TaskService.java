@@ -73,7 +73,7 @@ public class TaskService {
 			logger.debug("补充基金行情详细信息任务已经存在");
 		}
 
-		// 生成任务3:
+		// TODO 生成任务3: 从聚合数据上获取股票数据库
 		// 生成任务4:
 	}
 

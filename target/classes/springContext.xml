@@ -24,6 +24,10 @@
   <!-- 微博相关参数配置 -->
   <util:properties id="weiboSettings"
     location="classpath:lihu/zhuanlemei/oauth/config/weibo.properties" />
+    
+  <!-- 聚合数据相关参数配置 -->
+  <util:properties id="juheSettings"
+    location="classpath:lihu/zhuanlemei/juhe/config/config.properties" />
 
   <bean id="propertyConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
     <property name="location" value="classpath:db.properties" />

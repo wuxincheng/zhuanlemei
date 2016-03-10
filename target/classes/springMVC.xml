@@ -65,8 +65,8 @@
     </mvc:interceptor>
     
     <!-- 配置移动请求拦截器 -->
+    <!-- 
     <mvc:interceptor>
-      <!-- 配置拦截的URL -->
       <mvc:mapping path="/index/**" />
       <mvc:mapping path="/login/**" />
       <mvc:mapping path="/register/**" />
@@ -76,6 +76,7 @@
       
       <bean class="lihu.zhuanlemei.interceptor.MobileInterceptor" />
     </mvc:interceptor>
+     -->
   </mvc:interceptors>
 
   <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">

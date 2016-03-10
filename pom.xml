@@ -208,9 +208,6 @@
       <version>1.1.6</version>
     </dependency>
 
-    <!-- <dependency> <groupId>com.oracle</groupId> <artifactId>ojdbc14</artifactId> <version>10.2.0.4.0</version> 
-      </dependency> -->
-
     <dependency>
       <groupId>org.apache.ibatis</groupId>
       <artifactId>ibatis-sqlmap</artifactId>
@@ -269,18 +266,6 @@
     </dependency>
 
     <dependency>
-      <groupId>org.apache.zookeeper</groupId>
-      <artifactId>zookeeper</artifactId>
-      <version>3.3.5</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.github.sgroschupf</groupId>
-      <artifactId>zkclient</artifactId>
-      <version>0.1</version>
-    </dependency>
-
-    <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
       <version>14.0.1</version>
@@ -298,13 +283,28 @@
       <artifactId>htmlunit</artifactId>
       <version>1.14</version>
     </dependency>
-
     <dependency>
       <groupId>net.sourceforge.htmlunit</groupId>
       <artifactId>htmlunit-core-js</artifactId>
       <version>2.16</version>
     </dependency>
-
+    
+    <!-- dubbo -->
+    <dependency>  
+      <groupId>com.alibaba</groupId>  
+      <artifactId>dubbo</artifactId>  
+      <version>2.5.3</version>  
+    </dependency>
+    <dependency>
+      <groupId>org.apache.zookeeper</groupId>
+      <artifactId>zookeeper</artifactId>
+      <version>3.3.5</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.sgroschupf</groupId>
+      <artifactId>zkclient</artifactId>
+      <version>0.1</version>
+    </dependency>
   </dependencies>
 
   <build>
