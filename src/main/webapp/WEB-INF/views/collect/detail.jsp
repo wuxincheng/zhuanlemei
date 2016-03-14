@@ -153,6 +153,42 @@
                 </div>
               </c:forEach>
               </c:when>
+              <c:when test="${not empty products}">
+              <div class="stock-title">当前持仓</div>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>代码</th>
+                    <th>名称</th>
+                    <th>最新价</th>
+                    <th>涨跌幅</th>
+                    <th>成本价</th>
+                    <th>盈亏比例</th>
+                    <th>仓位</th>
+                    <th>&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${products}" var="product">
+                  <tr id="product-${product.prodid}">
+                    <td>${product.fundCode}</td>
+                    <td>${product.fundName}</td>
+                    <td>${product.latestPrice}</td>
+                    <td>${product.changePercent}</td>
+                    <td>${product.costPrice}</td>
+                    <td>${product.profitLossRat}</td>
+                    <td>${product.positionPercent}</td>
+                    <td>
+                      <c:if test="${collect.userid==user.userid}">
+                        <input type="button" class="wx-btn" onclick="delProd(${product.prodid});" value="移除" />
+                      </c:if>
+                    </td>
+                  </tr>
+                </c:forEach>
+                </tbody>   
+              </table>
+              <div class="line">&nbsp;</div>
+              </c:when>
               <c:otherwise>
                 <div style="color: #5AABE7; font-weight: bold; margin-top: 30px;">目前还没有添加任何基金产品</div>
               </c:otherwise>
@@ -311,7 +347,7 @@
 		    btn: ['确定','取消'],
 		    title: '系统提示'
 		}, function(){
-			$.get("/collect/remove", {
+			$.get("${root}/collect/remove", {
       			"prodid": prodid,
       			"collectid": '${collect.collectid}'
       		}, function(response){

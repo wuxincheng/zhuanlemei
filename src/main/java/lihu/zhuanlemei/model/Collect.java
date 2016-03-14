@@ -74,7 +74,14 @@ public class Collect implements Serializable {
 	/** 产品集评论数 */
 	private Integer commentSum;
 
+	/** 详细分析 */
 	private String detailContent;
+
+	/** 新增字段 start */
+	/** 手动录入 */
+	private String manulFlag;
+
+	/** 新增字段 end */
 
 	public Collect() {
 	}
@@ -245,6 +252,14 @@ public class Collect implements Serializable {
 
 	public void setDetailContent(String detailContent) {
 		this.detailContent = detailContent;
+	}
+
+	public String getManulFlag() {
+		return manulFlag;
+	}
+
+	public void setManulFlag(String manulFlag) {
+		this.manulFlag = manulFlag;
 	}
 
 }

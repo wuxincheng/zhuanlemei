@@ -171,9 +171,16 @@ public class CollectController extends BaseController {
 		queryMap.put("userid", userid);
 		List<Product> products = productService.queryProductsByCollectid(queryMap);
 
-		// 关联查询所有基金信息
-		List<FundMarket> fundMarkets = fundMarketService.queryByProducts(products);
-		request.setAttribute("fundMarkets", fundMarkets);
+		if (StringUtils.isBlank(collect.getManulFlag())) {
+			// manulFlag为空说明是之前老版本的榜单
+			// manulFlag不为空说明是现在新版本的，且在tfundmarket中找不到对应的基金信息
+
+			// 关联查询所有基金信息
+			List<FundMarket> fundMarkets = fundMarketService.queryByProducts(products);
+			request.setAttribute("fundMarkets", fundMarkets);
+		} else {
+			request.setAttribute("products", products);
+		}
 
 		// 查询这个榜单的所有评论
 		List<Comment> comments = commentService.queryByCollectid(collectid);

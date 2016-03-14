@@ -30,7 +30,7 @@
     location="classpath:lihu/zhuanlemei/juhe/config/config.properties" />
 
   <bean id="propertyConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-    <property name="location" value="classpath:db.properties" />
+    <property name="location" value="classpath:config.properties" />
   </bean>
 
   <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">

@@ -59,11 +59,13 @@ public class ProductService {
 			return responseMessage;
 		}
 
+		/*
 		if (StringUtils.isEmpty(product.getMemo())) {
 			responseMessage = "产品说明您就简单说两句吧！";
 			logger.info(responseMessage);
 			return responseMessage;
 		}
+		 */
 
 		if (StringUtils.isEmpty(product.getCollectid())) {
 			responseMessage = "榜单无效";
@@ -90,6 +92,7 @@ public class ProductService {
 		product.setPostDateTime(DateUtil.getCurrentDate(date, Constants.DEFAULT_DATE_FORMAT));
 		product.setUserid(userid);
 		product.setScore("0"); // 产品关注度初始为0
+		product.setManulFlag("1"); // 设置为手动录入产品
 
 		// 发布这个产品
 		productDao.post(product);

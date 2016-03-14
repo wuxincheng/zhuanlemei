@@ -141,6 +141,7 @@ public class CollectService {
 			collect.setUnLikeSum(0);
 			collect.setUnLikeScore(0);
 			collect.setCommentSum(0);
+			collect.setManulFlag("1"); // 默认设置成为手动录入
 
 			logger.debug("新增榜单");
 			collectDao.create(collect);

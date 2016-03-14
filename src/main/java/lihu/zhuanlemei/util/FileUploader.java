@@ -4,6 +4,7 @@ import java.io.File;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,13 +13,11 @@ public class FileUploader {
 
 	private static String[] allowedExts = new String[] { ".jpeg", ".jpg", ".png", ".JPEG", ".JPG", ".PNG" };
 
-	private String basePath = "/opt/tomcat/webapps/ROOT/imgbase/coverbg/";
-	private String baseUrl = "http://www.zhuanlemei.com/imgbase/coverbg/";
-
-	/*
-	private String basePath = "D:/wuxc/next/Workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/zhuanlemei/imgbase/coverbg/";
-	private String baseUrl = "http://127.0.0.1/imgbase/coverbg/";
-	 */
+	@Value("${upload.collect.coverbg.path}")
+	private String basePath;
+	
+	@Value("${upload.collect.coverbg.url}")
+	private String baseUrl;
 
 	public String uploadImage(MultipartFile file) throws Exception {
 		if (file == null)
