@@ -56,7 +56,7 @@ public class MyCollectController extends BaseController {
 
 		// 如果没有收藏，返回空
 		if (null == collectUsers || collectUsers.size() < 1) {
-			model.addAttribute(Constants.MSG_INFO, "您还没有收藏产品集");
+			model.addAttribute(Constants.MSG_INFO, "您还没有收藏组合");
 			return "collect/list";
 		}
 

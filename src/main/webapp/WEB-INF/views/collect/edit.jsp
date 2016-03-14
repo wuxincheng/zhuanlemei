@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<title>编辑榜单信息 - 赚了没？</title>
+<title>编辑组合信息 - 赚了没？</title>
 
 <script src="${root}/ckeditor/ckeditor.js" type="text/javascript"></script>
 <script src="${root}/ckfinder/ckfinder.js" type="text/javascript"></script>
@@ -32,7 +32,7 @@
         <form accept-charset="UTF-8" action="${root}/collect/create" method="post">
           <input type="hidden" id="collectid" name="collectid" value="${collect.collectid}" />
           <div>
-            <label>榜单背景图片：（建议：670*350）</label>
+            <label>组合背景图片：（建议：670*350）</label>
             <input type="hidden" name="coverImgPath" id="coverImgPath" value="${collect.coverImgPath}" />
             <div style="width: 670px; height: 350px; overflow: hidden;" class="control-img cropContainer"
               id="coverImgPathCrop">
@@ -42,9 +42,55 @@
             </div>
           </div>
           <div style="margin-top: 10px;">
-            <label>榜单名称：</label>
+            <label>组合名称：</label>
             <input id="collectName" name="collectName" value="${collect.collectName}" 
-                placeholder="榜单名称" class="form-control" type="text" />
+                placeholder="请输入组合名称" class="form-control" type="text" />
+          </div>
+          
+          <div>
+            <label>日收益：</label>
+            <input id="dayIncome" name="dayIncome" value="${collect.dayIncome}" 
+                placeholder="请输入日收益" class="form-control" type="text" />
+          </div>
+          <div>
+            <label>净值：</label>
+            <input id="nav" name="nav" value="${collect.nav}" 
+                placeholder="请输入净值" class="form-control" type="text" />
+          </div>
+          <div>
+            <label>总收益：</label>
+            <input id="totalIncome" name="totalIncome" value="${collect.totalIncome}" 
+                placeholder="请输入总收益" class="form-control" type="text" />
+          </div>
+          <div>
+            <label>周收益：</label>
+            <input id="weekIncome" name="weekIncome" value="${collect.weekIncome}" 
+                placeholder="请输入榜单名称" class="form-control" type="text" />
+          </div>
+          <div>
+            <label>月收益：</label>
+            <input id="monthIncome" name="monthIncome" value="${collect.monthIncome}" 
+                placeholder="请输入月收益" class="form-control" type="text" />
+          </div>
+          <div>
+            <label>年收益：</label>
+            <input id="yearIncome" name="yearIncome" value="${collect.yearIncome}" 
+                placeholder="请输入年收益" class="form-control" type="text" />
+          </div>
+          <div>
+            <label>盈亏比：</label>
+            <input id="profitLossRate" name="profitLossRate" value="${collect.profitLossRate}" 
+                placeholder="请输入盈亏比" class="form-control" type="text" />
+          </div>
+          <div>
+            <label>胜率：</label>
+            <input id="winRate" name="winRate" value="${collect.winRate}" 
+                placeholder="请输入胜率" class="form-control" type="text" />
+          </div>
+          <div>
+            <label>排名比：</label>
+            <input id="rankRate" name="rankRate" value="${collect.rankRate}" 
+                placeholder="请输入排名比" class="form-control" type="text" />
           </div>
           
           <!-- 
@@ -57,7 +103,7 @@
           <div>
             <label>内容介绍：</label>
             <textarea class="form-control" id="recommend" name="recommend" 
-                placeholder="内容介绍">${collect.recommend}</textarea>
+                placeholder="请输入内容介绍">${collect.recommend}</textarea>
           </div>
           
           <div style="margin-top: 10px;">

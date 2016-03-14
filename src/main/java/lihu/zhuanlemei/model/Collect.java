@@ -77,11 +77,28 @@ public class Collect implements Serializable {
 	/** 详细分析 */
 	private String detailContent;
 
-	/** 新增字段 start */
+	// ====== 新增字段 start ======
 	/** 手动录入 */
 	private String manulFlag;
-
-	/** 新增字段 end */
+	/** 日收益 */
+	private String dayIncome;
+	/** 净值 */
+	private String nav;
+	/** 总收益 */
+	private String totalIncome;
+	/** 周收益 */
+	private String weekIncome;
+	/** 月收益 */
+	private String monthIncome;
+	/** 年收益 */
+	private String yearIncome;
+	/** 盈亏比 */
+	private String profitLossRate;
+	/** 胜率 */
+	private String winRate;
+	/** 排名比 */
+	private String rankRate;
+	// ====== 新增字段 end ======
 
 	public Collect() {
 	}
@@ -260,6 +277,78 @@ public class Collect implements Serializable {
 
 	public void setManulFlag(String manulFlag) {
 		this.manulFlag = manulFlag;
+	}
+
+	public String getDayIncome() {
+		return dayIncome;
+	}
+
+	public void setDayIncome(String dayIncome) {
+		this.dayIncome = dayIncome;
+	}
+
+	public String getNav() {
+		return nav;
+	}
+
+	public void setNav(String nav) {
+		this.nav = nav;
+	}
+
+	public String getTotalIncome() {
+		return totalIncome;
+	}
+
+	public void setTotalIncome(String totalIncome) {
+		this.totalIncome = totalIncome;
+	}
+
+	public String getWeekIncome() {
+		return weekIncome;
+	}
+
+	public void setWeekIncome(String weekIncome) {
+		this.weekIncome = weekIncome;
+	}
+
+	public String getMonthIncome() {
+		return monthIncome;
+	}
+
+	public void setMonthIncome(String monthIncome) {
+		this.monthIncome = monthIncome;
+	}
+
+	public String getYearIncome() {
+		return yearIncome;
+	}
+
+	public void setYearIncome(String yearIncome) {
+		this.yearIncome = yearIncome;
+	}
+
+	public String getProfitLossRate() {
+		return profitLossRate;
+	}
+
+	public void setProfitLossRate(String profitLossRate) {
+		this.profitLossRate = profitLossRate;
+	}
+
+	public String getWinRate() {
+		return winRate;
+	}
+
+	public void setWinRate(String winRate) {
+		this.winRate = winRate;
+	}
+
+	public String getRankRate() {
+		return rankRate;
+	}
+
+	public void setRankRate(String rankRate) {
+		this.rankRate = rankRate;
 	}
 
 }

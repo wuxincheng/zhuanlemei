@@ -66,7 +66,7 @@
         <ul>
           <li><a class="main-nav " href="${root}/index">首页</a></li>
           <li><a class="main-nav " href="${root}/fund/market/list">产品</a></li>
-          <li><a class="main-nav " href="${root}/collect/list">榜单</a></li>
+          <li><a class="main-nav " href="${root}/collect/list">组合</a></li>
         </ul>
       </nav>
       
@@ -105,7 +105,7 @@
               <li><a href="${root}/my/home/list">我的主页</a></li>
               <li><a href="${root}/my/collect/list">我的收藏</a></li>
               <c:if test="${'1' eq user.collectPermission}">
-              <li><a href="${root}/my/collects/list">我的榜单</a></li>
+              <li><a href="${root}/my/collects/list">我的组合</a></li>
               </c:if>
               <li><a href="${root}/my/info/query">个人设置</a></li>
               <li><a href="#" style="cursor: pointer;" id="user_logout">退出登录</a></li>

@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>我的榜单 - 赚了没？</title>
+<title>我的组合 - 赚了没？</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 
@@ -29,7 +29,7 @@
         </c:if>
          -->
         <c:if test="${'1' eq user.collectPermission}">
-          <a class="btn submit-btn right" href="${root}/collect/edit">创建榜单</a>
+          <a class="btn submit-btn right" href="${root}/collect/edit">创建组合</a>
         </c:if>
       </section>
       <section class="list">

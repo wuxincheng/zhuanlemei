@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<title>赚了没 | 创建榜单</title>
+<title>赚了没 | 创建组合</title>
 
 <script src="${root}/ckeditor/ckeditor.js" type="text/javascript"></script>
 <script src="${root}/ckfinder/ckfinder.js" type="text/javascript"></script>
@@ -40,12 +40,12 @@
           </div>
           <div class="string required note_title">
             <input type="hidden" id="userid" name="userid" value="${userid}" />
-            <label class="string required" for="note_title">榜单名称：</label><input aria-required="true"
+            <label class="string required" for="note_title">组合名称：</label><input aria-required="true"
               autofocus="autofocus" class="string required form-control input-small" id="collectName"
               name="collectName" placeholder="榜单名称" required="required" type="text" />
           </div>
           <div class="string required note_title">
-            <label class="string required" for="note_title">榜单背景图片：（建议：625*350）</label>
+            <label class="string required" for="note_title">组合背景图片：（建议：625*350）</label>
             <input autofocus="autofocus" class="form-control input-small" 
               id="coverImgFile" name="coverImgFile" type="file" />
           </div>

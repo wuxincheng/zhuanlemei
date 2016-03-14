@@ -49,7 +49,7 @@ public class MyCollectsController extends BaseController {
 		
 		// List<Collect> collects = collectService.queryAll();
 		if (null == collects || collects.size() < 1) {
-			model.addAttribute(Constants.MSG_INFO, "您还没有创建过榜单");
+			model.addAttribute(Constants.MSG_INFO, "您还没有创建过组合");
 		}
 		
 		model.addAttribute("collects", collects);

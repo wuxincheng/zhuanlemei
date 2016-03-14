@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>榜单 - 赚了没：最好玩的基金排行榜</title>
+<title>组合 - 赚了没：最好玩的基金组合排行榜</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="description" content="赚了没-TOP|找到你喜欢的理财产品，榜单|赚了没-TOP">
@@ -29,7 +29,7 @@
         </div>
          -->
         <c:if test="${'1' eq user.collectPermission}">
-        <a class="btn submit-btn right" href="${root}/collect/edit">创建榜单</a>
+        <a class="btn submit-btn right" href="${root}/collect/edit">创建组合</a>
         </c:if>
       </section>
       <section class="list">

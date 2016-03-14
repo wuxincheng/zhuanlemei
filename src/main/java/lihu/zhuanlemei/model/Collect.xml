@@ -23,7 +23,19 @@
     <result property="unLikeScore" column="unlikescore" />
     <result property="commentSum" column="commentsum" />
     <result property="detailContent" column="detailcontent" />
+    
+    <!-- 新增字段 start -->
     <result property="manulFlag" column="manulflag" />
+    <result property="dayIncome" column="dayincome" />
+    <result property="nav" column="nav" />
+    <result property="totalIncome" column="totalincome" />
+    <result property="weekIncome" column="weekincome" />
+    <result property="monthIncome" column="monthincome" />
+    <result property="yearIncome" column="yearincome" />
+    <result property="profitLossRate" column="profitlossrate" />
+    <result property="winRate" column="winrate" />
+    <result property="rankRate" column="rankrate" />
+    <!-- 新增字段 end -->
   </resultMap>
   
   <select id="queryAll" resultMap="CollectMapping">
@@ -44,18 +56,24 @@
     INSERT INTO 
       t_next_collect( collectname, coverimgpath, bgcolor, userid, productsum, collectsum, 
         memo, recommend, updatestate, updatetime, createtime, collectstate, 
-        likesum, likescore, unlikesum, unlikescore, commentsum, detailcontent, manulflag)
+        likesum, likescore, unlikesum, unlikescore, commentsum, detailcontent, 
+        manulflag, dayincome, nav, totalincome, weekincome, monthincome, yearincome, 
+        profitlossrate, winrate, rankrate)
     VALUES ( #collectName#, #coverImgPath#, #bgColor#, #userid#, 
         #productSum#, #collectSum#, #memo#, 
         #recommend#, #updateState#, #updateTime#, #createTime#, #collectState#,
-        #likeSum#, #likeScore#, #unLikeSum#, #unLikeScore#, #commentSum#, #detailContent#, #manulFlag#)
+        #likeSum#, #likeScore#, #unLikeSum#, #unLikeScore#, #commentSum#, #detailContent#, 
+        #manulFlag#, #dayIncome#, #nav#, #totalIncome#, #weekIncome#, #monthIncome#, #yearIncome#, 
+        #profitLossRate#, #winRate#, #rankRate#)
   </insert>
   
   <update id="update" parameterClass="Collect">
     UPDATE t_next_collect 
-       SET collectname = #collectName#, coverimgpath = #coverImgPath#, 
-           bgcolor = #bgColor#, memo = #memo#, recommend = #recommend#, 
-           updatetime=#updateTime#, detailcontent=#detailContent# 
+       SET collectname = #collectName#, coverimgpath = #coverImgPath#, bgcolor = #bgColor#, 
+           memo = #memo#, recommend = #recommend#, updatetime=#updateTime#, detailcontent=#detailContent#,
+           dayincome=#dayIncome#, nav=#nav#, totalincome=#totalIncome#, weekincome=#weekIncome#, 
+           monthincome=#monthIncome#, yearincome=#yearIncome#,profitlossrate=#profitLossRate#, 
+           winrate=#winRate#, rankrate=#rankRate#
      WHERE collectid = #collectid#
   </update>
 
