@@ -42,7 +42,7 @@ public class MobileLogin extends BaseController {
 	@RequestMapping(value = "/")
 	public String login(Model model, HttpServletRequest request) {
 		logger.info("显示用户登录授权页面");
-		return "login";
+		return "mobile/login";
 	}
 
 	@RequestMapping(value = "/submit")
@@ -74,7 +74,7 @@ public class MobileLogin extends BaseController {
 			return result.reject("用户密码不正确");
 		}
 
-		return result.redirect("/collect/list");
+		return result.redirect("/mobile/collect/list");
 	}
 	
 	@RequestMapping(value = "/wechat")
@@ -89,7 +89,7 @@ public class MobileLogin extends BaseController {
 		
 		model.addAttribute("wechatOAuthJSURI", wechatOAuthJSURI);
 		
-		return "login/wechat";
+		return "mobile/login/wechat";
 	}
 
 }

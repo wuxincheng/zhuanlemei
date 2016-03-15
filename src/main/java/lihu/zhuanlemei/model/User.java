@@ -66,6 +66,9 @@ public class User implements Serializable {
 	/** 第三方平台类型 */
 	private String loginType;
 
+	/** 微信服务号授权返回 */
+	private String unionid;
+
 	public String getUserid() {
 		return userid;
 	}
@@ -216,6 +219,14 @@ public class User implements Serializable {
 
 	public void setAvatarFile(MultipartFile avatarFile) {
 		this.avatarFile = avatarFile;
+	}
+
+	public String getUnionid() {
+		return unionid;
+	}
+
+	public void setUnionid(String unionid) {
+		this.unionid = unionid;
 	}
 
 }

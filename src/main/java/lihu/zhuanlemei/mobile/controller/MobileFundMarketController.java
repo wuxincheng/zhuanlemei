@@ -120,7 +120,7 @@ public class MobileFundMarketController extends BaseController {
 		getTopRedSortList(model); // 查询红绿榜
 		model.addAttribute("keyword", keyword);
 
-		return "fund/market/list";
+		return "mobile/fund/market/list";
 	}
 
 	@RequestMapping(value = "/detail")
@@ -157,7 +157,7 @@ public class MobileFundMarketController extends BaseController {
 		
 		getTopRedSortList(model); // 查询红绿榜
 
-		return "fund/market/detail";
+		return "mobile/fund/market/detail";
 	}
 
 	@RequestMapping(value = "/like")
@@ -202,7 +202,7 @@ public class MobileFundMarketController extends BaseController {
 			logger.debug("基金收藏和取消收藏操作失败：collectid或userid为空");
 		}
 
-		return "redirect:/fund/market/detail?fundCode=" + fundCode;
+		return "redirect:/mobile/fund/market/detail?fundCode=" + fundCode;
 	}
 
 	/**

@@ -39,7 +39,7 @@ public class MobileRegister extends BaseController {
 	@RequestMapping(value = "/")
 	public String login(Model model) {
 		logger.info("显示移动端用户注册页面");
-		return "register";
+		return "mobile/register";
 	}
 
 	@RequestMapping(value = "/submit")
@@ -63,7 +63,7 @@ public class MobileRegister extends BaseController {
 		user = userService.checkLogin(user.getLoginEmail());
 		request.getSession().setAttribute(Constants.CURRENT_USER, user);
 
-		return result.redirect("/collect/list");
+		return result.redirect("/mobile/collect/list");
 	}
 
 	/**

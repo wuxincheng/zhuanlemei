@@ -77,6 +77,8 @@ public class Collect implements Serializable {
 	/** 详细分析 */
 	private String detailContent;
 
+	private String nickName;
+
 	// ====== 新增字段 start ======
 	/** 手动录入 */
 	private String manulFlag;
@@ -349,6 +351,14 @@ public class Collect implements Serializable {
 
 	public void setRankRate(String rankRate) {
 		this.rankRate = rankRate;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 
 }

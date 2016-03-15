@@ -50,6 +50,24 @@ public class BaseController {
 		}
 		return user.getUserid();
 	}
+	
+	/**
+	 * 获取当前Mobile端Session下的用户信息
+	 */
+	protected User getCurrentMobileUser(HttpServletRequest request) {
+		return (User) request.getSession().getAttribute(Constants.MOBILE_USER);
+	}
+
+	/**
+	 * 获取当前Mobile端Session下的用户ID
+	 */
+	protected String getCurrentMobileUserid(HttpServletRequest request) {
+		User user = getCurrentMobileUser(request);
+		if (null == user) {
+			return null;
+		}
+		return user.getUserid();
+	}
 
 	/**
 	 * 处理信息提示

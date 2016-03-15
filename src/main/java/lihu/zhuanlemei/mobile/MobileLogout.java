@@ -28,7 +28,7 @@ public class MobileLogout {
 		request.getSession().removeAttribute("user"); // 这一步可以不需要
 		request.getSession().invalidate(); // 完全使用整个Session失效
 
-		return "redirect:/collect/list";
+		return "redirect:/mobile/collect/list";
 	}
 
 }

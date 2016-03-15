@@ -57,7 +57,7 @@ public class MobileProductController extends BaseController {
 
 		if (null == groupDates || groupDates.size() < 1) {
 			logger.info("没有查询到产品发布日期");
-			return "product/list";
+			return "mobile/product/list";
 		}
 
 		// 判断是否有用户登录
@@ -69,7 +69,7 @@ public class MobileProductController extends BaseController {
 
 		model.addAttribute("pager", pager);
 
-		return "product/list";
+		return "mobile/product/list";
 	}
 
 	@RequestMapping(value = "/postUI")
@@ -85,7 +85,7 @@ public class MobileProductController extends BaseController {
 			model.addAttribute("collectid", collectid);
 		}
 
-		return "product/postUI";
+		return "mobile/product/postUI";
 	}
 
 	/**
@@ -112,11 +112,11 @@ public class MobileProductController extends BaseController {
 		} catch (Exception e) {
 			logger.error("产品发布出现异常：", e);
 			model.addAttribute(Constants.MSG_ERROR, "产品发布出现异常，请稍后重试！");
-			return "product/postUI";
+			return "mobile/product/postUI";
 		}
 
-		return product.getLikeState() == null ? "redirect:/collect/detail?collectid=" + product.getCollectid()
-				: "product/success";
+		return product.getLikeState() == null ? "redirect:/mobile/collect/detail?collectid=" + product.getCollectid()
+				: "mobile/product/success";
 	}
 
 	@RequestMapping(value = "/detail")
@@ -143,7 +143,7 @@ public class MobileProductController extends BaseController {
 		List<ProdLike> prodLikes = prodLikeService.queryLikeUserDetail(prodid);
 		model.addAttribute("prodLikes", prodLikes);
 
-		return "product/detail";
+		return "mobile/product/detail";
 	}
 
 	/**
@@ -175,7 +175,7 @@ public class MobileProductController extends BaseController {
 
 	@RequestMapping(value = "/delete")
 	public String delete(Model model, String prodid) {
-		return "product/detail";
+		return "mobile/product/detail";
 	}
 
 }

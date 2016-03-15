@@ -13,16 +13,24 @@ import org.springframework.stereotype.Component;
 @Component
 public class WechatConfig {
 
-	/** 应用唯一标识 appid */
-	@Value("#{wechatSettings.appid}")
-	private String appid;
+	@Value("#{wechatSettings.openAppid}")
+	private String openAppid;
 
-	@Value("#{wechatSettings.appSecret}")
-	private String appSecret;
+	@Value("#{wechatSettings.openAppSecret}")
+	private String openAppSecret;
+
+	@Value("#{wechatSettings.mpAppid}")
+	private String mpAppid;
+
+	@Value("#{wechatSettings.mpAppSecret}")
+	private String mpAppSecret;
 
 	/** 应用授权作用域, 网页应用 */
 	@Value("#{wechatSettings.scope}")
 	private String scope;
+
+	@Value("#{wechatSettings.wechatOAuthorize}")
+	private String wechatOAuthorize;
 
 	/** 微信授权登录页面 */
 	@Value("#{wechatSettings.wechatOAuthUrl}")
@@ -52,20 +60,36 @@ public class WechatConfig {
 	@Value("#{wechatSettings.userInfoUrl}")
 	private String userInfoUrl;
 
-	public String getAppid() {
-		return appid;
+	public String getOpenAppid() {
+		return openAppid;
 	}
 
-	public void setAppid(String appid) {
-		this.appid = appid;
+	public void setOpenAppid(String openAppid) {
+		this.openAppid = openAppid;
 	}
 
-	public String getAppSecret() {
-		return appSecret;
+	public String getOpenAppSecret() {
+		return openAppSecret;
 	}
 
-	public void setAppSecret(String appSecret) {
-		this.appSecret = appSecret;
+	public void setOpenAppSecret(String openAppSecret) {
+		this.openAppSecret = openAppSecret;
+	}
+
+	public String getMpAppid() {
+		return mpAppid;
+	}
+
+	public void setMpAppid(String mpAppid) {
+		this.mpAppid = mpAppid;
+	}
+
+	public String getMpAppSecret() {
+		return mpAppSecret;
+	}
+
+	public void setMpAppSecret(String mpAppSecret) {
+		this.mpAppSecret = mpAppSecret;
 	}
 
 	public String getScope() {
@@ -74,6 +98,14 @@ public class WechatConfig {
 
 	public void setScope(String scope) {
 		this.scope = scope;
+	}
+
+	public String getWechatOAuthorize() {
+		return wechatOAuthorize;
+	}
+
+	public void setWechatOAuthorize(String wechatOAuthorize) {
+		this.wechatOAuthorize = wechatOAuthorize;
 	}
 
 	public String getWechatOAuthUrl() {

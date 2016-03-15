@@ -47,6 +47,22 @@
       <bean class="lihu.zhuanlemei.interceptor.LoginSessionInterceptor" />
     </mvc:interceptor>
     
+    <!-- 配置移动端登录拦截器 -->
+    <mvc:interceptor>
+      <!-- fund -->
+      <mvc:mapping path="/mobile/fund/market/focus" />
+      <!-- product -->
+      <mvc:mapping path="/mobile/product/like" />
+      <!-- comment -->
+      <mvc:mapping path="/mobile/comment/post" />
+      <!-- collection -->
+      <mvc:mapping path="/mobile/collect/collect" />
+      <!-- my -->
+      <mvc:mapping path="/mobile/my/**" />
+      <!-- interceptor -->
+      <bean class="lihu.zhuanlemei.interceptor.MobileLoginSessionInterceptor" />
+    </mvc:interceptor>
+    
     <!-- 配置请求拦截器 -->
     <mvc:interceptor>
       <!-- 配置拦截的URL -->

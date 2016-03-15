@@ -10,6 +10,7 @@
   <sqlMap resource="lihu/zhuanlemei/model/Comment.xml" />
   <sqlMap resource="lihu/zhuanlemei/model/Collect.xml" />
   <sqlMap resource="lihu/zhuanlemei/model/User.xml" />
+  <sqlMap resource="lihu/zhuanlemei/model/Advisor.xml" />
   <sqlMap resource="lihu/zhuanlemei/model/Task.xml" />
   <sqlMap resource="lihu/zhuanlemei/model/FundMarket.xml" />
   

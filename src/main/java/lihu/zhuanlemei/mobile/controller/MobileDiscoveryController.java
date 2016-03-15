@@ -48,7 +48,7 @@ public class MobileDiscoveryController extends BaseController {
 		List<Advisor> advisors = advisorService.queryTopHot(5);
 		model.addAttribute("advisors", advisors);
 
-		return "discovery/list";
+		return "mobile/discovery/list";
 	}
 	
 }

@@ -28,6 +28,26 @@ public class WechatHttpsHelper {
 	@Resource
 	WechatConfig wechatConfig;
 
+	public String getOAuthInnerURI(String sessionid) {
+		logger.info("根据sessionid获取微信内部授权地址 sessionid={}", sessionid);
+
+		// 微信登录后返回的地址URLEncoder
+		String redirectURLEncoder = null;
+		try {
+			redirectURLEncoder = URLEncoder.encode(wechatConfig.getRedirectUrl(), "UTF-8");
+			logger.debug("URLEncoder后的返回地址 redirectURLEncoder={}", redirectURLEncoder);
+		} catch (UnsupportedEncodingException e) {
+			logger.error("URLEncoder返回地址异常", e);
+		}
+
+		// 微信授权登录页面
+		String wechatOAuthUrl = wechatConfig.getWechatOAuthorize().replaceAll("APPID", wechatConfig.getOpenAppid())
+				.replaceAll("REDIRECT_URI", redirectURLEncoder).replaceAll("STATE", sessionid);
+		logger.debug("微信授权登录地址 wechatOAuthUrl={}", wechatOAuthUrl);
+
+		return wechatOAuthUrl;
+	}
+
 	/**
 	 * 根据sessionid获取微信登录地址
 	 * 
@@ -47,7 +67,7 @@ public class WechatHttpsHelper {
 		}
 
 		// 微信授权登录页面
-		String wechatOAuthUrl = wechatConfig.getWechatOAuthUrl().replaceAll("APPID", wechatConfig.getAppid())
+		String wechatOAuthUrl = wechatConfig.getWechatOAuthUrl().replaceAll("APPID", wechatConfig.getOpenAppid())
 				.replaceAll("REDIRECT_URI", redirectURLEncoder).replaceAll("STATE", sessionid);
 		// logger.info("微信授权登录地址 wechatOAuthUrl={}", wechatOAuthUrl);
 
@@ -73,7 +93,7 @@ public class WechatHttpsHelper {
 		}
 
 		// 微信授权登录页面
-		String wechatOAuthUrl = wechatConfig.getWechatOAuthJSUrl().replaceAll("APPID", wechatConfig.getAppid())
+		String wechatOAuthUrl = wechatConfig.getWechatOAuthJSUrl().replaceAll("APPID", wechatConfig.getOpenAppid())
 				.replaceAll("REDIRECT_URI", redirectURLEncoder).replaceAll("STATE", sessionid)
 				.replaceAll("QCODE_STYLE", wechatConfig.getWechatQcodeStyle());
 		logger.info("微信授权登录地址 wechatOAuthUrl={}", wechatOAuthUrl);
@@ -95,8 +115,8 @@ public class WechatHttpsHelper {
 		}
 
 		// 通过code获取access_token的URL
-		String accessTokenUrl = wechatConfig.getAccessTokenUrl().replaceAll("APPID", wechatConfig.getAppid())
-				.replaceAll("APPSECRET", wechatConfig.getAppSecret()).replaceAll("CODE", accessCode);
+		String accessTokenUrl = wechatConfig.getAccessTokenUrl().replaceAll("APPID", wechatConfig.getOpenAppid())
+				.replaceAll("APPSECRET", wechatConfig.getOpenAppSecret()).replaceAll("CODE", accessCode);
 		logger.info("请求的URL地址 accessTokenUrl={}", accessTokenUrl);
 
 		String response = null;

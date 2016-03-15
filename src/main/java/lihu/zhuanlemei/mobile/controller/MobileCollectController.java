@@ -79,7 +79,7 @@ public class MobileCollectController extends BaseController {
 
 		request.setAttribute("collects", collects);
 
-		return "collect/list";
+		return "mobile/collect/list";
 	}
 
 	@RequestMapping(value = "/detail")
@@ -137,7 +137,7 @@ public class MobileCollectController extends BaseController {
 		List<Collect> collects = collectService.queryTopHot(5);
 		model.addAttribute("collects", collects);
 
-		return "collect/detail";
+		return "mobile/collect/detail";
 	}
 
 	/**
@@ -158,7 +158,7 @@ public class MobileCollectController extends BaseController {
 			logger.debug("榜单收藏和取消收藏操作失败：collectid或userid为空");
 		}
 
-		return "redirect:/collect/detail?collectid=" + collectid;
+		return "redirect:/mobile/collect/detail?collectid=" + collectid;
 	}
 
 	@RequestMapping(value = "/like")
@@ -200,9 +200,9 @@ public class MobileCollectController extends BaseController {
 
 		Result result = new Result();
 
-		String userid = getCurrentUserid(request);
+		String userid = getCurrentMobileUserid(request);
 		if (StringUtils.isEmpty(userid)) {
-			return result.redirect("/login/");
+			return result.redirect("/mobile/login/");
 		}
 
 		if (fundCode != null && userid != null) {
