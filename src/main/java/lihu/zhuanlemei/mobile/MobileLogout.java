@@ -2,6 +2,8 @@ package lihu.zhuanlemei.mobile;
 
 import javax.servlet.http.HttpServletRequest;
 
+import lihu.zhuanlemei.util.Constants;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -25,7 +27,7 @@ public class MobileLogout {
 	public String logout(Model model, HttpServletRequest request) {
 		logger.info("退出系统");
 
-		request.getSession().removeAttribute("user"); // 这一步可以不需要
+		request.getSession().removeAttribute(Constants.MOBILE_USER); // 这一步可以不需要
 		request.getSession().invalidate(); // 完全使用整个Session失效
 
 		return "redirect:/mobile/collect/list";

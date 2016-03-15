@@ -9,6 +9,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import lihu.zhuanlemei.model.User;
+import lihu.zhuanlemei.util.Constants;
 
 /**
  * 登录Session拦截
@@ -38,7 +39,7 @@ public class LoginSessionInterceptor implements HandlerInterceptor {
 		String url = request.getRequestURL().toString();
 
 		if (mappingURL == null || url.matches(mappingURL)) {
-			User user = (User) request.getSession().getAttribute("user");
+			User user = (User) request.getSession().getAttribute(Constants.CURRENT_USER);
 
 			if (null == user) {
 				logger.info("用户登录Session失效，跳转到登录页面");

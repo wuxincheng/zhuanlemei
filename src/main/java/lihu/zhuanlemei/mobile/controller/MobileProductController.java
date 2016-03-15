@@ -61,7 +61,7 @@ public class MobileProductController extends BaseController {
 		}
 
 		// 判断是否有用户登录
-		String userid = getCurrentUserid(request);
+		String userid = getCurrentMobileUserid(request);
 
 		// 每次分页只显示三个日期下发布的产品
 		Pager pager = productService.queryProductsByDate(groupDates, userid);
@@ -102,7 +102,7 @@ public class MobileProductController extends BaseController {
 
 		try {
 			// 发布产品
-			String responseMsg = productService.post(product, getCurrentUserid(request));
+			String responseMsg = productService.post(product, getCurrentMobileUserid(request));
 			if (StringUtils.isNotEmpty(responseMsg)) {
 				model.addAttribute(Constants.MSG_WARN, responseMsg);
 			} else {
@@ -129,7 +129,7 @@ public class MobileProductController extends BaseController {
 		}
 
 		// 判断是否有用户登录
-		String userid = getCurrentUserid(request);
+		String userid = getCurrentMobileUserid(request);
 
 		// 产品详细
 		Product product = productService.queryDetailByProdid(prodid, userid);
@@ -161,7 +161,7 @@ public class MobileProductController extends BaseController {
 		}
 
 		// 获取当前登录用户ID
-		String userid = getCurrentUserid(request);
+		String userid = getCurrentMobileUserid(request);
 		if (StringUtils.isEmpty(userid)) {
 			return null;
 		}

@@ -107,12 +107,12 @@ public class MobileCollectController extends BaseController {
 		String userid = null;
 
 		// 判断用户是否已经登录
-		if (getCurrentUserid(request) != null) {
+		if (getCurrentMobileUserid(request) != null) {
 			// 如果登录，查询该用户是否已经收藏该榜单
 			CollectUser collectUser = collectUserService
-					.query(collectid, getCurrentUserid(request));
+					.query(collectid, getCurrentMobileUserid(request));
 			request.setAttribute("collectUser", collectUser);
-			userid = getCurrentUserid(request);
+			userid = getCurrentMobileUserid(request);
 		}
 
 		// 查询这个榜单下的所有产品
@@ -172,7 +172,7 @@ public class MobileCollectController extends BaseController {
 		result.put("collectid", collectid);
 
 		// 用户是否登录
-		String userid = getCurrentUserid(request);
+		String userid = getCurrentMobileUserid(request);
 
 		if (StringUtils.isEmpty(userid)) {
 			result.put("message", "您还没有登录");

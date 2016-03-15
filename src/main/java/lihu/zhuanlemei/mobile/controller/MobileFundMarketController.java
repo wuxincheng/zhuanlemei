@@ -140,18 +140,18 @@ public class MobileFundMarketController extends BaseController {
 		model.addAttribute("comments", comments);
 
 		// 查询当前用户是赞这个行情还是骂
-		String userid = getCurrentUserid(request);
+		String userid = getCurrentMobileUserid(request);
 		if (StringUtils.isNotEmpty(userid)) {
 			ProdLike prodLike = prodLikeService.queryByFundCode(fundCode, userid);
 			model.addAttribute("prodLike", prodLike);
 		}
 
 		// 判断用户是否已经登录
-		if (getCurrentUserid(request) != null) {
+		if (getCurrentMobileUserid(request) != null) {
 			// 如果登录，查询该用户是否已经收藏该榜单
-			CollectUser collectUser = collectUserService.queryByFundCode(fundCode, getCurrentUserid(request));
+			CollectUser collectUser = collectUserService.queryByFundCode(fundCode, getCurrentMobileUserid(request));
 			request.setAttribute("collectUser", collectUser);
-			userid = getCurrentUserid(request);
+			userid = getCurrentMobileUserid(request);
 			model.addAttribute("userid", userid);
 		}
 		
@@ -170,7 +170,7 @@ public class MobileFundMarketController extends BaseController {
 		result.put("fundCode", fundCode);
 
 		// 用户是否登录
-		String userid = getCurrentUserid(request);
+		String userid = getCurrentMobileUserid(request);
 
 		if (StringUtils.isEmpty(userid)) {
 			result.put("message", "您还没有登录");

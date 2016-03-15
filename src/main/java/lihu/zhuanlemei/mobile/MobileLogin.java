@@ -69,7 +69,7 @@ public class MobileLogin extends BaseController {
 		String adminsPwdMD5Str = MD5.encryptMD5Pwd(user.getPassword());
 
 		if (!Validation.isBlank(passwordFlag) && passwordFlag.equals(adminsPwdMD5Str)) {
-			request.getSession().setAttribute(Constants.CURRENT_USER, userFlag);
+			request.getSession().setAttribute(Constants.MOBILE_USER, userFlag);
 		} else {
 			return result.reject("用户密码不正确");
 		}
@@ -84,7 +84,7 @@ public class MobileLogin extends BaseController {
 		String sessionid = request.getSession().getId();
 		logger.debug("获取用户浏览器Session sessionid={}", sessionid);
 		
-		String wechatOAuthJSURI = wechatHttpsHelper.getOAuthLoginURI(sessionid);
+		String wechatOAuthJSURI = wechatHttpsHelper.getOAuthLoginURI(sessionid, Constants.CLIENT_MOBILE);
 		logger.debug("登录二维码地址 wechatOAuthJSURI={}", wechatOAuthJSURI);
 		
 		model.addAttribute("wechatOAuthJSURI", wechatOAuthJSURI);

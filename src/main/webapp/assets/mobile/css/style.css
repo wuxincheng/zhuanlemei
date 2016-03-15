@@ -8,7 +8,12 @@
 }
 
 .btn-wechat {
-    color: #ffffff;
-    background-color: #00c800;
-    border-color: #44b549;
+  color: #ffffff;
+  background-color: #00c800;
+  border-color: #44b549;
+}
+
+.pcbrower-tip {
+  margin: 50px;
+  font-style: italic;
 }

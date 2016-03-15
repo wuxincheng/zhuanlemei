@@ -75,14 +75,14 @@
             <li class="wa-stats">
               <c:if test="${not empty collectUser}">
               <span>
-                <a href="${root}/mobile/collect/collect?collectid=${collect.collectid}&userid=${user.userid}">
+                <a href="${root}/mobile/collect/collect?collectid=${collect.collectid}&userid=${mobileUser.userid}">
                 <i class="zmdi zmdi-favorite"></i> 已关注
                 </a>
               </span>
               </c:if>
               <c:if test="${empty collectUser}">
               <span>
-                <a href="${root}/mobile/collect/collect?collectid=${collect.collectid}&userid=${user.userid}">
+                <a href="${root}/mobile/collect/collect?collectid=${collect.collectid}&userid=${mobileUser.userid}">
                 <i class="zmdi zmdi-favorite-outline"></i> 未关注
                 </a>
               </span>

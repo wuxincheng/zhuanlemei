@@ -44,7 +44,7 @@ public class MobileMyCollectController extends BaseController {
 		model.addAttribute("menu_name", "mycollect");
 
 		// 获取当前用户
-		String userid = getCurrentUserid(request);
+		String userid = getCurrentMobileUserid(request);
 		if (StringUtils.isEmpty(userid)) {
 			model.addAttribute(Constants.MSG_WARN, "用户登录信息失效");
 			return "redirect:/mobile/login/";

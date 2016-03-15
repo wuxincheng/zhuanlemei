@@ -12,7 +12,7 @@ import lihu.zhuanlemei.dao.CollectDao;
 import lihu.zhuanlemei.model.Collect;
 
 @Service("mobile0CollectService")
-public class MobileCollectService {
+public class Mobile0CollectService {
 	
 	@Resource
 	private CollectDao collectDao;

@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import lihu.zhuanlemei.model.User;
+import lihu.zhuanlemei.util.Constants;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,9 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * 移动端登录Session拦截
  * 
- * @author wuxincheng(wxcking) 
- * @date 2016年3月15日 上午11:04:40 
- *
+ * @author wuxincheng(wxcking)
+ * @date 2016年3月15日 上午11:04:40
+ * 
  */
 public class MobileLoginSessionInterceptor implements HandlerInterceptor {
 
@@ -38,7 +39,7 @@ public class MobileLoginSessionInterceptor implements HandlerInterceptor {
 		String url = request.getRequestURL().toString();
 
 		if (mappingURL == null || url.matches(mappingURL)) {
-			User user = (User) request.getSession().getAttribute("user");
+			User user = (User) request.getSession().getAttribute(Constants.MOBILE_USER);
 
 			if (null == user) {
 				logger.info("用户登录Session失效，跳转到登录页面");
@@ -56,5 +57,5 @@ public class MobileLoginSessionInterceptor implements HandlerInterceptor {
 	public void setMappingURL(String mappingURL) {
 		this.mappingURL = mappingURL;
 	}
-	
+
 }

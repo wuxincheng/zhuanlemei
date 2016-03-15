@@ -49,7 +49,7 @@ public class WechatMobileLoginController {
 
 		try {
 			String sessionid = request.getSession().getId();
-			String wechatOAuthUrl = wechatHttpsHelper.getOAuthLoginURI(sessionid);
+			String wechatOAuthUrl = wechatHttpsHelper.getOAuthLoginURI(sessionid, Constants.CLIENT_MOBILE);
 			logger.debug("微信授权页面wechatOAuthUrl={}", wechatOAuthUrl);
 			response.sendRedirect(wechatOAuthUrl); // 跳转到微信登录授权页面
 			logger.debug("已跳转到微信授权页面");
@@ -69,7 +69,7 @@ public class WechatMobileLoginController {
 
 		try {
 			String sessionid = request.getSession().getId();
-			String wechatOAuthUrl = wechatHttpsHelper.getOAuthInnerURI(sessionid);
+			String wechatOAuthUrl = wechatHttpsHelper.getOAuthLoginURI(sessionid, Constants.CLIENT_MOBILE);
 			logger.debug("微信授权页面wechatOAuthUrl={}", wechatOAuthUrl);
 			response.sendRedirect(wechatOAuthUrl); // 跳转到微信登录授权页面
 			logger.debug("已跳转到微信授权页面");
@@ -111,7 +111,7 @@ public class WechatMobileLoginController {
 
 		logger.debug("开始获取 access_token");
 		// 通过code获取access_token
-		Map<String, Object> responseMap = wechatHttpsHelper.getAccessTokenByCode(code);
+		Map<String, Object> responseMap = wechatHttpsHelper.getAccessTokenByCode(code, Constants.CLIENT_MOBILE);
 		if (null == responseMap) {
 			model.addAttribute(Constants.MSG_WARN, "获取微信AccessToken失败");
 			return "redirect:/mobile/index";
@@ -119,8 +119,7 @@ public class WechatMobileLoginController {
 
 		logger.debug("开始获取用户个人信息");
 		Map<String, Object> responseUserInfoMap = wechatHttpsHelper.getUserInfoUnionID(
-				MapFormatUtil.getString(responseMap, "access_token"),
-				MapFormatUtil.getString(responseMap, "openid"));
+				MapFormatUtil.getString(responseMap, "access_token"), MapFormatUtil.getString(responseMap, "openid"));
 
 		logger.info("个人信息获取成功 responseUserInfoMap={}", responseUserInfoMap);
 
@@ -134,13 +133,13 @@ public class WechatMobileLoginController {
 		oauthUser.setOpenid(MapFormatUtil.getString(responseUserInfoMap, "openid"));
 		oauthUser.setLoginType(Constants.OAUTH_WECHAT);
 		oauthUser.setUnionid(MapFormatUtil.getString(responseUserInfoMap, "unionid"));
-		oauthUser.setSex(MapFormatUtil.getInt(responseUserInfoMap, "sex")+"");
+		oauthUser.setSex(MapFormatUtil.getInt(responseUserInfoMap, "sex") + "");
 		logger.info("保存数据已封装");
 		checkAndProcessOAuthUser(oauthUser, request);
 
 		logger.info("微信授权登录成功");
 
-		return "redirect:/mobile/index";
+		return "redirect:/mobile/collect/list";
 	}
 
 	/**

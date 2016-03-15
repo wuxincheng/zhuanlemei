@@ -54,6 +54,18 @@ public class RequestInterceptor implements HandlerInterceptor {
 		}
 
 		logger.info("访客信息记录：IP地址={}, 访问路径={}", remoteAddress, requestSystemPath);
+		
+		request.getSession();
+		// 获取用户浏览器信息
+		String userAgent = request.getHeader("User-Agent");
+		logger.debug("userAgent={}", userAgent);
+		// 判断是PC还是移动端
+		if (userAgent.indexOf("Android") > -1 || userAgent.indexOf("iPhone") > -1 || userAgent.indexOf("PlayBook") > -1
+				|| userAgent.indexOf("Touch") > -1 || userAgent.indexOf("Windows Phone") > -1) {
+			request.setAttribute("mobileBrowser", "1");
+		} else {
+			request.setAttribute("PCBrowser", "1");
+		}
 
 		return true;
 	}

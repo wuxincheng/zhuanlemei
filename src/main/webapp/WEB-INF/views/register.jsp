@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>注册 - TOP</title>
+<title>注册 - 赚了没</title>
 
 <link href="${root}/assets/img/logo/logoEN.png" type="image/x-icon" rel="icon" />
 <link href="${root}/assets/img/logo/logoEN.png" type="image/x-icon" rel="shortcut icon" />

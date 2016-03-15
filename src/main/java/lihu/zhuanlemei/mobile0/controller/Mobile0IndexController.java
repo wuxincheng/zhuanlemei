@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller("mobile0IndexController")
 @RequestMapping("/mobile0")
-public class MobileIndexController extends BaseController {
-	private static final Logger logger = LoggerFactory.getLogger(MobileIndexController.class);
+public class Mobile0IndexController extends BaseController {
+	private static final Logger logger = LoggerFactory.getLogger(Mobile0IndexController.class);
 
 	@Autowired
 	private FundMarketService fundMarketService;

@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller("mobile0Logout")
 @RequestMapping("/mobile0/logout")
-public class MobileLogout {
+public class Mobile0Logout {
 
-	private static final Logger logger = LoggerFactory.getLogger(MobileLogin.class);
+	private static final Logger logger = LoggerFactory.getLogger(Mobile0Login.class);
 	
 	@RequestMapping(value = "/")
 	public String logout(Model model, HttpServletRequest request) {

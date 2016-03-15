@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>登录 - TOP</title>
+<title>登录 - 赚了没</title>
 
 <link href="${root}/assets/img/logo/logoEN.png" type="image/x-icon" rel="icon" />
 <link href="${root}/assets/img/logo/logoEN.png" type="image/x-icon" rel="shortcut icon" />

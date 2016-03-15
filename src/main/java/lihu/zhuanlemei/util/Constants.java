@@ -55,4 +55,9 @@ public class Constants {
 
 	public static final String DATE_TYPE_CACHE = "CACHE_SYS";
 
+	/** 移动端 */
+	public static final String CLIENT_MOBILE = "mobile";
+	/** PC端 */
+	public static final String CLIENT_PC = "PC";
+
 }

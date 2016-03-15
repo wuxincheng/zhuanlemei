@@ -28,9 +28,9 @@ import lihu.zhuanlemei.util.Validation;
  */
 @Controller("mobile0Login")
 @RequestMapping("/mobile0/login")
-public class MobileLogin extends BaseController {
+public class Mobile0Login extends BaseController {
 
-	private static final Logger logger = LoggerFactory.getLogger(MobileLogin.class);
+	private static final Logger logger = LoggerFactory.getLogger(Mobile0Login.class);
 	
 	@Resource
 	private UserService userService;

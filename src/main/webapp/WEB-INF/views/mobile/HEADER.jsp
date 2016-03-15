@@ -68,11 +68,11 @@ $(document).ready(function(){
             </div>
           </li>
 
-          <c:if test="${empty user}">
+          <c:if test="${empty mobileUser}">
           <li class="dropdown"><div class="unlogin"><a href="${root}/mobile/login/">未登录</a></div></li>
           </c:if>
           
-          <c:if test="${not empty user}">
+          <c:if test="${not empty mobileUser}">
           <li class="dropdown"><a data-toggle="dropdown" href=""><i
               class="tm-icon zmdi zmdi-account"></i></a>
             <ul class="dropdown-menu dm-icon pull-right">
@@ -89,23 +89,23 @@ $(document).ready(function(){
 
   <section id="main" data-layout="layout-1">
     <aside id="sidebar" class="sidebar c-overflow">
-      <c:if test="${not empty user}">
+      <c:if test="${not empty mobileUser}">
       <div class="profile-menu">
         <a href="">
-          <c:if test="${not empty user.socialPicPath}">
+          <c:if test="${not empty mobileUser.socialPicPath}">
           <div class="profile-pic">
-            <img src="${user.socialPicPath}" />
+            <img src="${mobileUser.socialPicPath}" />
           </div>
           </c:if>
           
-          <c:if test="${empty user.socialPicPath}">
+          <c:if test="${empty mobileUser.socialPicPath}">
           <div class="profile-pic">
             <img src="${root}/assets/mobile/img/profile-pics/4.jpg" />
           </div>
           </c:if>
 
           <div class="profile-info">
-            ${user.nickName} <i class="zmdi zmdi-caret-down"></i>
+            ${mobileUser.nickName} <i class="zmdi zmdi-caret-down"></i>
           </div>
         </a>
 
@@ -115,7 +115,7 @@ $(document).ready(function(){
       </div>
       </c:if>
       
-      <c:if test="${empty user}">
+      <c:if test="${empty mobileUser}">
       <div class="profile-menu" id="unlogin-panel">
         <a href="">
           <div class="profile-pic">
@@ -138,6 +138,11 @@ $(document).ready(function(){
         <li><a href=""><i
             class="zmdi zmdi-info"></i>关 于</a></li>
       </ul>
+      <c:if test="${not empty PCBrowser}">
+      <div class="pcbrower-tip">
+        <a href="${root}/index">网页版赚了没</a>
+      </div>
+      </c:if>
     </aside>
     
 </body>

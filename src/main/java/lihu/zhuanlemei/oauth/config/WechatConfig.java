@@ -48,6 +48,9 @@ public class WechatConfig {
 	@Value("#{wechatSettings.redirectUrl}")
 	private String redirectUrl;
 
+	@Value("#{wechatSettings.mobileRedirectUrl}")
+	private String mobileRedirectUrl;
+
 	/** 获取Code请求地址 */
 	@Value("#{wechatSettings.requestCodeUrl}")
 	private String requestCodeUrl;
@@ -122,6 +125,14 @@ public class WechatConfig {
 
 	public void setRedirectUrl(String redirectUrl) {
 		this.redirectUrl = redirectUrl;
+	}
+
+	public String getMobileRedirectUrl() {
+		return mobileRedirectUrl;
+	}
+
+	public void setMobileRedirectUrl(String mobileRedirectUrl) {
+		this.mobileRedirectUrl = mobileRedirectUrl;
 	}
 
 	public String getRequestCodeUrl() {

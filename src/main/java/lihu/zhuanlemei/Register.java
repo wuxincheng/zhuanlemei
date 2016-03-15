@@ -48,7 +48,7 @@ public class Register extends BaseController {
 		String sessionid = request.getSession().getId();
 		logger.debug("获取用户浏览器Session sessionid={}", sessionid);
 		
-		String wechatOAuthJSURI = wechatHttpsHelper.getOAuthLoginURI(sessionid);
+		String wechatOAuthJSURI = wechatHttpsHelper.getOAuthLoginURI(sessionid, Constants.CLIENT_PC);
 		logger.debug("登录二维码地址 wechatOAuthJSURI={}", wechatOAuthJSURI);
 		
 		model.addAttribute("wechatOAuthJSURI", wechatOAuthJSURI);

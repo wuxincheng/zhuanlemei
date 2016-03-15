@@ -61,7 +61,7 @@ public class MobileRegister extends BaseController {
 		userService.register(user);
 
 		user = userService.checkLogin(user.getLoginEmail());
-		request.getSession().setAttribute(Constants.CURRENT_USER, user);
+		request.getSession().setAttribute(Constants.MOBILE_USER, user);
 
 		return result.redirect("/mobile/collect/list");
 	}

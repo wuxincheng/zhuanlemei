@@ -36,8 +36,8 @@ import lihu.zhuanlemei.util.Validation;
  */
 @Controller("mobile0FundMarketController")
 @RequestMapping("/mobile0/fund/market")
-public class MobileFundMarketController extends BaseController {
-	private static final Logger logger = LoggerFactory.getLogger(MobileFundMarketController.class);
+public class Mobile0FundMarketController extends BaseController {
+	private static final Logger logger = LoggerFactory.getLogger(Mobile0FundMarketController.class);
 
 	@Autowired
 	private FundMarketService fundMarketService;

@@ -29,9 +29,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller("mobile0Register")
 @RequestMapping("/mobile0/register")
-public class MobileRegister extends BaseController {
+public class Mobile0Register extends BaseController {
 
-	private static final Logger logger = LoggerFactory.getLogger(MobileRegister.class);
+	private static final Logger logger = LoggerFactory.getLogger(Mobile0Register.class);
 	
 	@Resource
 	private UserService userService;

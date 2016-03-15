@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import lihu.zhuanlemei.oauth.config.WechatConfig;
+import lihu.zhuanlemei.util.Constants;
 import lihu.zhuanlemei.util.JSONUtil;
 
 /**
@@ -28,50 +29,43 @@ public class WechatHttpsHelper {
 	@Resource
 	WechatConfig wechatConfig;
 
-	public String getOAuthInnerURI(String sessionid) {
-		logger.info("根据sessionid获取微信内部授权地址 sessionid={}", sessionid);
-
-		// 微信登录后返回的地址URLEncoder
-		String redirectURLEncoder = null;
-		try {
-			redirectURLEncoder = URLEncoder.encode(wechatConfig.getRedirectUrl(), "UTF-8");
-			logger.debug("URLEncoder后的返回地址 redirectURLEncoder={}", redirectURLEncoder);
-		} catch (UnsupportedEncodingException e) {
-			logger.error("URLEncoder返回地址异常", e);
-		}
-
-		// 微信授权登录页面
-		String wechatOAuthUrl = wechatConfig.getWechatOAuthorize().replaceAll("APPID", wechatConfig.getOpenAppid())
-				.replaceAll("REDIRECT_URI", redirectURLEncoder).replaceAll("STATE", sessionid);
-		logger.debug("微信授权登录地址 wechatOAuthUrl={}", wechatOAuthUrl);
-
-		return wechatOAuthUrl;
-	}
-
 	/**
 	 * 根据sessionid获取微信登录地址
 	 * 
 	 * @param sessionid
 	 * @return
 	 */
-	public String getOAuthLoginURI(String sessionid) {
+	public String getOAuthLoginURI(String sessionid, String clientType) {
 		logger.info("根据sessionid获取微信登录地址 sessionid={}", sessionid);
+
+		String redirectUrl = null, appid = null, wechatOAuthUrl = null;
+		if (Constants.CLIENT_MOBILE.equals(clientType)) { // 微信公众平台
+			appid = wechatConfig.getMpAppid();
+			redirectUrl = wechatConfig.getMobileRedirectUrl();
+			wechatOAuthUrl = wechatConfig.getWechatOAuthorize();
+			logger.info("微信公众平台授权 appid={} redirectUrl={}", appid, redirectUrl);
+		} else { // 微信开放平台
+			redirectUrl = wechatConfig.getRedirectUrl();
+			appid = wechatConfig.getOpenAppid();
+			wechatOAuthUrl = wechatConfig.getWechatOAuthUrl();
+			logger.info("微信开放平台授权 appid={} redirectUrl={}", appid, redirectUrl);
+		}
 
 		// 微信登录后返回的地址URLEncoder
 		String redirectURLEncoder = null;
 		try {
-			redirectURLEncoder = URLEncoder.encode(wechatConfig.getRedirectUrl(), "UTF-8");
+			redirectURLEncoder = URLEncoder.encode(redirectUrl, "UTF-8");
 			logger.debug("URLEncoder后的返回地址 redirectURLEncoder={}", redirectURLEncoder);
 		} catch (UnsupportedEncodingException e) {
 			logger.error("URLEncoder返回地址异常", e);
 		}
 
 		// 微信授权登录页面
-		String wechatOAuthUrl = wechatConfig.getWechatOAuthUrl().replaceAll("APPID", wechatConfig.getOpenAppid())
+		String wechatOAuthFullUrl = wechatOAuthUrl.replaceAll("APPID", appid)
 				.replaceAll("REDIRECT_URI", redirectURLEncoder).replaceAll("STATE", sessionid);
-		// logger.info("微信授权登录地址 wechatOAuthUrl={}", wechatOAuthUrl);
+		logger.info("微信授权登录地址 wechatOAuthFullUrl={}", wechatOAuthFullUrl);
 
-		return wechatOAuthUrl;
+		return wechatOAuthFullUrl;
 	}
 
 	/**
@@ -103,20 +97,26 @@ public class WechatHttpsHelper {
 
 	/**
 	 * 根据code获取access_token
-	 * 
-	 * @param accessCode
-	 * @return
 	 */
-	public Map<String, Object> getAccessTokenByCode(String accessCode) {
+	public Map<String, Object> getAccessTokenByCode(String accessCode, String clientType) {
 		logger.info("根据code获取access_token值 code={}", accessCode);
 		if (StringUtils.isEmpty(accessCode)) {
 			logger.warn("获取信息失败，参数不能为空");
 			return null;
 		}
 
+		String appSecret = null, appid = null;
+		if (Constants.CLIENT_MOBILE.equals(clientType)) { // 微信公众平台
+			appSecret = wechatConfig.getMpAppSecret();
+			appid = wechatConfig.getMpAppid();
+		} else { // 微信开放平台
+			appSecret = wechatConfig.getOpenAppSecret();
+			appid = wechatConfig.getOpenAppid();
+		}
+
 		// 通过code获取access_token的URL
-		String accessTokenUrl = wechatConfig.getAccessTokenUrl().replaceAll("APPID", wechatConfig.getOpenAppid())
-				.replaceAll("APPSECRET", wechatConfig.getOpenAppSecret()).replaceAll("CODE", accessCode);
+		String accessTokenUrl = wechatConfig.getAccessTokenUrl().replaceAll("APPID", appid)
+				.replaceAll("APPSECRET", appSecret).replaceAll("CODE", accessCode);
 		logger.info("请求的URL地址 accessTokenUrl={}", accessTokenUrl);
 
 		String response = null;
@@ -136,10 +136,6 @@ public class WechatHttpsHelper {
 
 	/**
 	 * 获取个人用户信息（UnionID机制）
-	 * 
-	 * @param accessToken
-	 * @param openid
-	 * @return
 	 */
 	public Map<String, Object> getUserInfoUnionID(String accessToken, String openid) {
 		logger.info("获取微信用户个人信息 accessToken={}, openid={}", accessToken, openid);

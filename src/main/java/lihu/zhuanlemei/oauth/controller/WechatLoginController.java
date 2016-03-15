@@ -49,7 +49,7 @@ public class WechatLoginController {
 
 		try {
 			String sessionid = request.getSession().getId();
-			String wechatOAuthUrl = wechatHttpsHelper.getOAuthLoginURI(sessionid);
+			String wechatOAuthUrl = wechatHttpsHelper.getOAuthLoginURI(sessionid, Constants.CLIENT_PC);
 			logger.debug("微信授权页面wechatOAuthUrl={}", wechatOAuthUrl);
 			response.sendRedirect(wechatOAuthUrl); // 跳转到微信登录授权页面
 			logger.debug("已跳转到微信授权页面");
@@ -91,7 +91,7 @@ public class WechatLoginController {
 
 		logger.debug("开始获取 access_token");
 		// 通过code获取access_token
-		Map<String, Object> responseMap = wechatHttpsHelper.getAccessTokenByCode(code);
+		Map<String, Object> responseMap = wechatHttpsHelper.getAccessTokenByCode(code, Constants.CLIENT_PC);
 		if (null == responseMap) {
 			model.addAttribute(Constants.MSG_WARN, "获取微信AccessToken失败");
 			return "redirect:/index";
@@ -111,7 +111,7 @@ public class WechatLoginController {
 		oauthUser.setTokenExpireIn(code);
 		oauthUser.setOpenid(responseUserInfoMap.get("openid").toString());
 		oauthUser.setLoginType(Constants.OAUTH_WECHAT);
-		oauthUser.setSex(MapFormatUtil.getInt(responseUserInfoMap, "sex")+"");
+		oauthUser.setSex(MapFormatUtil.getInt(responseUserInfoMap, "sex") + "");
 		checkAndProcessOAuthUser(oauthUser, request);
 
 		model.addAttribute(Constants.MSG_SUCCESS, "微信授权登录成功");

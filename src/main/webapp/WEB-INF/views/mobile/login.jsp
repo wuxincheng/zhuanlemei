@@ -55,6 +55,7 @@
       </a>
     </div>
     </form>
+    <c:if test="${empty PCBrowser}">
     <hr>
     <div style="text-align: left; padding-left: 42px;">
       <span>第三方授权登录：</span>
@@ -62,6 +63,7 @@
       <img alt="" src="${root}/assets/mobile/img/social/icon32_wx_logo.png" style="height: 23px; width: 23px;" />
       </a>
     </div>
+    </c:if>
   </div>
 
   <script type="text/javascript"

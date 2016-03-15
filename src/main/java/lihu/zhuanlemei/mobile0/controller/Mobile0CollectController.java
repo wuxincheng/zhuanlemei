@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import lihu.zhuanlemei.Result;
 import lihu.zhuanlemei.controller.BaseController;
-import lihu.zhuanlemei.mobile0.service.MobileCollectService;
+import lihu.zhuanlemei.mobile0.service.Mobile0CollectService;
 import lihu.zhuanlemei.model.Collect;
 import lihu.zhuanlemei.model.CollectUser;
 import lihu.zhuanlemei.model.Comment;
@@ -43,14 +43,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller("mobile0CollectController")
 @RequestMapping("/mobile0/collect")
-public class MobileCollectController extends BaseController {
-	private static final Logger logger = LoggerFactory.getLogger(MobileCollectController.class);
+public class Mobile0CollectController extends BaseController {
+	private static final Logger logger = LoggerFactory.getLogger(Mobile0CollectController.class);
 
 	/** 每页显示条数 */
 	private final Integer pageSize = 10;
 
 	@Autowired
-	private MobileCollectService mobileCollectService;
+	private Mobile0CollectService mobileCollectService;
 
 	@Autowired
 	private CollectService collectService;
