@@ -1,4 +1,4 @@
-package lihu.zhuanlemei.mobile.controller;
+package lihu.zhuanlemei.mobile0.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import lihu.zhuanlemei.Result;
 import lihu.zhuanlemei.controller.BaseController;
-import lihu.zhuanlemei.mobile.service.MobileCollectService;
+import lihu.zhuanlemei.mobile0.service.MobileCollectService;
 import lihu.zhuanlemei.model.Collect;
 import lihu.zhuanlemei.model.CollectUser;
 import lihu.zhuanlemei.model.Comment;
@@ -42,7 +42,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  *
  */
 @Controller
-@RequestMapping("/mobile/collect")
+@RequestMapping("/mobile0/collect")
 public class MobileCollectController extends BaseController {
 	private static final Logger logger = LoggerFactory.getLogger(MobileCollectController.class);
 

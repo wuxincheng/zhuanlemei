@@ -1,4 +1,4 @@
-package lihu.zhuanlemei.mobile;
+package lihu.zhuanlemei.mobile0;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  */
 @Controller
-@RequestMapping("/mobile/logout")
+@RequestMapping("/mobile0/logout")
 public class MobileLogout {
 
 	private static final Logger logger = LoggerFactory.getLogger(MobileLogin.class);

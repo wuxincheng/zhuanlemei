@@ -1,4 +1,4 @@
-package lihu.zhuanlemei.mobile.service;
+package lihu.zhuanlemei.mobile0.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import lihu.zhuanlemei.dao.CollectDao;
 import lihu.zhuanlemei.model.Collect;
 
-@Service("mobileCollectService")
+@Service("mobile0CollectService")
 public class MobileCollectService {
 	
 	@Resource

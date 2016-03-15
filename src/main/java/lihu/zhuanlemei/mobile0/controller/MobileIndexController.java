@@ -1,4 +1,4 @@
-package lihu.zhuanlemei.mobile.controller;
+package lihu.zhuanlemei.mobile0.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 
  */
 @Controller
-@RequestMapping("/mobile")
+@RequestMapping("/mobile0")
 public class MobileIndexController extends BaseController {
 	private static final Logger logger = LoggerFactory.getLogger(MobileIndexController.class);
 

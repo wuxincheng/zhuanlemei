@@ -1,4 +1,4 @@
-package lihu.zhuanlemei.mobile;
+package lihu.zhuanlemei.mobile0;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +27,7 @@ import lihu.zhuanlemei.util.Validation;
  *
  */
 @Controller
-@RequestMapping("/mobile/login")
+@RequestMapping("/mobile0/login")
 public class MobileLogin extends BaseController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MobileLogin.class);

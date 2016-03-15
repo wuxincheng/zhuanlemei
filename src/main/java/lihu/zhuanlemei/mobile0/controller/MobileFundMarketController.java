@@ -1,4 +1,4 @@
-package lihu.zhuanlemei.mobile.controller;
+package lihu.zhuanlemei.mobile0.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -35,7 +35,7 @@ import lihu.zhuanlemei.util.Validation;
  *
  */
 @Controller
-@RequestMapping("/mobile/fund/market")
+@RequestMapping("/mobile0/fund/market")
 public class MobileFundMarketController extends BaseController {
 	private static final Logger logger = LoggerFactory.getLogger(MobileFundMarketController.class);
 
