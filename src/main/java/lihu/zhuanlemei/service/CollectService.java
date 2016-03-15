@@ -115,6 +115,18 @@ public class CollectService {
 			queryCollect.setRecommend(collect.getRecommend());
 			queryCollect.setUpdateTime(currentDate);
 			queryCollect.setDetailContent(collect.getDetailContent());
+			
+			// 新增字段 start
+			queryCollect.setDayIncome(collect.getDayIncome());
+			queryCollect.setNav(collect.getNav());
+			queryCollect.setTotalIncome(collect.getTotalIncome());
+			queryCollect.setWeekIncome(collect.getWeekIncome());
+			queryCollect.setMonthIncome(collect.getMonthIncome());
+			queryCollect.setYearIncome(collect.getYearIncome());
+			queryCollect.setProfitLossRate(collect.getProfitLossRate());
+			queryCollect.setWinRate(collect.getWinRate());
+			queryCollect.setRankRate(collect.getRankRate());
+			// 新增字段 end
 
 			collectDao.update(queryCollect);
 		} else { // 新增榜单信息
