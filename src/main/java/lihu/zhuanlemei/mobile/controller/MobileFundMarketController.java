@@ -1,19 +1,10 @@
-package lihu.zhuanlemei.mobile0.controller;
+package lihu.zhuanlemei.mobile.controller;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import lihu.zhuanlemei.controller.BaseController;
 import lihu.zhuanlemei.model.CollectUser;
@@ -27,15 +18,24 @@ import lihu.zhuanlemei.service.ProdLikeService;
 import lihu.zhuanlemei.util.Constants;
 import lihu.zhuanlemei.util.Validation;
 
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 /**
- * 移动端基金行情
+ * 基金行情管理
  * 
- * @author wuxincheng(wxcking) 
- * @date 2015年12月18日 上午10:39:27 
- *
+ * @author wuxincheng(wxcking)
+ * @date 2015年8月14日 上午8:56:20
+ * 
  */
-@Controller("mobile0FundMarketController")
-@RequestMapping("/mobile0/fund/market")
+@Controller
+@RequestMapping("/mobile/fund/market")
 public class MobileFundMarketController extends BaseController {
 	private static final Logger logger = LoggerFactory.getLogger(MobileFundMarketController.class);
 
@@ -47,7 +47,7 @@ public class MobileFundMarketController extends BaseController {
 
 	@Autowired
 	private ProdLikeService prodLikeService;
-
+	
 	@Autowired
 	private CollectUserService collectUserService;
 
@@ -108,7 +108,7 @@ public class MobileFundMarketController extends BaseController {
 				pager.put("pageSize", pageSize);
 
 				model.addAttribute("pager", pager);
-
+				
 				if (totalCount == 0) {
 					model.addAttribute(Constants.MSG_INFO, "系统初始化，目前赞无产品数据");
 				}
@@ -120,7 +120,7 @@ public class MobileFundMarketController extends BaseController {
 		getTopRedSortList(model); // 查询红绿榜
 		model.addAttribute("keyword", keyword);
 
-		return "mobile0/fund/market/list";
+		return "fund/market/list";
 	}
 
 	@RequestMapping(value = "/detail")
@@ -154,10 +154,10 @@ public class MobileFundMarketController extends BaseController {
 			userid = getCurrentUserid(request);
 			model.addAttribute("userid", userid);
 		}
-
+		
 		getTopRedSortList(model); // 查询红绿榜
 
-		return "mobile0/fund/market/detail";
+		return "fund/market/detail";
 	}
 
 	@RequestMapping(value = "/like")
@@ -190,7 +190,7 @@ public class MobileFundMarketController extends BaseController {
 
 		return result;
 	}
-
+	
 	@RequestMapping(value = "/focus")
 	public String focus(String fundCode, String userid) {
 		logger.info("基金收藏和取消收藏操作 fundCode={} userid={}", fundCode, userid);
@@ -202,7 +202,7 @@ public class MobileFundMarketController extends BaseController {
 			logger.debug("基金收藏和取消收藏操作失败：collectid或userid为空");
 		}
 
-		return "redirect:/mobile0/fund/market/detail?fundCode=" + fundCode;
+		return "redirect:/fund/market/detail?fundCode=" + fundCode;
 	}
 
 	/**

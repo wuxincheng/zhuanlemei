@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @date 2015年12月21日 上午8:14:00
  * 
  */
-@Controller
+@Controller("mobile0IndexController")
 @RequestMapping("/mobile0")
 public class MobileIndexController extends BaseController {
 	private static final Logger logger = LoggerFactory.getLogger(MobileIndexController.class);
@@ -36,7 +36,7 @@ public class MobileIndexController extends BaseController {
 		logger.info("移动端首页显示");
 
 		// 目前移动端无设置首页, 跳转到榜单页面
-		return "redirect:/mobile/collect/list";
+		return "redirect:/mobile0/collect/list";
 	}
 
 }

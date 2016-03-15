@@ -1,4 +1,4 @@
-package lihu.zhuanlemei.mobile0.controller;
+package lihu.zhuanlemei.mobile.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import lihu.zhuanlemei.Result;
 import lihu.zhuanlemei.controller.BaseController;
-import lihu.zhuanlemei.mobile0.service.MobileCollectService;
 import lihu.zhuanlemei.model.Collect;
 import lihu.zhuanlemei.model.CollectUser;
 import lihu.zhuanlemei.model.Comment;
@@ -35,22 +34,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * 移动端榜单
+ * 榜单
  * 
- * @author wuxincheng(wxcking) 
- * @date 2015年12月18日 上午10:39:54 
- *
+ * @author wuxincheng(wxcking)
+ * 
+ * @Date 2016年1月22日 下午3:38:07
+ * 
  */
-@Controller("mobile0CollectController")
-@RequestMapping("/mobile0/collect")
+@Controller
+@RequestMapping("/mobile/collect")
 public class MobileCollectController extends BaseController {
 	private static final Logger logger = LoggerFactory.getLogger(MobileCollectController.class);
-
-	/** 每页显示条数 */
-	private final Integer pageSize = 10;
-
-	@Autowired
-	private MobileCollectService mobileCollectService;
 
 	@Autowired
 	private CollectService collectService;
@@ -75,66 +69,34 @@ public class MobileCollectController extends BaseController {
 
 	@RequestMapping(value = "/list")
 	public String list(Model model, HttpServletRequest request) {
-		logger.info("显示手机版本榜单列表");
+		logger.info("显示榜单列表");
 
-		return "mobile0/collect/list";
-	}
+		List<Collect> collects = collectService.queryAll();
 
-	@RequestMapping(value = "/loadmore")
-	@ResponseBody
-	public Map<String, Object> loadmore(String currentPage) {
-		logger.info("点击加载更多 currentPage={}", currentPage);
-
-		if (Validation.isBlank(currentPage) || !Validation.isInt(currentPage, "0+")) {
-			currentPage = "1";
+		if (null == collects || collects.size() < 1) {
+			logger.debug("目前还没发布榜单");
 		}
 
-		Integer current = Integer.parseInt(currentPage);
-		Integer start = null;
-		Integer end = null;
-		if (current > 1) {
-			start = (current - 1) * pageSize;
-			end = pageSize;
-		} else {
-			start = 0;
-			end = pageSize;
-		}
+		request.setAttribute("collects", collects);
 
-		// 封装查询条件
-		Map<String, Object> queryParam = new HashMap<String, Object>();
-		queryParam.put("start", start);
-		queryParam.put("end", end);
-
-		Map<String, Object> pager = mobileCollectService.queryPager(queryParam);
-
-		try {
-			if (pager != null && pager.size() > 0) {
-
-			} else {
-				logger.info("没有查询到文章信息");
-			}
-		} catch (Exception e) {
-			logger.info("查询文章明细时出现异常", e);
-		}
-
-		return pager;
+		return "collect/list";
 	}
 
 	@RequestMapping(value = "/detail")
-	public String detail(Model model, String collectid, HttpServletRequest request) {
-		logger.info("显示手机版本榜单详细页面 collectid={}", collectid);
+	public String detail(Model model, HttpServletRequest request, String collectid) {
+		logger.info("显示榜单详细 collectionid={}", collectid);
 
 		// 判断collectid
 		if (StringUtils.isEmpty(collectid) || !Validation.isIntPositive(collectid)) {
 			logger.debug("详细显示失败：collectid为空");
-			return "redirect:mobile0/list";
+			return "redirect:list";
 		}
 
 		// 是否存在这个榜单
 		Collect collect = collectService.queryDetailByCollectid(collectid);
 		if (null == collect) {
 			logger.debug("详细显示失败：榜单不存在 collectid={}", collectid);
-			return "redirect:mobile0/list";
+			return "redirect:list";
 		}
 		request.setAttribute("collect", collect);
 
@@ -147,7 +109,8 @@ public class MobileCollectController extends BaseController {
 		// 判断用户是否已经登录
 		if (getCurrentUserid(request) != null) {
 			// 如果登录，查询该用户是否已经收藏该榜单
-			CollectUser collectUser = collectUserService.query(collectid, getCurrentUserid(request));
+			CollectUser collectUser = collectUserService
+					.query(collectid, getCurrentUserid(request));
 			request.setAttribute("collectUser", collectUser);
 			userid = getCurrentUserid(request);
 		}
@@ -156,18 +119,78 @@ public class MobileCollectController extends BaseController {
 		Map<String, String> queryMap = new HashMap<String, String>();
 		queryMap.put("collectid", collectid);
 		queryMap.put("userid", userid);
+		List<Product> products = productService.queryProductsByCollectid(queryMap);
 		
-		List<Product> products = productService.queryCollectProductUser(queryMap);
-
-		// 关联查询所有基金信息
-		List<FundMarket> fundMarkets = fundMarketService.queryByProducts(products);
-		request.setAttribute("fundMarkets", fundMarkets);
+		if (StringUtils.isBlank(collect.getManulFlag())) {
+			// 关联查询所有基金信息
+			List<FundMarket> fundMarkets = fundMarketService.queryByProducts(products);
+			request.setAttribute("fundMarkets", fundMarkets);
+		} else {
+			request.setAttribute("products", products);
+		}
 
 		// 查询这个榜单的所有评论
 		List<Comment> comments = commentService.queryByCollectid(collectid);
 		model.addAttribute("comments", comments);
 
-		return "mobile0/collect/detail";
+		// 显示前5名热门榜单
+		List<Collect> collects = collectService.queryTopHot(5);
+		model.addAttribute("collects", collects);
+
+		return "collect/detail";
+	}
+
+	/**
+	 * 榜单收藏和取消收藏操作
+	 * 
+	 * @param collectid
+	 * @param userid
+	 * @return
+	 */
+	@RequestMapping(value = "/collect")
+	public String collect(String collectid, String userid) {
+		logger.info("榜单收藏和取消收藏操作 collectionid={} userid={}", collectid, userid);
+
+		if (StringUtils.isNotBlank(collectid) && StringUtils.isNotBlank(userid)) {
+			collectUserService.collect(collectid, userid);
+			logger.debug("榜单收藏和取消收藏操作成功");
+		} else {
+			logger.debug("榜单收藏和取消收藏操作失败：collectid或userid为空");
+		}
+
+		return "redirect:/collect/detail?collectid=" + collectid;
+	}
+
+	@RequestMapping(value = "/like")
+	@ResponseBody
+	public Map<String, Object> like(Model model, HttpServletRequest request, String collectid,
+			String likeState) {
+		logger.info("用户点赞同和反对操作 collectid={}, likeState={}", collectid, likeState);
+
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("flag", false);
+		result.put("collectid", collectid);
+
+		// 用户是否登录
+		String userid = getCurrentUserid(request);
+
+		if (StringUtils.isEmpty(userid)) {
+			result.put("message", "您还没有登录");
+			logger.info("用户还没有登录 result={}", result);
+			return result;
+		}
+
+		logger.info("调用点赞服务");
+		Integer[] scores = prodLikeService.collectLikeHandle(collectid, likeState, userid);
+		if (scores != null && scores.length == 2) {
+			result.put("flag", true);
+			result.put("likeScore", scores[0]);
+			result.put("unLikeScore", scores[1]);
+
+			logger.info("用户点赞成功 result={}", result);
+		}
+
+		return result;
 	}
 
 	@RequestMapping(value = "/focus")
@@ -179,7 +202,7 @@ public class MobileCollectController extends BaseController {
 
 		String userid = getCurrentUserid(request);
 		if (StringUtils.isEmpty(userid)) {
-			return result.redirect("/mobile0/login/");
+			return result.redirect("/login/");
 		}
 
 		if (fundCode != null && userid != null) {
