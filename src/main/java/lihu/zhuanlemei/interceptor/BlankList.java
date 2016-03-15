@@ -4,6 +4,13 @@ import org.apache.commons.lang.StringUtils;
 
 import lihu.zhuanlemei.util.PropertyReadUtil;
 
+/**
+ * 黑名单
+ * 
+ * @author wuxincheng(wxcking) 
+ * @date 2016年3月14日 下午4:32:05 
+ *
+ */
 public class BlankList {
 
 	/**

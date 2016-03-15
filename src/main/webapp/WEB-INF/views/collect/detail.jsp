@@ -160,11 +160,11 @@
                   <tr>
                     <th>代码</th>
                     <th>名称</th>
-                    <th>最新价</th>
-                    <th>涨跌幅</th>
-                    <th>成本价</th>
-                    <th>盈亏比例</th>
-                    <th>仓位</th>
+                    <th style="text-align: right;">最新价</th>
+                    <th style="text-align: right;">涨跌幅</th>
+                    <th style="text-align: right;">成本价</th>
+                    <th style="text-align: right;">盈亏比例</th>
+                    <th style="text-align: right;">仓位</th>
                     <th>&nbsp;</th>
                   </tr>
                 </thead>
@@ -173,12 +173,12 @@
                   <tr id="product-${product.prodid}">
                     <td>${product.fundCode}</td>
                     <td>${product.fundName}</td>
-                    <td>${product.latestPrice}</td>
-                    <td>${product.changePercent}</td>
-                    <td>${product.costPrice}</td>
-                    <td>${product.profitLossRat}</td>
-                    <td>${product.positionPercent}</td>
-                    <td>
+                    <td style="text-align: right;">${product.latestPrice}</td>
+                    <td style="text-align: right;">${product.changePercent}</td>
+                    <td style="text-align: right;">${product.costPrice}</td>
+                    <td style="text-align: right;">${product.profitLossRat}</td>
+                    <td style="text-align: right;">${product.positionPercent}</td>
+                    <td style="text-align: right;">
                       <c:if test="${collect.userid==user.userid}">
                         <input type="button" class="wx-btn" onclick="delProd(${product.prodid});" value="移除" />
                       </c:if>
