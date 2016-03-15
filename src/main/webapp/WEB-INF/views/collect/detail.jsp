@@ -369,6 +369,10 @@
 		});
     };
   </script>
-
 </body>
+<style type="text/css">
+  .list-header {
+    border: 1px solid #F1EFEF;
+  }
+</style>
 </html>
