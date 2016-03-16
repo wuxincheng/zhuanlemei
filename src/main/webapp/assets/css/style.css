@@ -721,7 +721,7 @@ html.no-touch .zm-item-vote-count:hover {
   float: right;
   width: 280px;
   min-height: 350px;
-  padding: 30px;
+  padding: 20px;
 }
 
 .collect-sort-left {
@@ -731,8 +731,7 @@ html.no-touch .zm-item-vote-count:hover {
 }
 
 .collect-left .collect-name {
-  padding-top: 20px;
-  font-size: 30px;
+  font-size: 23px;
 }
 
 .collect-left .collect-create {
@@ -755,7 +754,13 @@ html.no-touch .zm-item-vote-count:hover {
   display: inline-block;
   width: 100%;
   color: #A3A3A3;
-  font-size: 16px;
+  font-size: 15px;
+  line-height: 30px;
+}
+
+.collect-left .collect-memo span {
+  margin-right: 25px;
+  margin-top: 10px;
 }
 
 .collect-hand {

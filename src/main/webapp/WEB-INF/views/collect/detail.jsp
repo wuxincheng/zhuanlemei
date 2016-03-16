@@ -34,7 +34,7 @@
         </div>
       </div>
       
-      <div class="collect-left" style="width: 290px;">
+      <div class="collect-left" style="width: 305px;">
         <div class="collect-name">${collect.collectName}</div>
         <div class="collect-create">
           <div class="collect-creater">
@@ -70,7 +70,14 @@
             </ul>
           </div>
         </div>
-        <div class="collect-memo">${collect.memo}</div>
+        <div class="collect-memo">
+          <span>净值：${collect.nav}</span><br/>
+          <span>日收益：${collect.dayIncome}</span><br/>
+          <span>总收益：${collect.totalIncome}</span><span>周收益：${collect.weekIncome}</span><br/>
+          <span>月收益：${collect.monthIncome}</span><span>年收益：${collect.yearIncome}</span><br/>
+          <span>盈亏比：${collect.profitLossRate}</span><span>胜率：${collect.winRate}</span><br/>
+          <span>${collect.rankRate}</span><br/>
+        </div>
       </div>
     </div>
     

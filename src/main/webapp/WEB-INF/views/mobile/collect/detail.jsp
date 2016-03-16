@@ -69,8 +69,19 @@
           <div class="wall-img-preview lightbox clearfix">
             <img src="${collect.coverImgPath}" style="width: 92%; border: 1px solid #F6F6F6;"/>
           </div>
-          <div>${collect.memo}</div>
-          <div>${collect.recommend}</div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-body card-padding">
+          <div class="mcollect-detail">
+            <span>净值：${collect.nav}</span><br/>
+            <span>日收益：${collect.dayIncome}</span>
+            <span>总收益：${collect.totalIncome}</span><span>周收益：${collect.weekIncome}</span><br/>
+            <span>月收益：${collect.monthIncome}</span><span>年收益：${collect.yearIncome}</span><br/>
+            <span>盈亏比：${collect.profitLossRate}</span><span>胜率：${collect.winRate}</span><br/>
+            <span>${collect.rankRate}</span><br/>
+          </div>
           <ul class="wall-attrs clearfix list-inline list-unstyled" style="margin-top:20px;">
             <li class="wa-stats">
               <c:if test="${not empty collectUser}">
@@ -89,6 +100,13 @@
               </c:if>
             </li>
           </ul>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-body card-padding">
+          <div>${collect.memo}</div>
+          <div>${collect.recommend}</div>
         </div>
       </div>
 
@@ -114,6 +132,25 @@
                   <li>最新规模：${fundMarket.newScale}亿</li>
                   <li>成立日期：${fundMarket.foundedDate}</li>
                   <li>基金经理：${fund:huntHigh(fundMarket.fundManager, keyword)}</li>
+                </ul>
+              </div>
+            </div>
+            </c:forEach>
+            
+            <c:if test="${not empty products}">
+              <div style="padding: 20px; font-size: 16px; background-color: #FDFAFA; width: 100%;">持仓明细：</div>
+            </c:if>
+            <c:forEach items="${products}" var="product">
+            <div class="lv-item media">
+              <div class="media-body">
+                <div class="lv-title">${product.fundName}（${product.fundCode}）</div>
+                <small class="lv-small"></small>
+
+                <ul class="lv-attrs">
+                  <li>最新价：${product.latestPrice}</li>
+                  <li>涨跌幅：${product.changePercent}</li>
+                  <li>盈亏比例：${product.profitLossRat}</li>
+                  <li>仓位：${product.positionPercent}</li>
                 </ul>
               </div>
             </div>

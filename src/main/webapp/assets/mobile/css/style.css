@@ -17,3 +17,11 @@
   margin: 50px;
   font-style: italic;
 }
+
+.mcollect-detail {
+  line-height: 25px;
+}
+
+.mcollect-detail span {
+  margin-right: 10px;
+}

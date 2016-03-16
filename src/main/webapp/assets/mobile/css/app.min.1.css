@@ -1990,7 +1990,7 @@ pre code {
   padding-left: 15px;
   padding-right: 15px;
   max-width: 500px;
-  min-width: 350px;
+  min-width: 280px;
 }
 
 @media (min-width: 768px) {
