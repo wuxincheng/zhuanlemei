@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<title>505 对不起，服务器异常 - TOP</title>
+<title>505 对不起，服务器异常 - 赚了没？</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="${root}/assets/css/application.css" />
