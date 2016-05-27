@@ -754,12 +754,11 @@ html.no-touch .zm-item-vote-count:hover {
   display: inline-block;
   width: 100%;
   color: #A3A3A3;
-  font-size: 15px;
-  line-height: 30px;
+  line-height: 28px;
 }
 
 .collect-left .collect-memo span {
-  margin-right: 25px;
+  margin-right: 18px;
   margin-top: 10px;
 }
 
